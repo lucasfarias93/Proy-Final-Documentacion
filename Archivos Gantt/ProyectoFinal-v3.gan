@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="ProyectoFinal" company="" webLink="http://" view-date="2017-10-10" view-index="0" gantt-divider-location="851" resource-divider-location="449" version="2.8.4" locale="es_AR">
+<?xml version="1.0" encoding="UTF-8"?><project name="ProyectoFinal" company="" webLink="http://" view-date="2017-01-01" view-index="0" gantt-divider-location="696" resource-divider-location="449" version="2.8.4" locale="es">
     <description/>
-    <view zooming-state="default:1" id="gantt-chart">
-        <field id="tpd3" name="Nombre" width="534" order="0"/>
-        <field id="tpd4" name="Fecha de inicio" width="95" order="1"/>
-        <field id="tpd5" name="Fecha de fin" width="80" order="2"/>
-        <field id="tpd6" name="Duración" width="46" order="3"/>
-        <field id="tpd13" name="Recursos" width="92" order="4"/>
+    <view zooming-state="default:10" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="430" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="79" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="67" order="2"/>
+        <field id="tpd6" name="Duración" width="40" order="3"/>
+        <field id="tpd13" name="Recursos" width="76" order="4"/>
         <option id="color.recent"><![CDATA[#009999 #00cccc]]></option>
     </view>
     <view id="resource-table">
@@ -62,7 +62,7 @@
             <depend id="47" type="2" difference="0" hardness="Strong"/>
             <depend id="86" type="2" difference="0" hardness="Strong"/>
             <depend id="88" type="2" difference="0" hardness="Strong"/>
-            <task id="41" name="Analisis de la guia de trabajo" color="#8cb6ce" meeting="false" start="2017-03-07" duration="2" complete="0" expand="false">
+            <task id="41" name="Analisis de la guia de trabajo" color="#8cb6ce" meeting="false" start="2017-03-07" duration="2" complete="0" expand="true">
                 <depend id="68" type="2" difference="0" hardness="Strong"/>
                 <depend id="81" type="2" difference="0" hardness="Strong"/>
                 <task id="76" name="Crear grupo de whatsapp" color="#8cb6ce" meeting="false" start="2017-03-07" duration="1" complete="0" expand="true">
@@ -74,7 +74,7 @@
                 <task id="79" name="Definir coordinador" color="#8cb6ce" meeting="false" start="2017-03-07" duration="1" complete="0" expand="true"/>
                 <task id="80" name="Establecer modulos preliminars del proyecto y herramientas a utilizar" color="#8cb6ce" meeting="false" start="2017-03-07" duration="2" complete="0" expand="true"/>
             </task>
-            <task id="68" name="Capacitacion del equipo" color="#000000" meeting="false" start="2017-03-09" duration="4" complete="0" expand="false">
+            <task id="68" name="Capacitacion del equipo" color="#000000" meeting="false" start="2017-03-09" duration="4" complete="0" expand="true">
                 <depend id="208" type="2" difference="0" hardness="Strong"/>
                 <task id="81" name="Establecer capacitacion en herramientas para modelado web" color="#8cb6ce" meeting="false" start="2017-03-09" duration="1" complete="0" expand="true">
                     <depend id="83" type="2" difference="0" hardness="Strong"/>
@@ -94,7 +94,7 @@
             <depend id="3" type="2" difference="0" hardness="Strong"/>
             <depend id="52" type="2" difference="0" hardness="Strong"/>
             <depend id="106" type="2" difference="0" hardness="Strong"/>
-            <task id="47" name="Relevamiento general" color="#000000" meeting="false" start="2017-03-15" duration="15" complete="0" expand="false">
+            <task id="47" name="Relevamiento general" color="#000000" meeting="false" start="2017-03-15" duration="15" complete="0" expand="true">
                 <depend id="69" type="2" difference="0" hardness="Strong"/>
                 <depend id="94" type="2" difference="0" hardness="Strong"/>
                 <task id="86" name="Describir inicialmente la organizacion seleccionada y de las organizaciones afines" color="#8cb6ce" meeting="false" start="2017-03-15" duration="3" complete="0" expand="true">
@@ -108,7 +108,7 @@
                 </task>
                 <task id="92" name="Detectar las distintas funciones e intefaces de sistemas existentes" color="#8cb6ce" meeting="false" start="2017-03-30" duration="5" complete="0" expand="true"/>
             </task>
-            <task id="69" name="Relevamiento detallado" color="#000000" meeting="false" start="2017-04-06" duration="18" complete="0" expand="false">
+            <task id="69" name="Relevamiento detallado" color="#000000" meeting="false" start="2017-04-06" duration="18" complete="0" expand="true">
                 <task id="94" name="Evaluar posibles funcionalidades de interes" color="#8cb6ce" meeting="false" start="2017-04-06" duration="3" complete="0" expand="true">
                     <depend id="96" type="2" difference="0" hardness="Strong"/>
                 </task>
@@ -124,9 +124,9 @@
                 <task id="102" name="Definir objetivos y alcances del sistema" color="#8cb6ce" meeting="false" start="2017-04-27" duration="3" complete="0" expand="true"/>
             </task>
         </task>
-        <task id="3" name="Analisis y Diseño" color="#8cb6ce" meeting="false" start="2017-05-03" duration="29" complete="0" expand="false">
+        <task id="3" name="Analisis y Diseño" color="#8cb6ce" meeting="false" start="2017-05-03" duration="29" complete="0" expand="true">
             <depend id="25" type="2" difference="0" hardness="Strong"/>
-            <task id="52" name="Definir alcances y objetivos del sistema" color="#000000" meeting="false" start="2017-05-03" duration="4" complete="0" expand="false">
+            <task id="52" name="Definir alcances y objetivos del sistema" color="#000000" meeting="false" start="2017-05-03" duration="4" complete="0" expand="true">
                 <depend id="71" type="2" difference="0" hardness="Strong"/>
                 <depend id="112" type="2" difference="0" hardness="Strong"/>
                 <depend id="116" type="2" difference="0" hardness="Strong"/>
