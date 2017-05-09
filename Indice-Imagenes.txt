@@ -1,0 +1,39 @@
+FIgura nº1: Portal digital del Ministerio de Gobierno, Trabajo y Justicia - Pag 8
+Figura nº2: Partidas Ya. Sistema para emisión de partidas online” - Pag 9
+Figura nº3: Partidas Online. Sistema para emisión de partidas online” - Pag 11
+Figura nº4: Cuadro comparativo de funcionalidades del relevamiento - Pag 15
+Figura nº5: Cuadro comparativo de interfaces encontradas en el relevamiento de sistemas - Pag 16
+Figura nº6: Acta de Nacimiento - Pag 21
+Figura nº7: Reverso acta de nacimiento - 22 
+Figura nº8: Cabecera de página principal del portal digital del R.C. - Pag 23
+Figura nº9: Login del WebMail del Gobierno - Pag 24
+Figura nº10: Primer paso para solicitar acta – Formulario de datos - Pag 25
+Figura nº11: Segundo paso para solicitar acta - Confirmación - Pag 26
+Figura nº12: Tercer paso para solicitar acta – Resultado transacción - Pag 27
+Figura nº13: Consulta trámites – portal digital del R.C.” - Pag 28
+Figura nº14: Ingreso de datos para consultar trámites - Pag 28
+Figura nº15: “Ingreso de datos para consultar trámites” -  Pag 28
+Figura Nº 16: “Listado servicios y filtro de búsqueda – Portal Digital R.C.” - Pag 29
+Figura Nº 17: “Cabecera de página principal del portal digital del R.C.” - 29
+Figura Nº 18: “Solicitud de partida de nacimiento – Partidas Ya!” - 30
+Figura Nº 19: “Elección de forma de envio – Partidas Ya!”” - 31
+Figura Nº 20: “Elección de medio de pago de solicitud – Partidas Ya!”	- 31
+Figura Nº 21: “Elección de sucursal de pago de solicitud – Partidas Ya!” 32	
+Figura Nº 22: “Confirmación de pago de solicitud – Partidas Ya!” 32
+Figura Nº 23: “Comprobante de pago – Partidas Ya!” - 33
+Figura Nº 24: “Aviso inicial – Partidas Online”  - 33
+Figura Nº 25: “Elección formas de envío – Partidas Online” - 34
+Figura Nº 26: “Elección formas de pago de solicitud – Partidas Online” - 35
+Figura Nº 27: “Confirmación de pago de solicitud – Partidas Online” - 35
+Figura Nº 28: “Comprobante de pago – Partidas Online” - 36
+Figura Nº 29: “Modelo lógico de los sistemas y software actuales con todas las funciones que cumple cada uno” - 37
+Figura Nº 30: “Organigrama en estrella de la estructura del equipo de trabajo” - 48
+Figura Nº 31: “Puesto de trabajo de cada miembro del equipo durante el proyecto” - 48
+Figura Nº 32: “Dashboard principal de Trello – Issue Tracker” - 54
+Figura Nº 33: “Columna con tareas y sus asignaciones - Trello” - 55
+Figura Nº 34: “Posibilidad de adición de lista al dashboard - Trello” - 55
+Figura Nº 35: “Detalles de una tarea - Trello”- 56
+Figura Nº 36: “Detalle de un repositorio con sus archivos y ramas - Github” - 59
+Figura Nº 37: “Vista de su rama master (principal) y un branch de repositorio - Github” - 59
+Figura Nº 38: “Tabla de Modelos de estructura de equipos de trabajo” - 74
+Figura Nº 39: “Tabla de formación de equipos de trabajo” - 74
