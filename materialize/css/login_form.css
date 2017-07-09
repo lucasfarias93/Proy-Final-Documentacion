@@ -1,0 +1,36 @@
+
+body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+
+
+    }
+
+    main {
+      flex: 1 0 auto;
+      height: 100%; width:100%; font-size: 0;
+    }	
+
+    body {
+      background: #fff;
+    }
+
+    #left {
+    	width: 50%;
+    	height: 100%;
+    }
+
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+    }
+
+	.input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 10px solid #e91e63;
+      box-shadow: none;
+    }
+

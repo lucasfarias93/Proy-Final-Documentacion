@@ -1,0 +1,17 @@
+.btn-floating {
+  color: #DF0101 !important;
+  background: #DF0101 !important;
+}
+
+.nav-extended {
+ background: #DF0101 !important;
+ text-decoration-color: #000 !important;
+}
+
+.nav-extended .brand-logo {
+	padding: 4.75px
+}
+
+.row .col{
+	padding: 0 !important;
+}
