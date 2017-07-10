@@ -4,21 +4,26 @@ body {
       min-height: 100vh;
       flex-direction: column;
 
-
     }
 
-    main {
+    #container {
       flex: 1 0 auto;
-      height: 100%; width:100%; font-size: 0;
+      height: 100%; 
+      width:100%; 
+      font-size: 0;
     }	
+
+    #left{
+
+      float: left;
+    } 
+
+    #right {
+      float: right;
+    } 
 
     body {
       background: #fff;
-    }
-
-    #left {
-    	width: 50%;
-    	height: 100%;
     }
 
     .input-field input[type=text]:focus + label,
@@ -27,10 +32,9 @@ body {
       color: #e91e63;
     }
 
-	.input-field input[type=text]:focus,
+	  .input-field input[type=text]:focus,
     .input-field input[type=email]:focus,
     .input-field input[type=password]:focus {
       border-bottom: 10px solid #e91e63;
       box-shadow: none;
     }
-
