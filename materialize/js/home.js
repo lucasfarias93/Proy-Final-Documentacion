@@ -15,3 +15,8 @@ $('#TAB-1').on('click',function(){
     console.log("First button clicked");
     $('#card-element').show();
 })
+
+$('.button_submit').on('click',function(){
+    alert("HOLIIIIIIIIIIIIIIIIIIIIS");
+});
+
