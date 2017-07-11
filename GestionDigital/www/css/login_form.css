@@ -1,0 +1,58 @@
+
+body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+
+    }
+
+    #container {
+      flex: 1 0 auto;
+      height: 100%; 
+      width:100%; 
+      font-size: 18px;
+    }	
+
+    .nav-extended {
+      background: #DF0101 !important;
+      text-decoration-color: #000 !important;
+    }
+
+    .nav-extended .brand-logo {
+      padding: 4.75px
+    }
+  
+    #left{
+      float: left;
+    } 
+
+    #right {
+      float: right;
+    } 
+
+    body {
+      background: #fff;
+    }
+
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=email]:focus + label,
+    .input-field input[type=password]:focus + label {
+      color: #e91e63;
+      font-size: 20px;
+    }
+
+    .input-field input[type=date]:focus,
+	  .input-field input[type=text]:focus,
+    .input-field input[type=email]:focus,
+    .input-field input[type=password]:focus {
+      border-bottom: 10px solid #e91e63;
+      box-shadow: none;
+    }
+
+    .input-field label{
+      font-size: 19px ;
+    } 
+
+    #container input {
+      font-size: 20px ;
+    } 
