@@ -1,0 +1,4 @@
+#Mon Aug 07 20:43:35 ART 2017
+base.0=C\:\\Users\\acer\\Desktop\\Facultad\\Proy-Final-Documentacion\\GestionDigital\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=C\:\\Users\\acer\\Desktop\\Facultad\\Proy-Final-Documentacion\\GestionDigital\\platforms\\android\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
