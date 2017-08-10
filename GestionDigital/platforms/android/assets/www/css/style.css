@@ -4,15 +4,6 @@
 /*basic reset*/
 * {margin: 0; padding: 0;}
 
-html {
-	height: 100%;
-	/*Image only BG fallback*/
-	
-	/*background = gradient + image pattern combo*/
-	background: 
-		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
-}
-
 body {
 	font-family: montserrat, arial, verdana;
 }
@@ -130,5 +121,98 @@ body {
 	color: white;
 }
 
+nav ul a,
+nav .brand-logo {
+  color: #FFFFFF;
+  margin-left: 10px;
+}
 
+nav {
+  background: #9A2EFE;
+}
 
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container .section #title {
+  color:#FFFFFF;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+ 
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+.parallax-container .section h1{
+    font-size: 3.2rem;  
+}
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+@media only screen and (max-width : 1440px) {
+  #index-banner .section {
+    top: 0;
+    font-size: 15px;
+  }
+}
+
+.icon-block {
+  padding: 0 8px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+  background:#9A2EFE;
+}
+
+#download-button {
+  background:#9A2EFE;
+  color:#FFFFFF;
+}
+
+.container a {
+  color: #FE642E;
+}
+
+.icon-block h2 {
+  color: #9A2EFE;
+}
+
+.icon-block h5 {
+  font-size: 22px;
+}
+
+.icon-block p {
+	font-size: 13px;
+	padding-top: 5px;
+}
+
+.material-icons{
+	color: #FE642E;
+}

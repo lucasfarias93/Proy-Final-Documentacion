@@ -1,24 +1,36 @@
 
+html{
+ height: 100%;
+}
+
 body {
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 
-      background: 
-      linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
 
-    }
+#container {
+    flex: 1 0 auto;
+    height: 100%; 
+    width:100%; 
+    font-size: 15px;
+}	
 
-    #container {
-      flex: 1 0 auto;
-      height: 100%; 
-      width:100%; 
-      font-size: 15px;
-    }	
+nav ul a,
+nav .brand-logo {
+  color: #FFFFFF;
+  margin-left: 5px;
+}
 
-    .nav-extended {
-      background: #DF0101 !important;
-      text-decoration-color: #000 !important;
+nav {
+  background: #9A2EFE
+
+}
+
+.nav-wrapper {
+      color: #9A2EFE !important;
+      text-decoration-color: #FFFFFF !important;
     }
 
     .nav-extended .brand-logo {
@@ -40,7 +52,7 @@ body {
     .input-field input[type=text]:focus + label,
     .input-field input[type=email]:focus + label,
     .input-field input[type=password]:focus + label {
-      color: #e91e63;
+      color: #9A2EFE;
       font-size: 15px;
     }
 
@@ -48,7 +60,7 @@ body {
 	  .input-field input[type=text]:focus,
     .input-field input[type=email]:focus,
     .input-field input[type=password]:focus {
-      border-bottom: 1px solid #e91e63;
+      border-bottom: 1px solid #9A2EFE;
       box-shadow: none;
     }
 
@@ -59,3 +71,15 @@ body {
     #container input {
       font-size: 10px ;
     } 
+
+.btn, .btn-large {
+      background-color:#9A2EFE !important;
+    }
+
+.container a {
+  color:#FE642E !important;
+}
+
+.orange-text {
+    color:#FE642E !important;
+}

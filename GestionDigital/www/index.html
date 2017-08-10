@@ -1,76 +1,159 @@
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-      <link type="text/css" rel="stylesheet" href="css/card-presentation-style.css"  media="screen,projection"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestion de Actas Digital</title>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
 <body>
-      <!--Custom nav bar code-->
   <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><i class="material-icons">input</i>Logoakshdjkashdkj</a>
+      <div href="#" class="brand-logo col offset-s6"><a>GESTION DE ACTAS DIGITALES</a></div>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#"><i class="material-icons">search</i></a></li>
-        <li><a href="#"><i class="material-icons">view_module</i></a></li>
-        <li><a href="#"><i class="material-icons">refresh</i></a></li>
-        <li><a href="#"><i class="material-icons">more_vert</i></a></li>
-      </ul>
-    </div>
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent row" >
-        <li class="tab"><a class="active s3 m3 l3" href="#test1">TAB 1</a></li>
-        <li class="tab"><a href="#test2">TAB 2</a></li>
-        <li class="tab"><a href="#test3">TAB 3</a></li>
-        <li class="tab"><a href="#test4">TAB 4</a></li>
+        <li><a href="#"><i class="material-icons" style="color:#FFFFFF">search</i></a></li>
+        <li><a href="#"><i class="material-icons" style="color:#FFFFFF">view_module</i></a></li>
+        <li><a href="#"><i class="material-icons" style="color:#FFFFFF">refresh</i></a></li>
+        <li><a href="#"><i class="material-icons" style="color:#FFFFFF">more_vert</i></a></li>
       </ul>
     </div>
   </nav>
-  <!-- Card Presentation code-->
-  <div class="row">
-        <div class="col s12 m12">
-          <div class="card">
-            <div class="card-image">
-              <img src="images/satellite_orig.jpg">
-            </div>
-            <div class="red-text text-darken-2">
-              <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
-              </div>
-            </div>
-            <div class="">
-              <div  id="card-element" class="card-action">
-                <a href="#" class="red-text text-darken-2">This is a link</a>
-              </div>
-            </div>  
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center col s12" id="title">Tus actas digitales de forma rápida y segura!</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">La forma mas rapida de sacar tus actas de forma digital y en la comodidad de tu hogar</h5>
+        </div>
+        <div class="row center">
+          <a href="login_form_test.html" id="download-button" class="btn-large waves-effect waves">HAGA CLICK AQUI PARA EMPEZAR</a>
+          <div class="section"></div>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax cropper"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Speeds up development</h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="material-icons">group</i></h2>
+            <h5 class="center">User Experience Focused</h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Easy to work with</h5>
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
           </div>
         </div>
       </div>
-      <!--Bottom Button code-->
-      <div class="fixed-action-btn toolbar">
-        <a class="btn-floating btn-large">
-          <i class="large material-icons">mode_edit</i>
-        </a>
-        <ul>
-          <li id="TAB-1" class="waves-effect waves-light"><a href="#!"><i class="material-icons">insert_chart</i></a></li>
-          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">format_quote</i></a></li>
-          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">publish</i></a></li>
-          <li class="waves-effect waves-light"><a href="#!"><i class="material-icons">attach_file</i></a></li>
-        </ul>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        </div>
       </div>
-        
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script type="text/javascript" src="js/home.js"></script>
+    </div>
+    <div class="parallax"><img src="img/background2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Contact Us</h4>
+          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="img/background3.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Equipo 6 - UTN FRM</h5>
+          <p class="grey-text text-lighten-4">Somos un grupo de 4 estudiantes enfocandonos en este proyecto como nuestra tesis final de grado. Buscamos como objetivo proporcionar un servicio totalmente funcional a los ciudadanos para hacerles cualquier tarea, involucrada con la tematica principal de este sitio, mucho mas sencilla y cómoda de realizar.</p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Hecho por <a href="#!">REGISTRO CIVIL</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
   </body>
 </html>
-        
