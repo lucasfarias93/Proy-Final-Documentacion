@@ -9,6 +9,6 @@ class IndexController extends AppController
 
     public function index()
     {
-        //view::template(NULL);
+        view::template(NULL);
     }
 }
