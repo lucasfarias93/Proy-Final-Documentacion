@@ -1,0 +1,18 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Rol<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre
+                <?php echo Form::text('rol.nombrerol') ?></label>
+            <label>Descripción
+                <?php echo Form::text('rol.descripcionrol') ?></label>
+
+            <label>Fecha de baja
+                <?php echo Form::text('rol.fechabajarol') ?></label>
+            <input name="operaciones[]" value="1">
+            <input name="operaciones[]" value="2">
+            <?php echo Form::submit('Agregar') ?>
+
+            <?php echo Form::close() ?>
+            </div>

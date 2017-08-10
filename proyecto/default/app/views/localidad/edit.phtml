@@ -1,0 +1,13 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Editar Localidad<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre localidad
+                <?php echo Form::text('localidad.nombrelocalidad') ?></label>
+            <?php echo Form::hidden('localidad.id') ?>
+            <label>Seleccione Departamento
+            <?php echo Form::dbselect('localidad.iddepartamento', 'nombredepartamento', array('departamento', 'find')) ?>
+            <?php echo Form::submit('Actualizar') ?>
+            <?php echo Form::close() ?>
+            </div>

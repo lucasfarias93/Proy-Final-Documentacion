@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Direccion</h3>
+    <ul>
+    <?php foreach ($listDireccion->items as $item) : ?>
+    <li>
+        <?php echo Html::linkAction("edit/$item->id/", 'Editar') ?>
+        <?php echo Html::linkAction("del/$item->id/", 'Borrar') ?>
+        <strong><?php echo $item->nombrecalle?> - <?php echo $item->numerocalle?> - <?php echo $item->departamento?> - <?php echo $item->barrio?> - <?php echo $item->piso?> </strong>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+ 
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if($listDireccion->prev) echo Html::linkAction("index/$listDireccion->prev/", '<< Anterior |'); ?>
+    <?php if($listDireccion->next) echo Html::linkAction("index/$listDireccion->next/", 'Próximo >>'); ?>
+</div>

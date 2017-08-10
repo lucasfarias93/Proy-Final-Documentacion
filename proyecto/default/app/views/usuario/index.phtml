@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Usuario</h3>
+    <ul>
+    <?php foreach ($listUsuario->items as $item) : ?>
+    <li>
+        <?php echo Html::linkAction("edit/$item->id/", 'Editar') ?>
+        <?php echo Html::linkAction("del/$item->id/", 'Borrar') ?>
+        <strong><?php echo $item->apellidousuario ?> - <?php echo $item->nombreusuario ?> - <?php echo $item->correoelectronico ?> - <?php echo $item->dni ?> - <?php echo $item->numerocelular ?> - <?php echo $item->numerotelefono ?> - <?php echo $item->sexo ?> - <?php echo $item->usuario ?> - <?php echo $item->pass ?> </strong>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+ 
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if($listUsuario->prev) echo Html::linkAction("index/$listUsuario->prev/", '<< Anterior |'); ?>
+    <?php if($listUsuario->next) echo Html::linkAction("index/$listUsuario->next/", 'Próximo >>'); ?>
+</div>

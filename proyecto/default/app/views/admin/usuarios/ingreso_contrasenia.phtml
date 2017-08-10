@@ -1,0 +1,27 @@
+<?php // echo View::content() ?>
+<div id="rta"></div>
+<div id="clave">
+    <?php echo Ajax::form("rta", "admin/usuarios/ingreso_contrasenia") ?>
+    <fieldset>
+        <h1>Cambiar Contrase&ntilde;a</h1>
+        <div id="res-clave"></div>
+        <div class="control-group">
+            <?php echo Form::hidden('usuario2.id') ?>
+            <label class="control-label" for="usuario_clave">Nueva Contrase&ntilde;a* : </label>
+            <div class="controls">
+                <?php echo Form::pass('usuario2.nueva_clave') ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label>
+            <div class="controls">
+                <?php echo Form::pass('usuario2.nueva_clave2') ?>
+            </div>
+        </div>
+        <div class="form-actions">
+            <?php echo Form::submit('Guardar Cambios', 'name="cambiar_clave" class="btn btn-primary"') ?>
+            <?php echo Html::link('', 'Login', 'name="cambiar_clave" class="btn btn-primary"') ?>
+        </div>
+    </fieldset>
+    <?php echo Form::close() ?>
+</div>

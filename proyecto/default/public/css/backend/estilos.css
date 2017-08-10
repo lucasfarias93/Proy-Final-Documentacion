@@ -1,0 +1,279 @@
+body{
+    background-color: #cccccc;
+}
+
+.page-header {
+    background-color: #F5F5F5;
+    margin: -20px -20px 20px;
+    padding: 20px 20px 10px;
+}
+
+.container > #contenido{
+    min-height: 1024px;
+    padding: 20px;
+    padding-top: 60px;
+    margin-top: 40px;
+}
+
+#form_logueo{
+    width: 350px;
+    margin: 0 auto;
+    border: 1px solid #999999;
+    padding-bottom: 0px;
+}
+
+.nav{
+    /*    float: none !important;*/
+}
+/*
+.nav .menu_salir{
+    float: right;
+}*/
+
+.alert{
+    margin-bottom: 7px !important;
+}
+
+table tfoot th{
+    background-color: #F5F5F5;
+    border-top: 1px solid #DDDDDD;
+}
+
+.container > .content {
+    background-image: url("../../img/background_Effect_2.png");
+    background-size: cover;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    background-repeat:no-repeat;
+    margin: 0 -20px;
+    padding: 20px;
+}
+
+.content-page > .content {
+    background-image: url("../../img/background_Effect_2.png");
+    background-size: cover;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    background-repeat:no-repeat;
+    margin: 0 -20px;
+    padding: 20px;
+}
+
+.content-page > #contenido{
+    min-height: 1024px;
+    padding: 73px 20px 20px;
+}
+
+.control-group label{
+    width: 200px !important;
+    margin-right: 10px;
+}
+
+.btn{
+    vertical-align: baseline;
+}
+
+ul.bienvenida li{
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+ul.bienvenida li img{
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 40px;
+}
+
+.span-derecho{
+    border-left: 1px solid #cccccc;
+}
+
+.span-derecho{
+    padding-left: 20px;
+}
+
+table.table input[type=checkbox], table.table img{
+    width: 20px;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.backend_menu_lateral img{
+    float: left;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+table td:first-child{
+    width: 20px;
+}
+
+.conjunto {
+    float:left;
+    margin: 5px;
+}
+fieldset {
+    border: 2px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend{
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+
+.back {
+    background-image: url("../../img/previous.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+}
+.next {
+    background-image: url("../../img/next.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+}
+.imprimir {
+    background-image: url("../../img/print.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 10px 10px 10px 20px;
+}
+.restaurar {
+    background-image: url("../../img/restore.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 10px 10px 10px 20px;
+}
+.cortar {
+    background-image: url("../../img/cortar.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 10px 10px 10px 20px;
+}
+.volver {
+    background-image: url("../../img/atras.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    alignment-baseline: central;
+}
+.viewer {
+    background-image: url("../../img/viewer.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 10px 10px 10px 20px;
+}
+.agregar {
+    background-image: url("../../img/next.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+}
+.pdf {
+    background-image: url("../../img/images.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+}
+.libro {
+    background-image: url("../../img/Icono.ico");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_abogado {
+    background-image: url("../../img/CodigoCivil.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_informatica {
+    background-image: url("../../img/Capacitacion.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_reconocimiento {
+    background-image: url("../../img/AFormularioReconocimiento.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_anexo1 {
+    background-image: url("../../img/Anexo_1.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c3 {
+    background-image: url("../../img/AFormularioReconocimiento.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_anexo2 {
+    background-image: url("../../img/Anexo_2.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_anexo3 {
+    background-image: url("../../img/Anexo_3.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.c_anexo4 {
+    background-image: url("../../img/Anexo_4.png");
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 70px;
+    padding: 5px;
+}
+.loading {
+    background-image: url("../../img/loading.gif");
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+}
+.nota-informativa {
+    padding:30px; /*Espaciado interno*/
+    width:240px; /*Ancho del contenedor*/
+    text-align:center; /*Alineación del texto*/
+    background-image: url("../../img/vineta2.png"); 
+    position:fixed; /*Permite que se mantenga estático*/
+    display:none; /*Oculta el contenedor*/
+    right:10px; /*Separación del borde izquierdo*/
+    bottom:0px; /*Separación inferior del borde*/
+    box-shadow:10 10 5px #555; /*Sombras CSS3*/
+    background-repeat:no-repeat;
+    height: 170px;
+}
+
+.msj {
+    font-size: 20px;
+}

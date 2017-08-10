@@ -1,0 +1,73 @@
+<div class="page-header">
+    <h1><?php eh($titulo) ?></h1>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <?php View::partial('backend/menus/recursos') ?>
+    </div>
+    <div class="col-sm-6">
+    <div class="widget-box widget-color-dark light-border ui-sortable-handle">
+        <div class="widget-header">
+            <h5 class="widget-title smaller">Datos Nuevo</h5>
+        </div>
+
+        <div class="widget-body">
+            <div class="widget-main">
+                <div class="alert alert-info"> 
+					<div id="res-form-ajax"><?php View::content() ?></div>
+			        <?php echo Ajax::form('res-form-ajax', NULL, 'form-horizontal') ?>
+			        <?php //echo Form::open(NULL, 'post', 'class="form-horizontal"') ?>
+			        <?php echo Form::hidden('recurso.id') ?>
+			        
+			         <div class="form-group">
+			            <?php echo Form::label('Modulo', 'ppal_nombre', 'class="col-sm-3 control-label"'); ?>
+			            <div class="col-sm-5">
+			                <?php echo Form::text('recurso.modulo', array("class" => "form-control normal")) ?>
+			            </div>
+			            
+			        </div>
+			        <div class="form-group">
+			            <?php echo Form::label('Controlador *', 'ppal_nombre', 'class="col-sm-3 control-label"'); ?>
+			            <div class="col-sm-5">
+			                <?php echo Form::text('recurso.controlador', array("class" => "form-control normal")) ?>
+			            </div>
+			            
+			        </div>
+			        <div class="form-group">
+			            <?php echo Form::label('Accion', 'ppal_nombre', 'class="col-sm-3 control-label"'); ?>
+			            <div class="col-sm-5">
+			                <?php echo Form::text('recurso.accion', array("class" => "form-control normal")) ?>
+			            </div>
+			            
+			        </div>
+			        <div class="form-group">
+			            <?php echo Form::label('Descripcion *', 'ppal_nombre', 'class="col-sm-3 control-label"'); ?>
+			            <div class="col-sm-5">
+			                <?php echo Form::textarea('recurso.descripcion', array("class" => "form-control normal")) ?>
+			            </div>
+			            
+			        </div>
+			        <div class="form-group">
+			            <?php echo Form::label('Activo (Visible) ', 'ppal_nombre', 'class="col-sm-3 control-label"'); ?>
+			            <div class="col-sm-4">
+			                <?php echo Form::select('recurso.activo', array('1' => 'Si', '0' => 'No')) ?>
+			            </div>
+										            
+			        </div>
+		         </div>
+                </div>
+            </div>
+        </div>
+		</div>							        
+ </div>      
+        <div class="row">
+	        <div class="control-group">
+	            <div class="form-actions">
+	            <?php echo Form::submit('Guardar Datos', 'class="btn btn-primary"') ?>
+	            <?php echo Html::linkAction('', 'Cancelar', 'class="btn"') ?>
+	            </div>
+	    	</div>
+	    </div>    
+        <?php echo Form::close() ?>
+    
+

@@ -1,0 +1,18 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Direccion<h3>
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre Calle
+                <?php echo Form::text('direccion.nombrecalle') ?></label>
+            <label>Numero Calle
+                <?php echo Form::text('direccion.numerocalle') ?></label>
+            <label>Departamento
+                <?php echo Form::text('direccion.departamento') ?></label>
+            <label>Barrio
+                <?php echo Form::text('direccion.barrio') ?></label>
+            <label>Piso
+                <?php echo Form::text('direccion.piso') ?></label>
+            <?php echo Form::dbselect('direccion.idlocalidad', 'nombrelocalidad', array('localidad', 'find')) ?>
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>

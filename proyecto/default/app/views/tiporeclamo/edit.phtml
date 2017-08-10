@@ -1,0 +1,19 @@
+<div class="content">
+<?php View::content(); ?>
+<h3>Editar Tipo Reclamo<h3>
+ 
+<?php echo Form::open(); // por defecto llama a la misma url ?>
+ 
+        
+        <label>Nombre
+        <?php echo Form::text('tiporeclamo.nombretiporeclamo') ?></label>
+        <label>Descripcion
+        <?php echo Form::text('tiporeclamo.descripciontiporeclamo') ?></label>
+        <label>Fecha baja
+        <?php echo Form::text('tiporeclamo.fechabajatiporeclamo') ?></label>
+        
+         <?php echo Form::hidden('tiporeclamo.id') ?>
+        <?php echo Form::submit('Actualizar') ?>
+ 
+<?php echo Form::close() ?>
+</div>

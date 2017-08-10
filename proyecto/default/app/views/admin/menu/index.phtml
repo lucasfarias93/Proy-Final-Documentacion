@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h1>Menus del Sistema</h1>
+</div>
+<?php View::content() ?>
+<?php View::partial('backend/barra_superior_listas',FALSE,array('texto' => 'Crear Menú')); ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Texto A Mostrar</th>
+                    <th>Padre</th>
+                    <th>Recurso</th>
+                    <th>Url</th>
+                    <th>Posicion</th>
+                    <!--<th>Estado</th>-->
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($menus->items as $menu) { ?>
+                    <tr>
+                        <td><?php echo $menu->id ?></td>
+                        <td><?php echo $menu->nombre ?></td>
+                        <td><?php echo $menu->padre ?></td>
+                        <td><?php echo $menu->recurso ?></td>
+                        <td><?php echo $menu->url ?></td>
+                        <td><?php echo $menu->posicion ?></td>
+                        <!--<td><a href="/admin/usuarios/editar/<?php echo $menu->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>-->
+                        
+                        <td><a  href="<?php echo PUBLIC_PATH . "admin/menu/editar/" . $menu->id ?>">
+								<i class="ace-icon fa fa-pencil-square-o bigger-160"></i>
+							</a>
+                        	<a href="<?php echo PUBLIC_PATH . "admin/menu/editar/" . $menu->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>
+                        <td><a class="red" href="<?php echo PUBLIC_PATH . "admin/menu/eliminar/" . $menu->id ?>">
+								<i class="ace-icon fa fa-trash bigger-160"></i>
+							</a>
+                        	<a href="<?php echo PUBLIC_PATH . "admin/menu/eliminar/" . $menu->id ?>"><img alt="" src="/img/figuras/delete.png"> </a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php View::partial('paginators/bootstrap', false, array('page' => $menus, 'url' => Router::get('controller_path') . '/index')); ?>

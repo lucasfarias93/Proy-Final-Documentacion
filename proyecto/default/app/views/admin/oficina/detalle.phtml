@@ -1,0 +1,366 @@
+<div class="row-fluid">
+    <div class="col-md-12"><?php View::content() ?></div>
+</div>
+
+<style>
+    #acciones .fuente {
+        font-size: 14px;
+    }
+    #acciones .titulo {
+        color: #f8f8f8;
+        text-align: center;
+    }
+    #acciones {
+        background-color: #6fb3e0;
+    }
+</style>
+
+<div id = "acciones" class="row action-buttons " >
+    <div class="col-xs-12 col-sm-12">
+        <h1 class="widget-title col-xs-8 col-sm-8  titulo"><?php echo "Oficina: $oficina->numero-$oficina->nombre" ?></h1>
+        <a class="btn btn-white btn-pink btn-bold col-xs-1 col-sm-1 pull-right" href="#">
+        <a class="btn btn-white btn-primary btn-bold col-xs-12 col-sm-1 pull-right" href="#" form-data="formVolver">
+            <i class="ace-icon fa fa-arrow-left bigger-300"> <p class="fuente">Volver</p></i>
+        </a>
+        </a>
+    </div>
+</div>
+
+<?php echo Form::open("admin/oficina/detalle", "post", array("id" => "form_detalle", "class" => "form-horizontal")); ?>
+
+<?php echo Form::hidden('oficina.id') ?>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Datos Oficina</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('Numero', 'criterio_oficina_numero', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('oficina.numero', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <?php echo Form::label('Nombre', 'criterio_oficina_nombre', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('oficina.nombre', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('Descripcion', 'criterio_oficina_descripcion', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('oficina.descripcion', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('Tipo Oficina', 'criterio_enlace_oficina_tipo_oficina', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::dbSelect('enlace.oficina_tipo_oficina_id', 'descripcion', array("oficina_tipo_oficina", "find")) ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <?php echo Form::label('Oficina cabecera', 'criterio_oficina_cabecera', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::dbSelect('oficina.concen_id', 'descripcion', array("base_oficina", "find")) ?>
+                                </div>
+                            </div>                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                            
+    
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Datos Domicilio</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+    
+                            <div class="form-group">                                
+                                <?php echo Form::label('Calle', 'criterio_domicilio_calle', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('domicilio.calle', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">                                
+                                <?php echo Form::label('Numero', 'criterio_domicilio_nro', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('domicilio.nro', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>                            
+                            
+                            <div class="form-group">                                
+                                <?php echo Form::label('Localidad', 'criterio_domicilio_localidad', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::dbSelect('domicilio.base_ubicacion_id', 'nombre', array("base_ubicacion", "find")) ?>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Datos Renaper</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('ID Renaper', 'criterio_enlace_nro_cdr', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('enlace.nro_cdr', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('Descripcion CDR', 'criterio_oficina_descripcion_cdr', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('oficina.descripcion_cdr', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Datos Enlace</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+   
+                           <div class="form-group">
+                                <?php echo Form::label('Referencia', 'criterio_enlace_nro_referencia', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('enlace.nro_referencia', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">    
+                                <?php echo Form::label('Ancho Banda', 'criterio_enlace_ancho_banda', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::dbSelect('enlace.oficina_ancho_banda_id', 'descripcion', array("oficina_ancho_banda", "find")) ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <?php echo Form::label('Proveedor', 'criterio_enlace_proveedor', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::dbSelect('enlace.oficina_proveedor_id', 'descripcion', array("oficina_proveedor", "find")) ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('Tipo Tecnologia', 'criterio_enlace_oficina_tipo_tecnologia', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::dbSelect('enlace.oficina_tipo_tecnologia_id', 'descripcion', array("oficina_tipo_tecnologia", "find")) ?>
+                                </div>
+                            </div>                            
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('CIDR', 'criterio_detalle_cidr', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-5">
+                                    <?php echo Form::text('detalle.cidr', array("class" => "col-xs-12 col-sm-12 limpiable")) ?>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Datos Varios</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+                         
+                            <div class="form-group">                             
+                                <?php echo Form::label('Vigente', 'criterio_oficina_vigente', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-2">
+                                    <?php if($oficina->vigente == "t"){ ?>
+                                        <?php echo Form::select('oficina.vigente',array("1"=>"Si","2"=>"No"),array("class"=>"span2"), "1") ?>
+                                    <?php }elseif($oficina->vigente == "f"){ ?>
+                                        <?php echo Form::select('oficina.vigente',array("1"=>"Si","2"=>"No"),array("class"=>"span2"), "2") ?>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">                             
+                                <?php echo Form::label('Enlaza', 'criterio_oficina_enlaza', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-2">
+                                    <?php if($oficina->enlaza == "t"){ ?>
+                                        <?php echo Form::select('oficina.enlaza',array("1"=>"Si","2"=>"No"),array("class"=>"span2"), "1") ?>
+                                    <?php }elseif($oficina->enlaza == "f"){ ?>
+                                        <?php echo Form::select('oficina.enlaza',array("1"=>"Si","2"=>"No"),array("class"=>"span2"), "2") ?>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <?php echo Form::label('Enviar notificacion', 'criterio_oficina_enviar_notificacion', 'class="control-label col-sm-4"') ?>
+                                <div class="col-sm-2">
+                                    <?php if($oficina->enviar_notificacion == "t"){ ?>
+                                        <?php echo Form::select('oficina.enviar_notificacion',array("1"=>"Si","2"=>"No"),array("class"=>"span2"), "1") ?>
+                                    <?php }elseif($oficina->enlaza == "f"){ ?>
+                                        <?php echo Form::select('oficina.enviar_notificacion',array("1"=>"Si","2"=>"No"),array("class"=>"span2"), "2") ?>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>                                                                
+            </div>       
+        </div>
+    </div>
+</div>
+
+<?php echo Form::close() ?>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Personal</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                            <?php if (isset($personal) && count($personal) > 0) { ?>
+                                <div class="dataTables_wrapper form-inline no-footer">
+                                    <table class="table  table-bordered table-hover dataTable no-footer table-striped" id="tabla_personal" role="grid" aria-describedby="dynamic-table_info">
+            
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="hidden-480 sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending">Nombre</th>
+                                                <th class="hidden-480 sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Usuario: activate to sort column ascending">Usuario</th>
+                                                <th class="hidden-480 sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Vigente: activate to sort column ascending">Vigente</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (count($personal) > 0):
+                                                foreach ($personal as $per): ?>
+                                                    <tr class="odd" role="row" data-id="<?php echo $per->id ?>">
+                                                        <td class = ""><?php echo $per->nombres ?></td>
+                                                        <td class = ""><?php echo $per->login ?></td>
+                                                        <?php if($per->activo == 1){ ?>
+                                                            <td class = ""><?php echo "Si" ?></td>
+                                                        <?php }elseif($per->activo == 0){ ?>
+                                                            <td class = ""><?php echo "No" ?></td>
+                                                        <?php } ?>
+                                                    </tr>
+                                                <?php endforeach;
+                                            endif;?>
+                                        </tbody>
+                                    
+                                    </table>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header tramite_color">
+                <h5 class="widget-title"><i class="fa fa-file"></i> Puestos</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            
+                            <?php if (isset($puesto) && count($puesto) > 0) { ?>
+                                <div class="dataTables_wrapper form-inline no-footer">
+                                    <table class="table  table-bordered table-hover dataTable no-footer table-striped" id="tabla_puestos" role="grid" aria-describedby="dynamic-table_info">
+            
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="hidden-480 sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Ip: activate to sort column ascending">Ip</th>
+                                                <th class="hidden-480 sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Descripcion: activate to sort column ascending">Descripcion</th>
+                                                <th class="hidden-480 sorting" tabindex="0" aria-controls="dynamic-table" rowspan="1" colspan="1" aria-label="Llave VPN: activate to sort column ascending">Llave VPN</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (count($puesto) > 0):
+                                                foreach ($puesto as $pue): ?>
+                                                    <tr class="odd" role="row" data-id="<?php echo $pue->id ?>">
+                                                        <td class = ""><?php echo $pue->puesto ?></td>
+                                                        <td class = ""><?php echo $pue->descripcion ?></td>
+                                                        <td class = ""><?php echo $pue->llave_vpn ?></td>
+                                                    </tr>
+                                                <?php endforeach;
+                                            endif;?>
+                                        </tbody>
+                                    
+                                    </table>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            
+<div class="row">
+    <div class="form-actions">
+        <?php if($puede_guardar){ ?>
+            <?php echo Form::submit('Guardar Datos', 'class="btn btn-primary"') ?>
+        <?php } ?>
+        <?php echo Html::linkAction('', 'Cancelar', 'class="btn"') ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    <?php if(!$puede_guardar){ ?>
+    $("input").attr("disabled","disabled");
+    $("select").attr("disabled","disabled");
+    <?php } ?>
+</script>

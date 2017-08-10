@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Editar Parentesco<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+
+            <label>Nombre Parentesco
+                <?php echo Form::text('parentesco.nombreparentesco') ?></label>
+            <label>Fecha alta
+                <?php echo Form::text('parentesco.fechaaltaparentesco') ?></label>
+            <label>Fecha baja
+                <?php echo Form::text('parentesco.fechabajaparentesco') ?></label>
+            <?php echo Form::hidden('parentesco.id') ?>
+            <?php echo Form::submit('Actualizar') ?>
+
+            <?php echo Form::close() ?>
+            </div>

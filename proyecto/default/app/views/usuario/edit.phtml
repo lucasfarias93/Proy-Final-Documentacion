@@ -1,0 +1,30 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Editar Usuario<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+
+            <label>Apellido 
+                <?php echo Form::text('usuario.apellidousuario') ?></label>
+            <label>Nombre 
+                <?php echo Form::text('usuario.nombreusuario') ?></label>
+            <label>e-mail 
+                <?php echo Form::text('usuario.correoelectronico') ?></label>
+            <label>DNI
+                <?php echo Form::text('usuario.dni') ?></label>
+            <label>Celular
+                <?php echo Form::text('usuario.numerocelular') ?></label>
+            <label>Telefono fijo
+                <?php echo Form::text('usuario.numerotelefono') ?></label>
+            <label>Sexo
+                <?php echo Form::text('usuario.sexo') ?></label>
+            <label>Usuario
+                <?php echo Form::text('usuario.usuario') ?></label>
+            <label>Clave 
+                <?php echo Form::text('usuario.pass') ?></label>
+            <!--  <?php echo Form::hidden('operacion.id') ?> 
+            <?php echo Form::hidden('operacion.idrol') ?> -->
+            <?php echo Form::submit('Actualizar') ?>
+
+            <?php echo Form::close() ?>
+            </div>

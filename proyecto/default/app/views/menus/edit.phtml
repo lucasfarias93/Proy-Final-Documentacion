@@ -1,0 +1,17 @@
+<div class="content">
+<?php View::content(); ?>
+<h3>Editar menu<h3>
+ 
+<?php echo Form::open(); // por defecto llama a la misma url ?>
+ 
+        <label>Nombre
+        <?php echo Form::text('menus.nombre') ?></label>
+ 
+        <label>Título
+        <?php echo Form::text('menus.titulo') ?></label>
+ 
+        <?php echo Form::hidden('menus.id') ?>
+        <?php echo Form::submit('Actualizar') ?>
+ 
+<?php echo Form::close() ?>
+</div>

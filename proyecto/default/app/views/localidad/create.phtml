@@ -1,0 +1,9 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Localidad<h3>
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre Localidad
+                <?php echo Form::text('localidad.nombrelocalidad') ?></label>
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>

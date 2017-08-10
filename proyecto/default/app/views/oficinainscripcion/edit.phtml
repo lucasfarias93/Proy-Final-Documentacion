@@ -1,0 +1,13 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Editar Oficina<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+           <label>Nombre
+                <?php echo Form::text('oficinainscripcion.nombreoficina') ?></label>
+            <label>Numero
+                <?php echo Form::text('oficinainscripcion.numerooficina') ?></label>
+            <?php echo Form::hidden('oficinainscripcion.id') ?>
+            <?php echo Form::submit('Actualizar') ?>
+            <?php echo Form::close() ?>
+            </div>

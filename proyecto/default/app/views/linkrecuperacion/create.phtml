@@ -1,0 +1,13 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Linkrecuperacion<h3>
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Enlace activo
+                <?php echo Form::text('linkrecuperacion.enlaceactivo') ?></label>
+            <label>Enlace recuperacion
+                <?php echo Form::text('linkrecuperacion.enlacerecuperacion') ?></label>
+            <label>fecha de emision
+                <?php echo Form::text('linkrecuperacion.fechadeemision') ?></label>
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>

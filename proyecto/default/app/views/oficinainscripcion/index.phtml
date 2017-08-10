@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Oficina Inscripcion</h3>
+    <ul>
+    <?php foreach ($listOficinainscripcion->items as $item) : ?>
+    <li>
+        <?php echo Html::linkAction("edit/$item->id/", 'Editar') ?>
+        <?php echo Html::linkAction("del/$item->id/", 'Borrar') ?>
+        <strong><?php echo $item->nombreoficina ?> - <?php echo $item->numerooficina ?></strong>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+ 
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if($listOficinainscripcion->prev) echo Html::linkAction("index/$listOficinainscripcion->prev/", '<< Anterior |'); ?>
+    <?php if($listOficinainscripcion->next) echo Html::linkAction("index/$listOficinainscripcion->next/", 'Próximo >>'); ?>
+</div>
