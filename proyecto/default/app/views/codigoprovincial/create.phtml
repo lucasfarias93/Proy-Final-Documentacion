@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Codigo provincial<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Importe $$$
+                <?php echo Form::text('codigoprovincial.importecodigo') ?></label>
+            <label>N° codigo
+                <?php echo Form::text('codigoprovincial.numerocodigoprovincial') ?></label>
+            <label>Disponible desde
+                <?php echo Form::text('codigoprovincial.fechadesde') ?></label>
+            <label>Disponible hasta
+                <?php echo Form::text('codigoprovincial.fechahasta') ?></label>
+
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>

@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Codigos provinciales</h3>
+    <ul>
+    <?php foreach ($listCodigop->items as $item) : ?>
+    <li>
+        <?php echo Html::linkAction("edit/$item->id/", 'Editar') ?>
+        <?php echo Html::linkAction("del/$item->id/", 'Borrar') ?>
+        <strong><?php echo $item->nombreprovincia ?></strong>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+ 
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if($listCodigop->prev) echo Html::linkAction("index/$listCodigop->prev/", '<< Anterior |'); ?>
+    <?php if($listCodigop->next) echo Html::linkAction("index/$listCodigop->next/", 'Próximo >>'); ?>
+</div>

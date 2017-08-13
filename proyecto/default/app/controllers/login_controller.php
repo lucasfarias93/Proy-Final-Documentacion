@@ -3,7 +3,7 @@
  * Carga del modelo Menus...
  */
  
-class LoginController extends AppController {
+class LoginController extends AdminController {
     /**
      * Obtiene una lista para paginar los menus
      */
