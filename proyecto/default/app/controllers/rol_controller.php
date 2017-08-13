@@ -2,8 +2,9 @@
 /**
  * Carga del modelo Menus...
  */
- 
-class RolController extends AppController {
+  Load::models('rol');
+
+class RolController extends AdminController {
     /**
      * Obtiene una lista para paginar los menus
      */

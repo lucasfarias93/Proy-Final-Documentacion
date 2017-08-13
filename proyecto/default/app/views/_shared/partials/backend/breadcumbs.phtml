@@ -1,0 +1,16 @@
+<ul class="breadcrumb">
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="#">Registro Civil</a>
+    </li>
+<?php foreach ($breads as $bread) { ?>
+    <?php if (isset($bread->active) && $bread->active) { ?>
+        <li class="active"> <?php echo $bread->nombre ?></li>
+    <?php } else { ?>
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="<?php echo Html::link($bread->url, $bread->nombre) ?>"><?php echo $bread->nombre ?></a>
+        </li>
+    <?php } ?>
+<?php } ?>
+</ul>

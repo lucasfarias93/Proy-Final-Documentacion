@@ -2,14 +2,14 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="/proyecto/default/public/css/login_style.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH?>css/login_style.css">
  
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>CodePen - Random Login Form</title>
 
-    <script src="public/js/prefixfree.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH?>js/prefixfree.min.js"></script>
 
 </head>
 
@@ -20,13 +20,14 @@
 		<div class="header">
 			<div>INICIAR SESION</div>
 		</div>
-		<br>
+		<br><?php echo Form::open(NULL, 'post') ?>
 		<div class="login">
-				<input type="text" placeholder="Usuario" name="user"><br>
-				<input type="password" placeholder="Contraseña" name="password"><br>
+            <input type="text" placeholder="Usuario" name="login"><br>
+            <input type="password" placeholder="Contraseña" name="clave"><br>
 				<input type="document" placeholder="DNI" name="document"><br>
-				<input type="button" value="Login">
+				<input type="submit" value="Login">
 		</div>
+</form>
 
   <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
 

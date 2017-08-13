@@ -97,7 +97,6 @@ class AdminController extends Controller {
     protected function checkAuth() {
         if (MyAuth::es_valido()) {
             $ret = $this->_tienePermiso();
-            Load::negocio("experto_oficina");
 
             return $ret;
         } elseif (Input::hasPost('login') && Input::hasPost('clave')) {
