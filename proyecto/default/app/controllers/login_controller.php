@@ -9,7 +9,7 @@ class LoginController extends AdminController {
      */
     public function index() 
     {
-       view::template(NULL);
+       view::select(NULL, 'logueo');
     }
  
     /**

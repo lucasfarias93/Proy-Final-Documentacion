@@ -98,15 +98,11 @@ class AdminController extends Controller {
         if (MyAuth::es_valido()) {
             $ret = $this->_tienePermiso();
             Load::negocio("experto_oficina");
-            if ($ret) {
-                $this->verificar_oficina();
-            }
+
             return $ret;
         } elseif (Input::hasPost('login') && Input::hasPost('clave')) {
             $ret = $this->_logueoValido(Input::post('login'), Input::post('clave'));
-            if ($ret) {
-                $this->verificar_oficina();
-            }
+
             return $ret;
         } elseif (Input::hasPost('usuario2')) {
             return TRUE;
@@ -184,17 +180,6 @@ class AdminController extends Controller {
     protected function intentos_pasados() {
         Flash::warning('Has Sobrepasado el limite de intentos fallidos al tratar acceder a ciertas partes del sistema');
         return $this->logout();
-    }
-
-    final protected function verificar_oficina() {
-        return true;
-        Load::negocio("experto_oficina");
-        $es_valido = ExpertoOficina::verificar_oficina_usuario(Auth::get("id"));
-        if (!$es_valido) {
-            Flash::error("El usuario se encuentra inhabilitado para acceder desde este puesto");
-            return $this->logout();
-        }
-        return $es_valido;
     }
 
     /**
