@@ -49,29 +49,29 @@ class AdminController extends Controller {
      * 
      */
     protected function initialize() {
-        $inactivo = 7200;
-        
-        if (!Input::isAjax() && Session::get('tiempo')) {
-            $vida_session = time() - Session::get('tiempo');
-            if ($vida_session > $inactivo) {
-                if (MyAuth::es_valido()) {
-                    Flash::warning("TIEMPO DE INACTIVIDAD: " . gmdate("H:i:s", $vida_session));
-                    MyAuth::cerrar_sesion();
-                }
-            }
-        }
-        Session::set('tiempo', time());
-        if (Input::hasPost("criterio")) {
-            if (Session::get("criterio") == "") {
-                Session::set("criterio", Input::post("criterio"));
-            } else {
-                $array = array_diff(Session::get("criterio"), Input::post("criterio"));
-                $array1 = array_diff(Input::post("criterio"), Session::get("criterio"));
-                if (count($array) > 0 || count($array1) > 0) {
-                    Session::set("criterio", Input::post("criterio"));
-                }
-            }
-        }
+//        $inactivo = 7200;
+//        
+//        if (!Input::isAjax() && Session::get('tiempo')) {
+//            $vida_session = time() - Session::get('tiempo');
+//            if ($vida_session > $inactivo) {
+//                if (MyAuth::es_valido()) {
+//                    Flash::warning("TIEMPO DE INACTIVIDAD: " . gmdate("H:i:s", $vida_session));
+//                    MyAuth::cerrar_sesion();
+//                }
+//            }
+//        }
+//        Session::set('tiempo', time());
+//        if (Input::hasPost("criterio")) {
+//            if (Session::get("criterio") == "") {
+//                Session::set("criterio", Input::post("criterio"));
+//            } else {
+//                $array = array_diff(Session::get("criterio"), Input::post("criterio"));
+//                $array1 = array_diff(Input::post("criterio"), Session::get("criterio"));
+//                if (count($array) > 0 || count($array1) > 0) {
+//                    Session::set("criterio", Input::post("criterio"));
+//                }
+//            }
+//        }
 
         if ($this->_checkAuthByDefault) {
             if ($this->_protectedActions === TRUE || ( is_array($this->_protectedActions) &&

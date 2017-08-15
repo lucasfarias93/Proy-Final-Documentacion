@@ -3,7 +3,7 @@
  * Carga del modelo Menus...
  */
  Load::models('departamento');
-class DepartamentoController extends AppController {
+class DepartamentoController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias
      */
