@@ -2,7 +2,7 @@
 /**
  * Carga del modelo Menus...
  */
-Load::models('departamento');
+Load::models('direccion');
 class DireccionController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias

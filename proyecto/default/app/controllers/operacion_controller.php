@@ -2,8 +2,8 @@
 /**
  * Carga del modelo tiporeclamo.
  */
- 
-class OperacionController extends AppController {
+Load::models('operacion');
+class OperacionController extends AdminController {
     /**
      * Obtiene una lista para paginar los tiporeclamo
      */

@@ -2,8 +2,8 @@
 /**
  * Carga del modelo Menus...
  */
- 
-class OficinainscripcionController extends AppController {
+Load::models('oficinainscripcion');
+class OficinainscripcionController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias
      */

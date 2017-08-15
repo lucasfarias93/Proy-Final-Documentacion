@@ -2,8 +2,8 @@
 /**
  * Carga del modelo Menus...
  */
- 
-class ProvinciaController extends AppController {
+Load::models('provincia');
+class ProvinciaController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias
      */

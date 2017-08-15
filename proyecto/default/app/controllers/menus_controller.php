@@ -4,7 +4,7 @@
  */
 Load::models('menus');// No es necesario en la v1, los modelos se autocargan
  
-class MenusController extends AppController {
+class MenusController extends AdminController {
     /**
      * Obtiene una lista para paginar los menus
      */

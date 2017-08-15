@@ -2,8 +2,8 @@
 /**
  * Carga del modelo Menus...
  */
- 
-class LinkrecuperacionController extends AppController {
+Load::models('linkrecuperacion');
+class LinkrecuperacionController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias
      */

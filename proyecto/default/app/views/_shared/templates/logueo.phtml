@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH?>css/login_style.css">
- 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <head>
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
 
-  <title>CodePen - Random Login Form</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <script src="<?php echo PUBLIC_PATH?>js/prefixfree.min.js"></script>
+        <title>Iniciar sesión</title>
 
-</head>
+        <script src="<?php echo PUBLIC_PATH ?>js/prefixfree.min.js"></script>
 
-<body>
+    </head>
 
-  <div class="body"></div>
-		<div class="grad"></div>
-		<div class="header">
-			<div>INICIAR SESION</div>
-		</div>
-		<br><?php echo Form::open(NULL, 'post') ?>
-		<div class="login">
+    <body>
+
+        <div class="body"></div>
+        <div class="grad"></div>
+        <div class="header">
+            <div>INICIAR SESION</div>
+        </div>
+        <br><?php echo Form::open(NULL, 'post') ?>
+        <div class="login">
             <input type="text" placeholder="Usuario" name="login"><br>
             <input type="password" placeholder="Contraseña" name="clave"><br>
-				<input type="document" placeholder="DNI" name="document"><br>
-				<input type="submit" value="Login">
-		</div>
-</form>
+            <input type="button" value="Ingresar">
+        </div>
+    </form>
 
-  <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+    <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
 
 </body>
 

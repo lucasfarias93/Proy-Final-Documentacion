@@ -1,7 +1,6 @@
 <?php
 
 Load::models('usuarios');
-
 class UsuariosController extends AdminController {
 
     /**
