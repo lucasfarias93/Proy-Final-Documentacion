@@ -2,8 +2,8 @@
 /**
  * Carga del modelo tiporeclamo.
  */
- 
-class ParentescoController extends AppController {
+Load::models('parentesco'); 
+class ParentescoController extends AdminController {
     /**
      * Obtiene una lista para paginar los tiporeclamo
      */

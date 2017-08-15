@@ -2,8 +2,8 @@
 /**
  * Carga del modelo Menus...
  */
- 
-class DireccionController extends AppController {
+Load::models('direccion');
+class DireccionController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias
      */

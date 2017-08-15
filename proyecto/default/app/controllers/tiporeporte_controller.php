@@ -2,8 +2,8 @@
 /**
  * Carga del modelo Menus...
  */
-
-class TiporeporteController extends AppController {
+Load::models('tiporeclamo');
+class TiporeporteController extends AdminController {
     /**
      * Obtiene una lista para paginar los menus
      */

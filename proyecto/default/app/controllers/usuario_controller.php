@@ -2,8 +2,8 @@
 /**
  * Carga del modelo tiporeclamo.
  */
- 
-class UsuarioController extends AppController {
+Load::models('usuario');
+class UsuarioController extends AdminController {
     /**
      * Obtiene una lista para paginar los tiporeclamo
      */

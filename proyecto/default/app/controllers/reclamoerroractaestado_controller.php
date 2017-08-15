@@ -2,8 +2,8 @@
 /**
  * Carga del modelo Menus...
  */
- 
-class ReclamoerroractaestadoController extends AppController {
+Load::models('reclamoerroractaestado');
+class ReclamoerroractaestadoController extends AdminController {
     /**
      * Obtiene una lista para paginar las provincias
      */
