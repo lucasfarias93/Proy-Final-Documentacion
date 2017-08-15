@@ -16,6 +16,7 @@
       <div class="col-4 text-right">
           App: <strong><?= basename(dirname(APP_PATH)) ?></strong> (<?= PRODUCTION ? 'Production' : 'Development' ?>)
       </div>
+      <?php echo html::link('admin/index/logout', 'salir') ?> 
   </header>
   <?php View::content() ?>
   <?php View::partial('kumbia/footer') ?>
