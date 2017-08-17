@@ -1,25 +1,104 @@
 <!DOCTYPE html>
-<html lang="es">
- <head>
-  <meta charset=<?= APP_CHARSET ?> >
-  <title>KumbiaPHP Framework</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <?php Tag::css('kumbia') ?>
-  <?= Html::includeCss() ?>
-</head>
-<body>
-<div class="container">
-  <header class="row">
-      <div class="col-8">
-        <?= Html::img('kumbiaphp.svg', 'KumbiaPHP logo') ?>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gestion Digital de Actas</title>
+
+    <!-- Bootstrap -->
+    <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
+    <!-- Datatables -->
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.fixedHeader.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.keyTable.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.responsive.min.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/responsive.bootstrap.js"></script>
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/datatables.scroller.min.js"></script>
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="<?php echo PUBLIC_PATH ?>" class="site_title"><i class="fa fa-car"></i> <span>Administración general</span></a>-->
+            </div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-money"></i> Provincia <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo PUBLIC_PATH ?>provincia">Listar</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-users"></i> Departamento<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo PUBLIC_PATH ?>departamento">Listar</a></li>
+                      <li><a href="<?php echo PUBLIC_PATH ?>departamento/create">Agregar</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-shopping-cart"></i> Localidad <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo PUBLIC_PATH ?>localidad">Listar</a></li>
+                      <li><a href="<?php echo PUBLIC_PATH ?>localidad/create">Agregar</a></li>
+                    </ul>
+                  </li>
+<!--                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="tables.html">Tables</a></li>
+                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                    </ul>
+                  </li>-->
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <?php echo View::content() ?>
+        </div>
+        <!-- /page content -->
+
       </div>
-      <div class="col-4 text-right">
-          App: <strong><?= basename(dirname(APP_PATH)) ?></strong> (<?= PRODUCTION ? 'Production' : 'Development' ?>)
-      </div>
-      <?php echo html::link('admin/index/logout', 'salir') ?> 
-  </header>
-  <?php View::content() ?>
-  <?php View::partial('kumbia/footer') ?>
-</div>
-</body>
+    </div>
+
+    
+    <!-- FastClick -->
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
+  </body>
 </html>
