@@ -23,23 +23,21 @@
  * @author Manuel José Aguirre Garcia <programador.manuel@gmail.com>
  */
 class Usuarios extends ActiveRecord {
+
 //put your code here
 //    public $debug = true;
 
     const ROL_DEFECTO = 1;
-    
+
     protected function initialize() {
         $min_clave = Config::get('config.application.minimo_clave');
         //$this->belongs_to('roles');
-        $this->has_many('auditorias');
         $this->has_many('roles_usuarios');
-        $this->belongs_to('base_oficina');
         $this->has_and_belongs_to_many('roles', 'model: roles', 'fk: roles_id', 'through: roles_usuarios', 'key: usuarios_id');
         $this->validates_presence_of('login', 'message: Debe escribir un <b>Login</b> para el Usuario');
         $this->validates_presence_of('clave', 'message: Debe escribir una <b>Contraseña</b>');
         $this->validates_length_of('clave', 50, $min_clave, "too_short: La Clave debe tener <b>Minimo {$min_clave} caracteres</b>");
         $this->validates_presence_of('clave2', 'message: Debe volver a escribir la <b>Contraseña</b>');
-        $this->validates_presence_of('nombres', 'message: Debe escribir su <b>nombre completo</b>');
         $this->validates_uniqueness_of('login', 'message: El <b>Login</b> ya está siendo utilizado');
     }
 
@@ -61,39 +59,29 @@ class Usuarios extends ActiveRecord {
     public function paginar($pagina = 1) {
         return $this->paginate("page: $pagina");
     }
-    
+
     /**
      * Devuelve los usuarios de la bd Paginados.
      * 
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function filtrar_por_usuario($usuario,$pagina = 1) {
+    public function filtrar_por_usuario($usuario, $pagina = 1) {
         $cols = "usuarios.*";
         $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
-        return $this->paginate($where,"columns: $cols","","page: $pagina");
+        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
+
     /**
      * Devuelve los usuarios de la bd Paginados.
      * 
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function filtrar_por_usuario_y_oficina($usuario,$oficina_id,$pagina = 1) {
-        $cols = "usuarios.*";
-        $where = " (login ilike '%$usuario%' or nombres ilike '%$usuario%')";
-        if($oficina_id){
-            $where.= " and base_oficina_id=$oficina_id";
-        }
-        return $this->paginate($where,"columns: $cols","","page: $pagina");
-    }
-    
-    
-
     public function numAcciones($pagina = 1) {
-        $cols = "usuarios.*,COUNT(auditorias.id) as num_acciones";
+        //$cols = "usuarios.*,COUNT(auditorias.id) as num_acciones";
         //$join = "INNER JOIN roles ON roles.id = usuarios.roles_id ";
-        $join = "LEFT JOIN auditorias ON usuarios.id = auditorias.usuarios_id";
+        //$join = "LEFT JOIN auditorias ON usuarios.id = auditorias.usuarios_id";
         $group = 'usuarios.' . join(',usuarios.', $this->fields);
         $sql = "SELECT $cols FROM $this->source $join GROUP BY $group";
         return $this->paginate_by_sql($sql, "page: $pagina");
@@ -110,13 +98,13 @@ class Usuarios extends ActiveRecord {
      * @return boolean devuelve verdadero si se realizó el update
      */
     public function cambiarClave(array $datos) {
-        if($datos['nueva_clave']===""){
+        if ($datos['nueva_clave'] === "") {
             return False;
         }
         if ($datos['nueva_clave'] === $datos['nueva_clave2'] && $datos['nueva_clave'] !== '1234') {
             $this->clave = $datos['nueva_clave'];
             $this->clave_blanqueada = FALSE;
-            return $this->update_all("clave = '".MyAuth::hash($datos['nueva_clave'])."', clave_blanqueada=false","id = ".$this->id);
+            return $this->update_all("clave = '" . MyAuth::hash($datos['nueva_clave']) . "', clave_blanqueada=false", "id = " . $this->id);
         }
         return FALSE;
     }
@@ -129,8 +117,8 @@ class Usuarios extends ActiveRecord {
      * @return boolean retorna TRUE si se pudieron guardar los datos con exito
      */
     public function guardar($data, $roles) {
+
         $this->begin();
-        Auth::set("base_oficina_id",$data["base_oficina_id"]);
         if (!$this->save($data)) {
             $this->rollback();
             return FALSE;
@@ -251,8 +239,8 @@ class Usuarios extends ActiveRecord {
         if (in_array("4", $roles_id))
             return null;
         return "default";
-    }    
-    
+    }
+
     /**
      * Devuelve los usuarios con el rol indicado.
      * 
@@ -260,11 +248,11 @@ class Usuarios extends ActiveRecord {
      * @return array             resultado de la consulta
      */
     public function buscar_usuarios_rol($rol_id) {
-        $cols = "usuarios.*";        
+        $cols = "usuarios.*";
         $join = " join roles_usuarios ru on usuarios.id =ru.usuarios_id";
         $join .= " join roles r on ru.roles_id = r.id";
         $where = " r.id = $rol_id";
-        return $this->find($where,"columns: $cols", "join: $join");
+        return $this->find($where, "columns: $cols", "join: $join");
     }
-    
+
 }

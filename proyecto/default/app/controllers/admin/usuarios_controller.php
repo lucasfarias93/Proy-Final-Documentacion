@@ -20,8 +20,8 @@ class UsuariosController extends AdminController {
                 ExpertoETL::migrar_usuarios_rcivil();
             }
             $usr = new Usuarios();
-            if (Input::hasPost("nombre_usuario") || Input::hasPost("oficina_id") ) {
-                $this->usuarios = $usr->filtrar_por_usuario_y_oficina(Input::post("nombre_usuario"),Input::post("oficina_id"), $pagina);
+            if (Input::hasPost("nombre_usuario")) {
+                $this->usuarios = $usr->filtrar_por_usuario(Input::post("nombre_usuario"), $pagina);
             } else {
                 $this->usuarios = $usr->paginar($pagina);
             }

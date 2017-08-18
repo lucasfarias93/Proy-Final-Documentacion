@@ -1,0 +1,41 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Ciudadano</h3>
+    <?php echo Form::open('tramitedni', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('DNI', 'dni', '') ?>
+        <div >
+            <?php echo Form::text('dni') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+    <div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <!--<th>Estado</th>-->
+                    <th>DNI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listTramitedni as $dni) { ?>
+                    <tr>
+                        <td><?php echo $dni->nombres ?></td>
+                        <td><?php echo $dni->apellido ?></td>
+                        <td><?php echo $dni->dni ?></td>
+                        </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

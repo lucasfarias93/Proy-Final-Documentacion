@@ -1,0 +1,217 @@
+[Fri, 18 Aug 17 09:32:24 -0300][CRITICAL] exception 'KumbiaException' with message 'No existe el método 'filtrar_por_usuario_y_oficina' en ActiveRecord::Usuarios' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php:560
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): KumbiaActiveRecord->__call('filtrar_por_usu...', Array)
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): Usuarios->filtrar_por_usuario_y_oficina('prue', NULL, 1)
+#2 [internal function]: UsuariosController->index()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios')
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#8 {main}
+[Fri, 18 Aug 17 09:32:35 -0300][CRITICAL] exception 'KumbiaException' with message 'No existe el método 'filtrar_por_usuario_y_oficina' en ActiveRecord::Usuarios' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php:560
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): KumbiaActiveRecord->__call('filtrar_por_usu...', Array)
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): Usuarios->filtrar_por_usuario_y_oficina('admi', NULL, 1)
+#2 [internal function]: UsuariosController->index()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios')
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#8 {main}
+[Fri, 18 Aug 17 09:32:43 -0300][CRITICAL] exception 'KumbiaException' with message 'No existe el método 'filtrar_por_usuario_y_oficina' en ActiveRecord::Usuarios' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php:560
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): KumbiaActiveRecord->__call('filtrar_por_usu...', Array)
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): Usuarios->filtrar_por_usuario_y_oficina('', NULL, 1)
+#2 [internal function]: UsuariosController->index()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios')
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#8 {main}
+[Fri, 18 Aug 17 12:12:04 -0300][CRITICAL] exception 'KumbiaException' with message 'No existe el método 'filtrar_por_usuario_y_oficina' en ActiveRecord::Usuarios' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php:560
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): KumbiaActiveRecord->__call('filtrar_por_usu...', Array)
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(24): Usuarios->filtrar_por_usuario_y_oficina('admin', 1)
+#2 [internal function]: UsuariosController->index()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios')
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#8 {main}
+[Fri, 18 Aug 17 12:55:10 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  la sintaxis de entrada no es válida para integer: «»
+LINE 1: DELETE FROM roles_usuarios WHERE usuarios_id = ''
+                                                       ^ al ejecutar <em>'DELETE FROM roles_usuarios WHERE usuarios_id = '''</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(234): DbPgSQL->query('DELETE FROM rol...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(2020): DbBase->delete('roles_usuarios', 'usuarios_id = '...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(126): KumbiaActiveRecord->delete_all('usuarios_id = '...')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 12:59:33 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  la sintaxis de entrada no es válida para integer: «»
+LINE 1: DELETE FROM roles_usuarios WHERE usuarios_id = ''
+                                                       ^ al ejecutar <em>'DELETE FROM roles_usuarios WHERE usuarios_id = '''</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(234): DbPgSQL->query('DELETE FROM rol...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(2020): DbBase->delete('roles_usuarios', 'usuarios_id = '...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(126): KumbiaActiveRecord->delete_all('usuarios_id = '...')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 13:01:39 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  la sintaxis de entrada no es válida para integer: «»
+LINE 1: DELETE FROM roles_usuarios WHERE usuarios_id = ''
+                                                       ^ al ejecutar <em>'DELETE FROM roles_usuarios WHERE usuarios_id = '''</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(234): DbPgSQL->query('DELETE FROM rol...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(2020): DbBase->delete('roles_usuarios', 'usuarios_id = '...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(126): KumbiaActiveRecord->delete_all('usuarios_id = '...')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:06:37 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...ES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,clave_blanqueada,dni,apellido) VALUES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236',NULL)'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(121): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:07:40 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...ES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,clave_blanqueada,dni,apellido) VALUES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236',NULL)'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(121): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:09:05 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...ES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,clave_blanqueada,dni,apellido) VALUES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236',NULL)'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(121): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:19:20 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...ES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,clave_blanqueada,dni,apellido) VALUES ('p','baGgOoQkb9Rzw',NULL,'prueba@prueba',NULL,'29222236',NULL)'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(122): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:32:31 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...do) VALUES ('a','ba1tC9ewOQccA',NULL,'q','1',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,activo,clave_blanqueada,dni,apellido) VALUES ('a','ba1tC9ewOQccA',NULL,'q','1',NULL,'29222236','GOMEZ')'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(123): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:44:15 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...do) VALUES ('a','ba1tC9ewOQccA',NULL,'q','1',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,activo,clave_blanqueada,dni,apellido) VALUES ('a','ba1tC9ewOQccA',NULL,'q','1',NULL,'29222236','GOMEZ')'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(123): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:46:17 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...9ewOQccA','Diego Germ?n','aaaaaaaaaaaaaaaaa',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,clave_blanqueada,dni,apellido) VALUES ('a','ba1tC9ewOQccA','Diego Germ?n','aaaaaaaaaaaaaaaaa',NULL,'29222236','GOMEZ')'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(121): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Fri, 18 Aug 17 15:51:06 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  literal de array no es válido: «29222236»
+LINE 1: ...QccA','Diego Germ?n','aaaaaaaaaaaaaaaaa','1',NULL,'29222236'...
+                                                             ^
+DETAIL:  El valor de array debe comenzar con «{» o información de dimensión. al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,activo,clave_blanqueada,dni,apellido) VALUES ('a','ba1tC9ewOQccA','Diego Germ?n','aaaaaaaaaaaaaaaaa','1',NULL,'29222236','GOMEZ')'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(125): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}

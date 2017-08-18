@@ -1,7 +1,7 @@
 <div class="page-header">
     <h1>
         Edición del Usuario
-        <small><?php eh(strtoupper($menu->login)) ?></small>
+        <small><?php eh(strtoupper($dni->login)) ?></small>
     </h1>
 </div>
 <div class="row">
@@ -30,12 +30,6 @@
 				                        <li><?php echo Form::check("rolesUser.$e->id", $e->id), ' ', h($e->rol) ?></li>
 				                    <?php endforeach; ?>
 				                </ul>
-				            </div>
-				        </div>
-				        <div class="form-group">
-				            <?php echo Form::label('Oficina ( Código / Nombre )*', 'criterio_oficina', 'class="col-sm-12 no-padding-right"') ?>
-				            <div class="col-sm-4">
-				                <?php View::partial("autocompletes/oficina", null, array("id" => $usuario->base_oficina_id, "oficina" => $usuario->getBaseOficina()->nombre, "field" => "usuario.base_oficina_id", "attr" => array("class" => "col-xs-12 col-sm-12"), 1)); ?>
 				            </div>
 				        </div>
 				        <div class="form-group">

@@ -15,13 +15,6 @@
 
         </div>
     </div>
-    <div class="conjunto">
-        <?php echo Form::label('Oficina', 'oficina_id', '') ?>
-        <div >
-            <?php echo Form::dbSelect('oficina_id', 'descripcion', array("base_oficina", "buscar_todos"), "Buscar por ...", 1) ?>
-            <?php echo Form::submit('buscar') ?>
-        </div>
-    </div>
 
 </div>
 <?php echo Form::close() ?>
@@ -40,15 +33,15 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuarios->items as $menu) { ?>
+                <?php foreach ($usuarios->items as $dni) { ?>
                     <tr>
-                        <td><?php echo $menu->id ?></td>
-                        <td><?php echo $menu->login ?></td>
-                        <td><?php echo $menu->nombres ?></td>
-                        <td><?php echo $menu->email ?></td>
-                        <!--<td><a href="/admin/usuarios/editar/<?php echo $menu->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>-->
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/editar/" . $menu->id ?>">Editar</a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/blanquear_clave/" . $menu->id ?>">Blanquear</a></td>
+                        <td><?php echo $dni->id ?></td>
+                        <td><?php echo $dni->login ?></td>
+                        <td><?php echo $dni->nombres ?></td>
+                        <td><?php echo $dni->email ?></td>
+                        <!--<td><a href="/admin/usuarios/editar/<?php echo $dni->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>-->
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/editar/" . $dni->id ?>">Editar</a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/blanquear_clave/" . $dni->id ?>">Blanquear</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

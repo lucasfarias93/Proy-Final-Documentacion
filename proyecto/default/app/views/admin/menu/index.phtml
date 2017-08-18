@@ -20,24 +20,24 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($menus->items as $menu) { ?>
+                <?php foreach ($menus->items as $dni) { ?>
                     <tr>
-                        <td><?php echo $menu->id ?></td>
-                        <td><?php echo $menu->nombre ?></td>
-                        <td><?php echo $menu->padre ?></td>
-                        <td><?php echo $menu->recurso ?></td>
-                        <td><?php echo $menu->url ?></td>
-                        <td><?php echo $menu->posicion ?></td>
-                        <!--<td><a href="/admin/usuarios/editar/<?php echo $menu->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>-->
+                        <td><?php echo $dni->id ?></td>
+                        <td><?php echo $dni->nombre ?></td>
+                        <td><?php echo $dni->padre ?></td>
+                        <td><?php echo $dni->recurso ?></td>
+                        <td><?php echo $dni->url ?></td>
+                        <td><?php echo $dni->posicion ?></td>
+                        <!--<td><a href="/admin/usuarios/editar/<?php echo $dni->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>-->
                         
-                        <td><a  href="<?php echo PUBLIC_PATH . "admin/menu/editar/" . $menu->id ?>">
+                        <td><a  href="<?php echo PUBLIC_PATH . "admin/menu/editar/" . $dni->id ?>">
 								<i class="ace-icon fa fa-pencil-square-o bigger-160"></i>
 							</a>
-                        	<a href="<?php echo PUBLIC_PATH . "admin/menu/editar/" . $menu->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>
-                        <td><a class="red" href="<?php echo PUBLIC_PATH . "admin/menu/eliminar/" . $menu->id ?>">
+                        	<a href="<?php echo PUBLIC_PATH . "admin/menu/editar/" . $dni->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>
+                        <td><a class="red" href="<?php echo PUBLIC_PATH . "admin/menu/eliminar/" . $dni->id ?>">
 								<i class="ace-icon fa fa-trash bigger-160"></i>
 							</a>
-                        	<a href="<?php echo PUBLIC_PATH . "admin/menu/eliminar/" . $menu->id ?>"><img alt="" src="/img/figuras/delete.png"> </a></td>
+                        	<a href="<?php echo PUBLIC_PATH . "admin/menu/eliminar/" . $dni->id ?>"><img alt="" src="/img/figuras/delete.png"> </a></td>
                     </tr>
                 <?php } ?>
             </tbody>
