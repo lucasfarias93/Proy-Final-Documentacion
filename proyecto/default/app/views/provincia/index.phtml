@@ -1,0 +1,16 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Provincia</h3>
+    <ul>
+    <?php foreach ($listProvincia->items as $item) : ?>
+    <li>
+        <?php echo Html::linkAction("edit/$item->id/", 'Editar') ?>
+        <?php echo Html::linkAction("del/$item->id/", 'Borrar') ?>
+        <strong><?php echo $item->nombrelocalidad ?></strong>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if($listProvincia->prev) echo Html::linkAction("index/$listProvincia->prev/", '<< Anterior |'); ?>
+    <?php if($listProvincia->next) echo Html::linkAction("index/$listProvincia->next/", 'Próximo >>'); ?>
+</div>

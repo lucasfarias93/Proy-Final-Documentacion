@@ -1,0 +1,9 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Provincia<h3>
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre Provincia
+                <?php echo Form::text('provincia.nombreprovincia') ?></label>
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>
