@@ -1,0 +1,14 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear tipos de reportes<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre
+                <?php echo Form::text('tiporeporte.nombretiporeporte') ?></label>
+            <label>Descripcion
+                <?php echo Form::text('tiporeporte.descripciontiporeporte') ?></label>
+            <label>Fecha baja
+                <?php echo Form::text('tiporeporte.fechabajatiporeporte') ?></label>
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>

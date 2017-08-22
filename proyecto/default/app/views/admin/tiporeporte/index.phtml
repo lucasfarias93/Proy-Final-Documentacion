@@ -1,0 +1,49 @@
+<div class="page-header">
+    <h1>Tipos de reportes</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear tipos de reportes', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/tiporeporte', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('Nombre', 'nombretiporeporte', '') ?>
+        <div >
+            <?php echo Form::text('nombretiporeporte') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha baja</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listTiporeporte->items as $tr) { ?>
+                    <tr>
+                        <td><?php echo $tr->nombretiporeporte ?></td>
+                        <td><?php echo $tr->descripciontiporeporte ?></td>
+                        <td><?php echo $tr->fechabsjstiporeporte ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/edit/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/del/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listTiporeporte->prev) echo Html::linkAction("index/$listTiporeporte->prev/", '<< Anterior |'); ?>
+    <?php if ($listTiporeporte->next) echo Html::linkAction("index/$listTiporeporte->next/", 'Próximo >>'); ?>
+</div>
