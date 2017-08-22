@@ -1,0 +1,40 @@
+<div class="page-header">
+    <h1>Códigos provinciales</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear código', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/codigoprovincial', 'post', 'id="formUsuario"') ?>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Importe $</th>
+                    <th>Nº código</th>
+                    <th>Disponible desde</th>
+                    <th>Disponible hasta</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listCodigoprovincial->items as $cp) { ?>
+                    <tr>
+                        <td><?php echo $cp->importecodigo ?></td>
+                        <td><?php echo $cp->numerocodigoprovincial ?></td>
+                        <td><?php echo $cp->fechadesde ?></td>
+                        <td><?php echo $cp->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/codigoprovincial/edit/" . $cp->id ?>">Editar</a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/codigoprovincial/del/" . $cp->id ?>">Borrar</a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listCodigoprovincial->prev) echo Html::linkAction("index/$listCodigoprovincial->prev/", '<< Anterior |'); ?>
+    <?php if ($listCodigoprovincial->next) echo Html::linkAction("index/$listCodigoprovincial->next/", 'Próximo >>'); ?>
+</div>
