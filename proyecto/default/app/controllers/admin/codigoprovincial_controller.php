@@ -3,43 +3,37 @@
 /**
  * Carga del modelo Menus...
  */
-Load::models('rol');
+Load::models('codigoprovincial');
 
-class RolController extends AdminController {
+class CodigoprovincialController extends AdminController {
 
     /**
-     * Obtiene una lista para paginar los menus
+     * Obtiene una lista para paginar las provincias
      */
     public function index($page = 1) {
-        $r = new Rol();
-        $this->listRol = $r->getRol($page);
+        $r = new Codigoprovincial();
+        $this->listCodigoprovincial = $r->getCodigoprovincial($page);
     }
 
     /**
      * Crea un Registro
      */
-    public function create() {
+    public function crear() {
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas 
          * dentro del array POST existe uno llamado "menus"
          * el cual aplica la autocarga de objeto para guardar los 
          * datos enviado por POST utilizando autocarga de objeto
          */
-        if (Input::hasPost('rol')) {
+        if (Input::hasPost('codigoprovincial')) {
             /**
              * se le pasa al modelo por constructor los datos del form y ActiveRecord recoge esos datos
              * y los asocia al campo correspondiente siempre y cuando se utilice la convención
              * model.campo
              */
-            $r = new Rol(Input::post('rol'));
+            $r = new Codigoprovincial(Input::post('codigoprovincial'));
             //En caso que falle la operación de guardar
             if ($r->create()) {
-                foreach (Input::post('operaciones') as $operacion) {
-                    $oprol = Load::model('operacionrol');
-                    $oprol->idoperacion = $operacion;
-                    $oprol->idrol = $r->id;
-                    $oprol->create();
-                }
                 Flash::valid('Operación exitosa');
                 //Eliminamos el POST, si no queremos que se vean en el form
                 Input::delete();
@@ -56,12 +50,12 @@ class RolController extends AdminController {
      * @param int $id (requerido)
      */
     public function edit($id) {
-        $r = new Rol();
-
+        $r = new Codigoprovincial();
+        
         //se verifica si se ha enviado el formulario (submit)
-        if (Input::hasPost('rol')) {
+        if (Input::hasPost('codigoprovincial')) {
 
-            if ($r->update(Input::post('rol'))) {
+            if ($r->update(Input::post('codigoprovincial'))) {
                 Flash::valid('Operación exitosa');
                 //enrutando por defecto al index del controller
                 return Redirect::to();
@@ -70,7 +64,7 @@ class RolController extends AdminController {
             }
         } else {
             //Aplicando la autocarga de objeto, para comenzar la edición
-            $this->rol = $r->find_by_id((int) $id);
+            $this->codigoprovincial = $r->find_by_id((int) $id);
         }
     }
 
@@ -80,7 +74,7 @@ class RolController extends AdminController {
      * @param int $id (requerido)
      */
     public function del($id) {
-        $r = new Rol();
+        $r = new Codigoprovincial();
         if ($r->delete((int) $id)) {
             Flash::valid('Operación exitosa');
         } else {
