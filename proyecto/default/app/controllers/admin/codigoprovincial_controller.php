@@ -13,6 +13,20 @@ class CodigoprovincialController extends AdminController {
     public function index($page = 1) {
         $r = new Codigoprovincial();
         $this->listCodigoprovincial = $r->getCodigoprovincial($page);
+        if (Input::hasPost("numerocodigoprovincial")) {
+            if (is_numeric(Input::post("numerocodigoprovincial"))) {
+                $this->listCodigoprovincial = $r->filtrar_por_numero_codigo(Input::post("numerocodigoprovincial"), $pagina);
+            } else {
+                if ((Input::post("numerocodigoprovincial")) == "") {
+
+                    $this->listCodigoprovincial = $r->paginar($page);
+                } else {
+                    Flash::error("Ingrese un número");
+                }
+            }
+        } else {
+            $this->listCodigoprovincial = $r->paginar($page);
+        }
     }
 
     /**
@@ -51,7 +65,7 @@ class CodigoprovincialController extends AdminController {
      */
     public function edit($id) {
         $r = new Codigoprovincial();
-        
+
         //se verifica si se ha enviado el formulario (submit)
         if (Input::hasPost('codigoprovincial')) {
 

@@ -6,6 +6,17 @@
 </div> 
 <?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear código', 'opciones' => FALSE)); ?>
 <?php echo Form::open('admin/codigoprovincial', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('N° código', 'numerocodigoprovincial', '') ?>
+        <div >
+            <?php echo Form::text('numerocodigoprovincial') ?>
+
+
+        </div>
+    </div>
+
+</div>
 <?php echo Form::close() ?>
 <div class="row">
     <div class="col-sm-12">
@@ -22,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listCodigoprovincial->items as $cp) { ?>
+                <?php foreach ($listCodigoprovincial->items as $l) { ?>
                     <tr>
-                        <td><?php echo $cp->importecodigo ?></td>
-                        <td><?php echo $cp->numerocodigoprovincial ?></td>
-                        <td><?php echo $cp->fechadesde ?></td>
-                        <td><?php echo $cp->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/codigoprovincial/edit/" . $cp->id ?>">Editar</a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/codigoprovincial/del/" . $cp->id ?>">Borrar</a></td>
+                        <td><?php echo $l->importecodigo ?></td>
+                        <td><?php echo $l->numerocodigoprovincial ?></td>
+                        <td><?php echo $l->fechadesde ?></td>
+                        <td><?php echo $l->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/codigoprovincial/edit/" . $l->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>/img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/codigoprovincial/del/" . $l->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>/img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>
