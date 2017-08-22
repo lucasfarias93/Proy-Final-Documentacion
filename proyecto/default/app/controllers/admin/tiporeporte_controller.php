@@ -2,21 +2,25 @@
 /**
  * Carga del modelo Menus...
  */
-Load::models('tiporeclamo');
+Load::models('tiporeporte');
 class TiporeporteController extends AdminController {
     /**
      * Obtiene una lista para paginar los menus
      */
     public function index($page=1) 
     {
-        $tr = new Tiporeporte();
-        $this->listTiporeporte = $tr->getTiporeporte($page);
+       $tr = new Tiporeporte();
+        if (Input::hasPost("nombretiporeporte")) {
+            $this->listTiporeporte = $tr->filtrar_por_nombre(Input::post("nombretiporeporte"), $page);
+        } else {
+            $this->listTiporeporte = $tr->paginar($page);
+        }
     }
  
     /**
      * Crea un Registro
      */
-    public function create ()
+    public function crear ()
     {
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas 
@@ -75,7 +79,7 @@ class TiporeporteController extends AdminController {
      */
     public function del($id)
     {
-        $r = new tiporeporte();
+        $r = new Tiporeporte();
         if ($r->delete((int)$id)) {
                 Flash::valid('Operación exitosa');
         }else{
