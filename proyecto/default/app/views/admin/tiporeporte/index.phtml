@@ -26,7 +26,8 @@
 
                     <th>Nombre</th>
                     <th>Descripcion</th>
-                    <th>Fecha baja</th>
+                    <th>Fecha desde</th>
+                    <th>Fecha hasta</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </tr>
@@ -36,7 +37,8 @@
                     <tr>
                         <td><?php echo $tr->nombretiporeporte ?></td>
                         <td><?php echo $tr->descripciontiporeporte ?></td>
-                        <td><?php echo $tr->fechabsjstiporeporte ?></td>
+                        <td><?php echo $tr->fechadesde ?></td>
+                        <td><?php echo $tr->fechahasta ?></td>
                         <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/edit/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
                         <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/del/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href="css/registro.css">
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class="row">
+            <div class ="center">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="nombre_usuario" placeholder="Nombre Usuario" type="text" class="validate">
+                            <label for="nombre_usuario">Nombre de Usuario</label>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="input-field">
+                            <input id="idtramite" placeholder="ID Tramite" input type="number" class="validate">
+                            <label for="idtramite">ID tramite</label>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="input-field">
+                            <input id="numero_documento" placeholder="Numero documento" input type="number" class="validate">
+                            <label for="numero_documento">Nº documento</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="contraseña" placeholder="contraseña" type="password" class="validate">
+                            <label for="contraseña">contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="repetir_contraseña" placeholder="repetir contraseña" type="password" class="validate">
+                            <label for="repetir_contraseña">repetir contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <input id="email" type="email" class="validate">
+                            <label for="email" data-error="Mail inválido" data-success="right">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <select>
+                                <option value="" disabled selected>Seleccion tipo nº telefono</option>
+                                <option value="1">Telefono fijo</option>
+                                <option value="2">Telefono celular</option>
+                            </select>
+                            <label>Tipo Numero Telefono</label>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="input-field">
+                            <input id="numero_telefono" placeholder="Numero telefono" input type="number" class="validate">
+                            <label for="numero_telefono">Nº telefono</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field">
+                            <select>
+                                <option value="" disabled selected>Seleccion tipo usuario</option>
+                                <option value="1">Usuario final</option>
+                                <option value="2">Administrador</option>
+                            </select>
+                            <label>Tipo Usuario</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <!-- En init.js esta declarada la inicializacion del selecitor que se utiliza en tipo nro telefono-->
+        <script src="js/init.js"></script>
+    </body>
+</html>

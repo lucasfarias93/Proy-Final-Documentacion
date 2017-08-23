@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gestion de Actas Digital</title>
+  <title>Gestion de Actas Digitales</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -32,9 +32,14 @@
         <div class="row center">
           <h5 class="header col s12 light">La forma mas rapida de sacar tus actas de forma digital y en la comodidad de tu hogar</h5>
         </div>
+        <!--   Boton de iniciar sesion   -->
         <div class="row center">
-          <!--<a href="login_form_test.html" id="download-button" class="">HAGA CLICK AQUI PARA EMPEZAR</a>-->
           <?php echo html::link('admin', "HAGA CLICK AQUI PARA EMPEZAR", array("class"=>"btn-large waves-effect waves", "id"=>"download-button"))?>
+          <div class="section"><?php echo view::content() ?></div>
+        </div>
+        <!--   Boton de registrarse   -->
+        <div class="row center">
+          <?php echo html::link('registrar', "REGISTRATE", array("class"=>"btn-large waves-effect waves", "id"=>"download-button"))?>
           <div class="section"><?php echo view::content() ?></div>
         </div>
         <br><br>
