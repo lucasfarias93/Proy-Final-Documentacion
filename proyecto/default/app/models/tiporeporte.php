@@ -1,17 +1,15 @@
-    <?php
+<?php
 
-    class Tiporeporte extends ActiveRecord
+class Tiporeporte extends ActiveRecord {
 
-    {
+    /**
 
-        /**
+     * Retorna los menu para ser paginados
 
-         * Retorna los menu para ser paginados
+     *
 
-         *
-
-         */
-public function paginar($pagina = 1) {
+     */
+    public function paginar($pagina = 1) {
         return $this->paginate("page: $pagina");
     }
 
@@ -26,12 +24,10 @@ public function paginar($pagina = 1) {
         $where = " nombretiporeporte ilike '%$tiporeporte%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
-        public function getTiporeporte($page, $ppage=20)
 
-        {
+    public function getTiporeporte($page, $ppage = 20) {
 
-            return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
-
-        }
-
+        return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
+
+}

@@ -1,0 +1,51 @@
+<div class="page-header">
+    <h1>Tipos de reclamos</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear tipos de reclamos', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/tiporeclamo', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('Nombre', 'nombretiporeclamo', '') ?>
+        <div >
+            <?php echo Form::text('nombretiporeclamo') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha desde</th>
+                    <th>Fecha hasta</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listTiporeclamo->items as $tr) { ?>
+                    <tr>
+                        <td><?php echo $tr->nombretiporeclamo ?></td>
+                        <td><?php echo $tr->descripciontiporeclamo ?></td>
+                        <td><?php echo $tr->fechadesde ?></td>
+                        <td><?php echo $tr->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/edit/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/del/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listTiporeclamo->prev) echo Html::linkAction("index/$listTiporeclamo->prev/", '<< Anterior |'); ?>
+    <?php if ($listTiporeclamo->next) echo Html::linkAction("index/$listTiporeclamo->next/", 'Próximo >>'); ?>
+</div>

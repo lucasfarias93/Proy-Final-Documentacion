@@ -9,8 +9,12 @@ class TiporeclamoController extends AdminController {
      */
     public function index($page=1) 
     {
-        $tr = new Tiporeclamo();
-        $this->listTiporeclamo = $tr->getTiporeclamo($page);
+       $tr = new Tiporeclamo();
+        if (Input::hasPost("nombretiporeclamo")) {
+            $this->listTiporeclamo = $tr->filtrar_por_nombre(Input::post("nombretiporeclamo"), $page);
+        } else {
+            $this->listTiporeclamo = $tr->paginar($page);
+        }
     }
  
     /**
