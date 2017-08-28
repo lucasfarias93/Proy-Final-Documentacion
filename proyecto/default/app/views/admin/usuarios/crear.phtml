@@ -1,7 +1,7 @@
 <div class="page-header">
     <h1>Crear Usuario</h1>
 </div>
-<div class="row">
+<div class="row label-negro">
     <div class="col-sm-3">
         <?php View::partial('backend/menus/usuarios') ?>
     </div>
@@ -18,50 +18,50 @@
                         <?php echo Ajax::form('res-form-ajax', NULL, 'form-horizontal') ?>
                         <?php //echo Form::open(NULL, 'post', 'class="form-horizontal"') ?>
                         <div class="control-group">
-                            <label class="control-label" for="usuario_login">Nombre de Usuario (Login)* : </label>
-                            <div class="controls">
+                            <label class="control-label label-negro" for="usuario_login">Nombre de Usuario (Login)* : </label>
+                            <div class="controls label-negro">
                                 <?php echo Form::text('usuario.login') ?>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="usuario_clave">Contrase&ntilde;a* : </label>
+                            <label class="control-label label-negro" for="usuario_clave">Contrase&ntilde;a* : </label>
                             <div class="controls">
                                 <?php echo Form::pass('usuario.clave') ?>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label>
+                            <label class="control-label label-negro" for="usuario_clave2">Volver a escribir Contrase&ntilde;a* : </label>
                             <div class="controls">
                                 <?php echo Form::pass('usuario.clave2') ?>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="usuario_dni">DNI* : </label>
+                            <label class="control-label label-negro" for="usuario_dni">DNI* : </label>
                             <div class="controls">
                                 <?php echo Form::text('usuario.dni') ?>
                             </div>
                         </div>                        
                         <div class="control-group">
-                            <label class="control-label" for="usuario_nombres">Nombre: </label>
+                            <label class="control-label label-negro" for="usuario_nombres">Nombre: </label>
                             <div class="controls">
                                 <?php echo Form::text('usuario.nombres',array("disabled"=>"disabled")) ?>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="usuario_apellido">Apellido: </label>
+                            <label class="control-label label-negro" for="usuario_apellido">Apellido: </label>
                             <div class="controls">
                                 <?php echo Form::text('usuario.apellido',array("disabled"=>"disabled")) ?>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="usuario_email">Correo Electronico* : </label>
+                            <label class="control-label label-negro" for="usuario_email">Correo Electronico* : </label>
                             <div class="controls">
                                 <?php echo Form::text('usuario.email') ?>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="usuario_roles_id">Roles del Usuario* : </label><br/><br/>
+                            <label class="control-label label-negro" for="usuario_roles_id">Roles del Usuario* : </label><br/><br/>
                             <div class="controls">
                                 <ul>
                                     <?php foreach ($roles as $e): ?>

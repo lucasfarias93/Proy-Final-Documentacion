@@ -1,19 +1,79 @@
 <div class="content">
     <?php View::content(); ?>
     <h3>Editar tipos de reclamos<h3>
+    <div class="row">
+        <?php echo Form::open(); // por defecto llama a la misma url ?>
 
-            <?php echo Form::open(); // por defecto llama a la misma url ?>
+        <div class="form-group">
 
-            <label>Nombre
-                <?php echo Form::text('tiporeclamo.nombretiporeclamo') ?></label>
-            <label>Descripcion
-                <?php echo Form::text('tiporeclamo.descripciontiporeclamo') ?></label>
-            <label>Fecha desde
-                <?php echo Form::text('tiporeclamo.fechadesde') ?></label>
-            <label>Fecha hasta
-                <?php echo Form::text('tiporeclamo.fechahasta') ?></label>
-            <?php echo Form::hidden('tiporeclamo.id') ?>
-            <?php echo Form::submit('Actualizar') ?>
+            <label class="control-label col-sm-2">Nombre
+                <?php echo Form::text('tiporeclamo.nombretiporeclamo', array("class" => " form-control col-sm-10 ")) ?></label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Descripcion
+                <?php echo Form::text('tiporeclamo.descripciontiporeclamo', array("class" => " form-control col-sm-10 ")) ?></label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Fecha desde
+                <?php echo Form::text('tiporeclamo.fechadesde', array("class" => " form-control col-sm-10 datemask")) ?></label>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Fecha hasta
+                <?php echo Form::text('tiporeclamo.fechahasta', array("class" => "datemask form-control col-sm-10 ")) ?></label>
+        </div>
+        <?php echo Form::hidden('tiporeclamo.id') ?>
+        <?php echo Form::submit('Actualizar') ?>
 
-            <?php echo Form::close() ?>
-            </div>
+        <?php echo Form::close() ?>
+    </div>
+</div>
+
+<div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Editar</h3>
+              </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <!-- form input mask -->
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Tipos de reclamos</h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">fecha desde</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                          <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
+                          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Phone mask</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                          <input type="text" class="form-control" data-inputmask="'mask' : '(999) 999-9999'">
+                          <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+
+                      <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+                          <button type="submit" class="btn btn-primary">Cancel</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
