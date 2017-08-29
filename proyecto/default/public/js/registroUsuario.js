@@ -33,3 +33,25 @@ $(function() {
         }
     });
 })()
+
+$("#numero_documento").change(function () {
+        $("#nombre_usuario").val("");
+
+        $("#nombre_usuario").removeAttr("readonly")
+        $("#nombre_usuario").removeAttr("disabled")
+
+        $.ajax({
+            data: {
+                'dni': $("#numero_documento").val()
+            },
+            url: "http://localhost/proyecto/tramitedni/buscar_ciudadano_por_documento",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#nombre_usuario").val(response.nombres);
+
+                $("#nombre_usuario").attr("readonly", "readonly")
+
+            }
+        });
+});

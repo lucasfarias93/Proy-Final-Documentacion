@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Actas Digitales</string>
+    <string name="test_text">Whether the find operation has actually completed. The listener may be notified multiple times while the operation is underway, and the numberOfMatches value should not be considered final unless isDoneCounting is true. whether the find operation has actually completed. The listener may be notified multiple times while the operation is underway, and the numberOfMatches value should not be considered final unless isDoneCounting is true. whether the find operation has actually completed. The listener may be notified multiple times while the operation is underway, and the numberOfMatches value should not be considered final unless isDoneCounting is true.</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_user">Usuario</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="error_invalid_user">La dirección de email ingresada no es valida</string>
+    <string name="error_short_user">El usuario ingresado es muy corto</string>
+    <string name="error_short_password">La contraseña ingresada es muy corta</string>
+    <string name="error_incorrect_password">La contraseña ingresada es incorrecta</string>
+    <string name="error_field_required">Este campo es obligatorio</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>
