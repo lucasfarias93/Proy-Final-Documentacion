@@ -126,7 +126,7 @@ class Usuarios extends ActiveRecord {
 
         $rolUser = Load::model('roles_usuarios');
 
-        if (is_array($roles) && count($roles)) {
+        if (is_array($roles) && count($roles) > 0) {
 
             if (!$rolUser->delete_all("usuarios_id = '$this->id'")) {
                 Flash::error('No se pudieron Guardar los Roles para el usuario');

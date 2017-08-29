@@ -1,5 +1,5 @@
 <?php $res = Load::model('usuarios')->find('limit: 8', 'order: id DESC'); ?>
-<?php $actual = Form::getFieldValue('usuario.id') //vriable con el id del registro que se edita ?>
+<?php $actual = Form::getFieldValue('usuario.id') //variable con el id del registro que se edita ?>
 
 <ul class="nav nav-tabs nav-stacked backend_menu_lateral visible-desktop">
     <li class="<?php if (!$actual) echo 'active'; ?>">

@@ -1,0 +1,14 @@
+[Tue, 29 Aug 17 15:03:25 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  llave duplicada viola restricción de unicidad «usuarios_pkey»
+DETAIL:  Ya existe la llave (id)=(4). al ejecutar <em>'INSERT INTO usuarios (login,clave,nombres,email,clave_blanqueada,dni,apellido,idtramite) VALUES ('prueba3','baPeZ2ZnhwtCs','Diego Germ?n','prueba@prueba',NULL,'29222236','GOMEZ','411761046')'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(191): DbPgSQL->query('INSERT INTO usu...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(1770): DbBase->insert('usuarios', Array, Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(122): KumbiaActiveRecord->save(Array)
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(71): Usuarios->guardar(Array, Array)
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}

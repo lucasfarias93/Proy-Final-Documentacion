@@ -44,7 +44,7 @@ $("#numero_documento").change(function () {
             data: {
                 'dni': $("#numero_documento").val()
             },
-            url: "http://localhost/proyecto/tramitedni/buscar_ciudadano_por_documento",
+            url: $.KumbiaPHP.publicPath+"tramitedni/buscar_ciudadano_por_documento",
             type: 'post',
             dataType: "json",
             success: function (response) {

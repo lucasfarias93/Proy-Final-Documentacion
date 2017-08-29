@@ -16,6 +16,11 @@ public function filtrar_por_dni($dni) {
         $where = " dni = '$dni'";
         return $this->find($where,"columns: $cols");
     }
+public function filtrar_por_id_dni($idtramite,$dni) {
+        $cols = "tramitedni.*";
+        $where = "idtramite = '$idtramite' AND dni = '$dni'";
+        return $this->find_first($where,"columns: $cols");
+    }
 public function filtrar_por_ultimo_tramite($dni) {
         $cols = "tramitedni.*";
         $where = " dni = '$dni'";
