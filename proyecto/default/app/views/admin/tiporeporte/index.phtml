@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listTiporeporte->items as $tr) { ?>
+                <?php foreach ($listTiporeporte->items as $es) { ?>
                     <tr>
-                        <td><?php echo $tr->nombretiporeporte ?></td>
-                        <td><?php echo $tr->descripciontiporeporte ?></td>
-                        <td><?php echo $tr->fechadesde ?></td>
-                        <td><?php echo $tr->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/edit/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/del/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $es->nombretiporeporte ?></td>
+                        <td><?php echo $es->descripciontiporeporte ?></td>
+                        <td><?php echo $es->fechadesde ?></td>
+                        <td><?php echo $es->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/edit/" . $es->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeporte/del/" . $es->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>

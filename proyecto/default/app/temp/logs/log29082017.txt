@@ -12,3 +12,16 @@ Stack trace:
 #8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
 #9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
 #10 {main}
+[Tue, 29 Aug 17 16:20:45 -0300][CRITICAL] exception 'KumbiaException' with message 'ERROR:  update o delete en «recursos» viola la llave foránea «menus_recursos_id_fkey» en la tabla «menus»
+DETAIL:  La llave (id)=(1) todavía es referida desde la tabla «menus». al ejecutar <em>'DELETE FROM recursos WHERE id IN (1)'</em>' in /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/adapters/pgsql.php:159
+Stack trace:
+#0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(234): DbPgSQL->query('DELETE FROM rec...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(2020): DbBase->delete('recursos', 'id IN (1)')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/recursos_controller.php(153): KumbiaActiveRecord->delete_all('id IN (1)')
+#3 [internal function]: RecursosController->eliminar('1')
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(RecursosController), Array)
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/recursos...')
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#9 {main}

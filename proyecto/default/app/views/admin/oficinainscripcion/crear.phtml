@@ -1,0 +1,11 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear oficina<h3>
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre oficina
+                <?php echo Form::text('oficinainscripcion.nombreoficina') ?></label>
+            <label>Numero oficina
+                <?php echo Form::text('oficinainscripcion.numerooficina') ?></label>
+            <?php echo Form::submit('Agregar') ?>
+            <?php echo Form::close() ?>
+            </div>

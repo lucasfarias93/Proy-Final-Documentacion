@@ -1,0 +1,51 @@
+<div class="page-header">
+    <h1>Estados de solicitudes</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear estados de solicitudes', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/tiporeclamo', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('Nombre', 'nombreestadosolicitud', '') ?>
+        <div >
+            <?php echo Form::text('nombreestadosolicitud') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha desde</th>
+                    <th>Fecha hasta</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listEstadosolicitud->items as $es) { ?>
+                    <tr>
+                        <td><?php echo $es->nombreestadosolicitud ?></td>
+                        <td><?php echo $es->descripcionestadosolicitud ?></td>
+                        <td><?php echo $es->fechadesde ?></td>
+                        <td><?php echo $es->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/edit/" . $es->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/del/" . $es->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listEstadosolicitud->prev) echo Html::linkAction("index/$listEstadosolicitud->prev/", '<< Anterior |'); ?>
+    <?php if ($listEstadosolicitud->next) echo Html::linkAction("index/$listEstadosolicitud->next/", 'Próximo >>'); ?>
+</div>
