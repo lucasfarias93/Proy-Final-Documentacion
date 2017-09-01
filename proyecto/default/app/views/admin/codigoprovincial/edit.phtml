@@ -8,9 +8,9 @@
             <label>N° codigo
                 <?php echo Form::text('codigoprovincial.numerocodigoprovincial') ?></label>
             <label>Disponible desde
-                <?php echo Form::text('codigoprovincial.fechadesde') ?></label>
+                <?php echo Form::text('codigoprovincial.fechadesde', array("class" => "datemask")) ?></label>
             <label>Disponible hasta
-                <?php echo Form::text('codigoprovincial.fechahasta') ?></label>
+                <?php echo Form::text('codigoprovincial.fechahasta', array("class" => "datemask")) ?></label>
             <?php echo Form::hidden('codigoprovincial.id') ?>
             <?php echo Form::submit('Actualizar') ?>
             <?php echo Form::close() ?>

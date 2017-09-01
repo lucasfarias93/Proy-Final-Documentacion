@@ -66,6 +66,8 @@ class UsuariosController extends AdminController {
             if (Input::hasPost('usuario')) {
                 //esto es para tener atributos que no son campos de la tabla
                 $usr = new Usuarios(Input::post('usuario'));
+
+                //Verifico si el dni del usuario ya existe
                 //guarda los datos del usuario, y le asigna los roles 
                 //seleccionados en el formulario.
                 if ($usr->guardar(Input::post('usuario'), Input::post('rolesUser'))) {

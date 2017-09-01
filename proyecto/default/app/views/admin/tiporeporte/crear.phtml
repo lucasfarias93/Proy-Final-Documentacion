@@ -8,9 +8,9 @@
             <label>Descripcion
                 <?php echo Form::text('tiporeporte.descripciontiporeporte') ?></label>
             <label>Fecha desde
-                <?php echo Form::text('tiporeporte.fechadesde') ?></label>
+                <?php echo Form::text('tiporeporte.fechadesde', array("class" => "datemask")) ?></label>
             <label>Fecha hasta
-                <?php echo Form::text('tiporeporte.fechahasta') ?></label>
+                <?php echo Form::text('tiporeporte.fechahasta', array("class" => "datemask")) ?></label>
             <?php echo Form::submit('Agregar') ?>
             <?php echo Form::close() ?>
             </div>

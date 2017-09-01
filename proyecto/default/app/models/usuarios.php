@@ -71,6 +71,17 @@ class Usuarios extends ActiveRecord {
         $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
+//    public function buscar_usuario_dni($dni) {
+//        $cols = "usuarios.*";
+//        $where = " dni = '%$dni%";
+//        if($dni!=)
+//        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
+//    }
+//    public function filtrar_por_usuario($usuario, $pagina = 1) {
+//        $cols = "usuarios.*";
+//        $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
+//        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
+//    }
 
     /**
      * Devuelve los usuarios de la bd Paginados.

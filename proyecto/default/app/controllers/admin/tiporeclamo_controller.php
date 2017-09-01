@@ -60,9 +60,7 @@ class TiporeclamoController extends AdminController {
         if(Input::hasPost('tiporeclamo')){
             $tr2 = Input::post('tiporeclamo');
             $fechahasta =DateTime::createFromFormat("d/m/Y", $tr2["fechahasta"]);
-            
             $fechadesde =DateTime::createFromFormat("d/m/Y", $tr2["fechadesde"]);
-            var_dump($fechadesde);
         if($fechahasta && $fechadesde->format("d/m/Y") == $tr2["fechadesde"] && $fechadesde <= $fechahasta) {
             if($tr->update(Input::post('tiporeclamo'))){
                  Flash::valid('Operación exitosa');

@@ -5,7 +5,7 @@
  */
 Load::models('tramitedni');
 
-class TramitedniController extends AdminController {
+class TramitedniController extends AppController {
 
     /**
      * Obtiene una lista para paginar las provincias
