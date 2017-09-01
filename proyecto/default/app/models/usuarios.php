@@ -38,7 +38,7 @@ class Usuarios extends ActiveRecord {
         $this->validates_presence_of('clave', 'message: Debe escribir una <b>Contraseña</b>');
         $this->validates_length_of('clave', 50, $min_clave, "too_short: La Clave debe tener <b>Minimo {$min_clave} caracteres</b>");
         $this->validates_presence_of('clave2', 'message: Debe volver a escribir la <b>Contraseña</b>');
-        $this->validates_uniqueness_of('login', 'message: El <b>Login</b> ya está siendo utilizado');
+        $this->validates_uniqueness_of('login', Flash::error("El nombre de usuario ya se encuentra registrado"));
     }
 
     protected function before_save() {
@@ -71,6 +71,7 @@ class Usuarios extends ActiveRecord {
         $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
+
 //    public function buscar_usuario_dni($dni) {
 //        $cols = "usuarios.*";
 //        $where = " dni = '%$dni%";
@@ -264,6 +265,18 @@ class Usuarios extends ActiveRecord {
         $join .= " join roles r on ru.roles_id = r.id";
         $where = " r.id = $rol_id";
         return $this->find($where, "columns: $cols", "join: $join");
+    }
+
+    public function filtrar_por_dni($dni) {
+        $cols = "usuarios.*";
+        $where = " dni = '$dni'";
+        return $this->find_first($where, "columns: $cols");
+    }
+
+    public function filtrar_por_id($idtramite) {
+        $cols = "usuarios.*";
+        $where = " idtramite = '$idtramite'";
+        return $this->find_first($where, "columns: $cols");
     }
 
 }
