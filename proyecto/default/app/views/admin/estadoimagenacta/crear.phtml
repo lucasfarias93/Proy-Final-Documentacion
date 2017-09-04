@@ -1,0 +1,17 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear estados de imagenes de actas<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+                <label>Nombre
+                    <?php echo Form::text('estadoimagenacta.nombreestado') ?></label>
+                <label>Descripción
+                    <?php echo Form::text('estadoimagenacta.descripcion') ?></label>
+                <label>Fecha desde
+                    <?php echo Form::text('estadoimagenacta.fechadesde', array("class" => "datemask")) ?></label>
+                <label>Fecha hasta
+                    <?php echo Form::text('estadoimagenacta.fechahasta', array("class" => "datemask")) ?></label>
+            <?php echo Form::submit('Agregar') ?>
+
+            <?php echo Form::close() ?>
+            </div>

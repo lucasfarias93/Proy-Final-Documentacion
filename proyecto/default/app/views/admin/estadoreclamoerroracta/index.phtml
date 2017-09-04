@@ -1,0 +1,51 @@
+<div class="page-header">
+    <h1>Estados de reclamos de error de actas</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear estados de reclamos de error de actas', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/estadoreclamoerroracta', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('Nombre', 'estadoreclamoerroracta', '') ?>
+        <div >
+            <?php echo Form::text('nombreestadoreclamoerroracta') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha desde</th>
+                    <th>Fecha hasta</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listEstadoreclamoerroracta->items as $eia) { ?>
+                    <tr>
+                        <td><?php echo $eia->nombreestadoreclamoerroracta ?></td>
+                        <td><?php echo $eia->descripcion ?></td>
+                        <td><?php echo $eia->fechadesde ?></td>
+                        <td><?php echo $eia->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoreclamoerroracta/edit/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoreclamoerroracta/del/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listEstadoreclamoerroracta->prev) echo Html::linkAction("index/$listEstadoreclamoerroracta->prev/", '<< Anterior |'); ?>
+    <?php if ($listEstadoreclamoerroracta->next) echo Html::linkAction("index/$listEstadoreclamoerroracta->next/", 'Próximo >>'); ?>
+</div>

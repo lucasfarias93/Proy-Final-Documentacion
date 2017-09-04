@@ -1,0 +1,51 @@
+<div class="page-header">
+    <h1>Estados de imagenes de actas</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear estados de imagenes de actas', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/estadoimagenacta', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('Nombre', 'nombreestado', '') ?>
+        <div >
+            <?php echo Form::text('nombreestado') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha desde</th>
+                    <th>Fecha hasta</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listEstadoimagenacta->items as $eia) { ?>
+                    <tr>
+                        <td><?php echo $eia->nombreestado ?></td>
+                        <td><?php echo $eia->descripcion ?></td>
+                        <td><?php echo $eia->fechadesde ?></td>
+                        <td><?php echo $eia->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoimagenacta/edit/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoimagenacta/del/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listEstadoimagenacta->prev) echo Html::linkAction("index/$listEstadoimagenacta->prev/", '<< Anterior |'); ?>
+    <?php if ($listEstadoimagenacta->next) echo Html::linkAction("index/$listEstadoimagenacta->next/", 'Próximo >>'); ?>
+</div>
