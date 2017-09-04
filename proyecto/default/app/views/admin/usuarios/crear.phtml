@@ -7,10 +7,6 @@
     </div>
     <div class="col-sm-6">
         <div class="widget-box widget-color-dark light-border ui-sortable-handle">
-            <div class="widget-header">
-                <h5 class="widget-title smaller">Datos Nuevo</h5>
-            </div>
-
             <div class="widget-body">
                 <div class="widget-main">
                     <div class="alert alert-info"> 
@@ -50,13 +46,13 @@
                         <div class="control-group">
                             <label class="control-label label-negro" for="usuario_nombres">Nombre: </label>
                             <div class="controls label-negro">
-                                <?php echo Form::text('usuario.nombres',array("disabled"=>"disabled")) ?>
+                                <?php echo Form::text('usuario.nombres', array("disabled" => "disabled")) ?>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label label-negro" for="usuario_apellido">Apellido: </label>
                             <div class="controls label-negro">
-                                <?php echo Form::text('usuario.apellido',array("disabled"=>"disabled")) ?>
+                                <?php echo Form::text('usuario.apellido', array("disabled" => "disabled")) ?>
                             </div>
                         </div>
                         <div class="control-group">
@@ -92,7 +88,7 @@
     <?php echo Form::close() ?>
 </div> 
 <script>
-$("#usuario_dni").change(function () {
+    $("#usuario_dni").change(function () {
         $("#usuario_nombres").val("");
         $("#usuario_apellido").val("");
         $("#usuario_nombres").removeAttr("readonly")

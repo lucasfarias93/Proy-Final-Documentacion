@@ -1,0 +1,30 @@
+[Fri, 01 Sep 17 16:28:48 -0300][ERROR] Los dni son iguales
+[Fri, 01 Sep 17 16:28:48 -0300][ERROR] #0 [internal function]: UsuariosController->crear()
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#6 {main}
+[Fri, 01 Sep 17 16:29:53 -0300][ERROR] Los dni son iguales
+[Fri, 01 Sep 17 16:29:53 -0300][ERROR] #0 [internal function]: UsuariosController->crear()
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#6 {main}
+[Fri, 01 Sep 17 16:31:07 -0300][ERROR] ERROR:  no existe la columna «djni»
+LINE 1: SELECT usuarios.* FROM usuarios WHERE  djni = '29222236' LIM...
+                                               ^ al ejecutar <em>'SELECT usuarios.* FROM usuarios WHERE  djni = '29222236' LIMIT 1'</em>
+[Fri, 01 Sep 17 16:31:07 -0300][ERROR] #0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(160): DbPgSQL->query('SELECT usuarios...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(813): DbBase->fetch_one('SELECT usuarios...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(271): KumbiaActiveRecord->find_first(' djni = '292222...', 'columns: usuari...')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(70): Usuarios->filtrar_por_dni('29222236')
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}

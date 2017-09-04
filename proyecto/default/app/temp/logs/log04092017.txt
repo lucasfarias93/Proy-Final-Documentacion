@@ -1,0 +1,70 @@
+[Mon, 04 Sep 17 15:37:39 -0300][ERROR] ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «'%a% LIMIT 1»
+LINE 1: SELECT usuarios.* FROM usuarios WHERE  login = '%a% LIMIT 1
+                                                       ^ al ejecutar <em>'SELECT usuarios.* FROM usuarios WHERE  login = '%a% LIMIT 1'</em>
+[Mon, 04 Sep 17 15:37:39 -0300][ERROR] #0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(160): DbPgSQL->query('SELECT usuarios...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(813): DbBase->fetch_one('SELECT usuarios...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(274): KumbiaActiveRecord->find_first(' login = '%a%', 'columns: usuari...', '', 'page: 1')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(73): Usuarios->filtrar_por_login('a')
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Mon, 04 Sep 17 15:38:17 -0300][ERROR] ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «'%seba% LIMIT 1»
+LINE 1: SELECT usuarios.* FROM usuarios WHERE  login = '%seba% LIMIT...
+                                                       ^ al ejecutar <em>'SELECT usuarios.* FROM usuarios WHERE  login = '%seba% LIMIT 1'</em>
+[Mon, 04 Sep 17 15:38:17 -0300][ERROR] #0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(160): DbPgSQL->query('SELECT usuarios...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(813): DbBase->fetch_one('SELECT usuarios...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(274): KumbiaActiveRecord->find_first(' login = '%seba...', 'columns: usuari...', '', 'page: 1')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(73): Usuarios->filtrar_por_login('seba')
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Mon, 04 Sep 17 15:39:32 -0300][ERROR] ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «'%seba% LIMIT 1»
+LINE 1: SELECT usuarios.* FROM usuarios WHERE  login = '%seba% LIMIT...
+                                                       ^ al ejecutar <em>'SELECT usuarios.* FROM usuarios WHERE  login = '%seba% LIMIT 1'</em>
+[Mon, 04 Sep 17 15:39:32 -0300][ERROR] #0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(160): DbPgSQL->query('SELECT usuarios...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(813): DbBase->fetch_one('SELECT usuarios...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(274): KumbiaActiveRecord->find_first(' login = '%seba...', 'columns: usuari...', '', 'page: 1')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(73): Usuarios->filtrar_por_login('seba')
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Mon, 04 Sep 17 15:39:50 -0300][ERROR] ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «'%seba% LIMIT 1»
+LINE 1: SELECT usuarios.* FROM usuarios WHERE  login = '%seba% LIMIT...
+                                                       ^ al ejecutar <em>'SELECT usuarios.* FROM usuarios WHERE  login = '%seba% LIMIT 1'</em>
+[Mon, 04 Sep 17 15:39:50 -0300][ERROR] #0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(160): DbPgSQL->query('SELECT usuarios...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(813): DbBase->fetch_one('SELECT usuarios...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(274): KumbiaActiveRecord->find_first(' login = '%seba...', 'columns: usuari...', '', 'page: 1')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(73): Usuarios->filtrar_por_login('seba')
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}
+[Mon, 04 Sep 17 15:40:07 -0300][ERROR] ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «'%sebaa% LIMIT 1»
+LINE 1: SELECT usuarios.* FROM usuarios WHERE  login = '%sebaa% LIMI...
+                                                       ^ al ejecutar <em>'SELECT usuarios.* FROM usuarios WHERE  login = '%sebaa% LIMIT 1'</em>
+[Mon, 04 Sep 17 15:40:07 -0300][ERROR] #0 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/db/db_base.php(160): DbPgSQL->query('SELECT usuarios...')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/libs/kumbia_active_record/kumbia_active_record.php(813): DbBase->fetch_one('SELECT usuarios...')
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/models/usuarios.php(274): KumbiaActiveRecord->find_first(' login = '%seba...', 'columns: usuari...', '', 'page: 1')
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php(73): Usuarios->filtrar_por_login('sebaa')
+#4 [internal function]: UsuariosController->crear()
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#6 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#7 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/admin/usuarios...')
+#8 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#9 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#10 {main}

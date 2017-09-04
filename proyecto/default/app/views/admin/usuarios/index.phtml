@@ -23,25 +23,32 @@
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Login</th>
                     <th>Nombre</th>
+                    <th>idTramite</th>
+                    <th>DNI</th>
                     <th>Correo</th>
                     <!--<th>Estado</th>-->
                     <th>Editar</th>
                     <th>Blanquear Clave</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($usuarios->items as $dni) { ?>
                     <tr>
-                        <td><?php echo $dni->id ?></td>
                         <td><?php echo $dni->login ?></td>
                         <td><?php echo $dni->nombres ?></td>
+                        <td><?php echo $dni->idtramite ?></td>
+                        <td><?php echo $dni->dni ?></td>
                         <td><?php echo $dni->email ?></td>
-                        <!--<td><a href="/admin/usuarios/editar/<?php echo $dni->id ?>"><img alt="" src="/img/figuras/editar.png"> </a></td>-->
                         <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/editar/" . $dni->id ?>">Editar</a></td>
                         <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/blanquear_clave/" . $dni->id ?>">Blanquear</a></td>
+                        <?php if ($dni->activo == 0) { ?>
+                            <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/activar/" . $dni->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/circulo_rojo.png"></a></td>
+                        <?php } else { ?>
+                            <td><a href="<?php echo PUBLIC_PATH . "admin/usuarios/desactivar/" . $dni->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/circulo_verde.png"></a></td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
             </tbody>

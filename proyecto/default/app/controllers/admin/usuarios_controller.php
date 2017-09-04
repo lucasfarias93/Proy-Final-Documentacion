@@ -1,6 +1,7 @@
 <?php
 
 Load::models('usuarios');
+
 class UsuariosController extends AdminController {
 
     /**
@@ -66,6 +67,21 @@ class UsuariosController extends AdminController {
             if (Input::hasPost('usuario')) {
                 //esto es para tener atributos que no son campos de la tabla
                 $usr = new Usuarios(Input::post('usuario'));
+                $usrbd = new Usuarios();
+                $usrbd->filtrar_por_login($usr->login);
+                
+                if ($usrbd && $usr->login == $usrbd->login) {
+                    throw new NegocioExcepcion("El usuario ingresado ya existe");
+                }
+                $usrbd->filtrar_por_id($usr->idtramite);
+                if ($usrbd && $usr->idtramite == $usrbd->idtramite) {
+                    throw new NegocioExcepcion("El idtramite ingresado ya existe");
+                }
+                $usrbd->filtrar_por_dni($usr->dni);
+                if ($usrbd && $usr->dni == $usrbd->dni) {
+                    throw new NegocioExcepcion("El dni ingresado ya existe");
+                }
+                //Verifico si el dni del usuario o el idtramite ya existe
                 //guarda los datos del usuario, y le asigna los roles 
                 //seleccionados en el formulario.
                 if ($usr->guardar(Input::post('usuario'), Input::post('rolesUser'))) {
@@ -74,11 +90,15 @@ class UsuariosController extends AdminController {
                         return Router::redirect();
                     }
                 } else {
-                    Flash::warning('No se Pudieron Guardar los Datos...!!!');
+                    throw new NegocioExcepcion("Verifique los datos ingresados");
                 }
             }
-        } catch (KumbiaException $e) {
-            View::excepcion($e);
+        } catch (NegocioExcepcion $e) {
+            Flash::error($e->getMessage());
+        } catch (Exception $e) {
+            Flash::error("No se pudo guardar el usuario");
+            Logger::error($e->getMessage());
+            Logger::error($e->getTraceAsString());
         }
     }
 
@@ -177,7 +197,7 @@ class UsuariosController extends AdminController {
                 Flash::warning("No existe ningun usuario con id '{$id}'");
             } else {
                 $usuario->clave = 'badDr97Or40Ac'; //1234
-                $usuario->clave_blanqueada  = true;
+                $usuario->clave_blanqueada = true;
                 if (!$usuario->update()) {
                     Flash::warning("No se ha podido blanquear la contraseña del usuario '{$usuario->login}'");
                 } else {
@@ -200,14 +220,14 @@ class UsuariosController extends AdminController {
                     Flash::valid('Clave Actualizada Correctamente');
                     MyAuth::cerrar_sesion();
                 } else {
-                    if ($usuario["nueva_clave"] === '1234'){
+                    if ($usuario["nueva_clave"] === '1234') {
                         Flash::error('La Clave Ingresada NO puede ser 1234');
-                    }else{
+                    } else {
                         Flash::info('Clave NO SE ha actualizado Correctamente');
                     }
                 }
             } else {
-                View::select("ingreso_contrasenia","reingreso_clave");
+                View::select("ingreso_contrasenia", "reingreso_clave");
                 $usuario = Load::model("usuarios")->find_first("id=" . Session::get("usuario_blanqueado"));
                 $this->usuario2 = $usuario;
             }

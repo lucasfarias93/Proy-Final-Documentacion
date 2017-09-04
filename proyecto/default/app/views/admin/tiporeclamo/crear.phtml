@@ -12,9 +12,9 @@
             <label>Descripción
                 <?php echo Form::text('tiporeclamo.descripciontiporeclamo') ?></label>
             <label>Fecha desde
-                <?php echo Form::text('tiporeclamo.fechadesde') ?></label>
+                <?php echo Form::text('tiporeclamo.fechadesde', array("class" => "datemask")) ?></label>
             <label>Fecha hasta
-                <?php echo Form::text('tiporeclamo.fechahasta') ?></label>
+                <?php echo Form::text('tiporeclamo.fechahasta', array("class" => "datemask")) ?></label>
             <?php echo Form::submit('Agregar') ?>
 
             <?php echo Form::close() ?>
