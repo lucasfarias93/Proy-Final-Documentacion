@@ -34,24 +34,50 @@ $(function() {
     });
 })()
 
-$("#numero_documento").change(function () {
-        $("#nombre_usuario").val("");
+$("#numero_tramite").change(function () {
+        $("#nombres").val("");
 
-        $("#nombre_usuario").removeAttr("readonly")
-        $("#nombre_usuario").removeAttr("disabled")
-
+        $("#nombres").removeAttr("readonly")
+        $("#nombres").removeAttr("disabled")
+        
         $.ajax({
             data: {
+                'idtramite': $("#numero_tramite").val(),
                 'dni': $("#numero_documento").val()
             },
-            url: $.KumbiaPHP.publicPath+"tramitedni/buscar_ciudadano_por_documento",
+            url: $.KumbiaPHP.publicPath+"tramitedni/buscar_ciudadano_por_id_dni",
             type: 'post',
             dataType: "json",
             success: function (response) {
-                $("#nombre_usuario").val(response.nombres);
-
-                $("#nombre_usuario").attr("readonly", "readonly")
+                $("#nombres").val(response.nombres);
+                $("#nombres").attr("readonly", "readonly")
 
             }
+        });
+});
+
+//para poblar los selects al cargar la pagina
+$(document).ready(function() {
+                    $.ajax({
+                            type: "POST",
+                            url: "getPaises.php",
+                            success: function(response)
+                            {
+                                $('.selector-pais select').html(response).fadeIn();
+                            }
+                    });
+
+                });
+
+//para definir que funcionalidad tiene el boton submit (crear usuario)
+$("#submitButton").click(function () {
+    $.ajax({
+            data: {
+                'usuario': $("#nombre_usuario").val(),
+                'rolesUser': "administrador del sistema"
+            },
+            url: $.KumbiaPHP.publicPath+"admin/usuarios/crear",
+            type: 'post',
+            dataType: "json"
         });
 });

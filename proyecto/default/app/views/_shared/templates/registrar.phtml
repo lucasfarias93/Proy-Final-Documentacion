@@ -23,17 +23,54 @@
       <!-- Formato del formulario con boton al final -->
       <div class="center row">
          <form class="col s12"> 
-            <div class="row">
-              <div class="input-field">
-                <input id="nombre_usuario" placeholder="Nombre Usuario" type="text" class="validate">
-                <label for="nombre_usuario" data-error="Prueba otro nombre de usuario" data-success="Usuario valido" >Nombre de Usuario</label>
-              </div>
-            </div>
             <div class="row"> 
               <div class="input-field">
                 <!-- input numerico tratado como texto para resolver el problema de type="number" no reconoce el atributo maxlenght -->
                 <input id="numero_documento" placeholder="Numero documento" type="text" class="validate" pattern="\d*" maxlength="8">
                 <label for="numero_documento" data-error="Documento no valido" data-success="Documento Valido">Nº documento</label>  
+              </div>
+            </div>
+            <div class="row"> 
+              <div class="input-field">
+                <input id="numero_tramite" placeholder="Numero tramite" input type="text" class="validate" pattern="\d*">
+                <label for="numero_tramite" data-error="Numero de tramite inválido" data-success="Numero de tramite válido">Nº tramite</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="nombres" placeholder="Nombres" type="text">
+                <label for="nombres">Nombres</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="domicilio" placeholder="Domicilio" type="text">
+                <label for="domicilio">Domicilio</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="localidad" placeholder="localidad" type="text">
+                <label for="localidad">localidad</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="departamento" placeholder="Departamento" type="text">
+                <label for="departamento">departamento</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="provincia" placeholder="Provincia" type="text">
+                <label for="provincia">provincia</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="nombre_usuario" placeholder="Nombre Usuario" type="text" class="validate">
+                <label for="nombre_usuario" data-error="Prueba otro nombre de usuario" data-success="Usuario valido" >Nombre de Usuario</label>
+              </div>
             </div>
             <div class="row">
               <div class="input-field">
@@ -44,7 +81,7 @@
             <div class="row">
               <div class="input-field">
                 <input id="repetir_contraseña" placeholder="repetir contraseña" type="password" class="validate">
-                <label for="repetir_contraseña" data-error="Password diferente" data-success="Password valido">repetir contraseña</label>
+                <label for="repetir_contraseña" data-error="Contraseñas no coinciden" data-success="Contraseñas coinciden">repetir contraseña</label>
               </div>
             </div>
             <div class="row">
@@ -65,7 +102,7 @@
             </div>
             <div class="row"> 
               <div class="input-field">
-                <input id="numero_telefono" placeholder="Numero telefono" input type="text" class="validate" pattern="\d*" maxlength="10">
+                <input id="numero_telefono" placeholder="Numero telefono" input type="text" class="validate" pattern="\d*">
                 <label for="numero_telefono" data-error="Numero de telefono inválido" data-success="Numero de telefono válido">Nº telefono</label>
               </div>
             </div>
@@ -80,11 +117,12 @@
               </div>
             </div>
             <!-- El boton esta deshabilitado. Para habilitarlo solo hay que reomver disable de la clase -->
-          </form>
-        </div>
-          <button id="submitButton" class="btn waves-effect waves-light" disabled="disabled" type="submit" name="action">Submit
+            <button id="submitButton" class="btn waves-effect waves-light" disabled="disabled" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
           </button>
+          </form>
+        </div>
+
         </div>
 
       <!--Import jQuery before materialize.js-->
