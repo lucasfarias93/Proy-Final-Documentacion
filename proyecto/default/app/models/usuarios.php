@@ -38,7 +38,7 @@ class Usuarios extends ActiveRecord {
         $this->validates_presence_of('clave', 'message: Debe escribir una <b>Contraseña</b>');
         $this->validates_length_of('clave', 50, $min_clave, "too_short: La Clave debe tener <b>Minimo {$min_clave} caracteres</b>");
         $this->validates_presence_of('clave2', 'message: Debe volver a escribir la <b>Contraseña</b>');
-        $this->validates_uniqueness_of('login', Flash::error("El nombre de usuario ya se encuentra registrado"));
+        //$this->validates_uniqueness_of('login', Flash::error("El nombre de usuario ya se encuentra registrado"));
     }
 
     protected function before_save() {
@@ -66,23 +66,6 @@ class Usuarios extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function filtrar_por_usuario($usuario, $pagina = 1) {
-        $cols = "usuarios.*";
-        $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
-        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
-    }
-
-//    public function buscar_usuario_dni($dni) {
-//        $cols = "usuarios.*";
-//        $where = " dni = '%$dni%";
-//        if($dni!=)
-//        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
-//    }
-//    public function filtrar_por_usuario($usuario, $pagina = 1) {
-//        $cols = "usuarios.*";
-//        $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
-//        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
-//    }
 
     /**
      * Devuelve los usuarios de la bd Paginados.
@@ -277,6 +260,18 @@ class Usuarios extends ActiveRecord {
         $cols = "usuarios.*";
         $where = " idtramite = '$idtramite'";
         return $this->find_first($where, "columns: $cols");
+    }
+
+    public function filtrar_por_usuario($usuario, $pagina = 1) {
+        $cols = "usuarios.*";
+        $where = " login ilike '%$usuario%' or nombres ilike '%$usuario%'";
+        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
+    }
+
+    public function filtrar_por_login($login, $pagina = 1) {
+        $cols = "usuarios.*";
+        $where = " login = '$login'";
+        return $this->find_first($where, "columns: $cols", "", "page: $pagina");
     }
 
 }
