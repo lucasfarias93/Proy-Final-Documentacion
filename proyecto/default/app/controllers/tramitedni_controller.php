@@ -24,13 +24,19 @@ class TramitedniController extends AppController {
             view::json($persona);
         }
     }
+    
     public function buscar_ciudadano_por_id_dni() {
         $r = new Tramitedni();
         if (Input::hasPost("idtramite") && Input::hasPost("dni")) {
             $persona = $r->filtrar_por_id_dni(Input::post("idtramite"),Input::post("dni"));
             view::json($persona);
         }
+    }
     
-
-}
+    public function buscar_ciudadano_por_documento2($dni) {
+        $r = new Tramitedni();
+        view::select(null, null);
+        $persona = $r->filtrar_por_ultimo_tramite(($dni));
+        view::json($persona);
+    }
 }
