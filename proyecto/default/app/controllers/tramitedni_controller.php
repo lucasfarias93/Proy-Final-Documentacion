@@ -33,10 +33,17 @@ class TramitedniController extends AppController {
         }
     }
     
-    public function buscar_ciudadano_por_documento2($dni) {
+    public function buscar_ciudadano_por_documento_mobile($dni) {
         $r = new Tramitedni();
         view::select(null, null);
         $persona = $r->filtrar_por_ultimo_tramite(($dni));
+        view::json($persona);
+    }
+    
+    public function buscar_ciudadano_por_id_dni_mobile($idtramite, $dni) {
+        $r = new Tramitedni();
+        view::select(null, null);
+        $persona = $r->filtrar_por_id_dni($idtramite, $dni);
         view::json($persona);
     }
 }
