@@ -54,7 +54,10 @@ class ParentescoController extends AdminController {
  
         //se verifica si se ha enviado el formulario (submit)
         if(Input::hasPost('parentesco')){
- 
+            $par = Input::post('parentesco');
+            $fechahasta =DateTime::createFromFormat("d/m/Y", $par["fechahasta"]);
+            $fechadesde =DateTime::createFromFormat("d/m/Y", $par["fechadesde"]);
+        if($fechahasta && $fechadesde->format("d/m/Y") == $par["fechadesde"] && $fechadesde <= $fechahasta) {
             if($tr->update(Input::post('parentesco'))){
                  Flash::valid('Operación exitosa');
                 //enrutando por defecto al index del controller
@@ -63,8 +66,13 @@ class ParentescoController extends AdminController {
                 Flash::error('Falló Operación');
             }
         } else {
+            Flash::error('Falló fecha');}
+        }
+        else {
             //Aplicando la autocarga de objeto, para comenzar la edición
             $this->parentesco = $tr->find_by_id((int)$id);
+            $this->parentesco->fechahasta = UtilApp::formatea_fecha_bd_to_pantalla($this->parentesco->fechahasta);
+            $this->parentesco->fechadesde = UtilApp::formatea_fecha_bd_to_pantalla($this->parentesco->fechadesde);
         }
     }
  

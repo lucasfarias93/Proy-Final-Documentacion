@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listEstadoimagenacta->items as $eia) { ?>
+                <?php foreach ($listEstadoimagenacta->items as $tl) { ?>
                     <tr>
-                        <td><?php echo $eia->nombreestado ?></td>
-                        <td><?php echo $eia->descripcion ?></td>
-                        <td><?php echo $eia->fechadesde ?></td>
-                        <td><?php echo $eia->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoimagenacta/edit/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoimagenacta/del/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $tl->nombreestado ?></td>
+                        <td><?php echo $tl->descripcion ?></td>
+                        <td><?php echo $tl->fechadesde ?></td>
+                        <td><?php echo $tl->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoimagenacta/edit/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoimagenacta/del/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>

@@ -345,14 +345,7 @@ class DbPgSQL extends DbBase implements DbBaseInterface
             return false;
         }
         $seq = "{$table}_{$primary_key}_seq";
-        if($table=="actanac"){
-            $seq = "secactanacimiento";
-        }elseif ($table=="actadef"){
-            $seq = "secactadefuncion";
-        }elseif ($table=="actamat"){
-            $seq = "secactamatrimonio";
-        }
-        $last_id = $this->fetch_one("SELECT currval('$seq')");
+        $last_id = $this->fetch_one("SELECT last_value from $seq");
         return $last_id[0];
     }
 

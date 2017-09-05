@@ -1,0 +1,49 @@
+<div class="page-header">
+    <h1>Tipos de libros</h1>
+</div>
+<div id="mensajes_flash" >        
+    <?php View::content() ?>
+</div> 
+<?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear tipos de libros', 'opciones' => FALSE)); ?>
+<?php echo Form::open('admin/tipolibro', 'post', 'id="formUsuario"') ?>
+<div>
+    <div class="conjunto">
+        <?php echo Form::label('Nombre', 'nombrelibro', '') ?>
+        <div >
+            <?php echo Form::text('nombrelibro') ?>
+
+
+        </div>
+    </div>
+
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Fecha desde</th>
+                    <th>Fecha hasta</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($listTipolibro->items as $tl) { ?>
+                    <tr>
+                        <td><?php echo $tl->nombrelibro ?></td>
+                        <td><?php echo $tl->fechadesde ?></td>
+                        <td><?php echo $tl->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tipolibro/edit/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tipolibro/del/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($listTipolibro->prev) echo Html::linkAction("index/$listTipolibro->prev/", '<< Anterior |'); ?>
+    <?php if ($listTipolibro->next) echo Html::linkAction("index/$listTipolibro->next/", 'Próximo >>'); ?>
+</div>

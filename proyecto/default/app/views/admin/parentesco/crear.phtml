@@ -5,10 +5,10 @@
             <?php echo Form::open(); // por defecto llama a la misma url ?>
             <label>Nombre Parentesco
                 <?php echo Form::text('parentesco.nombreparentesco') ?></label>
-            <label>Fecha alta
-                <?php echo Form::text('parentesco.fechaaltaparentesco') ?></label>
-            <label>Fecha baja
-                <?php echo Form::text('parentesco.fechabajaparentesco') ?></label>
+            <label>Fecha desde
+                <?php echo Form::text('parentesco.fechadesde', array("class" => "datemask")) ?></label>
+            <label>Fecha hasta
+                <?php echo Form::text('parentesco.fechaalta', array("class" => "datemask")) ?></label>
             <?php echo Form::submit('Agregar') ?>
 
             <?php echo Form::close() ?>

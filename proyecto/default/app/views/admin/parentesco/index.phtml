@@ -23,8 +23,8 @@
                 <tr>
 
                     <th>Nombre</th>
-                    <th>fecha baja</th>
-                    <th>fecha alta</th>
+                    <th>fecha desde</th>
+                    <th>fecha hasta</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </tr>
@@ -33,8 +33,8 @@
                 <?php foreach ($listParentesco->items as $ofi) { ?>
                     <tr>
                         <td><?php echo $ofi->nombreparentesco ?></td>
-                        <td><?php echo $ofi->fechabajaparentesco ?></td>
-                        <td><?php echo $ofi->fechaaltaparentesco ?></td>
+                        <td><?php echo $ofi->fechadesde ?></td>
+                        <td><?php echo $ofi->fechahasta ?></td>
                         <td><a href="<?php echo PUBLIC_PATH . "admin/parentesco/edit/" . $ofi->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
                         <td><a href="<?php echo PUBLIC_PATH . "admin/parentesco/del/" . $ofi->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>

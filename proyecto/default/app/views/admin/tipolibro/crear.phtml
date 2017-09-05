@@ -1,0 +1,15 @@
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Crear Tipos de libros<h3>
+
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Nombre
+                <?php echo Form::text('tipolibro.nombrelibro') ?></label>
+            <label>Fecha desde
+                <?php echo Form::text('tipolibro.fechadesde', array("class" => "datemask")) ?></label>
+            <label>Fecha hasta
+                <?php echo Form::text('tipolibro.fechahasta', array("class" => "datemask")) ?></label>
+            <?php echo Form::submit('Agregar') ?>
+
+            <?php echo Form::close() ?>
+            </div>

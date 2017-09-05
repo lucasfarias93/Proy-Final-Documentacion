@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listTiporeclamo->items as $eia) { ?>
+                <?php foreach ($listTiporeclamo->items as $tl) { ?>
                     <tr>
-                        <td><?php echo $eia->nombretiporeclamo ?></td>
-                        <td><?php echo $eia->descripciontiporeclamo ?></td>
-                        <td><?php echo $eia->fechadesde ?></td>
-                        <td><?php echo $eia->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/edit/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/del/" . $eia->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $tl->nombretiporeclamo ?></td>
+                        <td><?php echo $tl->descripciontiporeclamo ?></td>
+                        <td><?php echo $tl->fechadesde ?></td>
+                        <td><?php echo $tl->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/edit/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/del/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>
