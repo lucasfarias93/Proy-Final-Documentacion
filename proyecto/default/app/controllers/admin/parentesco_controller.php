@@ -9,14 +9,14 @@ class ParentescoController extends AdminController {
      */
     public function index($page=1) 
     {
-        $tr = new Operacion();
+        $tr = new Parentesco();
         $this->listParentesco = $tr->getParentesco($page);
     }
  
     /**
      * Crea un Registro
      */
-    public function create ()
+    public function crear ()
     {
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas 
@@ -30,7 +30,7 @@ class ParentescoController extends AdminController {
              * y los asocia al campo correspondiente siempre y cuando se utilice la convención
              * model.campo
              */
-            $tr = new Tiporeclamo(Input::post('parentesco'));
+            $tr = new Parentesco(Input::post('parentesco'));
             //En caso que falle la operación de guardar
             if($tr->create()){
                 Flash::valid('Operación exitosa');
@@ -50,7 +50,7 @@ class ParentescoController extends AdminController {
      */
     public function edit($id)
     {
-        $tr = new Tiporeclamo();
+        $tr = new Parentesco();
  
         //se verifica si se ha enviado el formulario (submit)
         if(Input::hasPost('parentesco')){
