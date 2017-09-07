@@ -16,10 +16,6 @@ class UsuariosController extends AdminController {
 
     public function index($pagina = 1, $migrar = False) {
         try {
-            if ($migrar) {
-                Load::negocio("etl/experto_etl");
-                ExpertoETL::migrar_usuarios_rcivil();
-            }
             $usr = new Usuarios();
             if (Input::hasPost("nombre_usuario")) {
                 $this->usuarios = $usr->filtrar_por_usuario(Input::post("nombre_usuario"), $pagina);

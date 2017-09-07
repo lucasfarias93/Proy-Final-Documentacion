@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/olvido/index_controller.php</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/admin/usuarios_controller.php</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/views/_shared/templates/logueo.phtml</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/views/_shared/templates/olvido.phtml</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/views/admin/usuarios/crear.phtml</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/index_controller.php</file>
+            <file>file:/home/diego/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/controllers/enviarmail_controller.php</file>
         </group>
     </open-files>
 </project-private>
