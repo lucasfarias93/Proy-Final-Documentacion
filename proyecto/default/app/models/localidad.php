@@ -24,6 +24,12 @@ class Localidad extends ActiveRecord {
         $where = " nombrelocalidad ilike '%$localidad%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
+    
+    public function filtrar_por_localidad($departamento, $pagina = 1, $ppage = 20) {
+        $cols = "localidad.*";
+        $where = " localidad.iddepartamento = $departamento";
+        return $this->paginate($where, "columns: $cols", "per_page: $ppage", "page: $pagina");
+    }
 
     public function getLocalidad($page, $ppage = 20) {
 
