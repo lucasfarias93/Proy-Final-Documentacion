@@ -12,4 +12,12 @@ class DepartamentoController extends AppController {
         view::json($departamento);
     }
  
+    //Obtener deptos segun provincia
+    public function Depto_segun_provincia_mobile($provincia) {
+        $r = new Departamento();
+        view::select(null, null);
+        $departamento = $r ->filtrar_por_dpto(($provincia));
+        view::json($departamento);
+    }
+ 
 }
