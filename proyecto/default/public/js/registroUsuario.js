@@ -1,3 +1,4 @@
+//Evitar introducir letras en numero de documento
 $(function() {
     $("#numero_documento").keypress(function(event) {
         if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
@@ -7,6 +8,7 @@ $(function() {
     });
 });
 
+//Evitar introducir letras en numero de telefono
 $(function() {
     $("#numero_telefono").keypress(function(event) {
         if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
@@ -16,6 +18,7 @@ $(function() {
     });
 });
 
+//habilitar o deshabilitar boton submit hasta que los campos esten completos
 (function() {
     $('form input').keyup(function() {
 
@@ -34,6 +37,7 @@ $(function() {
     });
 })()
 
+//auto carga del nombre de la persona segun el DNI y el numero tramite introducido
 $("#numero_tramite").change(function () {
         $("#nombres").val("");
 
@@ -55,10 +59,8 @@ $("#numero_tramite").change(function () {
         });
 });
 
-//para poblar los selects al cargar la pagina
+//Poblar select departamento segun la provincia seleccionada
 $("#provincia").change(function() {
-    console.log($(this).find(':selected').text());
-    console.log($(this).find(':selected').val());
     $.ajax({
             data: { 
                 'provincia': $(this).find(':selected').val()
@@ -77,10 +79,49 @@ $("#provincia").change(function() {
                     .val('whatever')
                 ;
 
+                $('#select_localidad')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option disabled value="option">Seleccione</option>')
+                    .val('whatever')
+                ;
+
                 $.each(jsonObj.items, function(id,value) {
                     $("#select_dpto").append('<option value="'+id+'">'+value.nombredepartamento+'</option>');
                 })
                 $("#select_dpto").material_select();
+                $("#select_localidad").material_select();
+            }
+    });
+});
+
+//Poblar select localidad segun el departamento seleccionado
+$("#departamento").change(function() {
+    console.log($(this).find(':selected').text());
+    console.log($(this).find(':selected').val());
+    $.ajax({
+            data: { 
+                'departamento': $(this).find(':selected').val()
+            },
+            type: "POST",
+            url: $.KumbiaPHP.publicPath+"localidad/localidad_segun_dpto",
+            success: function(response) {
+                var jsonObj = JSON.parse(response);
+                alert(jsonObj.items.length);
+
+                $('#select_localidad')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option disabled value="option">Seleccione</option>')
+                    .val('whatever')
+                ;
+
+                $.each(jsonObj.items, function(id,value) {
+                    $("#select_localidad").append('<option value="'+id+'">'+value.nombrelocalidad+'</option>');
+                })
+                $("#select_localidad").material_select();
             }
     });
 });
