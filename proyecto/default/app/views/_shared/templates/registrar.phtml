@@ -43,9 +43,15 @@
               </div>
             </div>
             <div class="row">
-              <div class="input-field">
-                <input id="domicilio" placeholder="Domicilio" type="text">
-                <label for="domicilio">Domicilio</label>
+              <div class="input-field" id="provincia">
+                <?php echo Form::dbselect('departamento.idprovincia', 'nombreprovincia', array('provincia','find')) ?>
+                <label>Seleccion Provincia</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field" id="departamento">
+                <select id="select_dpto"></select>
+                <label>Seleccion Departamento</label>
               </div>
             </div>
             <div class="row">
@@ -56,14 +62,8 @@
             </div>
             <div class="row">
               <div class="input-field">
-                <input id="departamento" placeholder="Departamento" type="text">
-                <label for="departamento">departamento</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <input id="provincia" placeholder="Provincia" type="text">
-                <label for="provincia">provincia</label>
+                <input id="domicilio" placeholder="Domicilio" type="text">
+                <label for="domicilio">Domicilio</label>
               </div>
             </div>
             <div class="row">

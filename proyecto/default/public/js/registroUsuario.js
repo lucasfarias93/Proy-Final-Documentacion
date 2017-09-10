@@ -51,23 +51,39 @@ $("#numero_tramite").change(function () {
             success: function (response) {
                 $("#nombres").val(response.nombres);
                 $("#nombres").attr("readonly", "readonly")
-
             }
         });
 });
 
 //para poblar los selects al cargar la pagina
-$(document).ready(function() {
-                    $.ajax({
-                            type: "POST",
-                            url: "getPaises.php",
-                            success: function(response)
-                            {
-                                $('.selector-pais select').html(response).fadeIn();
-                            }
-                    });
+$("#provincia").change(function() {
+    console.log($(this).find(':selected').text());
+    console.log($(this).find(':selected').val());
+    $.ajax({
+            data: { 
+                'provincia': $(this).find(':selected').val()
+            },
+            type: "POST",
+            url: $.KumbiaPHP.publicPath+"departamento/Depto_segun_provincia",
+            success: function(response) {
+                var jsonObj = JSON.parse(response);
+                alert(jsonObj.items.length);
 
-                });
+                $('#select_dpto')
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option disabled value="option">Seleccione</option>')
+                    .val('whatever')
+                ;
+
+                $.each(jsonObj.items, function(id,value) {
+                    $("#select_dpto").append('<option value="'+id+'">'+value.nombredepartamento+'</option>');
+                })
+                $("#select_dpto").material_select();
+            }
+    });
+});
 
 //para definir que funcionalidad tiene el boton submit (crear usuario)
 $("#submitButton").click(function () {
