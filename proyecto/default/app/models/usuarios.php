@@ -273,5 +273,10 @@ class Usuarios extends ActiveRecord {
         $where = " login = '$login'";
         return $this->find_first($where, "columns: $cols", "", "page: $pagina");
     }
+    public function filtrar_por_email($email, $pagina = 1) {
+        $cols = "usuarios.*";
+        $where = " email = '$email'";
+        return $this->find_first($where, "columns: $cols", "", "page: $pagina");
+    }
 
 }

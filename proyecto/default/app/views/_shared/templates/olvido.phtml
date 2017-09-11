@@ -1,75 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="css/registro.css">
-
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-    <title>Olvidaste tu contrase&ntilde;a?</title>
-    <body>
-
-        <!-- Header con titulo -->
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Olvidaste tu contrase&ntilde;a?</a>
+<div class="content">
+    <?php View::content(); ?>
+    <h3>Olvidaste tu contrase&ntilde;a?<h3>
+            <?php echo Form::open(); // por defecto llama a la misma url ?>
+            <label>Email
+                <?php echo Form::text('usuarios.email') ?></label>
+            <?php echo Form::submit('Enviar') ?>
+            <?php echo Form::close() ?>
             </div>
-        </nav>  
-
-        <!-- Formato del formulario con boton al final -->
-        <div class="row">
-        </div>
-        <div class="center row">
-            <label>Ingresa tu usuario o email</label>
-        </div>
-        <div class="row">
-        </div>
-        <div class="center row">
-            <form class="col s12"> 
-                <div class="row">
-                    <div class="input-field">
-                        <input id="login" placeholder="Nombre Usuario" type="text" class="validate">
-                        <label for="login" data-error="Prueba otro nombre de usuario" data-success="Usuario valido" >Nombre de Usuario</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field">
-                        <input id="email" placeholder="Email" type="email" class="validate">
-                        <label for="email" data-error="Mail inválido" data-success="right">Email</label>
-                    </div>
-                </div>
-
-                <!-- El boton esta deshabilitado. Para habilitarlo solo hay que reomver disable de la clase -->
-                <button id="submitButton" class="btn waves-effect waves-light" enabled="enabled" type="submit" name="action">Enviar
-                </button>
-            </form>
-        </div>
-<!--        <div class="row">
-            <a  href=" <?php echo APP_PATH ?>enviarmail"></a>
-        </div>-->
-        <div class="row">
-        </div>
-        <div class="row">
-        </div>
-        <div class="right row"> 
-            <?php echo html::link('ayuda', "Necesitas ayuda? Contacta al soporte tecnico de gestion digital de actas!", array("class" => "one", "id" => "download-button")) ?>
-        </div>
-    </div>
-
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.kumbiaphp.js"></script>
-    <!-- En init.js esta declarada la inicializacion del selector que se utiliza en tipo nro telefono-->
-    <script src="js/init.js"></script>
-    <!-- En registroUsuario.js declarada toda la logica pertinente al registro del usuario. Tambien esta la funcion que evita que se agregue la letra
-    "e" en los input fields de tipo number-->
-    <script src="js/olvido.js"></script>
-</body>
-</html>
