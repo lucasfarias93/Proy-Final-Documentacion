@@ -24,7 +24,13 @@ class Departamento extends ActiveRecord {
         $where = " nombredepartamento ilike '%$departamento%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
-
+    
+    public function filtrar_por_dpto($provincia, $pagina = 1, $ppage = 20) {
+        $cols = "departamento.*";
+        $where = " departamento.idprovincia = $provincia";
+        return $this->paginate($where, "columns: $cols", "per_page: $ppage", "page: $pagina");
+    }
+    
     public function getDepartamento($page, $ppage = 20) {
 
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');

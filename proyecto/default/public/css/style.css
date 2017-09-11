@@ -71,6 +71,15 @@ body {
 	color: #666;
 	margin-bottom: 20px;
 }
+
+.fs-subtitle-left{
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
 /*progressbar*/
 #progressbar {
 	margin-bottom: 30px;
@@ -129,10 +138,6 @@ nav .brand-logo {
 
 nav {
   background: #9A2EFE;
-}
-
-p {
-  line-height: 2rem;
 }
 
 .button-collapse {
@@ -206,11 +211,6 @@ footer.page-footer {
 
 .icon-block h5 {
   font-size: 22px;
-}
-
-.icon-block p {
-	font-size: 13px;
-	padding-top: 5px;
 }
 
 .material-icons{
