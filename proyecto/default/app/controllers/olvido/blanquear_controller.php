@@ -7,12 +7,11 @@
  */
 Load::models('usuarios');
 
-class IndexController extends AppController {
+class BlanquearController extends AppController {
 
-    public function index($id) {
+    public function blanquear($id) {
             $id = (int) $id;
             $usuario = new Usuarios();
-            var_dump($usuario);
             if (!$usuario->find_first($id)) { //si no existe el usuario
                 Flash::warning("No existe ningun usuario con id '{$id}'");
             } else {
@@ -24,7 +23,7 @@ class IndexController extends AppController {
                     Flash::info("Se ha blanqueado exitosamente la contraseña del usuario: '{$usuario->login}'");
                 }
             }
-        return Router::toAction('');
+        return Router::redirect('login');
     }
 
 }
