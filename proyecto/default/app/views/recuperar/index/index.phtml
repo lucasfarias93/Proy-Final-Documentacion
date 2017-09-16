@@ -10,13 +10,13 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <title>Olvidaste tu contrase&ntilde;a?</title>
+    <title>Recuperar cuenta</title>
     <body>
 
         <!-- Header con titulo -->
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Olvidaste tu contrase&ntilde;a?</a>
+                <a href="#" class="brand-logo center">Recupera tu cuenta</a>
             </div>
         </nav>  
 
@@ -24,7 +24,7 @@
         <div class="row">
         </div>
         <div class="center row">
-            <label>Ingresa tu email</label>
+            <label>Ingresa tu nueva clave</label>
         </div>
         <div class="row">
         </div>
@@ -33,12 +33,12 @@
 
                 <div class="row">
                     <div class="input-field">
-                        <input id="email" placeholder="Email" type="email" class="validate">
-                        <label for="email" data-error="Mail inv&aacute;lido" data-success="correcto">Email</label>
+                        <input id="clave" placeholder="Clave" type="text" class="validate">
+                        <label for="clave" data-error="Mail inv&aacute;lido" data-success="correcto">Clave</label>
                     </div>
                 </div>
                 <div class="form-actions">
-                    <?php echo Form::submit('Guardar Datos', 'class="btn btn-primary"') ?>
+                    <?php echo Form::submit('Recuperar', 'class="btn btn-primary"') ?>
                 </div>
             </form>
         </div>

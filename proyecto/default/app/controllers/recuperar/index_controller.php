@@ -7,15 +7,17 @@
  */
 Load::models('usuarios');
 
-class BlanquearController extends AppController {
+class IndexController extends AppController {
 
-    public function blanquear($id) {
+
+    public function index() {
+        view::template(NULL);
             $id = (int) $id;
             $usuario = new Usuarios();
             if (!$usuario->find_first($id)) { //si no existe el usuario
                 Flash::warning("No existe ningun usuario con id '{$id}'");
             } else {
-                $usuario->clave = 'badDr97Or40Ac'; //1234
+                $usuario->clave = $clave;
                 $usuario->clave_blanqueada = true;
                 if (!$usuario->update()) {
                     Flash::warning("No se ha podido blanquear la contraseña del usuario '{$usuario->login}'");
@@ -23,7 +25,7 @@ class BlanquearController extends AppController {
                     Flash::info("Se ha blanqueado exitosamente la contraseña del usuario: '{$usuario->login}' a '1234' ");
                 }
             }
-        return Router::redirect('login');
+        //return Router::redirect('login');
     }
 
 }
