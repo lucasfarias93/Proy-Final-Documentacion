@@ -20,7 +20,7 @@ class BlanquearController extends AppController {
                 if (!$usuario->update()) {
                     Flash::warning("No se ha podido blanquear la contraseña del usuario '{$usuario->login}'");
                 } else {
-                    Flash::info("Se ha blanqueado exitosamente la contraseña del usuario: '{$usuario->login}'");
+                    Flash::info("Se ha blanqueado exitosamente la contraseña del usuario: '{$usuario->login}' a '1234' ");
                 }
             }
         return Router::redirect('login');
