@@ -2,7 +2,7 @@
 $(function() {
     $("#numero_documento").keypress(function(event) {
         if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
-            $(".alert").html("Enter only digits!").show().fadeOut(2000);
+            alert("Solo puede ingresar numeros!");
             return false;
         }
     });
@@ -12,7 +12,17 @@ $(function() {
 $(function() {
     $("#numero_telefono").keypress(function(event) {
         if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
-            $(".alert").html("Enter only digits!").show().fadeOut(2000);
+            alert("Solo puede ingresar numeros!");
+            return false;
+        }
+    });
+});
+
+//Evitar introducir letras en numero de telefono
+$(function() {
+    $("#numero_tramite").keypress(function(event) {
+        if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
+            alert("Solo puede ingresar numeros!");
             return false;
         }
     });
@@ -39,11 +49,15 @@ $(function() {
 
 //auto carga del nombre de la persona segun el DNI y el numero tramite introducido
 $("#numero_tramite").change(function () {
+    if (($("#numero_tramite").val() != "") && ($("#numero_documento").val() != "")) {
         $("#nombres").val("");
-
-        $("#nombres").removeAttr("readonly")
-        $("#nombres").removeAttr("disabled")
+        $("#nombres").removeAttr("readonly");
+        $("#nombres").removeAttr("disabled");
         
+        $("#apellido").val("");
+        $("#apellido").removeAttr("readonly");
+        $("#apellido").removeAttr("disabled");
+
         $.ajax({
             data: {
                 'idtramite': $("#numero_tramite").val(),
@@ -53,11 +67,68 @@ $("#numero_tramite").change(function () {
             type: 'post',
             dataType: "json",
             success: function (response) {
-                $("#nombres").val(response.nombres);
-                $("#nombres").attr("readonly", "readonly")
+                if (response) {
+                    $("#nombres").val(response.nombres);
+                    $("#nombres").attr("readonly", "readonly");
+
+                    $("#apellido").val(response.apellido);
+                    $("#apellido").attr("readonly", "readonly")
+                } else {
+                    alert("Revisar DNI y numero de tramite");
+                }
             }
         });
+    }
 });
+
+$("#numero_documento").change(function () {
+    if (($("#numero_tramite").val() != "") && ($("#numero_documento").val() != "")) {
+        $("#nombres").val("");
+        $("#nombres").removeAttr("readonly");
+        $("#nombres").removeAttr("disabled");
+        
+        $("#apellido").val("");
+        $("#apellido").removeAttr("readonly");
+        $("#apellido").removeAttr("disabled");
+
+        $.ajax({
+            data: {
+                'idtramite': $("#numero_tramite").val(),
+                'dni': $("#numero_documento").val()
+            },
+            url: $.KumbiaPHP.publicPath+"tramitedni/buscar_ciudadano_por_id_dni",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                if (response) {
+                    $("#nombres").val(response.nombres);
+                    $("#nombres").attr("readonly", "readonly");
+
+                    $("#apellido").val(response.apellido);
+                    $("#apellido").attr("readonly", "readonly")
+                } else {
+                    alert("Revisar DNI y numero de tramite");
+                }
+            }
+        });
+    }
+});
+
+$("#repetir_contraseña").change(function () {
+    var contraseña = $("#contraseña").val();
+    var repetida = $("#repetir_contraseña").val();
+
+    if(contraseña != repetida) {
+        $("#repetir_contraseña").removeClass("valid");
+        $("#repetir_contraseña").addClass("invalid");
+        $("#repetir_contraseña").prop("aria-invalid", "false");
+    } else {
+        $("#repetir_contraseña").removeClass("invalid");
+        $("#repetir_contraseña").addClass("valid");
+        $("#repetir_contraseña").prop("aria-valid", "false"); 
+    }
+});
+
 
 //Poblar select departamento segun la provincia seleccionada
 $("#provincia").change(function() {
@@ -69,7 +140,9 @@ $("#provincia").change(function() {
             url: $.KumbiaPHP.publicPath+"departamento/Depto_segun_provincia",
             success: function(response) {
                 var jsonObj = JSON.parse(response);
-                alert(jsonObj.items.length);
+                
+                //Alert utilizada para ver la cantidad de elementos que devuelve el server
+                //alert(jsonObj.items.length);
 
                 $('#select_dpto')
                     .find('option')
@@ -108,7 +181,9 @@ $("#departamento").change(function() {
             url: $.KumbiaPHP.publicPath+"localidad/localidad_segun_dpto",
             success: function(response) {
                 var jsonObj = JSON.parse(response);
-                alert(jsonObj.items.length);
+
+                //Alert utilizada para ver la cantidad de elementos que devuelve el server
+                //alert(jsonObj.items.length);
 
                 $('#select_localidad')
                     .find('option')

@@ -32,14 +32,20 @@
             </div>
             <div class="row"> 
               <div class="input-field">
-                <input id="numero_tramite" placeholder="Numero tramite" input type="text" class="validate" pattern="\d*">
+                <input id="numero_tramite" placeholder="Numero tramite" type="text" class="validate" pattern="\d*">
                 <label for="numero_tramite" data-error="Numero de tramite inválido" data-success="Numero de tramite válido">Nº tramite</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field">
-                <input id="nombres" placeholder="Nombres" type="text">
+                <input id="nombres" placeholder="Nombres" type="text" disabled="disabled">
                 <label for="nombres">Nombres</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field">
+                <input id="apellido" placeholder="Apellido" type="text" disabled="disabled">
+                <label for="apellido">Apellido</label>
               </div>
             </div>
             <div class="row">
@@ -50,13 +56,17 @@
             </div>
             <div class="row">
               <div class="input-field" id="departamento">
-                <select id="select_dpto"></select>
+                <select id="select_dpto">
+                  <option value="" disabled selected>Seleccione</option>
+                </select>
                 <label>Seleccion Departamento</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field" id="localidad">
-                <select id="select_localidad"></select>
+                <select id="select_localidad">
+                  <option value="" disabled selected>Seleccione</option>
+                </select>
                 <label>Seleccion Localidad</label>
               </div>
             </div>
@@ -75,12 +85,12 @@
             <div class="row">
               <div class="input-field">
                 <input id="contraseña" placeholder="contraseña" type="password" class="validate">
-                <label for="contraseña" data-error="Password invalido" data-success="Password valido">contraseña</label>
+                <label for="contraseña" data-error="Password invalido" data-success="Contraseña valida">contraseña</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field">
-                <input id="repetir_contraseña" placeholder="repetir contraseña" type="password" class="validate">
+                <input id="repetir_contraseña" placeholder="repetir contraseña" type="password">
                 <label for="repetir_contraseña" data-error="Contraseñas no coinciden" data-success="Contraseñas coinciden">repetir contraseña</label>
               </div>
             </div>
@@ -102,7 +112,7 @@
             </div>
             <div class="row"> 
               <div class="input-field">
-                <input id="numero_telefono" placeholder="Numero telefono" input type="text" class="validate" pattern="\d*">
+                <input id="numero_telefono" placeholder="Numero telefono" type="tel" class="validate" pattern="\d*" maxlength="10">
                 <label for="numero_telefono" data-error="Numero de telefono inválido" data-success="Numero de telefono válido">Nº telefono</label>
               </div>
             </div>

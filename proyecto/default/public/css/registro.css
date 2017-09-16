@@ -6,3 +6,8 @@
     margin: auto;
     width: 30%;
 }
+
+label.active {
+   width: 100% !important;
+}          
+          
