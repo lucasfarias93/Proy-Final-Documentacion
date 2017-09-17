@@ -112,7 +112,8 @@ class IndexController extends AppController {
         view::select(null, null);
         $codigobd = new Linkrecuperacion();
         $codigobd->filtrar_por_codigo($codigo);
-        if ($codigo == $codigobd) {
+        
+        if ($codigo == $codigobd->enlacerecuperacion) {
             view::json(TRUE);
         } else {
             view::json(FALSE);
