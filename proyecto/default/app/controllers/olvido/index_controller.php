@@ -1,6 +1,7 @@
 <?php
 
 Load::models('usuarios');
+Load::models('linkrecuperacion');
 
 class IndexController extends AppController {
 
@@ -33,7 +34,7 @@ class IndexController extends AppController {
                     //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
                     $aux = $usrbd->id;
-                    $link = '<a href="http://190.15.213.87:81/olvido/blanquear/blanquear/' . $aux . '">Aqui</a>';
+                    $link = '<a href="http://190.15.213.87:81/recuperar/' . $aux . '">Aqui</a>';
                     $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
                     $body = "Para recuperar tu cuenta hace click " . $link;
                     $mail->Body = $body; // Mensaje a enviar
@@ -61,7 +62,6 @@ class IndexController extends AppController {
     public function correoandroid($email) {
         view::select(null, null);
         try {
-
             ////Mandar mail
             load::lib("phpmailer/class.phpmailer");
             $mail = new PHPMailer();
@@ -81,11 +81,16 @@ class IndexController extends AppController {
             $mail->AddAddress($email); // Esta es la dirección a donde enviamos
             //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
             $mail->IsHTML(true); // El correo se envía como HTML
-            $link = rand(0, 9999);
+            $codigo = rand(0, 9999);
             $mail->Subject = "Recuperacion de su cuenta"; // Este es el titulo del email.
-            $body = "Para recuperar tu cuenta hace click " . $link;
+            $body = "Tu codigo de activacion es: " . $codigo;
             $mail->Body = $body; // Mensaje a enviar
             $exito = $mail->Send(); // Envía el correo.
+            $l = new Linkrecuperacion();
+            $l->enlacerecuperacion = $codigo;
+            $l->enlaceactivo = TRUE;
+            $l->fechadeemision = NULL;
+            $l->create();
 //También podríamos agregar simples verificaciones para saber si se envió:
             if ($exito) {
                 Flash::info("El correo fue enviado correctamente");
@@ -100,6 +105,17 @@ class IndexController extends AppController {
         } catch (NegocioExcepcion $e) {
             echo "El mail ingresado no existe en la Base de datos ";
             Flash::error($e->getMessage());
+        }
+    }
+
+    public function codigoactivacionandroid($codigo) {
+        view::select(null, null);
+        $codigobd = new Linkrecuperacion();
+        $codigobd->filtrar_por_codigo($codigo);
+        if ($codigo == $codigobd) {
+            view::json(TRUE);
+        } else {
+            view::json(FALSE);
         }
     }
 
