@@ -95,7 +95,6 @@ class IndexController extends AppController {
             if ($exito) {
                 Flash::info("El correo fue enviado correctamente");
                 input::delete();
-                Router::redirect('login');
                 view::json(TRUE);
             } else {
                 Flash::info("No se pudo enviar el correo");
