@@ -44,12 +44,7 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <?php if (clave == clave2) { ?>
                         <?php echo Form::submit('Recuperar', 'class="btn btn-primary"') ?>
-                    <?php } else { ?>
-                        <?php Flash::error("Las claves no coinciden") ?>
-                    <?php } ?>
-
                 </div>
             </form>
         </div>
