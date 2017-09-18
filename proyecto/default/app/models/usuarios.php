@@ -256,9 +256,14 @@ class Usuarios extends ActiveRecord {
         return $this->find_first($where, "columns: $cols");
     }
 
-    public function filtrar_por_id($idtramite) {
+    public function filtrar_por_idtramite($idtramite) {
         $cols = "usuarios.*";
         $where = " idtramite = '$idtramite'";
+        return $this->find_first($where, "columns: $cols");
+    }
+    public function filtrar_por_id($id) {
+        $cols = "usuarios.*";
+        $where = " id = '$id'";
         return $this->find_first($where, "columns: $cols");
     }
 

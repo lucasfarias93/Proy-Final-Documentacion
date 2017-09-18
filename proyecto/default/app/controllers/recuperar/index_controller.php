@@ -9,41 +9,24 @@ Load::models('usuarios');
 
 class IndexController extends AppController {
 
-
     public function index() {
         view::template(NULL);
-            $id = (int) $id;
-            $usuario = new Usuarios();
-            if (!$usuario->find_first($id)) { //si no existe el usuario
-                Flash::warning("No existe ningun usuario con id '{$id}'");
+        if (Input::hasPost('usuarios')) {
+            $usr = new Usuarios(Input::post('usuarios'));
+            $userbd = new Usuarios();
+            $userbd->filtrar_por_id($usr->id);
+            if ($userbd && $usr->id == $userbd->id) {
+                $userbd->clave = MyAuth::hash($usr->clave);
+                $userbd->clave_blanqueada = true;
+                $userbd->update();
+                Flash::info("Se cambio exitosamente la clave del usuario: '{$userbd->login}'");
+                input::delete();
+                Router::redirect('login');
             } else {
-                $usuario->clave = $clave;
-                $usuario->clave_blanqueada = true;
-                if (!$usuario->update()) {
-                    Flash::warning("No se ha podido blanquear la contraseña del usuario '{$usuario->login}'");
-                } else {
-                    Flash::info("Se ha blanqueado exitosamente la contraseña del usuario: '{$usuario->login}' a '1234' ");
-                }
+                Flash::warning("No se ha podido cambiar la clave del usuario '{$userbd->login}'");
             }
-        //return Router::redirect('login');
-    }
-    public function recuperar($id)
-    {
-        view::template(NULL);
-            $id = (int) $id;
-            $usuario = new Usuarios();
-            if (!$usuario->find_first($id)) { //si no existe el usuario
-                Flash::warning("No existe ningun usuario con id '{$id}'");
-            } else {
-                $usuario->clave = $clave;
-                $usuario->clave_blanqueada = true;
-                if (!$usuario->update()) {
-                    Flash::warning("No se ha podido blanquear la contraseña del usuario '{$usuario->login}'");
-                } else {
-                    Flash::info("Se ha blanqueado exitosamente la contraseña del usuario: '{$usuario->login}' a '1234' ");
-                }
-            }
-
+        }
+        // return Router::redirect('login');
     }
 
 }

@@ -69,7 +69,7 @@ class UsuariosController extends AdminController {
                 if ($usrbd && $usr->login == $usrbd->login) {
                     throw new NegocioExcepcion("El usuario ingresado ya existe");
                 }
-                $usrbd->filtrar_por_id($usr->idtramite);
+                $usrbd->filtrar_por_idtramite($usr->idtramite);
                 if ($usrbd && $usr->idtramite == $usrbd->idtramite) {
                     throw new NegocioExcepcion("El idtramite ingresado ya existe");
                 }

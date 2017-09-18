@@ -29,24 +29,23 @@
         <div class="row">
         </div>
         <div class="center row">
-            <form class="col s12"> 
-
-                <div class="row">
-                    <div class="input-field">
-                        <input id="clave" placeholder="Clave" type="text" class="validate">
-                        <label for="clave" data-success="correcto">Clave</label>
-                    </div>
+            <?php echo Form::open("", 'post', array('class' => "col s12")); // por defecto llama a la misma url ?>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('usuarios.id', array('id' => "id", 'placeholder' => "Id", 'number' => "id", 'class' => "validate")) ?>
+                    <label for="id" data-success="correcto">ID</label>
                 </div>
-                <div class="row">
-                    <div class="input-field">
-                        <input id="clave2" placeholder="Clave" type="text" class="validate">
-                        <label for="clave" data-success="correcto">Repetir clave</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('usuarios.clave', array('id' => "clave", 'placeholder' => "Clave", 'text' => "clave", 'class' => "validate")) ?>
+                    <label for="clave" data-success="correcto">Repetir clave</label>
                 </div>
-                <div class="form-actions">
-                        <?php echo Form::submit('Recuperar', 'class="btn btn-primary"') ?>
-                </div>
-            </form>
+            </div>
+            <div class="form-actions">
+                <?php echo Form::submit('Recuperar', 'class="btn btn-primary"') ?>
+            </div>
+            <?php echo Form::close() ?>
         </div>
         <div class="row">
         </div>
