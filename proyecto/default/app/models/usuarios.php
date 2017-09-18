@@ -146,6 +146,18 @@ class Usuarios extends ActiveRecord {
         return TRUE;
     }
 
+    public function guardarCiudadano($data, $roles) {
+        Logger::error("bd");
+        $this->begin();
+        if (!$this->save($data)) {
+            $this->rollback();
+            return FALSE;
+        }
+        $rolUser = Load::model('roles_usuarios');
+        $rolUser->asignarRol($this->id, $roles);
+        $this->commit();
+        return TRUE;
+    }
     /**
      * Crea un arreglo con pares idRol => nombreRol con los roles
      * que posee el usuario.

@@ -161,7 +161,7 @@ $("#provincia").change(function() {
                 ;
 
                 $.each(jsonObj.items, function(id,value) {
-                    $("#select_dpto").append('<option value="'+id+'">'+value.nombredepartamento+'</option>');
+                    $("#select_dpto").append('<option value="'+value.id+'">'+value.nombredepartamento+'</option>');
                 })
                 $("#select_dpto").material_select();
                 $("#select_localidad").material_select();
@@ -194,7 +194,7 @@ $("#departamento").change(function() {
                 ;
 
                 $.each(jsonObj.items, function(id,value) {
-                    $("#select_localidad").append('<option value="'+id+'">'+value.nombrelocalidad+'</option>');
+                    $("#select_localidad").append('<option value="'+value.id+'">'+value.nombrelocalidad+'</option>');
                 })
                 $("#select_localidad").material_select();
             }
@@ -203,13 +203,35 @@ $("#departamento").change(function() {
 
 //para definir que funcionalidad tiene el boton submit (crear usuario)
 $("#submitButton").click(function () {
+
+     var usuarioForm = {
+            'login' : $("#nombre_usuario").val(),
+            'clave' : $("#contraseña").val(),
+            'clave2' : $("#repetir_contraseña").val(),
+            'idtramite': $("#numero_tramite").val(),
+            'dni' : $("#numero_documento").val(),
+            'nombres' : $("#nombres").val(),
+            'apellido' : $("#apellido").val(),
+            'email' : $("#email").val(),
+        };
+
+        var rolData = {
+            'ciudadano' : 3,
+        }
+
     $.ajax({
             data: {
-                'usuario': $("#nombre_usuario").val(),
-                'rolesUser': "administrador del sistema"
+                'usuario': usuarioForm,
+                'rolesUser': rolData
             },
-            url: $.KumbiaPHP.publicPath+"admin/usuarios/crear",
+            url: $.KumbiaPHP.publicPath+"usuarios/crear",
             type: 'post',
-            dataType: "json"
+            dataType: "json",
+            success: function (response) {
+                alert("exito");
+            },
+            error: function (response) {
+                alert("fallo");
+            }
         });
 });
