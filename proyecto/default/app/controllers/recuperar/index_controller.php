@@ -9,13 +9,44 @@ Load::models('usuarios');
 
 class IndexController extends AppController {
 
-    public function index() {
+    public function index($id) {
         view::template(NULL);
         if (Input::hasPost('usuarios')) {
             $usr = new Usuarios(Input::post('usuarios'));
             $userbd = new Usuarios();
-            $userbd->filtrar_por_id($usr->id);
-            if ($userbd && $usr->id == $userbd->id) {
+            $userbd->filtrar_por_id($id);
+            if ($userbd && $id == $userbd->id) {
+                if ($usr->clave === $usr->repetida) {
+                    $userbd->clave = MyAuth::hash($usr->clave);
+                    $userbd->clave_blanqueada = true;
+                    $userbd->update();
+                    Flash::info("Se cambio exitosamente la clave del usuario: '{$userbd->login}'");
+                    input::delete();
+                    Router::redirect('login');
+                } else {
+                    Flash::warning("Las claves no coinciden");
+                }
+            } else {
+                Flash::warning("No se ha podido cambiar la clave del usuario '{$userbd->login}'");
+            }
+        } else {
+            $userbd = new Usuarios();
+            $userbd->filtrar_por_id($id);
+            $this->usuarios = $userbd;
+            $this->clave = "";
+        }
+
+        // return Router::redirect('login');
+    }
+
+    public function recuperar($id) {
+        view::template(NULL);
+
+        if (Input::hasPost('usuarios')) {
+            $usr = new Usuarios(Input::post('usuarios'));
+            $userbd = new Usuarios();
+            $userbd->filtrar_por_id($id);
+            if ($userbd && $id == $userbd->id) {
                 $userbd->clave = MyAuth::hash($usr->clave);
                 $userbd->clave_blanqueada = true;
                 $userbd->update();

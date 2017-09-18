@@ -34,7 +34,7 @@ class IndexController extends AppController {
                     //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
                     $mail->IsHTML(true); // El correo se envía como HTML
                     $aux = $usrbd->id;
-                    $link = '<a href="http://190.15.213.87:81/recuperar/' . $aux . '">Aqui</a>';
+                    $link = '<a href="http://190.15.213.87:81/recuperar/index/index/' . $aux . '">Aqui</a>';
                     $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
                     $body = "Para recuperar tu cuenta hace click " . $link;
                     $mail->Body = $body; // Mensaje a enviar
@@ -47,7 +47,7 @@ class IndexController extends AppController {
                 if ($exito) {
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
-                    Router::redirect('recuperar');
+                    Router::redirect('login');
                 } else {
                     Flash::info("No se pudo enviar el correo");
                     input::delete();
