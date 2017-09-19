@@ -10,7 +10,7 @@
  * */
 // @see Controller nuevo controller
 require_once CORE_PATH . 'kumbia/controller.php';
-
+Load::lib("util_app");
 class AppController extends Controller {
 
     final protected function initialize() {

@@ -95,18 +95,18 @@ class AdminController extends Controller {
      * 
      */
     protected function checkAuth() {
-        if (MyAuth::es_valido()) {
+        if (MyAuth::es_valido()) {//aca ya estas logueado
             $ret = $this->_tienePermiso();
 
             return $ret;
-        } elseif (Input::hasPost('login') && Input::hasPost('clave')) {
+        } elseif (Input::hasPost('login') && Input::hasPost('clave')) {//aca me estoy logueando
             $ret = $this->_logueoValido(Input::post('login'), Input::post('clave'));
 
             return $ret;
-        } elseif (Input::hasPost('usuario2')) {
+        } elseif (Input::hasPost('usuario2')) {//aca reingreso de clave
             return TRUE;
         } else {
-            View::select(NULL,'logueo');
+            View::select(NULL, 'logueo');
             return FALSE;
         }
     }
@@ -143,12 +143,24 @@ class AdminController extends Controller {
      */
     protected function _logueoValido($user, $pass, $encriptar = TRUE) {
         if (MyAuth::autenticar($user, $pass, $encriptar)) {
+
             $usuario = Load::model("usuarios")->find_first("login = '$user'");
             Session::set("usuario_blanqueado", $usuario->id);
             if (isset($usuario->id) && $pass == '1234' && $usuario->clave_blanqueada == 't') {
                 Router::redirect("admin/usuarios/ingreso_contrasenia/");
                 return true;
             } else {
+                flash::info("paso por aca");
+
+
+                $usuariorol = Load::model("roles_usuarios");
+                $usuariorol= $usuariorol->getPoseerol($usuario->id, 3);
+                if ($usuariorol) {
+                    Router::redirect("ciudadano");
+                } else {
+                    flash::info("ya paso por aca");
+                }
+
                 return $this->_tienePermiso();
             }
         } else {

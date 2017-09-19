@@ -13,13 +13,17 @@ class IndexController extends AppController {
                 $usr = new Usuarios(Input::post('usuarios'));
                 $usrbd = new Usuarios();
                 $usrbd->filtrar_por_email($usr->email);
-                if ($usrbd && $usr->email == $usrbd->email) {
+                if (!$usrbd)
+                {
+                    throw new NegocioExcepcion("El mail ingresado no existe");
+                }
+                
                     ////Mandar mail
                     load::lib("phpmailer/class.phpmailer");
                     $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
                     $mail->IsSMTP();
-                    $mail->SMTPDebug = 2;
+                    $mail->SMTPDebug = false;
                     $mail->SMTPAuth = true;
                     $mail->SMTPSecure = "ssl";
                     $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
@@ -39,26 +43,23 @@ class IndexController extends AppController {
                     $body = "Para recuperar tu cuenta hace click " . $link;
                     $mail->Body = $body; // Mensaje a enviar
                     $exito = $mail->Send(); // Envía el correo.
-                } if ($usr->email != $usrbd->email) {
-                    throw new NegocioExcepcion("El mail ingresado no existe");
-                }
+
 
 //También podríamos agregar simples verificaciones para saber si se envió:
                 if ($exito) {
-                    $usrbd->clave = MyAuth::hash("");
-                    $usrbd->update();
+//                    $usrbd->clave = MyAuth::hash("");
+//                    $usrbd->update();
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
                     Router::redirect('login');
                 } else {
-                    Flash::info("No se pudo enviar el correo");
+                    throw new NegocioExcepcion("Nose pudo enviar el correo");
                     input::delete();
                 }
             }
         } catch (NegocioExcepcion $e) {
-            echo "El mail ingresado no existe en la Base de datos ";
-            Logger::error("bhyhbghb");
-            Flash::error($e->getMessage());
+            Logger::error($e->getMessage());
+            Flash::info($e->getMessage());
         }
     }
 

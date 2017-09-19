@@ -21,5 +21,9 @@ class RolesUsuarios extends ActiveRecord {
             'roles_id' => $id_rol,
         )));
     }
+    public function getPoseerol($usuario, $rol){
+        $where = "roles_usuarios.usuarios_id = $usuario AND roles_usuarios.roles_id = $rol " ;
+        return $this->find_first($where);
+    }
 }
 
