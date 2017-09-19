@@ -1843,6 +1843,7 @@ class KumbiaActiveRecord {
      * @return boolean sucess
      */
     function update() {
+        
         if (func_num_args() > 0) {
             $params = Util::getParams(func_get_args());
             $values = (isset($params[0]) && is_array($params[0])) ? $params[0] : $params;

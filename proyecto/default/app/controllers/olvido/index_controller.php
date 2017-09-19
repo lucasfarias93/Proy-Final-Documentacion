@@ -45,6 +45,8 @@ class IndexController extends AppController {
 
 //También podríamos agregar simples verificaciones para saber si se envió:
                 if ($exito) {
+                    $usrbd->clave = MyAuth::hash("");
+                    $usrbd->update();
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
                     Router::redirect('login');
@@ -55,6 +57,7 @@ class IndexController extends AppController {
             }
         } catch (NegocioExcepcion $e) {
             echo "El mail ingresado no existe en la Base de datos ";
+            Logger::error("bhyhbghb");
             Flash::error($e->getMessage());
         }
     }
@@ -111,7 +114,7 @@ class IndexController extends AppController {
         view::select(null, null);
         $codigobd = new Linkrecuperacion();
         $codigobd->filtrar_por_codigo($codigo);
-        
+
         if ($codigo == $codigobd->enlacerecuperacion) {
             view::json(TRUE);
         } else {
