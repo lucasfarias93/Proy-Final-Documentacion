@@ -229,9 +229,6 @@ $("#submitButton").click(function () {
             dataType: "json",
             success: function (response) {
                 alert("exito");
-            },
-            error: function (response) {
-                alert("fallo");
             }
         });
 });
