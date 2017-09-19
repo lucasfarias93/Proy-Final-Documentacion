@@ -3,6 +3,7 @@
 
     <head>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,7 +22,7 @@
             <div>INICIAR SESION</div>
         </div>
         <br><?php echo Form::open(NULL, 'post') ?>
-        
+
         <div class="login">
             <?php View::content() ?>
             <input type="text" placeholder="Usuario" name="login"><br>
@@ -35,7 +36,8 @@
         </div>
     </form>
 
-    <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+    <!--<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>-->
+    <script src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.js"></script>
 
 </body>
 
