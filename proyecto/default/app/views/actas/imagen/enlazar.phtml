@@ -1,0 +1,1309 @@
+<style>
+    #acciones .fuente {
+        font-size: 14px;
+    }
+    #acciones .titulo {
+        color: #f8f8f8;
+        text-align: center;
+    }
+    #acciones {
+        background-color: #6fb3e0;
+    }
+
+    #acciones .titulo {
+        color: #f8f8f8;
+        text-align: center;
+    }
+
+    .tramite_color {
+        background-color: #6fb3e0;
+        border-color: #6fb3e0;
+        color: #6fb3e0 !important;
+    }
+    .conviviente1 {
+        background-color: #c6c1c1;
+        border-color: #c6c1c1;
+        color: #c6c1c1 !important;
+    }
+    .principal {
+        background-color: #c6b593;
+        border-color: #c6b593;
+        color: #c6b593 !important;
+    }
+    .padre {
+        background-color: #f3e0bd;
+        border-color: #f3e0bd;
+        color: #f3e0bd !important;
+    }
+    .madre {
+        background-color: #c6b593;
+        border-color: #c6b593;
+        color: #c6b593 !important;
+    }
+
+    .fuente {
+        font-size: 0.26em;
+    }
+</style>
+<script src="<?php echo PUBLIC_PATH ?>js/jquery-ui-1.10.3.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>js/cropzoom.js"></script>
+<link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/jquery-ui-1.10.3.custom.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+<div class="row">
+    <div class="span12"><?php View::content() ?></div>
+</div>
+<div id = "acciones" class="row action-buttons " title="Acciones Generales">
+    <div class="col-xs-12 col-sm-12 datos_libro">
+        <div class="form-group">
+            <div class="col-sm-1">
+                <?php if (!isset($libro)) { ?>
+                    <?php echo Form::label('Tipo Libro', 'libro_tipo_libro', 'class="col-sm-12 no-padding-right"') ?>
+                    <?php echo Form::dbSelect('libro.tipo_libro', 'descripcion', array("base_tipo_libro", "find_all_by_categoria", "1"), "", array("class" => "col-xs-12 col-sm-12"), "1") ?>
+                <?php } else { ?>
+                    <?php echo Form::label('Tipo Libro', 'libro_tipo_libro', 'class="col-sm-12 no-padding-right"') ?>
+                    <?php echo Form::text('tipo_libro.tipo', 'class="col-xs-12 col-sm-12"') ?>
+                    <?php echo Form::hidden('libro.base_tipo_libro_id', 'class="input-small"') ?>
+                <?php } ?>
+            </div>
+            <div class="col-sm-1">
+                <?php echo Form::label('Nro Libro', 'libro_lib_nro', 'class="col-sm-12 no-padding-right"') ?>
+                <?php echo Form::text('libro.numero', array("class" => "col-xs-12 col-sm-12")) ?>
+                <?php echo Form::hidden('existe_enlace', 'class="input-small"', '0') ?>
+                <?php echo Form::hidden('existe_acta', 'class="input-small"', '0') ?>
+            </div>
+
+            <?php if (!isset($libro)) { ?>
+                <div >
+                    <?php echo Form::button('Buscar Libro', 'class="btn btn-primary btn-blue " id="btn_buscar_libro"') ?>
+                </div>
+            <?php } ?>        
+            <?php echo Form::openMultipart('actas/imagen/subir_imagen', 'method="POST"'); ?>
+            <div id = "upload-imagen" class="col-xs-12 col-sm-5">
+
+                <?php echo Form::hidden("libro.id") ?>
+                <?php //echo Form::hidden("acta.numero") ?>
+                <?php echo Form::hidden("o.libro", NULL, "libro.id") ?>
+                <?php echo Form::hidden("o.sub_tipo_libro", NULL, $sub_tipo_libro) ?>
+                <?php echo Form::hidden("o.acta", NULL, $acta->numero) ?>
+                <?php echo Form::label('Seleccione un archivo...', "usr") ?>
+                <div class="span3">
+                    <input type="file" name="userfile" class="btn btn-primary btn-blue"/>
+                </div>
+
+
+            </div>
+            <div class="col-sm-1">
+                <?php echo Form::submit('Subir', array("class" => "btn btn-success btn-blue", "id" => "btn-subir")) ?>
+            </div>
+            <?php echo Form::close() ?>
+            <?php
+            $ruta = Session::get('ruta');
+            if ($ruta) {
+                ?>
+
+                <div>
+                    <a class="btn btn-white btn-primary btn-bold col-xs-12 col-sm-1 pull-right " href="#"  form-data="formVolver">
+                        <i class="ace-icon fa fa-arrow-circle-left bigger-300" title="Guardar" id="enlazar" onclick="guardar_enlace()"><p class="fuente">Enlazar</p>
+                        </i>
+                    </a>
+                    <a class="btn btn-white btn-primary btn-bold col-xs-12 col-sm-1 pull-right" href="#"  form-data="formVolver">
+                        <i class="ace-icon fa fa-arrow-circle-left bigger-300" title="Volver" id="volver"><p class="fuente">Volver</p>
+                            <?php echo Form::open($ruta, 'POST', "id='formVolver'"); ?>
+                            <?php echo Form::hidden('criterio.lib_anio') ?>
+                            <?php echo Form::hidden('criterio.oficina') ?>
+                            <?php echo Form::hidden('criterio.tipo_libro', NULL, $libro->base_tipo_libro_id) ?>
+                            <?php echo Form::hidden('criterio.lib_nro', NULL, $libro->numero) ?>
+                            <?php echo Form::hidden('criterio.acta_nro') ?>
+                            <?php echo Form::hidden('criterio.numero_documento_esposo'); ?>
+                            <?php echo Form::hidden('criterio.numero_documento_esposa'); ?>
+                            <?php echo Form::hidden('criterio.numero_documento'); ?>
+                            <?php echo Form::hidden('criterio.numero_documento_padre'); ?>
+                            <?php echo Form::hidden('criterio.numero_documento_madre'); ?>
+                            <?php echo Form::hidden('criterio.apellido'); ?>
+                            <?php echo Form::hidden('criterio.apellido_madre'); ?>
+                            <?php echo Form::hidden('criterio.apellido_padre'); ?>
+                            <?php echo Form::hidden('criterio.nombre'); ?>
+                            <?php echo Form::hidden('criterio.nombre_esposo'); ?>
+                            <?php echo Form::hidden('criterio.nombre_esposa'); ?>
+                            <?php echo Form::hidden('criterio.nombre_padre'); ?>
+                            <?php echo Form::hidden('criterio.nombre_madre'); ?>
+                            <?php echo Form::close() ?>
+                        </i>
+                    </a>
+                </div>
+
+            <?php } ?> 
+        </div>
+    </div>
+</div>
+<?php echo Form::open("actas/imagen/guardar_enlace", "post", 'id="form_enlace" class="form-horizontal"') ?>
+<div class="row">
+    <div class="col-sm-7" >
+        <div class="col-sm-5">
+            <?php if (isset($seleccionar_imagen) && $seleccionar_imagen) { ?>
+                <?php echo Form::label('Imagenes', 'acta_cantidad_marginal', array("class" => "control-label col-sm-2")); ?>
+                <div class="col-sm-12" >
+                    <?php echo Form::select("imagen", isset($nombres_imagenes) ? $nombres_imagenes : array(), NULL, $nombre_nuevo) ?>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="col-sm-6">
+	        <a class="btn btn-white btn-primary btn-bold col-xs-12 col-sm-3" href="#">
+		        <i class="ace-icon fa fa-undo bigger-200" title="Cortar" onclick="girar(1);"></i>
+		    </a>
+	    
+	        <input id="rotacion_g" class="col-sm-2" value="0"/>
+	    
+	        <a class="btn btn-white btn-primary btn-bold col-xs-12 col-sm-3" href="#">
+		        <i class="ace-icon fa fa-repeat bigger-200" title="Cortar" onclick="girar(2);"></i>
+		    </a>
+	    
+	        <a class="btn btn-white btn-primary btn-bold col-xs-12 col-sm-3" href="#">
+		        <i class="ace-icon fa fa-scissors bigger-200" title="Cortar" onclick="cortar();"> </i>
+		    </a>
+	    </div>
+        <div class="col-sm-6">
+            <div id="mensaje" >
+                <?php
+                if (!isset($libro->id)) {
+                    echo "INGRESE EL NUMERO DE LIBRO";
+                } else if (!isset($acta->id)) {
+                    echo "INGRESE EL NUMERO DE ACTA";
+                }
+                ?>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <?php View::partial("visualizar_imagen", FALSE, array("imagenes" => $imagenes)); ?>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="col-sm-12">
+            <?php if (isset($libro)) { ?>
+                <?php echo Form::hidden("acta.base_libro_id", NULL, $libro->id) ?>
+            <?php } else { ?>
+                <?php echo Form::hidden("acta.base_libro_id") ?>
+            <?php } ?>
+            <?php
+            echo Form::hidden("acta.tipo_secundario", NULL, $sub_tipo_libro);
+            echo Form::hidden("acta.id");
+            ?>
+            <div class="widget-box transparent">
+                <div class="widget-header tramite_color">
+                    <h5 class="widget-title lighter"><i class="fa fa-file"></i> Datos del Acta</h5>
+                </div>
+                <div class="widget-body">
+                    <div class="form-group">
+                        <?php echo Form::label('Bloq?', 'acta_bloqueada', 'class="control-label col-sm-2"'); ?>
+                        <div class="col-sm-2" >
+                            <?php
+                            if (isset($acta)) {
+                                if ($acta->bloqueada) {
+                                    $check = 'checked';
+                                } else {
+                                    $check = '';
+                                }
+                            } else {
+                                $check = '';
+                            }
+                            echo Form::check('acta.bloqueada', NULL, array("class" => "form-control"), $check);
+                            ?>
+                        </div>
+                        <?php echo Form::label('Cant Marginal', 'acta_cantidad_marginal', array("class" => "control-label col-sm-3")); ?>
+                        <div class="col-sm-3" >
+                            <?php echo Form::numero('acta.cantidad_marginal', array("class" => "form-control")); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?php if (isset($libro)) { ?>
+                            <?php echo Form::label('Nro Libro', 'acta_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-4" >
+                                <?php echo Form::numero('aa.numero', array("class" => "form-control","disabled"=>"disabled"),$libro->numero); ?>
+                            </div>
+                        <?php } else { ?>
+                            <?php echo Form::label('Nro Libro', 'acta_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-4" >
+                                <?php echo Form::numero('aa.numero', array("class" => "form-control","disabled"=>"disabled")); ?>
+                            </div>
+                        <?php } ?>
+                        <?php echo Form::label('Nro Acta', 'acta_numero', array("class" => "control-label col-sm-2")); ?>
+                        <div class="col-sm-4" >
+                            <?php echo Form::numero('acta.numero', array("class" => "form-control")); ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?php echo Form::label('Fch Nac', 'acta_fecha', array("id" => "acta_fecha_lab", "class" => "control-label col-sm-2")) ?>
+                        <div class="col-sm-4" >
+                            <?php echo Form::date('acta.fecha', "form-control") ?>
+                        </div>
+
+                        <div id="div_fecha_defuncion" >
+                            <?php echo Form::label('Fch Def', 'acta_fecha_defuncion', array("class" => "control-label col-sm-2")) ?>
+                            <div class="col-sm-4" >
+                                <?php echo Form::date('acta.fecha_defuncion', "form-control") ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php if ($libro->base_tipo_libro_id == "1" || $libro->base_tipo_libro_id == "2" || $sub_tipo_libro == 1 || $sub_tipo_libro == 2) { ?>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("ppal.id") ?>
+                <?php echo Form::hidden("ppal.doc_id") ?>
+                <div class="widget-box transparent">
+                    <?php if ($libro->base_tipo_libro_id == "10" && ($sub_tipo_libro == 1 || $sub_tipo_libro == 2)) { ?>
+                        <div class="widget-header transcripcion1 ">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Ciudadano Principal </h5>
+                        </div> 
+                    <?php } else { ?>
+                        <div class="widget-header principal">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano </h5>
+                        </div>
+                    <?php } ?>
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <?php echo Form::label('Tipo Doc', 'ppal_base_tipo_documento_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-3" >
+                                <?php echo Form::dbselect('ppal.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", 'class="form-control"', 1); ?>
+                            </div>
+                            <?php echo Form::label('Nro Doc', 'ppal_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-5" >
+                                <?php echo Form::numero('ppal.numero', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Nombre', 'ppal_nombre', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-6" >
+                                <?php echo Form::text('ppal.nombre', array("class" => "form-control")); ?>
+                            </div>
+                            <?php echo Form::label('Sexo', 'ppal_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-2" >
+                                <?php echo Form::dbselect('ppal.base_sexo_id', "codrnp", array("base_sexo", "find"), NULL, 'class="form-control"'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Apellido', 'ppal_apellido', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-10" >
+                                <?php echo Form::text('ppal.apellido', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("padre.id") ?>
+                <?php echo Form::hidden("padre.doc_id") ?>
+                <div class="widget-box transparent">
+                    <?php if ($libro->base_tipo_libro_id == "10" && ($sub_tipo_libro == 1 || $sub_tipo_libro == 2)) { ?>
+                        <div class="widget-header transcripcion2">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 1</h5>
+                        </div> 
+                    <?php } else { ?>
+                        <div class="widget-header padre">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Progenitor 1</h5>
+                        </div>
+                    <?php } ?>
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <?php echo Form::label('Tipo Doc', 'padre_base_tipo_documento_id', 'class="control-label col-sm-2"'); ?>
+                            <div class="col-sm-3" >
+                                <?php echo Form::dbselect('padre.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", 'class="form-control"', 1); ?>
+                            </div>
+                            <?php echo Form::label('Nro Doc', 'padre_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-5" >
+                                <?php echo Form::numero('padre.numero', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Nombre', 'padre_nombre', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-6" >
+                                <?php echo Form::text('padre.nombre', array("class" => "form-control")); ?>
+                            </div>
+                            <?php echo Form::label('Sexo', 'padre_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-2" >
+                                <?php echo Form::dbselect('padre.base_sexo_id', "codrnp", array("base_sexo", "find"), "", 'class="form-control"', 1); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Apellido', 'padre_apellido', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-10" >
+                                <?php echo Form::text('padre.apellido', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("madre.id") ?>
+                <?php echo Form::hidden("madre.doc_id") ?>
+                <div class="widget-box transparent">
+                    <?php if ($libro->base_tipo_libro_id == "10" && ($sub_tipo_libro == 1 || $sub_tipo_libro == 2)) { ?>
+                        <div class="widget-header transcripcion1">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 2</h5>
+                        </div> 
+                    <?php } else { ?>
+                        <div class="widget-header madre">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Progenitor 2</h5>
+                        </div>
+                    <?php } ?>
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <?php echo Form::label('Tipo Doc', 'madre_base_tipo_documento_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-3" >
+                                <?php echo Form::dbselect('madre.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", array("class" => "form-control"), 1); ?>
+                            </div>
+                            <?php echo Form::label('Nro Doc', 'madre_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-5" >
+                                <?php echo Form::numero('madre.numero', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Nombre', 'madre_nombre', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-6" >
+                                <?php echo Form::text('madre.nombre', array("class" => "form-control")); ?>
+                            </div>
+                            <?php echo Form::label('Sexo', 'madre_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-2" >
+                                <?php echo Form::dbselect('madre.base_sexo_id', "codrnp", array("base_sexo", "find"), "", array("class" => "form-control"), 2); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Apellido', 'madre_apellido', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-10" >
+                                <?php echo Form::text('madre.apellido', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } else if ($libro->base_tipo_libro_id == "3" || $sub_tipo_libro == 3) { ?>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("esposo.id") ?>
+                <?php echo Form::hidden("esposo.doc_id") ?>
+                <div class="widget-box transparent">
+                    <?php if ($libro->base_tipo_libro_id == "10" && ($sub_tipo_libro == 3)) { ?>
+                        <div class="widget-header transcripcion1">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 1</h5>
+                        </div> 
+                    <?php } else { ?>
+                        <div class="widget-header esposo">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 1</h5>
+                        </div>
+                    <?php } ?>
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <?php echo Form::label('Tipo Doc', 'esposo_base_tipo_documento_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-3" >
+                                <?php echo Form::dbselect('esposo.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", array("class" => "form-control"), 1); ?>
+                            </div>
+                            <?php echo Form::label('Nro Doc', 'esposo_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-5" >
+                                <?php echo Form::numero('esposo.numero', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Nombre', 'esposo_nombre', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-6" >
+                                <?php echo Form::text('esposo.nombre', array("class" => "form-control")); ?>
+                            </div>
+                            <?php echo Form::label('Sexo', 'esposo_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-2" >
+                                <?php echo Form::dbselect('esposo.base_sexo_id', "codrnp", array("base_sexo", "find"), "", array("class" => "form-control"), 1); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Apellido', 'esposo_apellido', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-10" >
+                                <?php echo Form::text('esposo.apellido', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("esposa.id") ?>
+                <?php echo Form::hidden("esposa.doc_id") ?>
+                <div class="widget-box transparent">
+                    <?php if ($libro->base_tipo_libro_id == "10" && ($sub_tipo_libro == 3)) { ?>
+                        <div class="widget-header transcripcion2">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 2</h5>
+                        </div> 
+                    <?php } else { ?>
+                        <div class="widget-header esposa">
+                            <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 2</h5>
+                        </div>
+                    <?php } ?>
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <?php echo Form::label('Tipo Doc', 'esposa_base_tipo_documento_id', array("class" => "control-label col-sm-3")); ?>
+                            <div class="col-sm-3" >
+                                <?php echo Form::dbselect('esposa.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", array("class" => "form-control"), 1); ?>
+                            </div>
+                            <?php echo Form::label('Nro Doc', 'esposa_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-5" >
+                                <?php echo Form::numero('esposa.numero', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Nombre', 'esposa_nombre', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-6" >
+                                <?php echo Form::text('esposa.nombre', array("class" => "form-control")); ?>
+                            </div>
+                            <?php echo Form::label('Sexo', 'esposa_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-2" >
+                                <?php echo Form::dbselect('esposa.base_sexo_id', "codrnp", array("base_sexo", "find"), "", array("class" => "form-control"), 2); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Apellido', 'esposa_apellido', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-10" >
+                                <?php echo Form::text('esposa.apellido', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } else if ($libro->base_tipo_libro_id == "9") { ?>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("esposo.id") ?>
+                <?php echo Form::hidden("esposo.doc_id") ?>
+                <div class="widget-box transparent">
+                    <div class="widget-header conviviente1">
+                        <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 1</h5>
+                    </div> 
+                    <div class="widget-body">
+                        <div class="form-group">
+                            <?php echo Form::label('Tipo Doc', 'esposo_base_tipo_documento_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-3" >
+                                <?php echo Form::dbselect('esposo.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", array("class" => "form-control"), 1); ?>
+                            </div>
+                            <?php echo Form::label('Nro Doc', 'esposo_numero', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-5" >
+                                <?php echo Form::numero('esposo.numero', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Nombre', 'esposo_nombre', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-6" >
+                                <?php echo Form::text('esposo.nombre', array("class" => "form-control")); ?>
+                            </div>
+                            <?php echo Form::label('Sexo', 'esposo_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-2" >
+                                <?php echo Form::dbselect('esposo.base_sexo_id', "codrnp", array("base_sexo", "find"), "", array("class" => "form-control"), 1); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <?php echo Form::label('Apellido', 'esposo_apellido', array("class" => "control-label col-sm-2")); ?>
+                            <div class="col-sm-10" >
+                                <?php echo Form::text('esposo.apellido', array("class" => "form-control")); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <?php echo Form::hidden("esposa.id") ?>
+                <?php echo Form::hidden("esposa.doc_id") ?>
+                <div class="widget-box transparent">
+                    <div class="widget-header conviviente1">
+                        <h5 class="widget-title"><i class="fa fa-file"></i> Datos Ciudadano 2</h5>
+                    </div> 
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="form-group">
+                                <?php echo Form::label('Tipo Doc', 'esposa_base_tipo_documento_id', array("class" => "control-label col-sm-2")); ?>
+                                <div class="col-sm-3" >
+                                    <?php echo Form::dbselect('esposa.base_documento_tipo_id', "descripcion", array("base_tipo_documento", "find_all_by_base_documento_categoria_id", "1"), "", array("class" => "form-control"), 1); ?>
+                                </div>
+                                 <?php echo Form::label('Nro Doc', 'esposa_numero', array("class" => "control-label col-sm-2")); ?>
+                                <div class="col-sm-5" >
+                                    <?php echo Form::numero('esposa.numero', array("class" => "form-control")); ?>
+                                </div> 	
+                                
+                            </div>
+                           
+                            <div class="form-group">
+                                <?php echo Form::label('Nombre', 'esposa_nombre', array("class" => "control-label col-sm-2")); ?>
+                                <div class="col-sm-6" >
+                                    <?php echo Form::text('esposa.nombre', array("class" => "form-control")); ?>
+                                </div>
+                                <?php echo Form::label('Sexo', 'esposa_base_sexo_id', array("class" => "control-label col-sm-2")); ?>
+                                <div class="col-sm-2" >
+                                    <?php echo Form::dbselect('esposa.base_sexo_id', "codrnp", array("base_sexo", "find"), "", array("class" => "form-control"), 2); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php echo Form::label('Apellido', 'esposa_apellido', array("class" => "control-label col-sm-2")); ?>
+                                <div class="col-sm-10" >
+                                    <?php echo Form::text('esposa.apellido', array("class" => "form-control")); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+   
+</div>
+<?php echo Form::close() ?>
+<script>
+    $(document).ready(function () {
+        $("#imagen option[value='<?php echo $nombre_nuevo ?>']").attr("selected", "selected");
+        $("#imagen").change();
+
+        $("#acta_fecha").datepicker({
+            changeMonth: true,
+            changeYear: true
+        })
+
+        mostrar_guardar()
+        $("#acta_fecha").change(function () {
+            if ($("#acta_fecha").val() == '') {
+                alert("Ingrese fecha");
+                $("#acta_fecha").focus();
+            }
+            mostrar_guardar()
+        })
+
+        $('form').on("keyup keypress", function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+    $("#volver").click(function () {
+        $("#formVolver").submit();
+    });
+    $("#imagen").change(function () {
+
+        if ($("#imagen option:selected").length > 0 && $("#imagen option:selected").val() != "") {
+            $.ajax({
+                data: {'nombre': $("#imagen option:selected").val(), "libro": $("#acta_base_libro_id").val()},
+                url: "<?php echo PUBLIC_PATH ?>actas/imagen/buscar_imagen_por_nombre",
+                type: 'post',
+                dataType: "json",
+                success: function (response) {
+
+                    $("#crop_container").css("width", "800px");
+                    $("#crop_container").css("height", "1200px");
+
+                    imagen = $("#imagenes").find("img").first();
+                    imagen.attr("src", response.imagen);
+                    //imagen.attr("href", response.imagen);
+                    imagen.attr("x", response.x);
+                    imagen.attr("y", response.y);
+                    imagen.attr("id", response.id);
+                    
+                   
+				    img_id = $("#k").find("img").first().attr("id");
+				    
+				    
+				    cropzoom.setSelector(0, 0, response.y , response.x , true);
+                    
+                    
+                    mostrar_img(response.id);
+                    if (response.enlazada) {
+                        datos = "";
+                        numero = '';
+                        $.each(JSON.parse(response.actas), function (index, value) {
+                            numero = value.numero
+                            datos += " LIBRO: " + value.libro;
+                            datos += " ACTA: " + value.numero;
+<?php
+$ruta = Session::get('ruta');
+if ($ruta) {
+    if ($ruta == 'libro/libro') {
+        ?>
+                                    datos += " <input type='button' class='btn btn-primary btn-blue' onclick='eliminar_enlace_acta(" + value.id + ")' value='ELIMINAR ENLACE' />";
+        <?php
+    }
+};
+?>
+                        });
+                        $("#existe_enlace").val(1)
+                        $("#acta_numero").val(numero)
+                        $("#acta_numero").change();
+                        $("#mensaje").html("LA IMAGEN SE ENCUENTRA ENLAZADA DATOS: " + datos);
+                        $("#mensaje").parent().show();
+                    } else {
+
+                        $("#mensaje").parent().hide();
+                        $("#existe_enlace").val(0)
+                    }
+                }
+            });
+        }
+        mostrar_guardar()
+    });
+
+
+    $("input[name='userfile']").change(function () {
+        if ($("input[name='userfile']").val() == "") {
+            $("#btn-subir").addClass("hidden");
+        } else {
+            $("#btn-subir").removeClass("hidden");
+        }
+    });
+    function guardar_enlace() {
+        $("#form_enlace").submit()
+    }
+
+	function mostrar_img(img) {
+        alto = parseInt($("#imagenes").find("img").first().attr("height"));//$("#" + img).attr("height")
+        ancho = parseInt($("#imagenes").find("img").first().attr("width"))//$("#" + img).attr("width")
+        if (ancho > alto) {
+            porcentaje = (800) / ancho
+        } else {
+            porcentaje = (1200) / alto
+            if (porcentaje * ancho > 800) {
+                porcentaje = (800) / ancho
+            }
+        }
+        var cropzoom = $('#crop_container').cropzoom({
+            width: ancho * porcentaje,
+            height: alto * porcentaje,
+            bgColor: '#CCC',
+            enableRotation: true,
+            enableZoom: true,
+            zoomSteps: 10,
+            rotationSteps: 0.5,
+            
+            selector: {
+                centered: false,
+                borderColor: 'blue',
+                borderColorHover: 'red'
+            },
+            image: {
+                source: $("#" + img).attr("src"),
+                width: $("#" + img).attr("width"),
+                height: $("#" + img).attr("height"),
+                minZoom: 0,
+                maxZoom: 150
+            }
+
+        });
+
+        cropzoom.setSelector(0, 0, $("#" + img).attr("width")*0.95, $("#" + img).attr("height")*0.95, true);
+    }
+    function girar(tipo){
+    	rotacion = $("#rotacion_g")
+    	valor = rotacion.val()
+    	if (tipo==2){
+    		valor=parseFloat(valor)+1
+    	}else{
+    		valor=parseFloat(valor)-1
+    	}
+    	imagen = $("#crop_container").find("img").first();
+		imagen.attr("style")
+		grados = 'rotate('+valor+'deg)'
+		imagen.css('transform',grados)
+		rotacion.val(valor)
+    }
+    
+    function cortar() {
+        valido = true;
+        $("div.result").each(function (i, el) {
+            el = $(el);
+            valor = 'crop_' + a[actual]
+            if (valor == el.attr("id")) {
+                valido = false;
+            }
+        });
+        valido = true;
+        if (valido) {
+
+            url = "<?php echo PUBLIC_PATH . 'actas/actas/crop_enlace' ?>",
+                    cropzoom.send(url, 'POST', {libro_id: $("#libro_id").val(), archivo: $("#imagen option:selected").val(), rotate: $("#rotacion_g").val()}, function (rta) {
+                        var img = $('<img class="protect" id="resultado' + a[actual] + '" name="resultado" style="display:none;max-width: 400px;"/>').attr('src', rta);
+                        contenido = '';
+
+
+                        if (rta != 'no') {
+                            fila += 1;
+                            contenido += '<div class="result" id="crop_' + a[actual] + '" name="' + a[actual] + '">';
+                            contenido += '<i class="ace-icon fa fa-file-image-o bigger-300" title="Ver imagenes" onclick="activar(' + a[actual] + ');" name="' + a[actual] + '" id="detalle_imagen' + a[actual] + '"> <p class="fuente">Ver</p></i>'
+                            contenido += '</div>';
+                            $("#todas").append(contenido);
+                            $('.result').append(img)
+
+                        } else {
+                            alert("Imagen ya agregada");
+                        }
+						$("#imagen").change();
+                        //$('.result').find('img').remove();
+                    });
+        } else {
+            alert("Imagen ya cortada");
+        }
+    }
+    // $("#imagen option:selected").val(<?php echo $nombre_nuevo ?>);
+    function validar_existe_libro() {
+        if ($("#acta_base_libro_id").val() == "") {
+            $("#libro_base_tipo_libro_id").removeAttr("readonly");
+            $("#libro_numero").removeAttr("readonly");
+            $("#upload-imagen").hide();
+            $("#select_nombres").hide();
+            $("#mensaje").parent().show();
+            $("#mensaje").html("INGRESE NUMERO DE LIBRO");
+        } else {
+            $("#mensaje").parent().hide();
+            $("#libro_base_tipo_libro_id").attr("readonly", "readonly");
+            $("#libro_numero").attr("readonly", "readonly");
+            $("#upload-imagen").show();
+            $("#select_nombres").show();
+        }
+
+    }
+    function volver() {
+        $(".formVolver").submit()
+    }
+    function eliminar_enlace_acta(acta_id) {
+        $.ajax({
+            data: {'acta_id': acta_id, 'nombre': $("#imagen option:selected").val()},
+            url: "<?php echo PUBLIC_PATH ?>actas/imagen/eliminar_enlace_acta",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+
+                $.each(response, function (i, value) {
+                    $.each($("#imagen > option"), function (j, opt) {
+                        if (value.old == $(this).val()) {
+                            $(this).val(value.new);
+                            $(this).html(value.new);
+                        }
+                    });
+                });
+                $("#mensaje").html("ELIMINADA CORRECTAMENTE");
+                $("#mensaje").parent().show();
+                $("#imagen").change()
+            }
+        });
+    }
+
+    $("#acta_numero").change(function () {
+        $("#acta_id").val("");
+        //alert($("#acta_numero").val());
+        $("#existe_acta").val(0)
+        $.ajax({
+            data: {'acta_numero': $("#acta_numero").val(), "libro": $("#acta_base_libro_id").val()},
+            url: "<?php echo PUBLIC_PATH ?>actas/actas/buscar_acta_por_libro_acta",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#acta_id").val(response.acta_id);
+                if (response.acta_id) {
+                    $("#existe_acta").val(1)
+                    tipo_libro = $("#libro_base_tipo_libro_id").val();
+                    if (true) {//confirm("¿Desea mostrar los datos correspondiente al acta?")){
+                        if (tipo_libro == 3 || tipo_libro == 9) {
+                            $("#acta_fecha").val(response.fecha_inscripcion)
+                            $("#esposo_numero").val(response.documento.trim())
+                            $("#esposo_nombre").val(response.nombre.trim())
+                            $("#esposo_apellido").val(response.apellido.trim())
+                            $("#esposo_id").val(response.ciud_id)
+                            $("#esposo_doc_id").val(response.doc_id)
+                            $("#esposo_base_documento_tipo_id option[value='" + response.tipo + "']").attr("selected", "selected")
+                            $("#esposo_nombre").attr("readonly", "readonly")
+                            $("#esposo_apellido").attr("readonly", "readonly")
+
+                            $("#esposa_numero").val(response.documento_madre.trim())
+                            $("#esposa_nombre").val(response.nombre_madre)
+                            $("#esposa_apellido").val(response.apellido_madre)
+                            $("#esposa_id").val(response.madre_id)
+                            $("#esposa_doc_id").val(response.doc_madre_id)
+                            $("#esposa_base_documento_tipo_id option[value='" + response.tipo_madre + "']").attr("selected", "selected")
+                            $("#esposa_nombre").attr("readonly", "readonly")
+                            $("#esposa_apellido").attr("readonly", "readonly")
+                        } else if (tipo_libro == 2) {
+                            //alert("es defuncion");
+                            $("#ppal_numero").val(response.documento)
+                            $("#ppal_nombre").val(response.nombre.trim())
+                            $("#ppal_apellido").val(response.apellido.trim())
+                            $("#ppal_id").val(response.ciud_id)
+                            $("#ppal_doc_id").val(response.doc_id)
+                            $("#acta_fecha").val(response.fecha_nacimiento)
+                            $("#acta_fecha_defuncion").val(response.fecha_defuncion)
+                            $("#ppal_base_documento_tipo_id option[value='" + response.tipo + "']").attr("selected", "selected")
+                            $("#ppal_nombre").attr("readonly", "readonly")
+                            $("#ppal_apellido").attr("readonly", "readonly")
+                        } else if (tipo_libro == 1 || $("#acta_tipo_secundario").val() == 1) {
+                            $("#ppal_numero").val(response.documento)
+                            $("#ppal_nombre").val(response.nombre.trim())
+                            $("#ppal_apellido").val(response.apellido.trim())
+                            $("#ppal_id").val(response.ciud_id)
+                            $("#ppal_doc_id").val(response.doc_id)
+                            $("#ppal_base_documento_tipo_id option[value='" + response.tipo + "']").attr("selected", "selected")
+                            $("#ppal_nombre").attr("readonly", "readonly")
+                            $("#ppal_apellido").attr("readonly", "readonly")
+                            $("#acta_fecha").val(response.fecha_nacimiento)
+
+                            $("#padre_numero").val(response.documento_padre)
+                            $("#padre_nombre").val(response.nombre_padre.trim())
+                            $("#padre_apellido").val(response.apellido_padre.trim())
+                            $("#padre_id").val(response.padre_ciud_id)
+                            $("#padre_doc_id").val(response.doc_padre_id)
+                            $("#padre_base_documento_tipo_id option[value='" + response.tipo_padre + "']").attr("selected", "selected")
+                            $("#padre_nombre").attr("readonly", "readonly")
+                            $("#padre_apellido").attr("readonly", "readonly")
+
+                            $("#madre_numero").val(response.documento_madre)
+                            $("#madre_nombre").val(response.nombre_madre.trim())
+                            $("#madre_apellido").val(response.apellido_madre.trim())
+                            $("#madre_id").val(response.madre_ciud_id)
+                            $("#madre_doc_id").val(response.doc_madre_id)
+                            $("#madre_base_documento_tipo_id option[value='" + response.tipo_madre + "']").attr("selected", "selected")
+                            $("#madre_nombre").attr("readonly", "readonly")
+                            $("#madre_apellido").attr("readonly", "readonly")
+                        }
+                    }
+                } else {
+                    $("#existe_acta").val(0);
+                }//existe acta
+                mostrar_guardar()
+            }//success
+
+
+        });//ajax
+
+    });//ppal
+    $("#esposo_base_documento_tipo_id").change(function () {
+        $("#esposo_numero").change()
+    })
+    $("#esposo_base_sexo_id").change(function () {
+        $("#esposo_numero").change()
+    })
+    $("#esposo_numero").change(function () {
+        //if ($("#acta_numero").val() != "") {
+        $.ajax({
+            data: {
+                'tipo': $("#esposo_base_documento_tipo_id").val(),
+                "doc_numero": $("#esposo_numero").val(),
+                "sexo": $("#esposo_base_sexo_id").val()
+            },
+            url: "<?php echo PUBLIC_PATH ?>ciudadanos/ciudadanos/buscar_ciudadano_por_documento",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#esposo_id").val("");
+                $("#esposo_doc_id").val("");
+                if (response.ciud_id) {
+                    $("#esposo_nombre").val(response.nombre);
+                    $("#esposo_apellido").val(response.apellido);
+                    $("#esposo_base_sexo_id").val(response.sexo_id);
+                    $("#esposo_id").val(response.ciud_id);
+                    $("#esposo_doc_id").val(response.doc_id);
+                }
+                mostrar_guardar()
+            }
+        });
+        /*} else {
+         alert("DEBE INGRESAR UN NUMERO DE ACTA PREVIO A BUSCAR LAS PARTIDAS");
+         }*/
+    });
+    $("#esposa_base_documento_tipo_id").change(function () {
+        $("#esposa_numero").change()
+    })
+    $("#esposa_base_sexo_id").change(function () {
+        $("#esposa_numero").change()
+    })
+    $("#esposa_numero").change(function () {
+        $.ajax({
+            data: {
+                'tipo': $("#esposa_base_documento_tipo_id").val(),
+                "doc_numero": $("#esposa_numero").val(),
+                "sexo": $("#esposa_base_sexo_id").val()
+            },
+            url: "<?php echo PUBLIC_PATH ?>ciudadanos/ciudadanos/buscar_ciudadano_por_documento",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#esposa_id").val("");
+                $("#esposa_doc_id").val("");
+                if (response.ciud_id) {
+                    $("#esposa_nombre").val(response.nombre);
+                    $("#esposa_apellido").val(response.apellido);
+                    $("#esposa_base_sexo_id").val(response.sexo_id);
+                    $("#esposa_id").val(response.ciud_id);
+                    $("#esposa_doc_id").val(response.doc_id);
+                }
+                mostrar_guardar()
+            }
+        });
+    });
+    $("#ppal_nombre").change(function () {
+        $("#ppal_nombre").val(arregla_nombres($("#ppal_nombre").val()));
+
+    })
+    $("#ppal_apellido").change(function () {
+        $("#ppal_apellido").val(arregla_nombres($("#ppal_apellido").val()));
+    })
+    $("#padre_nombre").change(function () {
+        $("#padre_nombre").val(arregla_nombres($("#padre_nombre").val()));
+    })
+    $("#padre_apellido").change(function () {
+        $("#padre_apellido").val(arregla_nombres($("#padre_apellido").val()));
+    })
+    $("#madre_nombre").change(function () {
+        $("#madre_nombre").val(arregla_nombres($("#madre_nombre").val()));
+    })
+    $("#madre_apellido").change(function () {
+        $("#madre_apellido").val(arregla_nombres($("#madre_apellido").val()));
+    })
+    $("#esposa_nombre").change(function () {
+        $("#esposa_nombre").val(arregla_nombres($("#esposa_nombre").val()));
+    })
+    $("#esposa_apellido").change(function () {
+        $("#esposa_apellido").val(arregla_nombres($("#esposa_apellido").val()));
+    })
+    $("#esposo_nombre").change(function () {
+        $("#esposo_nombre").val(arregla_nombres($("#esposo_nombre").val()));
+    })
+    $("#esposo_apellido").change(function () {
+        $("#esposo_apellido").val(arregla_nombres($("#esposo_apellido").val()));
+
+    })
+    $("#ppal_base_documento_tipo_id").change(function () {
+        $("#ppal_numero").change()
+    })
+    $("#ppal_base_sexo_id").change(function () {
+        $("#ppal_numero").change()
+    })
+    $("#ppal_numero").change(function () {
+        $.ajax({
+            data: {
+                'tipo': $("#ppal_base_documento_tipo_id").val(),
+                "doc_numero": $("#ppal_numero").val(),
+                "sexo": $("#ppal_base_sexo_id").val()
+            },
+            url: "<?php echo PUBLIC_PATH ?>ciudadanos/ciudadanos/buscar_ciudadano_por_documento",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#ppal_id").val("");
+                $("#ppal_doc_id").val("");
+                $("#ppal_nombre").val("");
+                $("#ppal_apellido").val("");
+                $("#ppal_nombre").removeAttr("readonly")
+                $("#ppal_apellido").removeAttr("readonly")
+                if (response.ciud_id) {
+                    $("#ppal_nombre").val(response.nombre);
+                    $("#ppal_apellido").val(response.apellido);
+                    //$("#ppal_base_sexo_id").val(response.sexo_id);
+                    $("#acta_fecha").val(response.fecha_nacimiento);
+                    $("#ppal_id").val(response.ciud_id);
+                    $("#ppal_doc_id").val(response.doc_id);
+                    $("#ppal_nombre").attr("readonly", "readonly")
+                    $("#ppal_apellido").attr("readonly", "readonly")
+                }
+                mostrar_guardar()
+            }
+        });
+
+    });
+
+    $("#padre_base_documento_tipo_id").change(function () {
+        $("#padre_numero").change()
+    })
+    $("#padre_base_sexo_id").change(function () {
+        $("#padre_numero").change()
+    })
+    $("#padre_numero").change(function () {
+        $.ajax({
+            data: {
+                'tipo': $("#padre_base_documento_tipo_id").val(),
+                "doc_numero": $("#padre_numero").val(),
+                "sexo": $("#padre_base_sexo_id").val()
+            },
+            url: "<?php echo PUBLIC_PATH ?>ciudadanos/ciudadanos/buscar_ciudadano_por_documento",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#padre_id").val("");
+                $("#padre_doc_id").val("");
+                $("#padre_nombre").val("");
+                $("#padre_apellido").val("");
+                $("#padre_nombre").removeAttr("readonly")
+                $("#padre_apellido").removeAttr("readonly")
+                if (response.ciud_id) {
+                    $("#padre_nombre").val(response.nombre);
+                    $("#padre_apellido").val(response.apellido);
+                    $("#padre_base_sexo_id").val(response.sexo_id);
+                    $("#padre_id").val(response.ciud_id);
+                    $("#padre_doc_id").val(response.doc_id);
+                    $("#padre_nombre").attr("readonly", "readonly")
+                    $("#padre_apellido").attr("readonly", "readonly")
+
+                }
+                mostrar_guardar()
+            }
+        });
+
+    });
+    $("#madre_base_documento_tipo_id").change(function () {
+        $("#madre_numero").change()
+    })
+    $("#madre_base_sexo_id").change(function () {
+        $("#madre_numero").change()
+    })
+    $("#madre_numero").change(function () {
+
+        $.ajax({
+            data: {
+                'tipo': $("#madre_base_documento_tipo_id").val(),
+                "doc_numero": $("#madre_numero").val(),
+                "sexo": $("#madre_base_sexo_id").val()
+            },
+            url: "<?php echo PUBLIC_PATH ?>ciudadanos/ciudadanos/buscar_ciudadano_por_documento",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                $("#madre_id").val("");
+                $("#madre_doc_id").val("");
+                $("#madre_nombre").val("");
+                $("#madre_apellido").val("");
+                $("#madre_nombre").removeAttr("readonly")
+                $("#madre_apellido").removeAttr("readonly")
+                if (response.ciud_id) {
+                    $("#madre_nombre").val(response.nombre);
+                    $("#madre_apellido").val(response.apellido);
+                    $("#madresexo_base_sexo_id").val(response.sexo_id);
+                    $("#madre_id").val(response.ciud_id);
+                    $("#madre_doc_id").val(response.doc_id);
+                    $("#madre_nombre").attr("readonly", "readonly")
+                    $("#madre_apellido").attr("readonly", "readonly")
+                }
+                mostrar_guardar()
+            }
+        });
+
+    });
+
+    $("#btn_buscar_libro").click(function () {
+        $.ajax({
+            data: {'libro[tipo_libro]': $("#libro_base_tipo_libro_id").val(), "libro[numero]": $("#libro_numero").val()},
+            url: "<?php echo PUBLIC_PATH ?>libro/libro/verificar_existe_libro",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                var libro = JSON.parse(response.libro)
+
+                if (libro.cod == 1) {
+                    var imagenes = JSON.parse(response.imagenes)
+                    contenido = "";
+                    $.each(imagenes, function (index, value) {
+                        contenido += "<option>" + value + "</option>";
+                    });
+                    $("#imagen").html(contenido);
+                    $("#acta_base_libro_id").val(libro.id);
+                    $("#acta_base_libro_id").val(libro.id);
+                } else {
+                    $("#acta_base_libro_id").val("");
+                }
+                validar_existe_libro();
+                $("#imagen").change();
+            }
+
+        });
+    });
+    $("#cambiar_ppal").click(function () {
+        $("#ppal_nombre").removeAttr("readonly")
+        $("#ppal_numero").removeAttr("readonly")
+        $("#ppal_apellido").removeAttr("readonly")
+        if (!confirm("¿Los datos corresponden a la misma persona?")) {
+            $("#ppal_id").val('');
+            $("#ppal_doc_id").val('');
+        }
+    })
+
+    $("#libro_base_tipo_libro_id").click(function () {
+        tipo_libro = $("#libro_base_tipo_libro_id").val();
+        if (tipo_libro == 1) {
+            $("#principal").show();
+            $("#madre").show();
+            $("#padre").show();
+            $("#esposo").hide();
+            $("#esposa").hide();
+            $("#esposo_apellido").val("");
+            $("#esposo_nombre").val("");
+            $("#docespos_numero").val("");
+            $("#esposa_apellido").val("");
+            $("#esposa_nombre").val("");
+            $("#docesposa_numero").val("");
+            $("#acta_fecha_lab").html("Fch Nac");
+            $("#div_fecha_defuncion").hide();
+        } else if (tipo_libro == 2) {
+            $("#principal").show();
+            $("#madre").hide();
+            $("#padre").hide();
+            $("#esposo").hide();
+            $("#esposa").hide();
+            $("#fecha_def").show();
+            $("#esposo_apellido").val("");
+            $("#esposo_nombre").val("");
+            $("#docespos_numero").val("");
+            $("#esposa_apellido").val("");
+            $("#esposa_nombre").val("");
+            $("#docesposa_numero").val("");
+            $("#padre_apellido").val("");
+            $("#padre_nombre").val("");
+            $("#docpadre_numero").val("");
+            $("#madre_apellido").val("");
+            $("#madre_nombre").val("");
+            $("#docmadre_numero").val("");
+            $("#acta_fecha_lab").html("Fch Nac");
+            $("#div_fecha_defuncion").show();
+        } else if (tipo_libro == 3 || tipo_libro == 9) {
+            $("#principal").hide();
+            $("#madre").hide();
+            $("#padre").hide();
+            $("#esposo").show();
+            $("#esposa").show();
+            $("#fecha_def").hide();
+            if (tipo_libro == 3) {
+                $("#acta_fecha_lab").html("Fch Mat");
+            } else {
+                $("#acta_fecha_lab").html("Fch Insc");
+            }
+            $("#div_fecha_defuncion").hide();
+            $("#ppal_apellido").val("");
+            $("#ppal_nombre").val("");
+            $("#docppal_numero").val("");
+            $("#padre_apellido").val("");
+            $("#padre_nombre").val("");
+            $("#docpadre_numero").val("");
+            $("#madre_apellido").val("");
+            $("#madre_nombre").val("");
+            $("#docmadre_numero").val("");
+        } else if (tipo_libro == 4) {
+            $("#principal").show();
+            $("#madre").hide();
+            $("#padre").show();
+            $("#esposo").hide();
+            $("#esposa").hide();
+            $("#esposo_apellido").val("");
+            $("#esposo_nombre").val("");
+            $("#docespos_numero").val("");
+            $("#esposa_apellido").val("");
+            $("#esposa_nombre").val("");
+            $("#docesposa_numero").val("");
+            $("#acta_fecha_lab").html("Fch Nac");
+            $("#div_fecha_defuncion").hide();
+        } else if (tipo_libro == 10) {
+            $("#acta_fecha_lab").html("Fch Nac");
+            if ($("#o_sub_tipo_libro").val() == 2) {
+                $("#div_fecha_defuncion").show();
+            } else {
+                $("#div_fecha_defuncion").hide();
+            }
+
+        } else {
+            alert("NO HAY NINGUN TIPO");
+        }
+    });
+    function limpiar_campos() {
+        $("#acta_fecha").val("");
+        $("#ppal_apellido").val("");
+        $("#ppal_nombre").val("");
+        $("#docppal_numero").val("");
+        $("#padre_apellido").val("");
+        $("#padre_nombre").val("");
+        $("#docpadre_numero").val("");
+        $("#madre_apellido").val("");
+        $("#madre_nombre").val("");
+        $("#docmadre_numero").val("");
+        $("#esposo_apellido").val("");
+        $("#esposo_nombre").val("");
+        $("#docespos_numero").val("");
+        $("#esposa_apellido").val("");
+        $("#esposa_nombre").val("");
+        $("#docesposa_numero").val("");
+    }
+    function arregla_nombres(nombre) {
+        nombre = nombre.toLowerCase().trim().split(" ")
+        nuevo_nombre = '';
+        if (nombre != '') {
+            $.each(nombre, function (index, value) {
+                if (index == 0) {
+                    nuevo_nombre += nombre[index][0].toUpperCase() + nombre[index].slice(1)
+                } else {
+                    nuevo_nombre += " " + nombre[index][0].toUpperCase() + nombre[index].slice(1)
+                }
+            });
+        }
+        mostrar_guardar()
+        return nuevo_nombre;
+    }
+
+    function mostrar_guardar() {
+
+        fuente = '<?php echo Session::get('ruta') ?>'
+
+        if ($("#acta_fecha").val() == ''
+                || (($("#esposa_apellido").val() == '' || $("#esposa_nombre").val() == '' || $("#docesposa_numero").val() == ''
+                        || $("#esposo_apellido").val() == '' || $("#esposo_nombre").val() == '' || $("#docesposo_numero").val() == '')
+                        && ($("#libro_base_tipo_libro_id").val() == 9 || $("#libro_base_tipo_libro_id").val() == 3 || $("#o_sub_tipo_libro").val() == 3))
+
+                || (($("#ppal_nombre").val() == '' || $("#ppal_apellido").val() == ''
+                        || $("#madre_apellido").val() == '' || $("#madre_nombre").val() == '')
+                        //||$("#padre_apellido").val()==''||$("#padre_nombre").val()=='') 
+                        && ($("#libro_base_tipo_libro_id").val() == 1 || $("#o_sub_tipo_libro").val() == 1 || $("#o_sub_tipo_libro").val() == 2))
+
+                ) {
+            $("#enlazador").attr("disable", "disable");
+            $("#enlazador").css("display", "none");
+        } else {
+            if ((parseInt($("#existe_acta").val()) > 0 || parseInt($("#existe_enlace").val()) > 0) && (fuente != 'libro/libro')) {
+                $("#enlazador").attr("disable", "disable");
+                $("#enlazador").css("display", "none");
+            } else {
+                $("#enlazador").removeAttr("disable");
+                $("#enlazador").css("display", "block");
+            }
+
+        }
+    }
+    function solo_lectura() {
+
+        if ($("#acta_id").val() != '') {
+            $("#esposo_nombre").attr("readonly", "readonly")
+            $("#esposo_apellido").attr("readonly", "readonly")
+            $("#esposo_numero").attr("readonly", "readonly")
+            $("#esposa_nombre").attr("readonly", "readonly")
+            $("#esposa_apellido").attr("readonly", "readonly")
+            $("#esposa_numero").attr("readonly", "readonly")
+            $("#ppal_nombre").attr("readonly", "readonly")
+            $("#ppal_apellido").attr("readonly", "readonly")
+            $("#ppal_numero").attr("readonly", "readonly")
+            $("#padre_nombre").attr("readonly", "readonly")
+            $("#padre_apellido").attr("readonly", "readonly")
+            $("#padre_numero").attr("readonly", "readonly")
+            $("#madre_nombre").attr("readonly", "readonly")
+            $("#madre_apellido").attr("readonly", "readonly")
+            $("#madre_numero").attr("readonly", "readonly")
+        } else {
+            $("#ppal_nombre").removeAttr("readonly")
+            $("#esposo_nombre").removeAttr("readonly")
+            $("#esposo_apellido").removeAttr("readonly")
+            $("#esposo_numero").removeAttr("readonly")
+            $("#esposa_nombre").removeAttr("readonly")
+            $("#esposa_apellido").removeAttr("readonly")
+            $("#esposa_numero").removeAttr("readonly")
+            $("#ppal_nombre").removeAttr("readonly")
+            $("#ppal_apellido").removeAttr("readonly")
+            $("#ppal_numero").removeAttr("readonly")
+            $("#padre_nombre").removeAttr("readonly")
+            $("#padre_apellido").removeAttr("readonly")
+            $("#padre_numero").removeAttr("readonly")
+            $("#madre_nombre").removeAttr("readonly")
+            $("#madre_apellido").removeAttr("readonly")
+            $("#madre_numero").removeAttr("readonly")
+        }
+    }
+    $("input[name='userfile']").change();
+    validar_existe_libro();
+    solo_lectura()
+    $("#libro_base_tipo_libro_id").click();
+</script>
