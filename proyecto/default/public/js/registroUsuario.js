@@ -221,14 +221,17 @@ $("#submitButton").click(function () {
 
     $.ajax({
             data: {
-                'usuario': usuarioForm,
-                'rolesUser': rolData
+                'usuario': usuarioForm
             },
             url: $.KumbiaPHP.publicPath+"usuarios/crear",
             type: 'post',
-            dataType: "json",
             success: function (response) {
                 alert("exito");
+                window.location.replace($.KumbiaPHP.publicPath);
+            }, 
+            error: function (response) {
+                alert("fallo" + response.text);
+                window.location.replace("http://localhost/proyecto/admin");
             }
         });
 });
