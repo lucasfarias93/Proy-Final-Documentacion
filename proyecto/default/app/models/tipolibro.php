@@ -30,4 +30,11 @@ class Tipolibro extends ActiveRecord {
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
 
+    public function getParentescos($page, $ppage = 20) {
+        $cols = "tipolibro_parentesco.*, p.nombreparentesco";
+        $join = "join parentesco p on p.id= tipolibro_parentesco.id_parentesco";
+        $where = "1=1";
+        return $this->paginate($where, "join: $join", "columns: $cols", "page: $page", "per_page: $ppage", 'order: id desc');
+    }
+
 }
