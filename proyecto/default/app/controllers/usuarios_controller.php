@@ -26,25 +26,27 @@ class UsuariosController extends AppController {
                 //esto es para tener atributos que no son campos de la tabla
                 $usr = new Usuarios(Input::post('usuario'));
                 $usrbd = new Usuarios();
-                $usrbd->filtrar_por_login($usr->login);
                 
+                $usrbd->filtrar_por_login($usr->login);
                 if ($usrbd && $usr->login == $usrbd->login) {
                     throw new NegocioExcepcion("El usuario ingresado ya existe");
                 }
+                
                 $usrbd->filtrar_por_id($usr->idtramite);
                 if ($usrbd && $usr->idtramite == $usrbd->idtramite) {
                     throw new NegocioExcepcion("El idtramite ingresado ya existe");
                 }
+                
                 $usrbd->filtrar_por_dni($usr->dni);
                 if ($usrbd && $usr->dni == $usrbd->dni) {
                     throw new NegocioExcepcion("El dni ingresado ya existe");
                 }
+                
                 //Verifico si el dni del usuario o el idtramite ya existe
                 //guarda los datos del usuario, y le asigna los roles 
                 //seleccionados en el formulario.
                 if ($usr->guardarCiudadano($usr, 3)) {
                 Logger::info("Usuario registrado"); 
-                return Router::redirect('login');
                 } else {
                     throw  new NegocioExcepcion("Verifique los datos ingresasdos");
                 }
