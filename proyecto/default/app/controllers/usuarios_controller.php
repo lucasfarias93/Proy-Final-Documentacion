@@ -21,6 +21,7 @@ class UsuariosController extends AppController {
      * Crea un usuario desde el backend.
      */
     public function crear() {
+        view::select(null, null);
         try {
             if (Input::hasPost('usuario')) {
                 //esto es para tener atributos que no son campos de la tabla
@@ -62,8 +63,8 @@ class UsuariosController extends AppController {
     
     
     public function crear_mobile($login, $idtramite, $dni, $clave, $clave2, $nombres, $apellido, $email) {
+        view::select(null, null);
         try {
-            View::select(null, null);
                 //crear usuario nuevo y usuario de la bd segun el nombre del login
                 $usr = new Usuarios();
                 $usr -> login = $login;
@@ -95,9 +96,9 @@ class UsuariosController extends AppController {
                     throw new NegocioExcepcion("El dni ingresado ya existe");
                 }        
                 $usr->guardarCiudadano($usr, 3);
-                View::json(TRUE);
+                view::json(TRUE);
         } catch (Exception $e) {
-            View::json(FALSE);
+            view::json(FALSE);
             Flash::error("No se pudo guardar el usuario");
             Logger::error($e->getMessage());
             Logger::error($e->getTraceAsString());

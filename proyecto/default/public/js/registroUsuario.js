@@ -215,19 +215,14 @@ $("#submitButton").click(function () {
             'email' : $("#email").val(),
         };
 
-        var rolData = {
-            'ciudadano' : 3,
-        }
-
     $.ajax({
             data: {
                 'usuario': usuarioForm
             },
             url: $.KumbiaPHP.publicPath+"usuarios/crear",
-            type: 'post',
+            type: 'POST',
             success: function (response) {
                 alert("exito");
-                window.location.replace($.KumbiaPHP.publicPath);
             }, 
             error: function (response) {
                 alert("fallo" + response.text);
