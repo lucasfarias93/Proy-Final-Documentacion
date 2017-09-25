@@ -2,7 +2,8 @@
 /**
  * Carga del modelo tiporeclamo.
  */
-Load::models('parentesco'); 
+Load::models('parentesco');
+
 class ParentescoController extends AdminController {
     /**
      * Obtiene una lista para paginar los tiporeclamo
@@ -92,5 +93,18 @@ class ParentescoController extends AdminController {
  
         //enrutando por defecto al index del controller
         return Redirect::to();
+    }
+    /**
+     * Eliminar un menu
+     * 
+     * @param int $id (requerido)
+     */
+    public function buscar_parentesco_tipolibro()
+    {
+        if(Input::hasPost('tipolibro')){
+        $tr = new Parentesco();
+        $listParentesco = $tr->filtrar_parentesco_por_tipolibro(input::post('tipolibro'));
+            view::json($listParentesco);
+        }
     }
 }

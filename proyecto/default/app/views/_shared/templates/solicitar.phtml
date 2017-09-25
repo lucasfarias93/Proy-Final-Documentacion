@@ -30,19 +30,11 @@
                 <h3 class="fs-subtitle-left">Seleccione tipo de acta a solicitar</h3>
                 <div class="input-field" id="tipolibro">
                     <?php echo Form::dbselect('tipolibro.id', 'nombrelibro', array('tipolibro', 'find')) ?>                    
-                    <?php $tipol = Input::hasPost("id") ?>                    
                 </div>
-                <h3 class="fs-subtitle-left">Seleccione parentesco del acta a solicitar</h3> 
-                <p>
-<!--                    <input class="with-gap" name="group3" type="radio" id="propia_radio"/>
-                    <label for="propia_radio">Propia</label>-->
-                </p>
-                <p>
-                    <?php ?>
-                    <?php echo Form::dbselect('tipolibro_parentesco.id', 'id_parentesco', array('tipolibro_parentesco', 'find')) ?>
-<!--                    <input class="with-gap" name="group3" type="radio" id="hermano_radio"  />
-                    <label for="hermano_radio">Hermano</label>-->
-                </p>
+                <h3
+                    class="fs-subtitle-left">Seleccione parentesco del acta a solicitar</h3> 
+                <div class="input-field" id="parentescos">
+                </div>
                 <input type="button" name="next" class="next action-button" value="Siguiente" />
             </fieldset>
 
@@ -78,14 +70,16 @@
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
-
-        <script src="js/register.js"></script>
-        <script src="js/init.js"></script>
+        <!--<script src="<?php echo PUBLIC_PATH ?>js/registro.js"></script>-->
+        <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
         <!-- FastClick -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
         <!-- NProgress -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
         <!-- Custom Theme Scripts -->
+        
+      <script src="js/jquery/jquery.kumbiaphp.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>js/solicitar.js"></script>
     </body>
 </html>

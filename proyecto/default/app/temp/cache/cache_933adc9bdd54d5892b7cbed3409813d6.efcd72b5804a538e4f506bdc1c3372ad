@@ -1,0 +1,2 @@
+
+a:4:{i:0;a:5:{s:5:"Field";s:10:"fechahasta";s:4:"Type";s:4:"date";s:4:"Null";s:3:"YES";s:3:"Key";s:0:"";s:7:"Default";N;}i:1;a:5:{s:5:"Field";s:2:"id";s:4:"Type";s:4:"int4";s:4:"Null";s:2:"NO";s:3:"Key";s:3:"PRI";s:7:"Default";s:1:"t";}i:2;a:5:{s:5:"Field";s:10:"fechadesde";s:4:"Type";s:4:"date";s:4:"Null";s:3:"YES";s:3:"Key";s:0:"";s:7:"Default";N;}i:3;a:5:{s:5:"Field";s:16:"nombreparentesco";s:4:"Type";s:7:"varchar";s:4:"Null";s:3:"YES";s:3:"Key";s:0:"";s:7:"Default";N;}}
