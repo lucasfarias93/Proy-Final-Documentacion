@@ -1,0 +1,9 @@
+[Mon, 25 Sep 17 19:18:51 -0300][ERROR] El usuario ingresado ya existe
+[Mon, 25 Sep 17 19:18:51 -0300][ERROR] #0 [internal function]: UsuariosController->crear_mobile('lucas', '19114724', '36850606', 'lucas', 'lucas', 'Lucas Sebastian', 'FARIAS CERUTTI', 'ext@gmail.com')
+#1 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(190): ReflectionMethod->invokeArgs(Object(UsuariosController), Array)
+#2 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/router.php(215): Router::_dispatch()
+#3 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/core/kumbia/bootstrap.php(141): Router::execute('/usuarios/crear...')
+#4 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/app/libs/bootstrap.php(21): require_once('/home/gringo/Ne...')
+#5 /home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default/public/index.php(82): require('/home/gringo/Ne...')
+#6 {main}
+[Mon, 25 Sep 17 19:22:33 -0300][ERROR] bd
