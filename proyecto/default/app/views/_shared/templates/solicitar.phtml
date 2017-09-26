@@ -13,6 +13,7 @@
     </head>
 
     <body>
+        <?php view::content() ?>
         <!-- multistep form -->
         <form id="msform">
             <!-- progressbar -->
@@ -25,7 +26,9 @@
                 <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
             </ul>
             <ul class="left-align dropdown-menu">
-                <li><?php echo ('Bienvenido usuario') ?></li>
+                <li><?php echo ('Bienvenido usuario') 
+                
+                ?></li>
             </ul>
             <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
             <fieldset>
@@ -37,6 +40,7 @@
                 <h3
                     class="fs-subtitle-left">Seleccione parentesco del acta a solicitar</h3> 
                 <div class="input-field" id="parentescos">
+                    
                 </div>
                 <input type="button" name="next" class="next action-button" value="Siguiente" />
             </fieldset>
