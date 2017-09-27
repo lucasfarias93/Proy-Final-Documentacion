@@ -13,7 +13,7 @@
 class NegocioExcepcion extends Exception {
 
     public function __construct($message = "", $code = 0, \Exception $previous = null) {
-//        header('HTTP/1.1 500 Internal Server Error');
+        header('HTTP/1.1 500 Internal Server Error');
         parent::__construct($message, $code, $previous);
     }
 
