@@ -17,4 +17,6 @@
  */
 
 // Carga el index.php de public
-include 'public/index.php';
+//include 'default/public/index_sin_mod_rewrite.php';
+include 'default/public/index.php';
+

@@ -1,0 +1,39 @@
+<h1 align="center" style="margin-bottom: 20px;">Bienvenido a Actas Digitales - <?php echo Auth::get('nombres');?></h1>
+
+<?php View::content() ?>
+
+<div class="bienvenida" >
+    <div class="row" style="padding: 2%">
+        <div class="span8">
+            <div class="offset3 span1">
+                <?php echo Html::img('Crear_Solicitud.png', 'Crear_Solicitud', array("width" => "48px", "height" => "48px")) ?>
+            </div>
+            <div class="span3" style="padding: 2%">
+                <?php echo Html::link("ciudadano/solicitud/", "Crear Solicitud"); ?>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8" style="padding: 2%">
+            <div class="offset3 span1">
+                <?php echo Html::img('Actas Caducadas.png', 'Solicitudes', array("width" => "48px", "height" => "48px")) ?>
+            </div>
+            <div class="span3" style="padding: 2%">
+                <?php echo Html::link("ciudadano/ver_solicitudes", "Mis solicitudes"); ?>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8" style="padding: 2%">
+            <div class="offset3 span1">
+                <?php echo Html::img('Pedido Escaneo.png', 'Verificar_validez', array("width" => "48px", "height" => "48px")) ?>
+            </div>
+            <div class="span3" style="padding: 2%">
+                <?php echo Html::link("ciudadano/verificar_validez", "Verificar validez acta"); ?>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="<?php echo PUBLIC_PATH ?>img/gobierno_2.png"></div>
+    </div>
+    <div style="clear: both;"></div>
+

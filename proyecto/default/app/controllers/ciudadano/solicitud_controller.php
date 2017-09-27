@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends AppController {
+class SolicitudController extends AdminController {
 
     public function index() {
         view::template('solicitar');

@@ -50,27 +50,26 @@ class RCWebService(ServiceBase):
 
     @srpc(Unicode, _returns=Iterable(Objetos))
     def nacimiento_propia(dni):
-
         csql = """
-select i.ubicacion,i.nombre
-from ciud_ciudadano_documento doc
-join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
-join acta_acta_ciudadano ac on ac.ciud_ciudadano_dato_id = dato.id
---join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id
-join acta_acta a on a.id = ac.acta_acta_id
-join base_libro l on l.id = a.base_libro_id
-join enlace_acta_imagen ei on ei.acta_acta_id = a.id
-join enlace_imagen i on i.id = ei.enlace_imagen_id
-where doc.numero = '%s'
-and ac.base_tipo_rol_id = 3
-and l.base_tipo_libro_id = 1
-group by 1,2
+			select i.ubicacion,i.nombre 
+			from ciud_ciudadano_documento doc
+			join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
+			join acta_acta_ciudadano ac on ac.ciud_ciudadano_dato_id = dato.id 
+			--join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
+			join acta_acta a on a.id = ac.acta_acta_id
+			join base_libro l on l.id = a.base_libro_id
+			join enlace_acta_imagen ei on ei.acta_acta_id = a.id
+			join enlace_imagen i on i.id = ei.enlace_imagen_id
+			where doc.numero = '%s'
+			and ac.base_tipo_rol_id = 3
+			and l.base_tipo_libro_id = 1
+			group by 1,2
                 """%(dni)
-
+        print csql
         persona = conexionPsycopg(csql)
         valido = True
         resultado = 'correcto'
-        print (persona)
+        print persona
         if len(persona)==0:
             resultado = 'error_persona'
             valido = False
@@ -79,22 +78,24 @@ group by 1,2
             resultado = persona[0][0].decode('latin1') +" "+ persona[0][1].decode('latin1')# +"  "+ fecha
            # resultado2=[persona[0][0].decode('latin1'),persona[0][1].decode('latin1'), fecha ]
 
-        print (resultado)
+        print resultado
         #print resultado2
         #name = doc.getElementsByTagName("PERIODO")[0]
         #print(name.firstChild.data)
         array=[]
-for f in persona:
-                print (f)
-                p = Objetos()
-                p.nombre = str(f[1])
-                p.ubicacion = str(f[0])
-                array.append(p)
-print (p)
+        for f in persona:
+            print f
+            p = Objetos()
+            p.nombre = str(f[1])
+            p.ubicacion = str(f[0])
+#           fecha = str(f[2].day).zfill(2)+"/"+str(f[2].month).zfill(2)+"/"+str(f[2].year) if f[2]  else ''
+#            p.nacimiento = str(fecha)
+            array.append(p)
+            yield p
 
 application = Application([RCWebService],
     tns='coyote1.rc.mendoza.gov.ar',
-    in_protocol=HttpRpc(validator='soft'),
+    in_protocol=Soap11(validator='lxml'),
     out_protocol=Soap11()
 )
 if __name__ == '__main__':
@@ -102,4 +103,4 @@ if __name__ == '__main__':
     from wsgiref.simple_server import make_server
     wsgi_app = WsgiApplication(application)
     server = make_server('localhost', 8000, wsgi_app)
-
+    server.serve_forever()
