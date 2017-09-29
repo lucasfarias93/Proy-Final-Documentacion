@@ -48,8 +48,11 @@ class RCWebService(ServiceBase):
 
     #    yield 'el cuit es %s'%cuit
 
-    @srpc(Unicode, _returns=Iterable(Objetos))
-    def nacimiento_propia(dni):
+    @srpc(Unicode, Unicode, Unicode, _returns=Iterable(Objetos))
+    def nacimiento_propia(dni,tipo,parentesco):
+	print dni, tipo, parentesco
+	tipo ='1'
+	parentesco = '2'
         csql = """
 			select i.ubicacion,i.nombre 
 			from ciud_ciudadano_documento doc
@@ -61,10 +64,10 @@ class RCWebService(ServiceBase):
 			join enlace_acta_imagen ei on ei.acta_acta_id = a.id
 			join enlace_imagen i on i.id = ei.enlace_imagen_id
 			where doc.numero = '%s'
-			and ac.base_tipo_rol_id = 3
-			and l.base_tipo_libro_id = 1
+			and ac.base_tipo_rol_id = %s
+			and l.base_tipo_libro_id = %s
 			group by 1,2
-                """%(dni)
+                """%(dni,parentesco,tipo)
         print csql
         persona = conexionPsycopg(csql)
         valido = True

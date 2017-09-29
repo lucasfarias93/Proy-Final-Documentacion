@@ -295,6 +295,9 @@ class ExpertoImagen {
      */
     public static function obtener_ruta_completa($ubicacion, $principal = FALSE) {
         $ruta = Config::get("config.application.ruta_imagenes") . $ubicacion;
+        return "/home/imagenes_produccion$ubicacion";
+        $ruta = Config::get("config.application.ruta_imagenes") . $ubicacion;
+        var_dump($ruta);
         if ($principal) {
             ExpertoImagen::verificar_ruta($ruta);
             return $ruta;
@@ -323,7 +326,7 @@ class ExpertoImagen {
         $nombre_nuevo = $nombre_nuevo[0];
         $ruta_temporal_original = Config::get("config.application.carpeta_temporal_original") . $nombre_nuevo . ".png";
 //        echo "convert --resize 1200x800 '$uri' '$ruta_temporal_original'";
-        exec("convert  -size 1200x800 '$uri' '$ruta_temporal_original'");
+        exec("convert  '$uri' '$ruta_temporal_original'");
 //        $imagick = new \Imagick($uri);
 //        $imagick->resizeImage(1200, 800, Imagick::FILTER_LANCZOS);
 //        $imagick->writeimage($ruta_temporal_original);
@@ -331,17 +334,17 @@ class ExpertoImagen {
         //colocar marca de agua para mostrar en pantalla
         if ($estampar_marca_agua !== ESTAMPA_NINGUNA) {
 //            echo "creando estampa";
-            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
-            if (file_exists($ruta_temporal_original)) {
-                $imagen = imagecreatefrompng($ruta_temporal_original);
-                Load::negocio("imagen/fabrica_estampa");
-                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
-                $experto->estampar_imagen($imagen);
-//                $experto->estampar_imagen($imagick);
-                imagepng($imagen, $ruta_temporal_estampa);
-                $ruta_temporal_original = $ruta_temporal_estampa;
-                imagedestroy($imagen);
-            }
+//            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
+//            if (file_exists($ruta_temporal_original)) {
+//                $imagen = imagecreatefrompng($ruta_temporal_original);
+//                Load::negocio("imagen/fabrica_estampa");
+//                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
+//                $experto->estampar_imagen($imagen);
+////                $experto->estampar_imagen($imagick);
+//                imagepng($imagen, $ruta_temporal_estampa);
+//                $ruta_temporal_original = $ruta_temporal_estampa;
+//                imagedestroy($imagen);
+//            }
         }
         if (file_exists($ruta_temporal_original)) {
             return ExpertoImagen::buscar_datos_imagen_por_uri($ruta_temporal_original);

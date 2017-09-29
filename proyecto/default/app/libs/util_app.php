@@ -12,7 +12,15 @@ Load::negocio("excepciones/permiso_denegado_excepcion");
 /**
  * Funciones generales para uso de la aplicacion
  */
+define("ESTAMPA_NINGUNA", 0);
+define("ESTAMPA_CONSULTA", 1);
+define("ESTAMPA_JUSTICIA", 2);
+define("ESTAMPA_CADUCADA", 3);
+define("ESTAMPA_OFICIAL", 4);
+
+
 class UtilApp {
+    
 
     /**
      * Se cambian las vocales por _ para que la busqueda sea mas abarcativa
