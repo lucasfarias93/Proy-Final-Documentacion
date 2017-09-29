@@ -9,18 +9,18 @@ class IndexController extends AdminController {
     }
 
     public function index() {
-        
-        $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
-        $parametros = array(); //parametros de la llamada
-        $parametros['dni'] = "32020039"; //es lo mismo con comillas simples que dobles
-        $client = new SoapClient($servicio);
-        //$result= $client->__soapCall('nacimiento_propia', array($parametros));//, array('typemap' => array(
-        $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
-        $datos = $result->nacimiento_propiaResult->Objetos;
-    var_dump($datos->ubicacion);
-        $json = file_get_contents($servicio);
-        $array = json_decode($json, true);
-        return($array);
+
+//        $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
+//        $parametros = array(); //parametros de la llamada
+//        $parametros['dni'] = "32020039"; //es lo mismo con comillas simples que dobles
+//        $client = new SoapClient($servicio);
+//        //$result= $client->__soapCall('nacimiento_propia', array($parametros));//, array('typemap' => array(
+//        $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
+//        $datos = $result->nacimiento_propiaResult->Objetos;
+//        var_dump($datos->ubicacion);
+//        $json = file_get_contents($servicio);
+//        $array = json_decode($json, true);
+//        return($array);
     }
 
     public function buscar_parentesco_tipolibro() {

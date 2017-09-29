@@ -1,39 +1,40 @@
-<h1 align="center" style="margin-bottom: 20px;">Bienvenido a Actas Digitales - <?php echo Auth::get('nombres');?></h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/listado.css"  media="screen,projection"/>
 
-<?php View::content() ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <?php View::content() ?>
+    <title>Actas digitales</title>
+    <body>
 
-<div class="bienvenida" >
-    <div class="row" style="padding: 2%">
-        <div class="span8">
-            <div class="offset3 span1">
-                <?php echo Html::img('Crear_Solicitud.png', 'Crear_Solicitud', array("width" => "48px", "height" => "48px")) ?>
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Bienvenido a Actas Digitales - <?php echo Auth::get('nombres'); ?></a>
             </div>
-            <div class="span3" style="padding: 2%">
-                <?php echo Html::link("ciudadano/solicitud/", "Crear Solicitud"); ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span8" style="padding: 2%">
-            <div class="offset3 span1">
-                <?php echo Html::img('Actas Caducadas.png', 'Solicitudes', array("width" => "48px", "height" => "48px")) ?>
-            </div>
-            <div class="span3" style="padding: 2%">
-                <?php echo Html::link("ciudadano/ver_solicitudes", "Mis solicitudes"); ?>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span8" style="padding: 2%">
-            <div class="offset3 span1">
-                <?php echo Html::img('Pedido Escaneo.png', 'Verificar_validez', array("width" => "48px", "height" => "48px")) ?>
-            </div>
-            <div class="span3" style="padding: 2%">
-                <?php echo Html::link("ciudadano/verificar_validez", "Verificar validez acta"); ?>
-            </div>
-        </div>
-    </div>
-    <div class="parallax"><img src="<?php echo PUBLIC_PATH ?>img/gobierno_2.png"></div>
-    </div>
-    <div style="clear: both;"></div>
+        </nav>  
 
+    <tr>
+        <td><?php echo Html::img('Crear_Solicitud.png', 'Crear_Solicitud', array("width" => "48px", "height" => "48px")) ?></td>
+        <td><?php echo Html::link("ciudadano/solicitud/", "Crear Solicitud"); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo Html::img('Actas Caducadas.png', 'Solicitudes', array("width" => "48px", "height" => "48px")) ?></td>
+        <td><?php echo Html::link("ciudadano/ver_solicitudes", "Mis solicitudes"); ?></td>
+    </tr>
+    <tr>
+        <td><?php echo Html::img('Pedido Escaneo.png', 'Verificar_validez', array("width" => "48px", "height" => "48px")) ?></td>
+        <td><?php echo Html::link("ciudadano/verificar_validez", "Verificar validez acta"); ?></td>
+    </tr>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+</body>
+</html>
