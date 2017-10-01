@@ -1,74 +1,82 @@
 <!DOCTYPE html>
-  <html>
+<html>
     <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-      <link type="text/css" rel="stylesheet" href="css/listado.css"  media="screen,projection"/>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/listado.css"  media="screen,projection"/>
 
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
+    <?php View::content() ?>
     <title>Listado Solicitudes</title>
     <body>
 
-    <!-- Header con titulo -->
-      <nav>
-        <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Listado solicitudes</a>
-        </div>
-      </nav>  
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Listado solicitudes</a>
+            </div>
+        </nav>  
+                <ul class="left-align dropdown-menu">
+                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+                </ul>
+                <ul class="right-align dropdown-menu">
+                    <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+                </ul>
 
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-      <table id="myTable">
-        <tr class="header">
-          <th style="width:60%;">Name</th>
-          <th style="width:40%;">Country</th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Berglunds snabbkop</td>
-          <td>Sweden</td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>UK</td>
-        </tr>
-        <tr>
-          <td>Koniglich Essen</td>
-          <td>Germany</td>
-        </tr>
-      </table>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+        <table id="myTable">
+            <tr class="header">
+                <th style="width:60%;">Name</th>
+                <th style="width:40%;">Country</th>
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Berglunds snabbkop</td>
+                <td>Sweden</td>
+            </tr>
+            <tr>
+                <td>Island Trading</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Koniglich Essen</td>
+                <td>Germany</td>
+            </tr>
+        </table>
 
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script type="text/javascript" src="js/init.js"></script>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
 
-      <script>
-        function myFunction() {
-          // Declare variables 
-          var input, filter, table, tr, td, i;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("myTable");
-          tr = table.getElementsByTagName("tr");
+        <script>
+            function myFunction() {
+                // Declare variables 
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
 
-          // Loop through all table rows, and hide those who don't match the search query
-          for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            } 
-          }
-        }
-      </script>
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
 
     </body>
-  </html>
+</html>
