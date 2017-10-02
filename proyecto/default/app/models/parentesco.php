@@ -24,6 +24,14 @@ class Parentesco extends ActiveRecord {
         $where = " nombreparentesco ilike '%$parentesco%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
+    public function filtrar_por_id($id, $pagina = 1) {
+        $cols = "parentesco.nombreparentesco";
+        $where = " idparentesco = '$id'";
+        $this->paginate($where, "columns: $cols", "", "page: $pagina");
+        var_dump($this);
+        $this2 =$this;
+        return $this2;
+    }
 
     public function filtrar_parentesco_por_tipolibro($tipolibro) {
         $cols = "parentesco.*";

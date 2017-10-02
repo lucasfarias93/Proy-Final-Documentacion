@@ -45,8 +45,7 @@
                             <tr>
                                 <td><?php echo $as->nombrepropietarioacta ?></td>
                                 <td><?php echo $as->numerosolicitud ?></td>
-                                <?php ?>
-                                <td><?php echo $as->idparentesco ?></td>
+                                <td><?php echo $pa->filtrar_por_id($as->idparentesco) ?></td>
                                 <td><?php echo $as->idcupondepago ?></td>
                                 <td><?php echo $as->idtiposolicitudacta ?></td>
                             </tr>
