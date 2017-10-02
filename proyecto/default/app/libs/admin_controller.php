@@ -111,6 +111,24 @@ class AdminController extends Controller {
         }
     }
 
+    protected function checkAuth_mobile($login, $pass) {
+        view::select(null,NULL);
+        if (MyAuth::es_valido()) {//aca ya estas logueado
+            $ret = $this->_tienePermiso();
+
+            return $ret;
+        } else {
+            $ret = $this->_logueoValido($login, $pass);
+
+            return $ret;
+        }
+        if ($ret) {
+            view::json(TRUE);
+        } else {
+            View::json(FALSE);
+        }
+    }
+
     /**
      * Verifica si el usuario conectado tiene acceso a la acción actual
      * 
@@ -150,11 +168,8 @@ class AdminController extends Controller {
                 Router::redirect("admin/usuarios/ingreso_contrasenia/");
                 return true;
             } else {
-                flash::info("paso por aca");
-
-
                 $usuariorol = Load::model("roles_usuarios");
-                $usuariorol= $usuariorol->getPoseerol($usuario->id, 3);
+                $usuariorol = $usuariorol->getPoseerol($usuario->id, 3);
                 if ($usuariorol) {
                     Router::redirect("ciudadano");
                 } else {
