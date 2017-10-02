@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listEstadoreclamoerroracta->items as $tl) { ?>
+                <?php foreach ($listEstadoreclamoerroracta->items as $as) { ?>
                     <tr>
-                        <td><?php echo $tl->nombreestadoreclamoerroracta ?></td>
-                        <td><?php echo $tl->descripcion ?></td>
-                        <td><?php echo $tl->fechadesde ?></td>
-                        <td><?php echo $tl->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoreclamoerroracta/edit/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoreclamoerroracta/del/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $as->nombreestadoreclamoerroracta ?></td>
+                        <td><?php echo $as->descripcion ?></td>
+                        <td><?php echo $as->fechadesde ?></td>
+                        <td><?php echo $as->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoreclamoerroracta/edit/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadoreclamoerroracta/del/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>

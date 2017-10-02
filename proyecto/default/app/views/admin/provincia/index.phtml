@@ -28,11 +28,11 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listProvincia->items as $ofi) { ?>
+                <?php foreach ($listProvincia->items as $prov) { ?>
                     <tr>
-                        <td><?php echo $ofi->nombreprovincia ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/provincia/edit/" . $ofi->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/provincia/del/" . $ofi->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $prov->nombreprovincia ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/provincia/edit/" . $prov->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/provincia/del/" . $prov->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>

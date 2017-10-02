@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listEstadosolicitud->items as $tl) { ?>
+                <?php foreach ($listEstadosolicitud->items as $as) { ?>
                     <tr>
-                        <td><?php echo $tl->nombreestadosolicitud ?></td>
-                        <td><?php echo $tl->descripcionestadosolicitud ?></td>
-                        <td><?php echo $tl->fechadesde ?></td>
-                        <td><?php echo $tl->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/edit/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/del/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $as->nombreestadosolicitud ?></td>
+                        <td><?php echo $as->descripcionestadosolicitud ?></td>
+                        <td><?php echo $as->fechadesde ?></td>
+                        <td><?php echo $as->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/edit/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/del/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>

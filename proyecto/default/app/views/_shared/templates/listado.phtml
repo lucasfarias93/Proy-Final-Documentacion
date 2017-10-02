@@ -8,9 +8,10 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <?php View::content() ?>
+    <div id="mensajes_flash" >        
+        <?php View::content() ?>
+    </div> 
     <title>Listado Solicitudes</title>
-    <body>
 
         <!-- Header con titulo -->
         <nav>
@@ -18,65 +19,40 @@
                 <a href="#" class="brand-logo center">Listado solicitudes</a>
             </div>
         </nav>  
-                <ul class="left-align dropdown-menu">
-                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-                </ul>
-                <ul class="right-align dropdown-menu">
-                    <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-                </ul>
+        <ul class="left-align dropdown-menu">
+            <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+            <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+        </ul>
+        <ul class="right-align dropdown-menu">
+            <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+        </ul>
+        <?php echo Form::close() ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                        <tr>
 
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-        <table id="myTable">
-            <tr class="header">
-                <th style="width:60%;">Name</th>
-                <th style="width:40%;">Country</th>
-            </tr>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Berglunds snabbkop</td>
-                <td>Sweden</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Koniglich Essen</td>
-                <td>Germany</td>
-            </tr>
-        </table>
-
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
-        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
-
-        <script>
-            function myFunction() {
-                // Declare variables 
-                var input, filter, table, tr, td, i;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-
-                // Loop through all table rows, and hide those who don't match the search query
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-        </script>
-
-    </body>
+                            <th>Nombre propietario acta</th>
+                            <th>Numero de solicitud</th>
+                            <th>Parentesco</th>
+                            <th>Cupon de pago</th>
+                            <th>Tipo solicitud acta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($listSolicitudacta->items as $as) { ?>
+                            <tr>
+                                <td><?php echo $as->nombrepropietarioacta ?></td>
+                                <td><?php echo $as->numerosolicitud ?></td>
+                                <?php ?>
+                                <td><?php echo $as->idparentesco ?></td>
+                                <td><?php echo $as->idcupondepago ?></td>
+                                <td><?php echo $as->idtiposolicitudacta ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 </html>

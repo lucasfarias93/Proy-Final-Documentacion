@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listTiporeclamo->items as $tl) { ?>
+                <?php foreach ($listTiporeclamo->items as $as) { ?>
                     <tr>
-                        <td><?php echo $tl->nombretiporeclamo ?></td>
-                        <td><?php echo $tl->descripciontiporeclamo ?></td>
-                        <td><?php echo $tl->fechadesde ?></td>
-                        <td><?php echo $tl->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/edit/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/del/" . $tl->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $as->nombretiporeclamo ?></td>
+                        <td><?php echo $as->descripciontiporeclamo ?></td>
+                        <td><?php echo $as->fechadesde ?></td>
+                        <td><?php echo $as->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/edit/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/tiporeclamo/del/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>
