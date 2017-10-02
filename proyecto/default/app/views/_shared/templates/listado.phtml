@@ -34,20 +34,24 @@
                         <tr>
 
                             <th>Nombre propietario acta</th>
-                            <th>Numero de solicitud</th>
+                            <th>N° de solicitud</th>
                             <th>Parentesco</th>
                             <th>Cupon de pago</th>
                             <th>Tipo solicitud acta</th>
+                            <th>Fecha solicitud </th>
+                            <th>Estado solicitud </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($listSolicitudacta->items as $as) { ?>
+                        <?php foreach ($listSolicitudacta as $as) { ?>
                             <tr>
                                 <td><?php echo $as->nombrepropietarioacta ?></td>
                                 <td><?php echo $as->numerosolicitud ?></td>
-                                <td><?php echo $pa->filtrar_por_id($as->idparentesco) ?></td>
-                                <td><?php echo $as->idcupondepago ?></td>
-                                <td><?php echo $as->idtiposolicitudacta ?></td>
+                                <td><?php echo $as->nombreparentesco ?></td>
+                                <td><?php echo $as->codigodepago ?></td>
+                                <td><?php echo $as->nombretiposolicitud ?></td>
+                                <td><?php echo $as->fechacambioestado ?></td>
+                                <td><?php echo $as->nombreestadosolicitud ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
