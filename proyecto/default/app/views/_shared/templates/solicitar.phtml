@@ -8,6 +8,7 @@
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/style.css">
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/solicitud.css">
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/solicitud.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
@@ -34,7 +35,7 @@
             </ul>
             <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
             <fieldset>
-
+                <div id="respuesta" ></div>
                 <h2 class="fs-title">CREAR SOLICITUD</h2>
                 <h3 class="fs-subtitle-left">Seleccione tipo de acta a solicitar</h3>
                 <div class="input-field" id="tipolibro">
@@ -120,7 +121,7 @@
                     $.ajax({
                         data: {
                             'tipolibro': $("#tipolibro_id option:selected").val(),
-                            'parentesco': $("#tipolibro_id option:selected").val()
+                            'parentesco': $('input[name=group3]:checked').val()
                         },
                         url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
                         type: 'post',
@@ -130,7 +131,7 @@
                             $("#img_acta").attr("src", imagen.imagen);
                         },
                         fail: function (response) {
-                            alert("fallo");
+                            $("#respuesta").html("No existe la imagen del acta")
                         }
                     });
                 }
