@@ -1,4 +1,5 @@
 <?php
+
 class IndexController extends AdminController {
 
     public function index() {
@@ -22,32 +23,26 @@ class IndexController extends AdminController {
 //        } catch (KumbiaException $e) {
 //            View::excepcion($e);
 //        }
-        view::select(null,NULL);
-              $ret = $this->_logueoValido("diego", "00000");
-            var_dump($ret);
-
-        if ($ret) {
-            view::json(TRUE);
-        } else {
-            View::json(FALSE);
-            var_dump($ret);
-        }
+//        view::select(null, NULL);
+//        $ret = $this->_logueoValido("diego", "23000");
+//        var_dump($ret);
+//
+//        if ($ret) {
+//            view::json(TRUE);
+//        } else {
+//            View::json(FALSE);
+//            var_dump($ret);
+//        }
     }
-        public function checkAuth_mobile($login, $pass) {
-        view::select(null,NULL);
+
+    public function loginmobile($login, $pass) {
+        view::select(NULL, NULL);
         if (MyAuth::es_valido()) {//aca ya estas logueado
             $ret = $this->_tienePermiso();
-
             return $ret;
         } else {
-            $ret = $this->_logueoValido("diego", "00000");
-
-            return $ret;
-        }
-        if ($ret) {
-            view::json(TRUE);
-        } else {
-            View::json(FALSE);
+            $ret = $this->_logueoValido($login, $pass);
+            view::json(false);
         }
     }
 

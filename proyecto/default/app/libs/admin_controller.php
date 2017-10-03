@@ -111,24 +111,6 @@ class AdminController extends Controller {
         }
     }
 
-    protected function checkAuth_mobile($login, $pass) {
-        view::select(null,NULL);
-        if (MyAuth::es_valido()) {//aca ya estas logueado
-            $ret = $this->_tienePermiso();
-
-            return $ret;
-        } else {
-            $ret = $this->_logueoValido($login, $pass);
-
-            return $ret;
-        }
-        if ($ret) {
-            view::json(TRUE);
-        } else {
-            View::json(FALSE);
-        }
-    }
-
     /**
      * Verifica si el usuario conectado tiene acceso a la acción actual
      * 
@@ -173,7 +155,7 @@ class AdminController extends Controller {
                 if ($usuariorol) {
                     Router::redirect("ciudadano");
                 } else {
-                    flash::info("ya paso por aca");
+                    flash::info("logueo valido");
                 }
 
                 return $this->_tienePermiso();
