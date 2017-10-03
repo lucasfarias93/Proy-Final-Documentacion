@@ -24,7 +24,7 @@ class IndexController extends AdminController {
             $parametros['tipo'] = $tipo; //es lo mismo con comillas simples que dobles
             $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
             $client = new SoapClient($servicio);
-            //$result= $client->__soapCall('nacimiento_propia', array($parametros));//, array('typemap' => array(
+//$result= $client->__soapCall('nacimiento_propia', array($parametros));//, array('typemap' => array(
             $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
             $datos = $result->nacimiento_propiaResult->Objetos;
 //            var_dump("resultado ws");
@@ -58,6 +58,13 @@ class IndexController extends AdminController {
             $listParentesco = $tr->filtrar_parentesco_por_tipolibro(input::post('tipolibro'));
             view::json($listParentesco);
         }
+    }
+
+    public function buscar_parentesco_tipolibro_mobile($tipolibro) {
+        view::select(null, null);
+        $tr = new Parentesco();
+        $listParentesco = $tr->filtrar_parentesco_por_tipolibro($tipolibro);
+        view::json($listParentesco);
     }
 
 }
