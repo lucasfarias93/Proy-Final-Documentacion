@@ -40,10 +40,11 @@ class IndexController extends AdminController {
         try {
             $ret = $this->_logueoValido($login, $pass);
             var_dump($ret);
+            view::json(FALSE);
             if ($ret) {
                 view::json(TRUE);
             } else {
-                view::json(FALSE);
+                
             }
         } catch (Exception $e) {
             view::json(FALSE);

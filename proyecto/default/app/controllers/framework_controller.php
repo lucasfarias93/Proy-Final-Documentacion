@@ -27,5 +27,10 @@ class FrameworkController extends RestController {
     public function getAll() {
         $this->data = $this->fw;
     }
+    
+    public function post() {
+        Logger::info("Llego al metodo post");
+        $this->data = $this->fw;
+    }
 
 }

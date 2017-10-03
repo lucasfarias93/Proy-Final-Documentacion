@@ -157,7 +157,6 @@ class AdminController extends Controller {
                 } else {
                     flash::info("logueo valido");
                 }
-                view::json(TRUE);
                 return $this->_tienePermiso();
             }
         } else {
