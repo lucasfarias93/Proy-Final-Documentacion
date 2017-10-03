@@ -36,13 +36,20 @@ class IndexController extends AdminController {
     }
 
     public function loginmobile($login, $pass) {
-        view::select(NULL, NULL);
-        if (MyAuth::es_valido()) {//aca ya estas logueado
-            $ret = $this->_tienePermiso();
-            return $ret;
-        } else {
+        view::select(null, null);
+        try {
             $ret = $this->_logueoValido($login, $pass);
-            view::json(false);
+            var_dump($ret);
+            if ($ret) {
+                view::json(TRUE);
+            } else {
+                view::json(FALSE);
+            }
+        } catch (Exception $e) {
+            view::json(FALSE);
+            Flash::error("No se pudo loguear el usuario");
+            Logger::error($e->getMessage());
+            Logger::error($e->getTraceAsString());
         }
     }
 
