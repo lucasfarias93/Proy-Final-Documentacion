@@ -4,18 +4,21 @@
     <head>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <title>Iniciar sesión</title>
+        <title>Iniciar sesión / Verificar validez</title>
 
         <script src="<?php echo PUBLIC_PATH ?>js/prefixfree.min.js"></script>
 
     </head>
-
+    <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
+    <div class= "row col-4 alignleft">
+        <input type="text" placeholder="DNI" name="dni"><br>
+        <input type="text" placeholder="Código" name="codigo"><br>
+        <input type="submit" value="Verificar">
+    </div>
     <body>
-
         <div class="body"></div>
         <div class="grad"></div>
         <div class="header">
@@ -24,7 +27,7 @@
         <br><?php echo Form::open(NULL, 'post') ?>
 
         <div class="login">
-        <div>INICIAR SESION</div>
+            <div>Tenes usuario? Inicia sesión</div>
             <?php View::content() ?>
             <input type="text" placeholder="Usuario" name="login"><br>
             <input type="password" placeholder="Contraseña" name="clave"><br>

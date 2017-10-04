@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/listado.css"  media="screen,projection"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <div id="mensajes_flash" >        
+        <?php View::content() ?>
+    </div> 
+    <title>Verificar validez</title>
+
+    <!-- Header con titulo -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Verificar validez</a>
+        </div>
+    </nav>  
+    <ul class="left-align dropdown-menu">
+        <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+        <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+    </ul>
+    <ul class="right-align dropdown-menu">
+        <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+    </ul>
+    <?php echo Form::close() ?>
+    <div class="login">
+        <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
+        <ul><?php echo Html::img('verificar.jpeg', 'Verificar', array("width" => "200px", "height" => "200px")) ?></ul>
+        <div class="row col s12 m12 l12">
+            <input type="text" placeholder="DNI" name="dni"><br>
+            <input type="text" placeholder="Código" name="codigo"><br>
+            <input type="submit" value="Verificar">
+        </div>
+    </div>
+</html>
