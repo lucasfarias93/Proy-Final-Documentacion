@@ -60,20 +60,13 @@
             </fieldset>
             <fieldset>
                 <h2 class="fs-title">Formas de Pago</h2>
-                <h3 class="fs-subtitle">Elija tipo de tarjeta</h3>
+                <h3 class="fs-subtitle">Por el momento, utilizamos mercado pago para realizar los pagos</h3>
                 <div class="row">
-                    <div class="input-field">
-                        <select>
-                            <option value="" disabled selected>Elija tipo de tarjeta</option>
-                            <option value="1">Visa Debito</option>
-                            <option value="2">Visa Credito</option>
-                        </select>
-                    </div>
-                </div>
-                <input type="text" name="fname" placeholder="Numero de tarjeta" />
-                <input type="text" name="lname" placeholder="Codigo de seguridad" />
-                <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                <input type="submit" name="submit" class="submit action-button" value="Pagar" />
+                    <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=275375435-d7e36ae5-3866-4b37-a4f7-1e3aede6999f" name="MP-payButton" class='blue-ar-l-rn-none'>Pagar</a>
+                    <script type="text/javascript">
+                    (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+                    </script>
+                </div>  
             </fieldset>
         </form>
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
@@ -92,6 +85,9 @@
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>js/solicitarActa.js"></script>
+        <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+
+
         <script>
             $("#tipolibro_id").change(function () {
                 if (($("#tipolibro_id option:selected").val() != "")) {
