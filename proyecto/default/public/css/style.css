@@ -130,16 +130,6 @@ body {
 	color: white;
 }
 
-nav ul a,
-nav .brand-logo {
-  color: #FFFFFF;
-  margin-left: 10px;
-}
-
-nav {
-  background: #9A2EFE;
-}
-
 .button-collapse {
   color: #26a69a;
 }

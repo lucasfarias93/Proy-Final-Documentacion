@@ -8,6 +8,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
+    <body>
     <div id="mensajes_flash" >        
         <?php View::content() ?>
     </div> 
@@ -18,18 +19,22 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center">Listado solicitudes</a>
             </div>
-        </nav>  
-        <ul class="left-align dropdown-menu">
-            <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-            <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-        </ul>
-        <ul class="right-align dropdown-menu">
-            <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-        </ul>
+        </nav> 
+        <div class="row">
+            <ul class="left-align col s6">
+                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+            </ul>
+            <ul class="right-align col s6">
+                <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+            </ul>
+        </div>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
         <?php echo Form::close() ?>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-bordered table-responsive">
+                <table class="table table-bordered table-responsive" id="myTable">
                     <thead>
                         <tr>
 
@@ -58,4 +63,27 @@
                 </table>
             </div>
         </div>
+    <script>
+        function myFunction() {
+          // Declare variables 
+          var input, filter, table, tr, td, i;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            } 
+          }
+        }
+      </script>
+      </body>
 </html>

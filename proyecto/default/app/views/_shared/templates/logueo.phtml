@@ -4,6 +4,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -12,35 +13,52 @@
         <script src="<?php echo PUBLIC_PATH ?>js/prefixfree.min.js"></script>
 
     </head>
-    <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
-    <div class= "row col-4 alignleft">
-        <input type="text" placeholder="DNI" name="dni"><br>
-        <input type="text" placeholder="Código" name="codigo"><br>
-        <input type="submit" value="Verificar">
-    </div>
     <body>
-        <div class="body"></div>
-        <div class="grad"></div>
-        <div class="header">
-            <!--<div>INICIAR SESION</div>-->
-        </div>
-        <br><?php echo Form::open(NULL, 'post') ?>
 
-        <div class="login">
-            <div>Tenes usuario? Inicia sesión</div>
-            <?php View::content() ?>
-            <input type="text" placeholder="Usuario" name="login"><br>
-            <input type="password" placeholder="Contraseña" name="clave"><br>
-            <div class="row col s12 m12 l12">
-                <?php echo html::link('registrar', "Registrate", array("class" => "btn-large waves-effect waves", "id" => "download-button")) ?>
-                <?php echo html::link('olvido', "Olvidaste tu contraseña?", array("class" => "btn-large waves-effect waves", "id" => "download-button")) ?>
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Verificar Validez - Inicio sesion</a>
             </div>
-            <!--<input type="checkbox" name="save" value="save" id="save" class="col s12 m12 l12"><label for="save" style="margin-left: 15px;"> Guardar usuario</label>-->
-            <input type="submit" value="Ingresar">
-        </div>
-    </form>
-    <script src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.js"></script>
+        </nav> 
 
-</body>
+    <div class="row">
+        <div class= "row col s6">
+            <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
+            <input type="text" placeholder="DNI" name="dni"><br>
+            <input type="text" placeholder="Código" name="codigo"><br>
+            <div class="center">
+                <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar">
+            </div>
+        </div>
+
+        <div class= "row col s6">
+            <div>Tenes usuario? Inicia sesión</div>
+            <br><?php echo Form::open(NULL, 'post') ?>
+
+
+                <?php View::content() ?>
+                <input type="text" placeholder="Usuario" name="login"><br>
+                <input type="password" placeholder="Contraseña" name="clave"><br>
+                <div class="center">
+                        <div class="row col s12 m12 l12">
+                            <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?>
+                            <?php echo html::link('olvido', "Olvidaste tu contraseña?", array("class" => "href", "id" => "download-button")) ?>
+                        </div>
+                        <!--<input type="checkbox" name="save" value="save" id="save" class="col s12 m12 l12"><label for="save" style="margin-left: 15px;"> Guardar usuario</label>-->
+                        
+                    <input class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">
+                </div>
+        </form>
+        </div>
+        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
+        <!-- En init.js esta declarada la inicializacion del selector que se utiliza en tipo nro telefono-->
+        <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+    </div>  
+    </body>
 
 </html>

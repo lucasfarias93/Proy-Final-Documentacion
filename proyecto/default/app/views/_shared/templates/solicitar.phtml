@@ -15,6 +15,24 @@
     </head>
 
     <body>
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Realizar solicitud</a>
+            </div>
+        </nav> 
+
+            <div class="row">
+                <ul class="left-align col s6">
+                    <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                    <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+                </ul>
+                <ul class="right-align col s6">
+                    <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                    <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+                </ul>
+            </div>
+
         <?php view::content() ?>
         <!-- multistep form -->
         <form id="msform">
@@ -24,14 +42,7 @@
                 <li>Social Profiles</li>
                 <li>Personal Details</li>
             </ul> 
-            <ul class="left-align dropdown-menu">
-                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-            </ul>
-            <ul class="right-align dropdown-menu">
-                <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-            </ul>
+
             <ul class="left-align dropdown-menu">
             </ul>
             <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
