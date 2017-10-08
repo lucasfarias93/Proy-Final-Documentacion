@@ -14,4 +14,12 @@ class ReporteController extends AdminController {
         $tr = new Tiporeporte();
         $this->listTiporeporte = $tr->getTiporeporte($page);
     }
+    
+    public function actasFirmadas() {
+        
+    }
+    
+    public function reportePDF(){
+        
+    }
 }

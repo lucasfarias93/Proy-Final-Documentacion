@@ -24,6 +24,12 @@ class Tiporeporte extends ActiveRecord {
         $where = " nombretiporeporte ilike '%$tiporeporte%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
+    
+    public function reporte_actas_firmadas($tiporeporte, $pagina = 1) {
+        $cols = "tiporeporte.*";
+        $where = " nombretiporeporte ilike '%$tiporeporte%'";
+        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
+    }
 
     public function getTiporeporte($page, $ppage = 20) {
 
