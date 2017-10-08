@@ -25,6 +25,8 @@ class Estadosolicitud extends ActiveRecord {
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
 
+
+    
     public function getEstadosolicitud($page, $ppage = 20) {
 
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');

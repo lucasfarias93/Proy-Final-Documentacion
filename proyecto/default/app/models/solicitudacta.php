@@ -23,12 +23,21 @@ class Solicitudacta extends ActiveRecord {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombretiposolicitud, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " idusuario = '$id'";
         $join = " join parentesco p on p.id = solicitudacta.idparentesco";
-                $join.=" join cupondepago c on c.id = solicitudacta.idcupondepago ";
-                $join.=" join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
-                $join.=" join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
-                $join.=" join estadosolicitud es on es.id = se.idestadosolicitud" ;
-        
+        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
+        $join .= " join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
+        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
+        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
+
         return $this->find($where, "columns: $cols", "join: $join");
+    }
+
+    public function buscar_solicitud_acta_por_codigo_pago($id, $codigop, $page, $ppage = 20) {
+        $cols = " fechacambioestado ";
+        $where = " codigodepago = '$codigop' AND idusuario = '$id' ";
+        $join = " join cupondepago c on c.id = solicitudacta.idcupondepago ";
+        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
+
+        return $this->find_first($where, "columns: $cols", "join: $join");
     }
 
     public function getSolicitudacta($page, $ppage = 20) {
