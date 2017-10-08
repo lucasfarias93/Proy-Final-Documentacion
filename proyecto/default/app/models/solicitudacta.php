@@ -33,10 +33,11 @@ class Solicitudacta extends ActiveRecord {
 
     public function buscar_solicitud_acta_por_codigo_pago($id, $codigop, $page, $ppage = 20) {
         $cols = " fechacambioestado ";
-        $where = " codigodepago = '$codigop' AND idusuario = '$id' ";
+        $where = " codigodepago = '$codigop' AND idusuario = '$id' AND idestadosolicitud = '2'";
         $join = " join cupondepago c on c.id = solicitudacta.idcupondepago ";
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
-
+        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
+        
         return $this->find_first($where, "columns: $cols", "join: $join");
     }
 

@@ -63,5 +63,37 @@ class IndexController extends AdminController {
         $listParentesco = $tr->filtrar_parentesco_por_tipolibro($tipolibro);
         view::json($listParentesco);
     }
+    public function buscar_imagen_mobile($tipolibro,$parentesco) {
+        try {
+            if ($tipolibro != null && $parentesco != null) {
+                $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
+                $parametros['dni'] = Auth::get("dni");
+                $parametros['tipo'] = $tipolibro; //es lo mismo con comillas simples que dobles
+                $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
+                $client = new SoapClient($servicio);
+                $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
+                $datos = $result->nacimiento_propiaResult->Objetos;
+                if (!isset($datos->ubicacion)) {
+                    throw new NegocioExcepcion("No existen datos");
+                }
+                $ubicacion = str_replace("-", "/", $datos->ubicacion);
+                $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
+                $ext = "png";
+                $tmp = str_replace("TIF", "", $datos->nombre);
+                $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "crop/" . $tmp . $ext;
+                $ruta = ExpertoImagen::obtener_ruta_completa($ubicacion . "/$datos->nombre");
+                if (!file_exists($ruta)) {
+                    throw new NegocioExcepcion("No existe el acta");
+                }
+                $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
+                $ret[] = $dto;
+                View::json($ret);
+            } else {
+                throw new NegocioExcepcion("no se han pasado los parametros");
+            }
+        } catch (NegocioExcepcion $ex) {
+            view::select(null, null);
+        }
+    }
 
 }
