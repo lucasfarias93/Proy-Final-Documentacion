@@ -7,12 +7,12 @@
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/listado.css"  media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
+        <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <div id="mensajes_flash" >        
-        <?php View::content() ?>
-    </div> 
     <title>Verificar validez</title>
+    </head>
+    <body>
+    
 
     <!-- Header con titulo -->
     <nav>
@@ -30,12 +30,14 @@
             <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
         </ul>
     </div>
-    <?php echo Form::close() ?>
     <div class="login">
+        <div id="mensajes_flash" >        
+        <?php View::content() ?>
+    </div> 
         <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
         <ul><?php echo Html::img('verificar.jpeg', 'Verificar', array("width" => "200px", "height" => "200px")) ?></ul>
         <div class="row col s12 m12 l12">
-            <input type="text" placeholder="Código" name="codigo"><br>
+            <input type="text" placeholder="Código" name="codigo" id="input1"><br>
             <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">
         </div>
     </div>
@@ -43,13 +45,17 @@
         $("#boton1").click(function () {
             $.ajax({
                 data: {
-                    'codigo': $("#codigodepago").val()
+                    'codigo': $("#input1").val()
                 },
-                url: "<?php echo PUBLIC_PATH ?>ciudadano/verificar/index/verificar_validez_usuario",
+                url: "<?php echo PUBLIC_PATH ?>ciudadano/verificar/verificar_validez_usuario",
                 type: 'post',
-                dataType: "json"
+                success: function (response) {
+                           
+                            $("#mensajes_flash").html(response);
+                        }
             }
             );
         });
     </script>
+    </body>
 </html>

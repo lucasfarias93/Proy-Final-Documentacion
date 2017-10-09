@@ -24,17 +24,19 @@
 
     <div class="row">
         <div class= "row col s6">
+            <div id="mensajes_flash" >        
+    </div> 
             <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
-            <input type="text" placeholder="DNI" name="dni"><br>
-            <input type="text" placeholder="Código" name="codigo"><br>
+            <input type="text" placeholder="DNI" name="dni" id = "textodni"><br>
+            <input type="text" placeholder="Código" name="codigo" id="textocodigo"><br>
             <div class="center">
-                <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar">
+                <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="botonverificar">
             </div>
         </div>
 
         <div class= "row col s6">
             <div>Tenes usuario? Inicia sesión</div>
-            <br><?php echo Form::open(NULL, 'post') ?>
+            <br><?php echo Form::open('admin', 'post') ?>
 
 
                 <?php View::content() ?>
@@ -58,6 +60,23 @@
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
         <!-- En init.js esta declarada la inicializacion del selector que se utiliza en tipo nro telefono-->
         <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+        <script>
+        $("#botonverificar").click(function () {
+            $.ajax({
+                data: {
+                    'codigo': $("#textocodigo").val(),
+                    'dni': $("#textodni").val()
+                },
+                url: "<?php echo PUBLIC_PATH ?>login/verificar_validez_entidad",
+                type: 'post',
+                success: function (response) {
+                           
+                            $("#mensajes_flash").html(response);
+                        }
+            }
+            );
+        });
+    </script>
     </div>  
     </body>
 

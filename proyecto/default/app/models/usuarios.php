@@ -264,7 +264,7 @@ class Usuarios extends ActiveRecord {
 
     public function filtrar_por_dni($dni) {
         $cols = "usuarios.*";
-        $where = " dni = '$dni'";
+        $where = " dni = '$dni' AND activo = '1'";
         return $this->find_first($where, "columns: $cols");
     }
 
