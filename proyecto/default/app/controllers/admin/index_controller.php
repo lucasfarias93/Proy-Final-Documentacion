@@ -53,5 +53,10 @@ class IndexController extends AdminController {
             Logger::error($e->getTraceAsString());
         }
     }
+    
+    public function getCurrentId(){
+        view::select(NULL, NULL);
+        view::json(Auth::get('id'));
+    }
 
 }
