@@ -63,7 +63,8 @@ class IndexController extends AdminController {
         $listParentesco = $tr->filtrar_parentesco_por_tipolibro($tipolibro);
         view::json($listParentesco);
     }
-    public function buscar_imagen_mobile($tipolibro,$parentesco) {
+
+    public function buscar_imagen_mobile($tipolibro, $parentesco) {
         try {
             if ($tipolibro != null && $parentesco != null) {
                 $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
@@ -94,6 +95,11 @@ class IndexController extends AdminController {
         } catch (NegocioExcepcion $ex) {
             view::select(null, null);
         }
+    }
+
+    public function getCurrentId() {
+        view::select(NULL, NULL);
+        view::json(Auth::get('id'));
     }
 
 }
