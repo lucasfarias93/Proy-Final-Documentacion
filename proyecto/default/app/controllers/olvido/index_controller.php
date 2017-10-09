@@ -51,7 +51,7 @@ class IndexController extends AppController {
 //                    $usrbd->update();
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
-                    Router::redirect('login');
+                    Router::redirect('admin');
                 } else {
                     throw new NegocioExcepcion("Nose pudo enviar el correo");
                     input::delete();
