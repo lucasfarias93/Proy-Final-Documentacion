@@ -43,4 +43,23 @@ class IndexController extends AppController {
         $userbd->clave = "";
     }
 
+    public function cambiar_clave_mobile($id, $clave) {
+        view::select(NULL, NULL);
+        if ($id != NULL && $clave != NULL) {
+            $userbd = new Usuarios();
+            $userbd->filtrar_por_id($id);
+            if ($userbd && $id == $userbd->id) {
+                // si encuentro el ID en la base de datos:
+                $userbd->clave = MyAuth::hash($clave);
+                $userbd->clave_blanqueada = true;
+                $userbd->update();
+                view::json(TRUE);
+            } else {
+                view::json(FALSE);
+            }
+        } else {
+            view::json(FALSE);
+        }
+    }
+
 }
