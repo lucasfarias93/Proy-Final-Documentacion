@@ -7,7 +7,7 @@ class IndexController extends AppController {
 
     public function index() {
         view::template(NULL);
-
+        Logger::error("Hola");
         try {
             if (Input::hasPost('usuarios')) {
                 $usr = new Usuarios(Input::post('usuarios'));

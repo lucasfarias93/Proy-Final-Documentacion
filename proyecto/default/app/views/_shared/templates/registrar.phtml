@@ -7,7 +7,7 @@
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/registro.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
-
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
@@ -120,6 +120,7 @@
                         <label for="numero_telefono" data-error="Numero de telefono inválido" data-success="Numero de telefono válido">Nº telefono</label>
                     </div>
                 </div>
+                <label for="condiciones">Acepta los términos y condiciones <a href="<?php echo PUBLIC_PATH ?>tyc" target="_blank">click aqui</a></label>
                 <!-- El boton esta deshabilitado. Para habilitarlo solo hay que reomver disable de la clase -->
                 <button id="submitButton" class="btn waves-effect waves-light" disabled="disabled" type="submit" name="action">Crear
                     <i class="material-icons right">send</i>
