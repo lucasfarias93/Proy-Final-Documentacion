@@ -59,7 +59,7 @@ class IndexController extends AdminController {
         if (Auth::get('id') != NULL) {
             view::json(Auth::get('id'));
         } else {
-            view::json(Auth::get('id'));
+            view::json(FALSE);
         }
     }
 

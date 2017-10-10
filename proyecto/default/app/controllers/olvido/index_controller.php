@@ -13,38 +13,34 @@ class IndexController extends AppController {
                 $usr = new Usuarios(Input::post('usuarios'));
                 $usrbd = new Usuarios();
                 $usrbd->filtrar_por_email($usr->email);
-                if (!$usrbd)
-                {
+                if (!$usrbd) {
                     throw new NegocioExcepcion("El mail ingresado no existe");
                 }
-                
-                    ////Mandar mail
-                    load::lib("phpmailer/class.phpmailer");
-                    $mail = new PHPMailer();
+                ////Mandar mail
+                load::lib("phpmailer/class.phpmailer");
+                $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
-                    $mail->IsSMTP();
-                    $mail->SMTPDebug = false;
-                    $mail->SMTPAuth = true;
-                    $mail->SMTPSecure = "ssl";
-                    $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
-                    $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
-                    $mail->Password = "gringodiego"; // Contraseña
-                    $mail->Port = 465; // Puerto a utilizar
+                $mail->IsSMTP();
+                $mail->SMTPDebug = false;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = "ssl";
+                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+                $mail->Password = "gringodiego"; // Contraseña
+                $mail->Port = 465; // Puerto a utilizar
 //Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
-                    $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
-                    $mail->FromName = "Soporte";
+                $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
+                $mail->FromName = "Soporte";
 //Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
-                    $mail->AddAddress($usr->email); // Esta es la dirección a donde enviamos
-                    //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
-                    $mail->IsHTML(true); // El correo se envía como HTML
-                    $aux = $usrbd->id;
-                    $link = '<a href="http://190.15.213.87:81/recuperar/index/index/' . $aux . '">Aqui</a>';
-                    $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
-                    $body = "Para recuperar tu cuenta hace click " . $link;
-                    $mail->Body = $body; // Mensaje a enviar
-                    $exito = $mail->Send(); // Envía el correo.
-
-
+                $mail->AddAddress($usr->email); // Esta es la dirección a donde enviamos
+                //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
+                $mail->IsHTML(true); // El correo se envía como HTML
+                $aux = $usrbd->id;
+                $link = '<a href="http://190.15.213.87:81/recuperar/index/index/' . $aux . '">Aqui</a>';
+                $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
+                $body = "Para recuperar tu cuenta hace click " . $link;
+                $mail->Body = $body; // Mensaje a enviar
+                $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
                 if ($exito) {
 //                    $usrbd->clave = MyAuth::hash("");
@@ -53,7 +49,7 @@ class IndexController extends AppController {
                     input::delete();
                     Router::redirect('login');
                 } else {
-                    throw new NegocioExcepcion("Nose pudo enviar el correo");
+                    throw new NegocioExcepcion("No se pudo enviar el correo");
                     input::delete();
                 }
             }
@@ -66,6 +62,12 @@ class IndexController extends AppController {
     public function correoandroid($email) {
         view::select(null, null);
         try {
+            $usrbd = new Usuarios();
+            $usrbd->filtrar_por_email($email);
+            if (!$usrbd) {
+                throw new NegocioExcepcion("El mail ingresado no existe");
+            }
+            else  {
             ////Mandar mail
             load::lib("phpmailer/class.phpmailer");
             $mail = new PHPMailer();
@@ -94,7 +96,9 @@ class IndexController extends AppController {
             $l->enlacerecuperacion = $codigo;
             $l->enlaceactivo = TRUE;
             $l->fechadeemision = NULL;
+            $l->idusuarios = $usrbd->id;
             $l->create();
+            }
 //También podríamos agregar simples verificaciones para saber si se envió:
             if ($exito) {
                 Flash::info("El correo fue enviado correctamente");
@@ -108,6 +112,7 @@ class IndexController extends AppController {
         } catch (NegocioExcepcion $e) {
             echo "El mail ingresado no existe en la Base de datos ";
             Flash::error($e->getMessage());
+            view::json(FALSE);
         }
     }
 

@@ -99,7 +99,11 @@ class IndexController extends AdminController {
 
     public function getCurrentId() {
         view::select(NULL, NULL);
-        view::json(Auth::get('id'));
+        if (Auth::get('id') != NULL) {
+            view::json(Auth::get('id'));
+        } else {
+            view::json(FALSE);
+        }
     }
 
 }
