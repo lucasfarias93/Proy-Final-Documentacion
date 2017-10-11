@@ -6,6 +6,22 @@
 </div> 
 <?php echo Form::open('admin/reporte', 'post', 'id="formReporte"') ?>
 <?php echo Form::dbselect('tiporeporte.idtiporeporte', 'nombretiporeporte', array('tiporeporte', 'find')) ?>
-
+<?php echo Form::submit('Ver') ?>
 <?php echo Form::close() ?>
 
+
+<table class="table table-bordered table-responsive">
+    <thead>
+        <tr>
+
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($listTiporeporte->items as $tr) { ?>
+            <tr>
+                <td><?php echo $tr->nombretiporeporte ?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>

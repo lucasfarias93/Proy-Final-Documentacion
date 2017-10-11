@@ -120,8 +120,10 @@
                         <label for="numero_telefono" data-error="Numero de telefono inválido" data-success="Numero de telefono válido">Nº telefono</label>
                     </div>
                 </div>
-                <label for="condiciones">Acepta los términos y condiciones <a href="<?php echo PUBLIC_PATH ?>tyc" target="_blank">click aqui</a></label>
+                                    <input name="condiciones" type="checkbox" checked/> 
+                                    <label for="condiciones">  <a href="<?php echo PUBLIC_PATH ?>tyc" target="_blank"> Acepta los términos y condiciones</a></label>
                 <!-- El boton esta deshabilitado. Para habilitarlo solo hay que reomver disable de la clase -->
+                <br>
                 <button id="submitButton" class="btn waves-effect waves-light" disabled="disabled" type="submit" name="action">Crear
                     <i class="material-icons right">send</i>
                 </button>
