@@ -143,13 +143,14 @@ class AdminController extends Controller {
      */
     protected function _logueoValido($user, $pass, $encriptar = TRUE) {
         if (MyAuth::autenticar($user, $pass, $encriptar)) {
-
+//            Router::redirect("ciudadano");
             $usuario = Load::model("usuarios")->find_first("login = '$user'");
             Session::set("usuario_blanqueado", $usuario->id);
             if (isset($usuario->id) && $pass == '1234' && $usuario->clave_blanqueada == 't') {
                 Router::redirect("admin/usuarios/ingreso_contrasenia/");
                 return true;
             } else {
+                flash::info("llego");
                 $usuariorol = Load::model("roles_usuarios");
                 $usuariorol = $usuariorol->getPoseerol($usuario->id, 3);
                 if ($usuariorol) {
