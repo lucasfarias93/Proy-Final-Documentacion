@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/listado.css"  media="screen,projection"/>
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <?php View::content() ?>
+    <title>Actas digitales</title>
+    <body>
+
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Reportar error - <?php echo Auth::get('nombres'); ?></a>
+            </div>
+        </nav>  
+        <div class="center">
+            <div class="nav-wrapper">
+                <ul class="right-align dropdown-menu">
+                    <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                    <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+                </ul>
+
+            </div>
+            <div class="nav-wrapper">
+                <tr>
+                    <td><?php echo Html::img('Crear_Solicitud.png', 'Crear_Solicitud', array("width" => "48px", "height" => "48px")) ?></td>
+                    <td><?php echo Html::link("ciudadano/solicitud/", "Crear Solicitud"); ?></td>
+                </tr>
+            </div>
+            <div class="nav-wrapper">
+                <tr>
+                    <td><?php echo Html::img('Actas Caducadas.png', 'Solicitudes', array("width" => "48px", "height" => "48px")) ?></td>
+                    <td><?php echo Html::link("ciudadano/listado/", "Mis solicitudes"); ?></td>
+                </tr>
+            </div>
+            <div class="nav-wrapper">
+                <tr>
+                    <td><?php echo Html::img('Pedido Escaneo.png', 'Verificar_validez', array("width" => "48px", "height" => "48px")) ?></td>
+                    <td><?php echo Html::link("ciudadano/verificar/", "Verificar validez acta"); ?></td>
+                </tr>
+            </div>
+        </div>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+    </body>
+</html>
