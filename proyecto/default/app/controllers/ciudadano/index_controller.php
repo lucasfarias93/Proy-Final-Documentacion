@@ -40,6 +40,8 @@ class IndexController extends AdminController {
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
                 $ret[] = $dto;
                 View::json($ret);
+                session::set("tipolibro", $tipo);
+                session::set("parentesco", $parentesco);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }
