@@ -16,7 +16,7 @@
         <!-- Header con titulo -->
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Reportar error </a>
+                <a href="#" class="brand-logo center">Digitalizar acta</a>
             </div>
         </nav>  
         <div class="row">
@@ -28,28 +28,6 @@
                 <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
                 <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
             </ul>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered table-responsive" id="myTable">
-                    <thead>
-                        <tr>
-
-                            <th>Tipo de reclamo</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($listTiporeclamo as $tr) { ?>
-                            <tr>
-                                <td><?php echo $tr->nombretiporeclamo ?></td>
-                                <td><?php echo $tr->descripciontiporeclamo ?></td>
-                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/reportarerror/reclamar/" . $tr->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/next.png"></a></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
         </div>
 
         <!--Import jQuery before materialize.js-->

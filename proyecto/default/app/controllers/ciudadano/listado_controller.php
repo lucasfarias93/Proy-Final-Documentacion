@@ -23,6 +23,8 @@ class ListadoController extends AdminController {
     }
 
     public function cancelar($id) {
+//        view::template('rectificardatos');
+        view::select(NULL,NULL);
         try {
             var_dump($id);
             $se = new Solicitudestado();
