@@ -5,14 +5,14 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/listado.css"  media="screen,projection"/>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-    <div id="mensajes_flash" >        
-        <?php View::content() ?>
-    </div> 
-    <title>Listado Solicitudes</title>
+        <div id="mensajes_flash" >        
+            <?php View::content() ?>
+        </div> 
+        <title>Listado Solicitudes</title>
 
         <!-- Header con titulo -->
         <nav>
@@ -57,33 +57,36 @@
                                 <td><?php echo $as->nombretiposolicitud ?></td>
                                 <td><?php echo $as->fechacambioestado ?></td>
                                 <td><?php echo $as->nombreestadosolicitud ?></td>
+                                <?php if ($as->nombreestadosolicitud == "Confirmada" || $as->nombreestadosolicitud == "Pendiente de pago") { ?>
+                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                                <?php } ?> 
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
         </div>
-    <script>
-        function myFunction() {
-          // Declare variables 
-          var input, filter, table, tr, td, i;
-          input = document.getElementById("myInput");
-          filter = input.value.toUpperCase();
-          table = document.getElementById("myTable");
-          tr = table.getElementsByTagName("tr");
+        <script>
+            function myFunction() {
+                // Declare variables 
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
 
-          // Loop through all table rows, and hide those who don't match the search query
-          for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-              } else {
-                tr[i].style.display = "none";
-              }
-            } 
-          }
-        }
-      </script>
-      </body>
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
 </html>

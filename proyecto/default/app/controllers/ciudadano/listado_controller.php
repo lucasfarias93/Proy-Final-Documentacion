@@ -1,6 +1,7 @@
 <?php
 
 Load::models('solicitudacta');
+Load::models('solicitudestado');
 Load::models('parentesco');
 
 class ListadoController extends AdminController {
@@ -19,6 +20,21 @@ class ListadoController extends AdminController {
         $sa = new Solicitudacta();
         $this->listSolicitudacta = $sa->buscar_solicitud_acta($id, $page);
         view::json($this);
+    }
+
+    public function cancelar($id) {
+        try {
+            var_dump($id);
+            $se = new Solicitudestado();
+            $se->idsolicitudacta = $id;
+            $se->idestadosolicitud = 5;
+            $se->fechacambioestado = NULL;
+            Logger::error($se);
+            $se->create();
+            return Redirect::to();
+        } catch (KumbiaException $e) {
+            View::excepcion($e);
+        }
     }
 
 }

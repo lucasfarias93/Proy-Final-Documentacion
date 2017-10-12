@@ -8,54 +8,55 @@
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Verificar validez</title>
+        <title>Verificar validez</title>
     </head>
     <body>
-    
 
-    <!-- Header con titulo -->
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Verificar validez</a>
+
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Verificar validez</a>
+            </div>
+        </nav>  
+        <div class="row">
+            <ul class="left-align col s6">
+                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+            </ul>
+            <ul class="right-align col s6">
+                <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+            </ul>
         </div>
-    </nav>  
-    <div class="row">
-        <ul class="left-align col s6">
-            <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-            <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-        </ul>
-        <ul class="right-align col s6">
-            <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-            <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-        </ul>
-    </div>
-    <div class="login">
-        <div id="mensajes_flash" >        
-        <?php View::content() ?>
-    </div> 
-        <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
-        <ul><?php echo Html::img('verificar.jpeg', 'Verificar', array("width" => "200px", "height" => "200px")) ?></ul>
-        <div class="row col s12 m12 l12">
-            <input type="text" placeholder="Código" name="codigo" id="input1"><br>
-            <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">
+        <div class="login">
+            <div id="mensajes_flash" >        
+                <?php View::content() ?>
+            </div> 
+            <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
+            <ul><?php echo Html::img('verificar.jpeg', 'Verificar', array("width" => "200px", "height" => "200px")) ?></ul>
+            <div class="row col s12 m12 l12">
+                <input type="text" placeholder="Código" name="codigo" id="input1"><br>
+                <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">
+            </div>
         </div>
-    </div>
-    <script>
-        $("#boton1").click(function () {
-            $.ajax({
-                data: {
-                    'codigo': $("#input1").val()
-                },
-                url: "<?php echo PUBLIC_PATH ?>ciudadano/verificar/verificar_validez_usuario",
-                type: 'post',
-                success: function (response) {
-                           
-                            $("#mensajes_flash").html(response);
-                        }
-            }
-            );
-        });
-    </script>
+        <script>
+            $("#boton1").click(function () {
+                $.ajax({
+                    data: {
+                        'codigo': $("#input1").val()
+                    },
+                    url: "<?php echo PUBLIC_PATH ?>ciudadano/verificar/verificar_validez_usuario",
+                    type: 'post',
+                    success: function (response) {
+
+                        $("#mensajes_flash").html(response);
+                    }
+                }
+                );
+            });
+        </script>
     </body>
 </html>

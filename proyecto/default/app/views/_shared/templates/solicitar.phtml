@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html >
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Crear Solicitud</title>
 
@@ -22,16 +23,16 @@
             </div>
         </nav> 
 
-            <div class="row">
-                <ul class="left-align col s6">
-                    <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                    <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-                </ul>
-                <ul class="right-align col s6">
-                    <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                    <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-                </ul>
-            </div>
+        <div class="row">
+            <ul class="left-align col s6">
+                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+            </ul>
+            <ul class="right-align col s6">
+                <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+            </ul>
+        </div>
 
         <?php view::content() ?>
         <!-- multistep form -->
@@ -47,6 +48,8 @@
             </ul>
             <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
             <fieldset>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                
                 <div id="respuesta" ></div>
                 <h2 class="fs-title">CREAR SOLICITUD</h2>
                 <h3 class="fs-subtitle-left">Seleccione tipo de acta a solicitar</h3>
@@ -63,6 +66,8 @@
 
             <!-- fieldsets 2: Se muestra una vista previa del acta cuando se selecciona -->
             <fieldset>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                
                 <h2 class="fs-title">Acta a expedir</h2>
                 <img id="img_acta" height="400" width="300">
                 <input type="button" name="previous" class="previous action-button" value="Anterior" />
@@ -75,13 +80,26 @@
                 <div class="row">
                     <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=275375435-d7e36ae5-3866-4b37-a4f7-1e3aede6999f" name="MP-payButton" class='blue-ar-l-rn-none'>Pagar</a>
                     <script type="text/javascript">
-                    (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+                        (function () {
+                            function $MPC_load() {
+                                window.$MPC_loaded !== true && (function () {
+                                    var s = document.createElement("script");
+                                    s.type = "text/javascript";
+                                    s.async = true;
+                                    s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                                    var x = document.getElementsByTagName('script')[0];
+                                    x.parentNode.insertBefore(s, x);
+                                    window.$MPC_loaded = true;
+                                })();
+                            }
+                            window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                        })();
                     </script>
                 </div>  
             </fieldset>
         </form>
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
-        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH      ?>js/jquery-3.2.1.min.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH       ?>js/jquery-3.2.1.min.js"></script>-->
         <script src="<?php echo PUBLIC_PATH ?>js/jquery.easing.min.js"></script>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
@@ -100,50 +118,50 @@
 
 
         <script>
-            $("#tipolibro_id").change(function () {
-                if (($("#tipolibro_id option:selected").val() != "")) {
+                        $("#tipolibro_id").change(function () {
+                            if (($("#tipolibro_id option:selected").val() != "")) {
 
-                    $.ajax({
-                        data: {
-                            'tipolibro': $("#tipolibro_id option:selected").val()
-                        },
-                        url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_parentesco_tipolibro",
-                        type: 'post',
-                        dataType: "json",
-                        success: function (response) {
-                            html = "";
-                            $.each(response, function (i, row) {
-                                html += '<p>'
-                                html += '<input class="with-gap" name="group3" value="' + row.id + '" type="radio" id="' + row.nombreparentesco + '_radio">'
-                                html += '<label for="' + row.nombreparentesco + '_radio">' + row.nombreparentesco + '</label>'
-                                html += '</p>'
-                            })
-                            $("#parentescos").html(html);
-                        }
-                    });
-                }
-            });
-            $("#boton1").click(function () {
-                if (($("#tipolibro_id option:selected").val() != "")) {
+                                $.ajax({
+                                    data: {
+                                        'tipolibro': $("#tipolibro_id option:selected").val()
+                                    },
+                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_parentesco_tipolibro",
+                                    type: 'post',
+                                    dataType: "json",
+                                    success: function (response) {
+                                        html = "";
+                                        $.each(response, function (i, row) {
+                                            html += '<p>'
+                                            html += '<input class="with-gap" name="group3" value="' + row.id + '" type="radio" id="' + row.nombreparentesco + '_radio">'
+                                            html += '<label for="' + row.nombreparentesco + '_radio">' + row.nombreparentesco + '</label>'
+                                            html += '</p>'
+                                        })
+                                        $("#parentescos").html(html);
+                                    }
+                                });
+                            }
+                        });
+                        $("#boton1").click(function () {
+                            if (($("#tipolibro_id option:selected").val() != "")) {
 
-                    $.ajax({
-                        data: {
-                            'tipolibro': $("#tipolibro_id option:selected").val(),
-                            'parentesco': $('input[name=group3]:checked').val()
-                        },
-                        url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
-                        type: 'post',
-                        dataType: "json",
-                        success: function (response) {
-                            imagen = response[0]
-                            $("#img_acta").attr("src", imagen.imagen);
-                        },
-                        fail: function (response) {
-                            $("#respuesta").html("No existe la imagen del acta")
-                        }
-                    });
-                }
-            });
+                                $.ajax({
+                                    data: {
+                                        'tipolibro': $("#tipolibro_id option:selected").val(),
+                                        'parentesco': $('input[name=group3]:checked').val()
+                                    },
+                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
+                                    type: 'post',
+                                    dataType: "json",
+                                    success: function (response) {
+                                        imagen = response[0]
+                                        $("#img_acta").attr("src", imagen.imagen);
+                                    },
+                                    fail: function (response) {
+                                        $("#respuesta").html("No existe la imagen del acta")
+                                    }
+                                });
+                            }
+                        });
         </script>
     </body>
 </html>
