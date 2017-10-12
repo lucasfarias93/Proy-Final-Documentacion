@@ -40,7 +40,7 @@ class Solicitudacta extends ActiveRecord {
 
         return $this->find_first($where, "columns: $cols", "join: $join");
     }
-
+    
 //    public function buscar_solicitud_estado($id, $page, $ppage = 20) {
 //        $cols = "solicitudestado.*";
 //        $where = " idsolicitudacta = '$id'";

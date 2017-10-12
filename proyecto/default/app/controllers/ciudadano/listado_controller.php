@@ -27,12 +27,16 @@ class ListadoController extends AdminController {
         view::select(NULL,NULL);
         try {
             var_dump($id);
+            $sa = new Solicitudacta();
+            $sa->find_first($id);
             $se = new Solicitudestado();
             $se->idsolicitudacta = $id;
             $se->idestadosolicitud = 5;
-            $se->fechacambioestado = NULL;
+            $se->fechacambioestado = UtilApp::fecha_actual();
             Logger::error($se);
             $se->create();
+            $sa->ultimosolicitudestado = $se->id;
+            $sa->update();
             return Redirect::to();
         } catch (KumbiaException $e) {
             View::excepcion($e);
