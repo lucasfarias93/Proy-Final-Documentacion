@@ -9,6 +9,7 @@ class IndexController extends AppController {
 
         load::lib("phpmailer/class.phpmailer");
         load::lib("phpmailer/class.smtp");
+        load::lib("phpmailer/PHPMailerAutoload");
         view::template(NULL);
         try {
             if (Input::hasPost('usuarios')) {
