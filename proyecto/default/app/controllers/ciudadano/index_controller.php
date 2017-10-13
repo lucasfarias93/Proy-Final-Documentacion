@@ -35,6 +35,7 @@ class IndexController extends AdminController {
                 $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "crop/" . $tmp . $ext;
                 $ruta = ExpertoImagen::obtener_ruta_completa($ubicacion . "/$datos->nombre");
                 if (!file_exists($ruta)) {
+                    Flash::error("No existe el acta");
                     throw new NegocioExcepcion("No existe el acta");
                 }
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
