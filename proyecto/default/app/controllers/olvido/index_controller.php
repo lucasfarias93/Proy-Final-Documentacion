@@ -25,8 +25,8 @@ class IndexController extends AppController {
         $phpmailer->Port = 465;
         $phpmailer->IsSMTP(); // use SMTP
         $phpmailer->SMTPAuth = true;
-        $phpmailer->setFrom($phpmailer->Username, $from_name);
-        $phpmailer->AddAddress($address_to); // recipients email
+        $phpmailer->From =$from_name;
+        $phpmailer->AddAddress =$address_to; // recipients email
         $phpmailer->Subject = $the_subject;
         $phpmailer->Body .= "<h1 style='color:#3498db;'>Hola Mundo!</h1>";
         $phpmailer->Body .= "<p>Mensaje personalizado</p>";
