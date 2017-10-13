@@ -42,7 +42,8 @@ class VerificarController extends AdminController {
 
     
 
-    public function verificar_validez_usuario_mobile($id, $codigo) {
+    public function verificar_validez_usuario_mobile($user, $pass, $id, $codigo) {
+        if(MyAuth::autenticar($user, $pass, TRUE)) {
         view::select(NULL, NULL);
         if ($id != NULL) {
             $sola = new Solicitudacta();
@@ -65,6 +66,7 @@ class VerificarController extends AdminController {
         } else {
             Flash::error("debe ingresar un codigo de pago");
         }
+    }
     }
 
 }
