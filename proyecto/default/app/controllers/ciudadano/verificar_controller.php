@@ -53,7 +53,8 @@ class VerificarController extends AdminController {
             if ($solacta != null) {
                 if ($diasrestantes > 1) {
                     // Flash::info("Acta valida quedan " . $diasrestantes . " dias");
-                    view::json("Acta valida quedan " . $diasrestantes . " dias");
+//                    view::json("Acta valida quedan " . $diasrestantes . " dias");
+                    view::json(TRUE);
                 } else {
                     Flash::error("Acta vencida");
                 }
