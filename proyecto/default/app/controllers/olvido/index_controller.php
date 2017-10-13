@@ -6,6 +6,7 @@ Load::models('linkrecuperacion');
 class IndexController extends AppController {
 
     public function index() {
+        require 'class.phpmailer.php';
         view::template(NULL);
         Logger::error("Hola");
         try {
@@ -24,7 +25,7 @@ class IndexController extends AppController {
                 $mail->SMTPDebug = false;
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = "ssl";
-                $mail->Host = "ssl://smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
                 $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
                 $mail->Password = "gringodiego"; // Contraseña
                 $mail->Port = 465; // Puerto a utilizar
@@ -66,38 +67,37 @@ class IndexController extends AppController {
             $usrbd->filtrar_por_email($email);
             if (!$usrbd) {
                 throw new NegocioExcepcion("El mail ingresado no existe");
-            }
-            else  {
-            ////Mandar mail
-            load::lib("phpmailer/class.phpmailer");
-            $mail = new PHPMailer();
+            } else {
+                ////Mandar mail
+                load::lib("phpmailer/class.phpmailer");
+                $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 2;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = "ssl";
-            $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
-            $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
-            $mail->Password = "gringodiego"; // Contraseña
-            $mail->Port = 465; // Puerto a utilizar
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 2;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = "ssl";
+                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+                $mail->Password = "gringodiego"; // Contraseña
+                $mail->Port = 465; // Puerto a utilizar
 //Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
-            $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
-            $mail->FromName = "Soporte";
+                $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
+                $mail->FromName = "Soporte";
 //Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
-            $mail->AddAddress($email); // Esta es la dirección a donde enviamos
-            //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
-            $mail->IsHTML(true); // El correo se envía como HTML
-            $codigo = rand(0, 9999);
-            $mail->Subject = "Recuperacion de su cuenta"; // Este es el titulo del email.
-            $body = "Tu codigo de activacion es: " . $codigo;
-            $mail->Body = $body; // Mensaje a enviar
-            $exito = $mail->Send(); // Envía el correo.
-            $l = new Linkrecuperacion();
-            $l->enlacerecuperacion = $codigo;
-            $l->enlaceactivo = TRUE;
-            $l->fechadeemision = NULL;
-            $l->idusuarios = $usrbd->id;
-            $l->create();
+                $mail->AddAddress($email); // Esta es la dirección a donde enviamos
+                //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
+                $mail->IsHTML(true); // El correo se envía como HTML
+                $codigo = rand(0, 9999);
+                $mail->Subject = "Recuperacion de su cuenta"; // Este es el titulo del email.
+                $body = "Tu codigo de activacion es: " . $codigo;
+                $mail->Body = $body; // Mensaje a enviar
+                $exito = $mail->Send(); // Envía el correo.
+                $l = new Linkrecuperacion();
+                $l->enlacerecuperacion = $codigo;
+                $l->enlaceactivo = TRUE;
+                $l->fechadeemision = NULL;
+                $l->idusuarios = $usrbd->id;
+                $l->create();
             }
 //También podríamos agregar simples verificaciones para saber si se envió:
             if ($exito) {
