@@ -27,7 +27,7 @@ class IndexController extends AppController {
                 $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
                 $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
                 $mail->Password = "gringodiego"; // Contraseña
-                $mail->Port = 587; // Puerto a utilizar
+                $mail->Port = 465; // Puerto a utilizar
 //Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
                 $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
                 $mail->FromName = "Soporte";
