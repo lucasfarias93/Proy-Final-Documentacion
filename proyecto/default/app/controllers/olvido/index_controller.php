@@ -20,6 +20,13 @@ class IndexController extends AppController {
                 load::lib("phpmailer/class.phpmailer");
                 $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
                 $mail->IsSMTP();
                 $mail->SMTPDebug = 2;
                 $mail->SMTPAuth = false;
