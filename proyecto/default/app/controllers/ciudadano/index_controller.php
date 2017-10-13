@@ -25,6 +25,7 @@ class IndexController extends AdminController {
                 $client = new SoapClient($servicio);
                 $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
                 $datos = $result->nacimiento_propiaResult->Objetos;
+                Logger::info($datos);
                 if (!isset($datos->ubicacion)) {
                     throw new NegocioExcepcion("No existen datos");
                 }
