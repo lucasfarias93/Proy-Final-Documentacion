@@ -23,8 +23,8 @@ class IndexController extends AppController {
                 $mail->IsSMTP();
                 $mail->SMTPDebug = false;
                 $mail->SMTPAuth = true;
-                $mail->SMTPSecure = "tls";
-                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                $mail->SMTPSecure = "ssl";
+                $mail->Host = "ssl://smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
                 $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
                 $mail->Password = "gringodiego"; // Contraseña
                 $mail->Port = 465; // Puerto a utilizar
