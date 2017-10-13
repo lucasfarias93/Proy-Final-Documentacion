@@ -15,14 +15,11 @@ class ReporteController extends AdminController {
         $this->listTiporeporte = $tr->getTiporeporte($page);
         if (Input::hasPost('tiporeporte')) {
             $tr = Input::post('tiporeporte');
-            foreach ($tr as $value) {
-                var_dump($value);
-                if ($value == 2) {
-                    var_dump("paso por el 2");
-                    $this->listTiporeporte = $tr->reporte_solicitudes_generadas();
-                    
-                }
-            }
+            var_dump($tr);
+        if(($tr['idtiporeporte']) ==2){
+                    $lista = Load::model('solicitudacta')->reporte_solicitudes_generadas();
+                    view::partial("solicitudes", FALSE,array("lista"=>$lista));
+        }
         }
     }
 

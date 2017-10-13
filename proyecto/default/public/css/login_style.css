@@ -10,8 +10,8 @@ body{
 	font-family: Arial;
 	font-size: 16px;
 
-	background-image: url('../img/gobierno.jpg');
-	background-size: cover;
+	background-image: url('../img/gobierno_2.png');
+	background-size: 1100px 850px;
 }
 
 .login{

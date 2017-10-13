@@ -38,10 +38,7 @@ class Tiporeporte extends ActiveRecord {
     }
         
 
-    public function reporte_solicitudes_generadas() {
-        $cols = "solicitudacta.*";
-        return $this->find("columns: $cols", "");
-    }
+
 
     public function reporte_usuarios_generados() {
         //falta hacer el COUNT

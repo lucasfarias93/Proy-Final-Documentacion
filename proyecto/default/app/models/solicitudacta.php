@@ -57,5 +57,10 @@ class Solicitudacta extends ActiveRecord {
 
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
+    
+        public function reporte_solicitudes_generadas() {
+        $cols = "solicitudacta.*";
+        return $this->find("columns: $cols");
+    }
 
 }

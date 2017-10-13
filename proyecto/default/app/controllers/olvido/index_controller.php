@@ -7,36 +7,7 @@ class IndexController extends AppController {
 
     public function index() {
 
-
-//        load::lib("phpmailer/class.phpmailer");
-//        $mail = new PHPMailer();
-//        $mail->IsSMTP();
-////        $mail->CharSet = "UTF-8";
-//        $mail->SMTPSecure = 'ssl';
-//        $mail->Host = 'smtp.gmail.com';
-//        $mail->Port = 465;
-//        $mail->Username = 'diegocosas@gmail.com';
-//        $mail->Password = 'gringodiego';
-//        $mail->SMTPAuth = true;
-//
-//        $mail->From = 'diegocosas@gmail.com';
-//        $mail->FromName = 'Mohammad Masoudian';
-//        $mail->AddAddress('anotherValidGmail@gmail.com');
-//        $mail->AddReplyTo('phoenixd110@gmail.com', 'Information');
-//
-//        $mail->IsHTML(true);
-//        $mail->Subject = "PHPMailer Test Subject via Sendmail, basic";
-//        $mail->AltBody = "To view the message, please use an HTML compatible email viewer!";
-//        $mail->Body = "Hello";
-//
-//        if (!$mail->Send()) {
-//            echo "Mailer Error: " . $mail->ErrorInfo;
-//        } else {
-//            echo "Message sent!";
-//        }
         load::lib("phpmailer/class.phpmailer");
-//        load::lib("phpmailer/class.smtp");
-//        load::lib("phpmailer/PHPMailerAutoload");
         view::template(NULL);
         try {
             if (Input::hasPost('usuarios')) {
@@ -50,13 +21,6 @@ class IndexController extends AppController {
                 load::lib("phpmailer/class.phpmailer");
                 $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
-                $mail->SMTPOptions = array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    )
-                );
                 $mail->IsSMTP();
                 $mail->SMTPDebug = 2;
                 $mail->SMTPAuth = true;
@@ -75,7 +39,7 @@ class IndexController extends AppController {
                 $aux = $usrbd->id;
                 $link = '<a href="http://190.15.213.87:81/recuperar/index/index/' . $aux . '">Aqui</a>';
                 $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
-                $body = "Para recuperar tu cuenta hace click " . $link;
+                $body = "Tu usuario es: ".$usrbd->login.". Para cambiar tu contrase&ntilde;a hace click " . $link;
                 $mail->Body = $body; // Mensaje a enviar
                 $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
