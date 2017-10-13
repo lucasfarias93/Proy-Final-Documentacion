@@ -11,10 +11,10 @@ class IndexController extends AppController {
         load::lib("phpmailer/class.phpmailer");
         $mail = new PHPMailer();
         $mail->IsSMTP();
-        $mail->CharSet = "UTF-8";
-        $mail->SMTPSecure = 'tls';
+//        $mail->CharSet = "UTF-8";
+        $mail->SMTPSecure = 'ssl';
         $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587;
+        $mail->Port = 465;
         $mail->Username = 'diegocosas@gmail.com';
         $mail->Password = 'gringodiego';
         $mail->SMTPAuth = true;
