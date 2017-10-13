@@ -7,8 +7,8 @@ class IndexController extends AppController {
 
     public function index() {
 
-        include "class.phpmailer.php";
-        include "class.smtp.php";
+        load::lib("phpmailer/class.phpmailer");
+        load::lib("phpmailer/class.smtp");
         $email_user = "diegocosas@gmail.com";
         $email_password = "gringodiego";
         $the_subject = "Phpmailer prueba by Evilnapsis.com";
