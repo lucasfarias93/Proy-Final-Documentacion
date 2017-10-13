@@ -8,8 +8,7 @@ class IndexController extends AppController {
     public function index() {
 
 
-        require_once('class.phpmailer.php');
-
+        load::lib("phpmailer/class.phpmailer");
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->CharSet = "UTF-8";
