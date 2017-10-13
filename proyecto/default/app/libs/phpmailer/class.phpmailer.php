@@ -588,8 +588,8 @@ class PHPMailer {
     /* Retry while there is no connection */
     while($index < count($hosts) && $connection == false) {
       $hostinfo = array();
-      if(eregi('^(.+):([0-9]+)$', $hosts[$index], $hostinfo)) {
-//      if(preg_match('/^([0-9]+)$/', $hosts[$index], $hostinfo)) {
+//      if(eregi('^(.+):([0-9]+)$', $hosts[$index], $hostinfo)) {
+      if(preg_match('^(.+):([0-9]+)$^', $hosts[$index], $hostinfo)) {
         $host = $hostinfo[1];
         $port = $hostinfo[2];
       } else {
@@ -644,12 +644,15 @@ class PHPMailer {
    * @access public
    * @return bool
    */
-  function SetLanguage($lang_type, $lang_path = 'language/') {
+  function SetLanguage($lang_type, $lang_path = '') {
+    $lang_path = dirname(__FILE__) ."/language/";
     if(file_exists($lang_path.'phpmailer.lang-'.$lang_type.'.php')) {
+        Logger::info("se agrego el lenguaje es");
       include($lang_path.'phpmailer.lang-'.$lang_type.'.php');
     } elseif (file_exists($lang_path.'phpmailer.lang-en.php')) {
       include($lang_path.'phpmailer.lang-en.php');
     } else {
+        
       $this->SetError('Could not load language file');
       return false;
     }
@@ -1202,12 +1205,15 @@ class PHPMailer {
       return '';
     }
     $magic_quotes = get_magic_quotes_runtime();
-    set_magic_quotes_runtime(0);
+    if($magic_quotes){
+        set_magic_quotes_runtime(0);
+    }
     $file_buffer = fread($fd, filesize($path));
     $file_buffer = $this->EncodeString($file_buffer, $encoding);
     fclose($fd);
-    set_magic_quotes_runtime($magic_quotes);
-
+    if($magic_quotes){
+        set_magic_quotes_runtime($magic_quotes);
+    }
     return $file_buffer;
   }
 
