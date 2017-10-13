@@ -6,7 +6,6 @@ Load::models('linkrecuperacion');
 class IndexController extends AppController {
 
     public function index() {
-        require 'class.phpmailer.php';
         view::template(NULL);
         Logger::error("Hola");
         try {
@@ -24,7 +23,7 @@ class IndexController extends AppController {
                 $mail->IsSMTP();
                 $mail->SMTPDebug = false;
                 $mail->SMTPAuth = true;
-                $mail->SMTPSecure = "ssl";
+                $mail->SMTPSecure = false;
                 $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
                 $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
                 $mail->Password = "gringodiego"; // Contraseña
