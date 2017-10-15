@@ -1,0 +1,29 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive" id="myTable">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>login</th>
+                    <th>Nombres</th>
+                    <th>Apellido</th>
+                    <th>dni</th>
+                    <th>idTramite</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($lista4 as $us) { ?>
+                    <tr>
+                        <td><?php echo $us->id ?></td>
+                        <td><?php echo $us->login ?></td>
+                        <td><?php echo $us->nombres ?></td>
+                        <td><?php echo $us->apellido ?></td>
+                        <td><?php echo $us->dni ?></td>
+                        <td><?php echo $us->idtramite ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

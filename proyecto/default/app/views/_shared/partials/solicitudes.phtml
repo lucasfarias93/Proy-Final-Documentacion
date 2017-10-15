@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($lista as $as) { ?>
+                <?php foreach ($lista2 as $as) { ?>
                     <tr>
                         <td><?php echo $as->nombrepropietarioacta ?></td>
                         <td><?php echo $as->numerosolicitud ?></td>
@@ -24,9 +24,6 @@
                         <td><?php echo $as->nombretiposolicitud ?></td>
                         <td><?php echo $as->fechacambioestado ?></td>
                         <td><?php echo $as->nombreestadosolicitud ?></td>
-                        <?php if ($as->nombreestadosolicitud == "Confirmada" || $as->nombreestadosolicitud == "Pendiente de pago") { ?>
-                            <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
-                        <?php } ?> 
                     </tr>
                 <?php } ?>
             </tbody>

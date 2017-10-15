@@ -40,7 +40,7 @@ class Solicitudacta extends ActiveRecord {
 
         return $this->find_first($where, "columns: $cols", "join: $join");
     }
-    
+
 //    public function buscar_solicitud_estado($id, $page, $ppage = 20) {
 //        $cols = "solicitudestado.*";
 //        $where = " idsolicitudacta = '$id'";
@@ -57,10 +57,19 @@ class Solicitudacta extends ActiveRecord {
 
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
-    
-        public function reporte_solicitudes_generadas() {
-        $cols = "solicitudacta.*";
-        return $this->find("columns: $cols");
+
+    public function reporte_solicitudes_generadas() {
+//        $cols = "solicitudacta.*";
+//        return $this->find("columns: $cols");
+        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombretiposolicitud, se.fechacambioestado, es.nombreestadosolicitud";
+        $where = " 1 = '1'";
+        $join = " join parentesco p on p.id = solicitudacta.idparentesco";
+        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
+        $join .= " join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
+        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
+        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
+
+        return $this->find($where, "columns: $cols", "join: $join");
     }
 
 }

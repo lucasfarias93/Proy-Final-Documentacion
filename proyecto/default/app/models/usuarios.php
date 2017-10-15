@@ -158,6 +158,7 @@ class Usuarios extends ActiveRecord {
         $this->commit();
         return TRUE;
     }
+
     /**
      * Crea un arreglo con pares idRol => nombreRol con los roles
      * que posee el usuario.
@@ -273,6 +274,7 @@ class Usuarios extends ActiveRecord {
         $where = " idtramite = '$idtramite'";
         return $this->find_first($where, "columns: $cols");
     }
+
     public function filtrar_por_id($id) {
         $cols = "usuarios.*";
         $where = " id = '$id'";
@@ -290,10 +292,17 @@ class Usuarios extends ActiveRecord {
         $where = " login = '$login'";
         return $this->find_first($where, "columns: $cols", "", "page: $pagina");
     }
+
     public function filtrar_por_email($email, $pagina = 1) {
         $cols = "usuarios.*";
         $where = " email = '$email'";
         return $this->find_first($where, "columns: $cols", "", "page: $pagina");
+    }
+
+    public function cantidad_usuarios() {
+        $cols = "usuarios.*";
+        $where = " 1 = '1'";
+        return $this->find($where, "columns: $cols");
     }
 
 }
