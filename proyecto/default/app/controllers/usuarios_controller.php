@@ -64,7 +64,6 @@ class UsuariosController extends AppController {
     
     public function crear_mobile($login, $idtramite, $dni, $clave, $clave2, $nombres, $apellido, $email) {
         view::select(null, null);
-        try {
                 //crear usuario nuevo y usuario de la bd segun el nombre del login
                 $usr = new Usuarios();
                 $usr -> login = $login;
@@ -81,31 +80,26 @@ class UsuariosController extends AppController {
                 
                 //Buscar coincidencias segun el nombre de login
                 if ($usrbd && $usr->login == $usrbd->login) {
-                    throw new NegocioExcepcion("El usuario ingresado ya existe");
-                }
+                    view::json("El usuario ingresado ya existe");
+                } else {
                 
                 //Buscar coincidencias segun el id tramite
                 $usrbd->filtrar_por_id($usr->idtramite);
                 if ($usrbd && $usr->idtramite == $usrbd->idtramite) {
-                    throw new NegocioExcepcion("El idtramite ingresado ya existe");
-                }
+                    view::json("El idtramite ingresado ya existe");
+                } else {
                 
                 //Buscar coincidencias segun el DNI
                 $usrbd->filtrar_por_dni($usr->dni);
                 if ($usrbd && $usr->dni == $usrbd->dni) {
-                    throw new NegocioExcepcion("El dni ingresado ya existe");
-                }        
+                    view::json("El dni ingresado ya existe");
+                } else { 
                 $usr->guardarCiudadano($usr, 3);
-                view::json("TRUE");
-        } catch (Exception $e) {
-            view::json($e->getMessage());
-            Flash::error("No se pudo guardar el usuario");
-            Logger::error($e->getMessage());
-            Logger::error($e->getTraceAsString());
+                view::json(TRUE);
+                }
+            }
         }
     }
-    
-    
     
     public function usuario($usuario) {
         $usr = new Usuarios();
