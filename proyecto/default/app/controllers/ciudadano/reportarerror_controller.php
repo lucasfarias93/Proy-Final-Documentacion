@@ -1,6 +1,8 @@
 <?php
 
 Load::models('tiporeclamo');
+Load::models('reclamoerroracta');
+Load::models('reclamoerroractaestado');
 
 class ReportarerrorController extends AppController {
 
