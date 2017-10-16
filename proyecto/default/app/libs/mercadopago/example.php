@@ -8,8 +8,8 @@ $mp = new MP ("8964709010269463", "6Oxo9JtYScHX7UcOiJYuQ9PEOy4rnbCy");
             array (
                 "title" => "Codigo Acta",
                 "quantity" => 1,
-                "currency_id" => "USD",
-                "unit_price" => 1
+                "currency_id" => "ARS",
+                "unit_price" => 18
             )
         )
     );
