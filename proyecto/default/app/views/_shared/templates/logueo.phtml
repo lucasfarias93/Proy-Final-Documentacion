@@ -23,6 +23,8 @@
         </nav> 
 
     <div class="row">
+        
+    <!-- Inicio seccion izquierda para validar acta -->
         <div class= "row col s6">
             <div id="mensajes_flash" >        
     </div> 
@@ -30,10 +32,12 @@
             <input type="text" placeholder="DNI" name="dni" id = "textodni"><br>
             <input type="text" placeholder="Código" name="codigo" id="textocodigo"><br>
             <div class="center">
-                <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="botonverificar">
+                <a class="btn-large waves-effect waves-light btn" id="botonverificar">Verificar</a>
             </div>
         </div>
 
+
+    <!-- Inicio seccion derecha para loguearse al sistema -->
         <div class= "row col s6">
             <div>Tenes usuario? Inicia sesión</div>
             <br><?php echo Form::open('admin', 'post') ?>
@@ -49,7 +53,7 @@
                         </div>
                         <!--<input type="checkbox" name="save" value="save" id="save" class="col s12 m12 l12"><label for="save" style="margin-left: 15px;"> Guardar usuario</label>-->
                         
-                    <input class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">
+                    <button class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
                 </div>
         </form>
         </div>
