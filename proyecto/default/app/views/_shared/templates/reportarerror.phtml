@@ -70,20 +70,36 @@
                 </div>
                 <div class="row">
                     <div class="input-field">
-                        <textarea name="comentarios" rows="10" cols="40">Escribe aquí tus comentarios</textarea>
+                        <textarea id="comentarios" name="comentarios" rows="10" cols="40">Escribe aquí tus comentarios</textarea>
                         <label for="comentarios">Escribe aquí tus comentarios</label>
                     </div>
                 </div>
-                <button id="submitButton" class="btn waves-effect waves-light" disabled="enabled" type="submit" name="action">Enviar informe de error<i class="material-icons right">send</i>
-                </button>
-                <div class="row" id="rta">
+                <div class="center">
+                    <button class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">Enviar
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
             </form>
         </div>
-        <?php echo Form::close() ?>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+        <script>
+            $("#boton1").click(function () {
+                $.ajax({
+                    data: {
+
+                    },
+                    url: "<?php echo PUBLIC_PATH ?>ciudadano/reportarerror/crear_reclamo",
+                    type: 'post',
+                    success: function (response) {
+
+                        $("#mensajes_flash").html(response);
+                    }
+                }
+                );
+            });
+        </script>
     </body>
 </html>

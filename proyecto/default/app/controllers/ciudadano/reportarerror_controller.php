@@ -11,28 +11,62 @@ class ReportarerrorController extends AppController {
     }
 
     public function index() {
+
         view::template('reportarerror');
         view::select(NULL);
         $tr = new Tiporeclamo();
         $this->listTiporeclamo = $tr->find();
     }
 
-    public function reclamar($id) {
-        if($id == 8){
-        view::template('rectificardatos');
-        view::select(NULL);
+    public function crear_reclamo() {
+        $rea = new Reclamoerroracta();
+
+        if (input::hasPost('idtiporeclamo')) {
+            $rea->idtiporeclamo = Input::post('anioacta');
+        if (input::hasPost('anioacta')) {
+            $rea->anioacta = Input::post('anioacta');
+        } else {
+            $rea->anioacta = 0;
         }
-        if($id == 7){
-        view::template('enlazar');
-        view::select(NULL);
+        if (input::hasPost('nroacta')) {
+            $rea->numeroacta = Input::post('nroacta');
+        } else {
+            $rea->numeroacta = 0;
         }
-        if($id == 6){
-        view::template('digitalizar');
-        view::select(NULL);
+        if (input::hasPost('nrolibro')) {
+            $rea->numerolibro = Input::post('nrolibro');
+        } else {
+            $rea->numerolibro = 0;
         }
-//        if ($id) {
-//            var_dump($id);
-//        }
+        if (input::hasPost('nombre')) {
+            $rea->nombrepropietarioacta = Input::post('nombre');
+        } else {
+            $rea->nombrepropietarioacta = "";
+        }
+        if (input::hasPost('apellido')) {
+            $rea->apellidopropietarioacta = Input::post('apellido');
+        } else {
+            $rea->apellidopropietarioacta = "";
+        }
+        if (input::hasPost('comentarios')) {
+            $rea->observaciones = Input::post('comentarios');
+        } else {
+            $rea->observaciones = "";
+        }
+        $rea->numeroreclamo = $rea->buscar_ultimo_reclamo();
+        ///Ver como me traigo elacta que acabo de crear en la solicitud
+        $rea->idsolicitudacta = 1;
+        $rea->create();
+        $reclamoerroractaestado = new Reclamoerroractaestado();
+        $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
+        ///Con $rea->id le estoy seteando el id de lo que acabo de crear?
+        $reclamoerroractaestado->idreclamoerroracta = $rea->id;
+        ////////////El estado 1 es enviado al archivo
+        $reclamoerroractaestado->idestadoreclamoerroracta = 1;
+        $reclamoerroractaestado->create();
+        } else {
+            Flash::error("Debe elegir un tipo de reclamo para continuar");
+        }
     }
 
 }

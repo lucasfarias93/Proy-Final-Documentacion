@@ -27,6 +27,10 @@ class ReporteController extends AdminController {
                 $lista4 = Load::model('usuarios')->cantidad_usuarios();
                 view::partial("usuarios_registrados", FALSE, array("lista4" => $lista4));
             }
+            if (($tr['idtiporeporte']) == 6) {//Cantidad de reclamos
+                $lista4 = Load::model('reclamoerroracta')->cantidad_reclamos();
+                view::partial("reclamos", FALSE, array("lista6" => $lista6));
+            }
         }
     }
 
