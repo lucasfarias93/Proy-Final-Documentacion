@@ -55,7 +55,7 @@ class UsuariosController extends AppController {
         }
         catch (Exception $e) {
             Logger::error("Excepcion en el try");
-            Flash::error("No se pudo guardar el usuario");
+            Flash::error($e->getMessage());
             Logger::error($e->getMessage());
             Logger::error($e->getTraceAsString());
         }
@@ -98,7 +98,7 @@ class UsuariosController extends AppController {
                 $usr->guardarCiudadano($usr, 3);
                 view::json(TRUE);
         } catch (Exception $e) {
-            view::json(FALSE);
+            view::json($e->getMessage());
             Flash::error("No se pudo guardar el usuario");
             Logger::error($e->getMessage());
             Logger::error($e->getTraceAsString());
