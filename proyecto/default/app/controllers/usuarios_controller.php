@@ -96,9 +96,9 @@ class UsuariosController extends AppController {
                     throw new NegocioExcepcion("El dni ingresado ya existe");
                 }        
                 $usr->guardarCiudadano($usr, 3);
-                view::json("TRUE");
+                view::json(TRUE);
         } catch (Exception $e) {
-            view::json($e->getMessage());
+            view::json($e);
             Flash::error("No se pudo guardar el usuario");
             Logger::error($e->getMessage());
             Logger::error($e->getTraceAsString());
