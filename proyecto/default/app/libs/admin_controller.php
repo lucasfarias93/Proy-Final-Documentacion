@@ -150,13 +150,12 @@ class AdminController extends Controller {
                 Router::redirect("admin/usuarios/ingreso_contrasenia/");
                 return true;
             } else {
-                flash::info("llego");
                 $usuariorol = Load::model("roles_usuarios");
                 $usuariorol = $usuariorol->getPoseerol($usuario->id, 3);
                 if ($usuariorol) {
                     Router::redirect("ciudadano");
                 } else {
-                    flash::info("logueo valido");
+                    flash::info("Bienvenido");
                 }
                 return $this->_tienePermiso();
             }
