@@ -127,6 +127,19 @@ class ExpertoImagen {
         $type = pathinfo($uri, PATHINFO_EXTENSION);
         $data = file_get_contents($uri);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        Logger::info($base64);
+        $imagen = imagecreatefrompng($uri);
+        $dto = new stdClass();
+        $dto->imagen = $base64;
+        $dto->x = imagesx($imagen);
+        $dto->y = imagesy($imagen);
+        return $dto;
+    }
+    public static function buscar_datos_imagen_por_uri2($uri) {
+        $type = pathinfo($uri, PATHINFO_EXTENSION);
+        $data = file_get_contents($uri);
+        $base64 = base64_encode($data);
+        Logger::info($base64);
         $imagen = imagecreatefrompng($uri);
         $dto = new stdClass();
         $dto->imagen = $base64;
@@ -348,6 +361,39 @@ class ExpertoImagen {
         }
         if (file_exists($ruta_temporal_original)) {
             return ExpertoImagen::buscar_datos_imagen_por_uri($ruta_temporal_original);
+        } else {
+//            echo "aca";
+            return ExpertoImagen::buscar_imagen_ficticia_visualizar();
+        }
+    }
+    public static function convertir_imagen_mobile($uri, $estampar_marca_agua) {
+        $nombre = @end(explode("/", $uri));
+        $nombre_nuevo = explode(".", $nombre);
+        $nombre_nuevo = $nombre_nuevo[0];
+        $ruta_temporal_original = Config::get("config.application.carpeta_temporal_original") . $nombre_nuevo . ".png";
+//        echo "convert --resize 1200x800 '$uri' '$ruta_temporal_original'";
+        exec("convert  '$uri' '$ruta_temporal_original'");
+//        $imagick = new \Imagick($uri);
+//        $imagick->resizeImage(1200, 800, Imagick::FILTER_LANCZOS);
+//        $imagick->writeimage($ruta_temporal_original);
+//            echo "creando estampa1";
+        //colocar marca de agua para mostrar en pantalla
+        if ($estampar_marca_agua !== ESTAMPA_NINGUNA) {
+//            echo "creando estampa";
+//            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
+//            if (file_exists($ruta_temporal_original)) {
+//                $imagen = imagecreatefrompng($ruta_temporal_original);
+//                Load::negocio("imagen/fabrica_estampa");
+//                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
+//                $experto->estampar_imagen($imagen);
+////                $experto->estampar_imagen($imagick);
+//                imagepng($imagen, $ruta_temporal_estampa);
+//                $ruta_temporal_original = $ruta_temporal_estampa;
+//                imagedestroy($imagen);
+//            }
+        }
+        if (file_exists($ruta_temporal_original)) {
+            return ExpertoImagen::buscar_datos_imagen_por_uri2($ruta_temporal_original);
         } else {
 //            echo "aca";
             return ExpertoImagen::buscar_imagen_ficticia_visualizar();
