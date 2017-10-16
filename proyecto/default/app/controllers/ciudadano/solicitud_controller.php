@@ -11,10 +11,11 @@ class SolicitudController extends AdminController {
     }
 
     public function crear_solicitud() {
+        view::select(NULL,NULL);
         try {
             $sa = new Solicitudacta();
             $sa->nombrepropietarioacta = 'prueba';
-            $sa->numerosolicitud = 9;//1+$sa->buscar_ultimo_nro_solicitud();
+            $sa->numerosolicitud = 12;//1+$sa->buscar_ultimo_nro_solicitud();
             $sa->idusuario = Auth::get('id');
             $sa->idimagenacta = 3;
             $sa->idcupondepago = 1;
@@ -24,9 +25,10 @@ class SolicitudController extends AdminController {
             Logger::info(session::get("parentesco", $parentesco));
             $sa->create();
             $se = new Solicitudestado();
-            $se->idsolicitudacta = 6; //$sa->id;///le asigno el id del acta a la solicitud estado
+            $se->idsolicitudacta =    10; //$sa->id;///le asigno el id del acta a la solicitud estado
             $se->idestadosolicitud = 4; //confirmada
             $se->fechacambioestado = UtilApp::fecha_actual();
+            $se->create();
         } catch (NegocioExcepcion $e) {
             View::excepcion($e);
             Logger::info("paso por aca");
