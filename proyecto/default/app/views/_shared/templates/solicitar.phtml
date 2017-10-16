@@ -98,7 +98,7 @@
             </fieldset>
         </form>
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
-        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH        ?>js/jquery-3.2.1.min.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH         ?>js/jquery-3.2.1.min.js"></script>-->
         <script src="<?php echo PUBLIC_PATH ?>js/jquery.easing.min.js"></script>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
@@ -181,6 +181,20 @@
 //                                    }
                                 });
                             }
+                        });
+                        $("#boton2").click(function () {
+                            $.ajax({
+                                data: {
+                                    
+                                },
+                                url: "<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud",
+                                type: 'post',
+                                success: function (response) {
+
+                                    $("#mensajes_flash").html(response);
+                                }
+                            }
+                            );
                         });
         </script>
     </body>

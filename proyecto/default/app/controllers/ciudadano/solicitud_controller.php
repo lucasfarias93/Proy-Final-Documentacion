@@ -6,5 +6,9 @@ class SolicitudController extends AdminController {
         view::template('solicitar');
         view::select(NULL);
     }
+    
+    public function crear_solicitud(){
+        flash::info("Funciono");
+    }
 
 }
