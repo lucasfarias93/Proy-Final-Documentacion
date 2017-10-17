@@ -21,9 +21,10 @@ class Reclamoerroracta extends ActiveRecord {
 //        return $this->find($where, "columns: $cols", "join: $join");
 
     public function cantidad_reclamos() {
-        $cols = "reclamoerroracta.*, t.nombretiporeclamo";
+        $cols = "reclamoerroracta.*, t.nombretiporeclamo, u.login";
         $where = " 1 = '1'";
         $join = " join tiporeclamo t on t.id = reclamoerroracta.idtiporeclamo ";
+        $join .= " join usuarios u on u.id = reclamoerroracta.idusuario ";
         return $this->find($where, "columns: $cols","join: $join");
     }
 
