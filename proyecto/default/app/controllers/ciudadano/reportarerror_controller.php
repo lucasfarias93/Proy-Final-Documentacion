@@ -66,6 +66,7 @@ class ReportarerrorController extends AppController {
             ////////////El estado 1 es enviado al archivo
             $reclamoerroractaestado->idestadoreclamoerroracta = 1;
             $reclamoerroractaestado->create();
+            Flash::info("Reclamo realizado con éxito");
         } else {
             Flash::error("Debe elegir un tipo de reclamo para continuar");
         }
