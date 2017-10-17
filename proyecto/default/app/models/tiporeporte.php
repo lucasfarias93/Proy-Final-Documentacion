@@ -26,11 +26,11 @@ class Tiporeporte extends ActiveRecord {
     }
     
     public function reporte_actas_firmadas($page, $ppage = 20) {
-        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombretiposolicitud, se.fechacambioestado, es.nombreestadosolicitud";
+        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " ultimosolicitudestado = '6'";
         $join = " join parentesco p on p.id = solicitudacta.idparentesco";
         $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
-        $join .= " join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
+        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
         $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
 

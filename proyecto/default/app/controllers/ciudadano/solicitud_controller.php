@@ -11,21 +11,21 @@ class SolicitudController extends AdminController {
     }
 
     public function crear_solicitud() {
-        view::select(NULL,NULL);
+        view::select(NULL);
         try {
             $sa = new Solicitudacta();
             $sa->nombrepropietarioacta = 'prueba';
-            $sa->numerosolicitud = 12;//1+$sa->buscar_ultimo_nro_solicitud();
+            Logger::info($sa->buscar_ultimo_nro_solicitud());
+            $sa->numerosolicitud = 48;//1+$sa->buscar_ultimo_nro_solicitud();
             $sa->idusuario = Auth::get('id');
             $sa->idimagenacta = 3;
-            $sa->idcupondepago = 1;
-            $sa->idparentesco = 1;//session::get($parentesco);
-            $sa->idtiposolicitudacta = 1;//session::get($tipo);
+            $sa->idcupondepago = 4;
+            $sa->idparentesco = 1;//isset($parentesco);
+            $sa->idtipolibro = 1;//isset($tipo);
             $sa->ultimosolicitudestado = 4; //confirmada
-            Logger::info(session::get("parentesco", $parentesco));
             $sa->create();
             $se = new Solicitudestado();
-            $se->idsolicitudacta =    10; //$sa->id;///le asigno el id del acta a la solicitud estado
+            $se->idsolicitudacta =    48; //$sa->id;///le asigno el id del acta a la solicitud estado
             $se->idestadosolicitud = 4; //confirmada
             $se->fechacambioestado = UtilApp::fecha_actual();
             $se->create();

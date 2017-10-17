@@ -42,7 +42,7 @@
                             <th>N° de solicitud</th>
                             <th>Parentesco</th>
                             <th>Cupon de pago</th>
-                            <th>Tipo solicitud acta</th>
+                            <th>Tipo libro</th>
                             <th>Fecha solicitud </th>
                             <th>Estado solicitud </th>
                         </tr>
@@ -54,7 +54,7 @@
                                 <td><?php echo $as->numerosolicitud ?></td>
                                 <td><?php echo $as->nombreparentesco ?></td>
                                 <td><?php echo $as->codigodepago ?></td>
-                                <td><?php echo $as->nombretiposolicitud ?></td>
+                                <td><?php echo $as->nombrelibro ?></td>
                                 <td><?php echo $as->fechacambioestado ?></td>
                                 <td><?php echo $as->nombreestadosolicitud ?></td>
                                 <?php if ($as->nombreestadosolicitud == "Confirmada" || $as->nombreestadosolicitud == "Pendiente de pago") { ?>

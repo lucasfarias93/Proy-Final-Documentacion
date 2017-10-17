@@ -19,20 +19,18 @@ class Solicitudacta extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function buscar_ultimo_nro_solicitud(){
-        $cols = "solicitudacta.numerosolicitud ";
-        $where = " 1 = '1'";
-        $orderby = " order by numerosolicitud desc limit 1";
-        return $this->find($where, $orderby, "columns: $cols");
+    public function buscar_ultimo_nro_solicitud() {
+        $cols = "solicitudacta.* ";
+        $where = " 1 = '1' ORDER BY numerosolicitud DESC limit 1";
+        return $this->find($where, "columns: $cols");
     }
 
-
     public function buscar_solicitud_acta($id, $page, $ppage = 20) {
-        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombretiposolicitud, se.fechacambioestado, es.nombreestadosolicitud";
+        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " idusuario = '$id'";
         $join = " join parentesco p on p.id = solicitudacta.idparentesco";
         $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
-        $join .= " join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
+        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
         $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
 
@@ -49,31 +47,17 @@ class Solicitudacta extends ActiveRecord {
         return $this->find_first($where, "columns: $cols", "join: $join");
     }
 
-//    public function buscar_solicitud_estado($id, $page, $ppage = 20) {
-//        $cols = "solicitudestado.*";
-//        $where = " idsolicitudacta = '$id'";
-//        $join = " join parentesco p on p.id = solicitudacta.idparentesco";
-//        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
-//        $join .= " join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
-//        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
-//        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
-//
-//        return $this->find($where, "columns: $cols", "join: $join");
-//    }
-
     public function getSolicitudacta($page, $ppage = 20) {
 
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
 
     public function reporte_solicitudes_generadas() {
-//        $cols = "solicitudacta.*";
-//        return $this->find("columns: $cols");
-        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombretiposolicitud, se.fechacambioestado, es.nombreestadosolicitud";
+        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " 1 = '1'";
         $join = " join parentesco p on p.id = solicitudacta.idparentesco";
         $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
-        $join .= " join tiposolicitudacta t on t.id = solicitudacta.idtiposolicitudacta ";
+        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
         $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
 
