@@ -68,7 +68,7 @@ class ReportarerrorController extends AppController {
             $reclamoerroractaestado->create();
             Flash::info("Reclamo realizado con éxito");
         } else {
-            Flash::error("Debe elegir un tipo de reclamo para continuar");
+            Flash::error("Debe elegir un tipo de reclamo para poder continuar");
         }
     }
 
