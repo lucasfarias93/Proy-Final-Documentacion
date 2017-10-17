@@ -119,8 +119,8 @@
                         <label for="numero_telefono" data-error="Numero de telefono inválido" data-success="Numero de telefono válido">Nº telefono</label>
                     </div>
                 </div>
-                                    <input id="condiciones" type="checkbox"/> 
-                                    <label for="condiciones">  <a href="<?php echo PUBLIC_PATH ?>tyc" target="_blank"> Acepta los términos y condiciones</a></label>
+                <input id="condiciones" type="checkbox"/> 
+                <label for="condiciones">  <a href="<?php echo PUBLIC_PATH ?>tyc" target="_blank"> Acepta los términos y condiciones</a></label>
                 <!-- El boton esta deshabilitado. Para habilitarlo solo hay que reomver disable de la clase -->
                 <br>
                 <button id="submitButton" class="btn waves-effect waves-light" disabled="disabled" type="submit" name="action">Crear
@@ -187,7 +187,7 @@
                     $('#submitButton').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
                 }
             });
-            $("#condiciones").click(function(){
+            $("#condiciones").click(function () {
                 $('form input').keyup()
             })
         })()
@@ -368,6 +368,7 @@
                 type: 'POST',
                 success: function (response) {
                     alert("exito");
+                    window.open('login')
                 },
                 error: function (response) {
                     $("#rta").html(response.responseText);

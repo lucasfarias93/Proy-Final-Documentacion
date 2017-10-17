@@ -11,13 +11,15 @@
             <tbody>
                 <?php foreach ($lista6 as $r) { ?>
                     <tr>
-                        <td><?php echo $r->numeroreclamo ?></td>
                         <td><?php echo $r->anioacta ?></td>
-                        <td><?php echo $r->numerolibro ?></td>
-                        <td><?php echo $r->numeroacta ?></td>
-                        <td><?php echo $r->nombrepropietarioacta ?></td>
                         <td><?php echo $r->apellidopropietarioacta ?></td>
+                        <td><?php echo $r->nombrepropietarioacta ?></td>
+                        <td><?php echo $r->numeroacta ?></td>
                         <td><?php echo $r->observaciones ?></td>
+                        <td><?php echo $r->id ?></td>
+                        <td><?php echo $r->nombretiporeclamo ?></td>
+                        <td><?php echo $r->idsolicitudacta ?></td>
+                        <td><?php echo $r->numerolibro ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

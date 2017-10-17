@@ -19,11 +19,6 @@ class Solicitudacta extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function buscar_ultimo_nro_solicitud() {
-        $cols = "solicitudacta.* ";
-        $where = " 1 = '1' ORDER BY numerosolicitud DESC limit 1";
-        return $this->find($where, "columns: $cols");
-    }
 
     public function buscar_solicitud_acta($id, $page, $ppage = 20) {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";

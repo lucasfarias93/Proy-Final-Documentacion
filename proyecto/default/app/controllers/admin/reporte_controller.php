@@ -20,7 +20,7 @@ class ReporteController extends AdminController {
                 view::partial("solicitudes", FALSE, array("lista2" => $lista2));
             }
             if (($tr['idtiporeporte']) == 3) {//Ganancias
-                $lista2 = Load::model('cupondepago')->monto_pagado();
+                $lista3 = Load::model('cupondepago')->monto_pagado();
                 view::partial("ganancias", FALSE, array("lista3" => $lista3));
             }
             if (($tr['idtiporeporte']) == 4) {//Usuarios registrados
@@ -28,7 +28,7 @@ class ReporteController extends AdminController {
                 view::partial("usuarios_registrados", FALSE, array("lista4" => $lista4));
             }
             if (($tr['idtiporeporte']) == 6) {//Cantidad de reclamos
-                $lista4 = Load::model('reclamoerroracta')->cantidad_reclamos();
+                $lista6 = Load::model('reclamoerroracta')->cantidad_reclamos();
                 view::partial("reclamos", FALSE, array("lista6" => $lista6));
             }
         }

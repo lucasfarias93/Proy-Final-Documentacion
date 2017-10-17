@@ -9,15 +9,22 @@ class Reclamoerroracta extends ActiveRecord {
      *
 
      */
-    public function buscar_ultimo_reclamo() {
-        $cols = "reclamoerroracta.* MAX(numeroreclamo)";
-        $where = " 1 = '1'";
-        return $this->find($where, "columns: $cols");
-    }
+
+//    $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
+//        $where = " idusuario = '$id'";
+//        $join = " join parentesco p on p.id = solicitudacta.idparentesco";
+//        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
+//        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
+//        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
+//        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
+//
+//        return $this->find($where, "columns: $cols", "join: $join");
+
     public function cantidad_reclamos() {
-        $cols = "reclamoerroracta.*";
+        $cols = "reclamoerroracta.*, t.nombretiporeclamo";
         $where = " 1 = '1'";
-        return $this->find($where, "columns: $cols");
+        $join = " join tiporeclamo t on t.id = reclamoerroracta.idtiporeclamo ";
+        return $this->find($where, "columns: $cols","join: $join");
     }
 
     public function getReclamoerroractaestado($page, $ppage = 20) {

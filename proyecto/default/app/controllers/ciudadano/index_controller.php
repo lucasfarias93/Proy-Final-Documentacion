@@ -16,10 +16,12 @@ class IndexController extends AdminController {
     public function buscar_imagen() {
         try {
             if (Input::hasPost('tipolibro') && Input::hasPost('parentesco')) {
-                $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
-                $parametros['dni'] = Auth::get("dni");
                 $tipo = Input::post('tipolibro');
                 $parentesco = Input::post('parentesco');
+                session::set("tipolibro", $tipo);
+                session::set("parentesco", $parentesco);
+                $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
+                $parametros['dni'] = Auth::get("dni");
                 $parametros['tipo'] = $tipo; //es lo mismo con comillas simples que dobles
                 $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
                 $client = new SoapClient($servicio);
@@ -41,8 +43,6 @@ class IndexController extends AdminController {
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
                 $ret[] = $dto;
                 View::json($ret);
-                session::set("tipolibro", $tipo);
-                session::set("parentesco", $parentesco);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }

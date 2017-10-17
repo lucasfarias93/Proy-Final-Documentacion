@@ -5,8 +5,8 @@
             <thead>
                 <tr>
 
-                    <th>Nombre propietario acta</th>
                     <th>N° de solicitud</th>
+                    <th>Nombre propietario acta</th>
                     <th>Parentesco</th>
                     <th>Cupon de pago</th>
                     <th>Tipo libro</th>
@@ -17,8 +17,8 @@
             <tbody>
                 <?php foreach ($lista2 as $as) { ?>
                     <tr>
+                        <td><?php echo $as->id ?></td>
                         <td><?php echo $as->nombrepropietarioacta ?></td>
-                        <td><?php echo $as->numerosolicitud ?></td>
                         <td><?php echo $as->nombreparentesco ?></td>
                         <td><?php echo $as->codigodepago ?></td>
                         <td><?php echo $as->nombrelibro ?></td>
