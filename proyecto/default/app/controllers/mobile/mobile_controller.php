@@ -13,7 +13,6 @@ class MobileController extends AppController {
         if (MyAuth::autenticar($user, $pass, TRUE)) {
             if (Auth::is_valid()) {
                 view::json(TRUE);
-                $this->redirect("ciudadano");
             } else {
                 view::json(FALSE);
             }
