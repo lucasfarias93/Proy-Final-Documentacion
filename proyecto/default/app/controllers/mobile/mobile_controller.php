@@ -32,7 +32,6 @@ class MobileController extends AppController {
                 $diasrestantes = 300 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
                 if ($solacta != null) {
                     if ($diasrestantes > 1) {
-// Flash::info("Acta valida quedan " . $diasrestantes . " dias");
                         view::json("Acta valida quedan " . $diasrestantes . " dias");
                     } else {
                         Flash::error("Acta vencida");

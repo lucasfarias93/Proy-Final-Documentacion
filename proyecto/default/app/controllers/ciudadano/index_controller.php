@@ -91,7 +91,7 @@ class IndexController extends AdminController {
                 }
                 $dto = ExpertoImagen::convertir_imagen_mobile($ruta, ESTAMPA_CONSULTA);
                 $ret[] = $dto;
-                View::json($ret);
+                view::json($ret);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }
