@@ -7,7 +7,7 @@ class IndexController extends AppController {
 
     public function index() {
 
-//        load::lib("phpmailer/class.phpmailer");
+        load::lib("phpmailer/class.phpmailer");
         view::template(NULL);
         try {
             if (Input::hasPost('usuarios')) {
