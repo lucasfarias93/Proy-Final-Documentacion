@@ -19,7 +19,8 @@ class IndexController extends AppController {
                 }
                 ////Mandar mail
                 $mail = new PHPMailer();
-                $mail->SetLanguage("en", 'includes/phpMailer/language/');
+                $mail->SetLanguage('en', '/phpmailer/language/');
+//                $mail->SetLanguage("en", 'includes/phpMailer/language/');
 //Luego tenemos que iniciar la validación por SMTP:
                 $mail->IsSMTP();
                 $mail->SMTPDebug = 2;
