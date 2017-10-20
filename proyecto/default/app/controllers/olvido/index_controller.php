@@ -7,7 +7,7 @@ class IndexController extends AppController {
 
     public function index() {
 
-        load::lib("phpmailer/class.phpmailer");
+//        load::lib("phpmailer/class.phpmailer");
         view::template(NULL);
         try {
             if (Input::hasPost('usuarios')) {
@@ -18,7 +18,6 @@ class IndexController extends AppController {
                     throw new NegocioExcepcion("El mail ingresado no existe");
                 }
                 ////Mandar mail
-                load::lib("phpmailer/class.phpmailer");
                 $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
                 $mail->IsSMTP();
