@@ -23,7 +23,7 @@ class ExpertoOficios {
         $pdf->MultiCell(0, 8, $text);
 
         // Output the PDF document to a string
-        $fpdf = $pdf->Output('', 'S');
+        $fpdf = $pdf->Output('', 'F');
 
         require_once("library/SetaPDF/Autoload.php");
 

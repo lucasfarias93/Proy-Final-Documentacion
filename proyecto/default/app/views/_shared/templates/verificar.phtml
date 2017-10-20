@@ -52,16 +52,16 @@
                 <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
             </ul>
         </div>
-        <div class="login">
+        <div class="">
             <div id="mensajes_flash" >        
                 <?php View::content() ?>
                 <div>
-                    <ul class="center col s12">Verificá la validez del acta ingresando el dni y el código de pago: </ul>
+                    <!--<ul class="center col s12">Verificá la validez del acta ingresando el dni y el código de pago: </ul>-->
                     <ul class="center col s12"><?php echo Html::img('verificar.jpeg', 'Verificar', array("width" => "200px", "height" => "200px")) ?></ul></li>
                 </div>
                 <div class="center">
                     <div class="input-field">
-                        <input type="text" placeholder="Código" name="codigo" id="input1"><br>
+                        <input type="text" placeholder="Ingresa tu código" name="codigo" id="input1"><br>
                         <input class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">
                     </div>
                 </div>

@@ -41,6 +41,7 @@ class IndexController extends AdminController {
                     throw new NegocioExcepcion("No existe el acta");
                 }
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
+                session::set("imagen", $ruta);
                 $ret[] = $dto;
                 View::json($ret);
             } else {
@@ -49,6 +50,7 @@ class IndexController extends AdminController {
         } catch (NegocioExcepcion $ex) {
             view::select(null, null);
         }
+        
     }
 
     public function buscar_parentesco_tipolibro() {

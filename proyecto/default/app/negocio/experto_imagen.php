@@ -3,6 +3,7 @@
 /**
  * Este experto realiza todas las operaciones con las imagenes fisicas y todo lo concerniente a ellas (rutas , uris, etc )
  */
+Load::negocio("imagen/fabrica_estampa");
 class ExpertoImagen {
 
     /**
@@ -133,6 +134,7 @@ class ExpertoImagen {
         $dto->imagen = $base64;
         $dto->x = imagesx($imagen);
         $dto->y = imagesy($imagen);
+        $dto->uri = $uri;
         return $dto;
     }
     public static function buscar_datos_imagen_por_uri2($uri) {
@@ -347,17 +349,17 @@ class ExpertoImagen {
         //colocar marca de agua para mostrar en pantalla
         if ($estampar_marca_agua !== ESTAMPA_NINGUNA) {
 //            echo "creando estampa";
-//            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
-//            if (file_exists($ruta_temporal_original)) {
-//                $imagen = imagecreatefrompng($ruta_temporal_original);
-//                Load::negocio("imagen/fabrica_estampa");
-//                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
-//                $experto->estampar_imagen($imagen);
-////                $experto->estampar_imagen($imagick);
-//                imagepng($imagen, $ruta_temporal_estampa);
-//                $ruta_temporal_original = $ruta_temporal_estampa;
-//                imagedestroy($imagen);
-//            }
+            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
+            if (file_exists($ruta_temporal_original)) {
+                $imagen = imagecreatefrompng($ruta_temporal_original);
+                Load::negocio("imagen/fabrica_estampa");
+                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
+                $experto->estampar_imagen($imagen);
+//                $experto->estampar_imagen($imagick);
+                imagepng($imagen, $ruta_temporal_estampa);
+                $ruta_temporal_original = $ruta_temporal_estampa;
+                imagedestroy($imagen);
+            }
         }
         if (file_exists($ruta_temporal_original)) {
             return ExpertoImagen::buscar_datos_imagen_por_uri($ruta_temporal_original);
