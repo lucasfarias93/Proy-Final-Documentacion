@@ -20,7 +20,8 @@ class LoginController extends AppController {
      */
     public function index() {
         view::select(NULL, 'logueo');
-
+        //si viene un usuario logueado lo desologueo
+        MyAuth::cerrar_sesion();
 //       echo "HOLA";
 //       Logger::info("Probando el servicio");
 //       view::select(NULL, NULL);

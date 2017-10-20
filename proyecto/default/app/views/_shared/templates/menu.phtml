@@ -42,28 +42,29 @@
         </nav>  
         <div class="center">
             <div class="nav-wrapper">
-                <ul class="right-align dropdown-menu">
+                <ul class="right-align col s6">
                     <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
                     <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
                 </ul>
-
             </div>
             <div class="nav-wrapper">
                 <tr>
-                    <td><?php echo Html::img('Crear_Solicitud.png', 'Crear_Solicitud', array("width" => "48px", "height" => "48px")) ?></td>
+                    <td><?php echo Html::img('Crear_Solicitud.png', 'Crear_Solicitud', array("width" => "128px", "height" => "128px")) ?></td>
                     <td><?php echo Html::link("ciudadano/solicitud/", "Crear Solicitud"); ?></td>
                 </tr>
             </div>
+            <br>
             <div class="nav-wrapper">
                 <tr>
-                    <td><?php echo Html::img('Actas Caducadas.png', 'Solicitudes', array("width" => "48px", "height" => "48px")) ?></td>
+                    <td><?php echo Html::img('Actas Caducadas.png', 'Solicitudes', array("width" => "128px", "height" => "128px")) ?></td>
                     <td><?php echo Html::link("ciudadano/listado/", "Mis solicitudes"); ?></td>
                 </tr>
             </div>
+            <br>
             <div class="nav-wrapper">
                 <tr>
-                    <td><?php echo Html::img('Pedido Escaneo.png', 'Verificar_validez', array("width" => "48px", "height" => "48px")) ?></td>
-                    <td><?php echo Html::link("ciudadano/verificar/", "Verificar validez acta"); ?></td>
+                    <td><?php echo Html::img('verificar.png', 'Verificar_validez', array("width" => "128px", "height" => "128px")) ?></td>
+                    <td><?php echo Html::link("ciudadano/verificar/", "Verificar validez"); ?></td>
                 </tr>
             </div>
         </div>
