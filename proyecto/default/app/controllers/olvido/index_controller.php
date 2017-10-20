@@ -25,12 +25,20 @@ class IndexController extends AppController {
                 $mail->SMTPDebug = 2;
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
-                $mail->Host = "smtps.mendoza.gov.ar"; // SMTP a utilizar. Por ej. smtp.elserver.com
-                $mail->Username = "dggomez@mendoza.gov.ar"; // Correo completo a utilizar
-                $mail->Password = "ingeniero"; // Contraseña
+                $mail->SMTPAutoTLS = false;
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+                $mail->Password = "gringodiego"; // Contraseña
                 $mail->Port = 465; // Puerto a utilizar
 //Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
-                $mail->From = "dggomez@mendoza.gov.ar"; // Desde donde enviamos (Para mostrar)
+                $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
                 $mail->FromName = "Soporte";
 //Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
                 $mail->AddAddress($usr->email); // Esta es la dirección a donde enviamos
@@ -39,13 +47,11 @@ class IndexController extends AppController {
                 $aux = $usrbd->id;
                 $link = '<a href="http://190.15.213.87:81/recuperar/index/index/' . $aux . '">Aqui</a>';
                 $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
-                $body = "Tu usuario es: ".$usrbd->login.". Para cambiar tu contrase&ntilde;a hace click " . $link;
+                $body = "Tu usuario es: " . $usrbd->login . ". Para cambiar tu contrase&ntilde;a hace click " . $link;
                 $mail->Body = $body; // Mensaje a enviar
                 $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
                 if ($exito) {
-//                    $usrbd->clave = MyAuth::hash("");
-//                    $usrbd->update();
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
                     Router::redirect('login');
