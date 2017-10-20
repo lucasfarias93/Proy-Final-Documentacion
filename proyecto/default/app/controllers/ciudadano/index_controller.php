@@ -41,7 +41,7 @@ class IndexController extends AdminController {
                     throw new NegocioExcepcion("No existe el acta");
                 }
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
-                session::set("imagen", $ruta);
+                session::set("imagen", $dto);
                 $ret[] = $dto;
                 View::json($ret);
             } else {
