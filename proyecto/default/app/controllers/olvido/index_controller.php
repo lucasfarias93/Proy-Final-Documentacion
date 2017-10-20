@@ -50,7 +50,7 @@ class IndexController extends AppController {
                     Router::redirect('login');
                 } else {
                     $mail->ErrorInfo;
-                    throw new NegocioExcepcion("No se pudo enviar el correo");
+                    throw new NegocioExcepcion($mail->ErrorInfo);
                     input::delete();
                 }
             }
