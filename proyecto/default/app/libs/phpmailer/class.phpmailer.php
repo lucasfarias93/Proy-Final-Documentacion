@@ -647,7 +647,7 @@ class PHPMailer {
   function SetLanguage($lang_type, $lang_path = '') {
     $lang_path = dirname(__FILE__) ."/language/";
     if(file_exists($lang_path.'phpmailer.lang-'.$lang_type.'.php')) {
-        Logger::info("se agrego el lenguaje es");
+        Logger::info("se agrego el lenguaje en");
       include($lang_path.'phpmailer.lang-'.$lang_type.'.php');
     } elseif (file_exists($lang_path.'phpmailer.lang-en.php')) {
       include($lang_path.'phpmailer.lang-en.php');
