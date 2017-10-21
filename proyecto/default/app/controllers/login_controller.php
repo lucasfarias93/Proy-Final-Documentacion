@@ -22,19 +22,6 @@ class LoginController extends AppController {
         view::select(NULL, 'logueo');
         //si viene un usuario logueado lo desologueo
         MyAuth::cerrar_sesion();
-//       echo "HOLA";
-//       Logger::info("Probando el servicio");
-//       view::select(NULL, NULL);
-//        view::select(null, NULL);
-//        $ret = $this->_logueoValido("diego", "00000");
-//        var_dump($ret);
-//
-//        if ($ret) {
-//            view::json(TRUE);
-//        } else {
-//            View::json(FALSE);
-//            var_dump($ret);
-//        }
     }
 
     public function verificar_validez_entidad() {
@@ -63,19 +50,6 @@ class LoginController extends AppController {
             Flash::error("debe ingresar un codigo de pago");
         }
     }
-
-//    public function get_login($user, $pass) {
-//        view::select(null, NULL);
-//        $ret = $this->_logueoValido("diego", "23000");
-//        var_dump($ret);
-//
-//        if ($ret) {
-//            view::json(TRUE);
-//        } else {
-//            View::json(FALSE);
-//            var_dump($ret);
-//        }
-//    }
 
     /**
      * Crea un Registro

@@ -71,9 +71,7 @@
                         <div class="row col s12 m12 l12">
                             <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?>
                             <?php echo html::link('olvido', "Olvidaste tu cuenta?", array("class" => "href", "id" => "download-button")) ?>
-                        </div>
-                        <!--<input type="checkbox" name="save" value="save" id="save" class="col s12 m12 l12"><label for="save" style="margin-left: 15px;"> Guardar usuario</label>-->
-                        
+                        </div>                        
                     <button class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
                 </div>
         </form>
@@ -83,7 +81,7 @@
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
-        <!-- En init.js esta declarada la inicializacion del selector que se utiliza en tipo nro telefono-->
+        <!-- En init.js esta declarada la inicializacion de los selectores utilizados por materialize-->
         <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
         <script>
         $("#botonverificar").click(function () {
