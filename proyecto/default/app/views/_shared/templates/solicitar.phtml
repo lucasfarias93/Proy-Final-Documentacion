@@ -98,7 +98,7 @@
                 <h2 class="fs-title">Formas de Pago</h2>
                 <h3 class="fs-subtitle">Por el momento, utilizamos mercado pago para realizar los pagos</h3>
                 <div class="row">
-                    <a mp-mode="dftl" href="https://www.mercadopago.com/mla/checkout/start?pref_id=157723203-a225d4d6-adab-4072-ad92-6389ede0cabd" name="MP-payButton" class='blue-ar-l-rn-none'>Pagar</a>
+                    <a mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=157723203-a225d4d6-adab-4072-ad92-6389ede0cabd" name="MP-payButton" class='blue-ar-l-rn-none' onreturn="execute_my_onreturn">Pagar</a>
                     
                     <script type="text/javascript">
                     (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
@@ -205,6 +205,20 @@
                             }
                             );
                         });
+
+                        function execute_my_onreturn (json) {
+                            if (json.collection_status=='approved'){
+                                alert ('Pago acreditado');
+                            } else if(json.collection_status=='pending'){
+                                alert ('El usuario no completó el pago');
+                            } else if(json.collection_status=='in_process'){    
+                                alert ('El pago está siendo revisado');    
+                            } else if(json.collection_status=='rejected'){
+                                alert ('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+                            } else if(json.collection_status==null){
+                                alert ('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+                            }
+                        }
         </script>
     </body>
 </html>
