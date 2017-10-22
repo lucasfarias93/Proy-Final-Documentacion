@@ -38,6 +38,10 @@ table th, table td {
     color: white;
 }
 
+ tr:hover {
+ 	background:red !important;
+ }
+
 input, #input1 {
 	color: white;
 }
