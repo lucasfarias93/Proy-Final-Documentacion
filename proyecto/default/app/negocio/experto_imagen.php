@@ -128,7 +128,6 @@ class ExpertoImagen {
         $type = pathinfo($uri, PATHINFO_EXTENSION);
         $data = file_get_contents($uri);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        Logger::info($base64);
         $imagen = imagecreatefrompng($uri);
         $dto = new stdClass();
         $dto->imagen = $base64;
@@ -140,11 +139,11 @@ class ExpertoImagen {
     public static function buscar_datos_imagen_por_uri2($uri) {
         $type = pathinfo($uri, PATHINFO_EXTENSION);
         $data = file_get_contents($uri);
-        $base64 = base64_encode($data);
-        Logger::info($base64);
+        //$base64 = base64_encode($data);
+        
         $imagen = imagecreatefrompng($uri);
         $dto = new stdClass();
-        $dto->imagen = $base64;
+        $dto->imagen = $data;
         $dto->x = imagesx($imagen);
         $dto->y = imagesy($imagen);
         return $dto;
