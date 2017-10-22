@@ -41,26 +41,24 @@ class VerificarController extends AdminController {
     }
 
     public function verificar_validez_usuario_mobile($id, $codigo) {
-        if (MyAuth::autenticar($user, $pass, TRUE)) {
-            view::select(NULL, NULL);
-            if ($id != NULL) {
-                $sola = new Solicitudacta();
-                $solacta = $sola->buscar_solicitud_acta_por_codigo_pago($id, $codigo, $page = 1);
-                $fecha = $solacta->fechacambioestado;
-                $fechaactual = UtilApp::fecha_actual();
-                $diasrestantes = 300 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
-                if ($solacta != null) {
-                    if ($diasrestantes > 1) {
-                        view::json(TRUE);
-                    } else {
-                        Flash::error("Acta vencida");
-                    }
+        view::select(NULL, NULL);
+        if ($id != NULL) {
+            $sola = new Solicitudacta();
+            $solacta = $sola->buscar_solicitud_acta_por_codigo_pago($id, $codigo, $page = 1);
+            $fecha = $solacta->fechacambioestado;
+            $fechaactual = UtilApp::fecha_actual();
+            $diasrestantes = 300 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
+            if ($solacta != null) {
+                if ($diasrestantes > 1) {
+                    view::json(TRUE);
                 } else {
-                    Flash::error("No existen actas con los datos ingresados");
+                    Flash::error("Acta vencida");
                 }
             } else {
-                Flash::error("debe ingresar un codigo de pago");
+                Flash::error("No existen actas con los datos ingresados");
             }
+        } else {
+            Flash::error("debe ingresar un codigo de pago");
         }
     }
 
