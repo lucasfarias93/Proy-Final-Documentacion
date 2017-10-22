@@ -52,9 +52,9 @@ class IndexController extends AppController {
         }
         if ($usrbd->id) {
             // si encuentro el ID en la base de datos:
-            $userbd->clave = MyAuth::hash($clave);
-            $userbd->clave_blanqueada = true;
-            $userbd->update();
+            $usrbd->clave = MyAuth::hash($clave);
+            $usrbd->clave_blanqueada = true;
+            $usrbd->update();
             view::json(TRUE);
         } else {
             view::json(FALSE);
