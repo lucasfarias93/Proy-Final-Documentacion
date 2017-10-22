@@ -40,7 +40,7 @@ class VerificarController extends AdminController {
         }
     }
 
-    public function verificar_validez_usuario_mobile($user, $pass, $id, $codigo) {
+    public function verificar_validez_usuario_mobile($id, $codigo) {
         if (MyAuth::autenticar($user, $pass, TRUE)) {
             view::select(NULL, NULL);
             if ($id != NULL) {

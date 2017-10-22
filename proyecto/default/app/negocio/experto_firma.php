@@ -8,10 +8,9 @@
 
 class ExpertoOficios {
 
-public static function firmar_pdf($acta_id) {
-require_once('fpdf.php');
+    public static function firmar_pdf($acta_id) {
+        require_once('fpdf.php');
 
-$comando = "java -jar /home/firma/jsignpdf/JSignPdf.jar ".$_SERVER['DOCUMENT_ROOT'].PUBLIC_PATH."default/public.$url." -d ".$_SERVER['DOCUMENT_ROOT'].PUBLIC_PATH."default/public/files/firmados/pdf -kst BCPKCS12 -ksf /home/firma/certificado.p12 -ksp ".$clave_key." --bg-path /home/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
         // create an instance of FPDF
         $pdf = new fpdf();
         $pdf->AddPage();
@@ -52,8 +51,7 @@ $comando = "java -jar /home/firma/jsignpdf/JSignPdf.jar ".$_SERVER['DOCUMENT_ROO
 
         // sign/certify the document
         $signer->sign($module);
+        $comando = "java -jar /home/firma/jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default/public" . $url . " -d " . $_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default/public/files/firmados/pdf -kst BCPKCS12 -ksf /home/firma/certificado.p12 -ksp " . $clave_key . " --bg-path /home/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
     }
-    
-
 
 }

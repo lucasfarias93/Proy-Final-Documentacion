@@ -6,6 +6,7 @@ Load::models('reclamoerroractaestado');
 Load::models('solicitudacta');
 Load::models('solicitudestado');
 load::negocio('experto_actas');
+load::negocio('experto_firma');
 
 class ReportarerrorController extends AppController {
 
@@ -22,6 +23,7 @@ class ReportarerrorController extends AppController {
         $tr = new Tiporeclamo();
         $this->listTiporeclamo = $tr->find();
         ExpertoActas::generar_pdf(session::get("imagen"));
+        ExpertoOficios::firmar_pdf(session::get("imagen"));
     }
 
     public function crear_reclamo() {
