@@ -4,6 +4,7 @@
  * Este experto realiza todas las operaciones con las imagenes fisicas y todo lo concerniente a ellas (rutas , uris, etc )
  */
 Load::negocio("imagen/fabrica_estampa");
+
 class ExpertoImagen {
 
     /**
@@ -17,18 +18,18 @@ class ExpertoImagen {
             if (!file_exists($ruta)) {//existe el archivo y es una ruta a un directorio?
                 Logger::info("File not exists: $ruta");
 //                if (stripos($ruta, ".TIF") !== FALSE) { //es una ruta a un archivo?
-                    if (!is_file($ruta)) {
-                        $salida = shell_exec("mkdir $ruta -p");
-                        Logger::debug("Creando directorio: mkdir $ruta -p -> output: $salida");
-                        if (!chmod($ruta, 0777)) {
-                            $salida = shell_exec("chmod 777 $ruta -R");
-                            Logger::debug("chmod 777 $ruta -R -> output: $salida");
-                        } else {
-                            Logger::debug("Permisos correctamente otorgados, recurso inexistente");
-                        }
+                if (!is_file($ruta)) {
+                    $salida = shell_exec("mkdir $ruta -p");
+                    Logger::debug("Creando directorio: mkdir $ruta -p -> output: $salida");
+                    if (!chmod($ruta, 0777)) {
+                        $salida = shell_exec("chmod 777 $ruta -R");
+                        Logger::debug("chmod 777 $ruta -R -> output: $salida");
                     } else {
-                        Logger::debug("La ruta no es un directorio: $ruta");
+                        Logger::debug("Permisos correctamente otorgados, recurso inexistente");
                     }
+                } else {
+                    Logger::debug("La ruta no es un directorio: $ruta");
+                }
 //                }
             }
             if (!is_file($ruta)) {
@@ -136,17 +137,11 @@ class ExpertoImagen {
         $dto->uri = $uri;
         return $dto;
     }
+
     public static function buscar_datos_imagen_por_uri2($uri) {
         $type = pathinfo($uri, PATHINFO_EXTENSION);
         $data = file_get_contents($uri);
-        //$base64 = base64_encode($data);
-        
-        $imagen = imagecreatefrompng($uri);
-        $dto = new stdClass();
-        $dto->imagen = $data;
-        $dto->x = imagesx($imagen);
-        $dto->y = imagesy($imagen);
-        return $dto;
+        return $data;
     }
 
     public static function buscar_imagen_ficticia_visualizar() {
@@ -367,6 +362,7 @@ class ExpertoImagen {
             return ExpertoImagen::buscar_imagen_ficticia_visualizar();
         }
     }
+
     public static function convertir_imagen_mobile($uri, $estampar_marca_agua) {
         $nombre = @end(explode("/", $uri));
         $nombre_nuevo = explode(".", $nombre);
