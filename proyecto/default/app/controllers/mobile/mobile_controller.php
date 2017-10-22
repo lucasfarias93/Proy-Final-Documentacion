@@ -12,6 +12,7 @@ class MobileController extends AppController {
         view::select(null, null);
         if (MyAuth::autenticar($user, $pass, TRUE)) {
             if (Auth::is_valid()) {
+                Logger::info($_COOKIE);
                 view::json("PHPSESSID=".$_COOKIE["PHPSESSID"]);
             } else {
                 view::json(FALSE);
