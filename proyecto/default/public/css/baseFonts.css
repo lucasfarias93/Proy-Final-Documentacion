@@ -1,0 +1,43 @@
+/*para cambiar de color los labels*/
+label {
+	color:grey	 !important;
+}	
+
+/*para cambiar los colores de los input en todos los navegadores*/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: white;
+   opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: white;
+   opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: white;
+}
+
+/*para cambiar de color las opciones de select*/
+.select-wrapper input.select-dropdown {
+	color: white;
+}
+
+/*para cambiar el color de las tablas*/
+table th, table td {
+    text-align: left;
+    padding: 12px;
+    color: white;
+}
+
+input, #input1 {
+	color: white;
+}

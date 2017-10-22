@@ -28,6 +28,8 @@
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/registro.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
@@ -38,6 +40,7 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center">Registro de usuario</a>
+                <a href="/Users/gaston/Desktop/githubProyecto/Proy-Final-Documentacion/proyecto/default/public/img/logo.jpg" class="brand-logo"></a>
             </div>
         </nav>  
 
@@ -217,12 +220,8 @@
         $("#numero_tramite").change(function () {
             if (($("#numero_tramite").val() != "") && ($("#numero_documento").val() != "")) {
                 $("#nombres").val("");
-                $("#nombres").removeAttr("readonly");
-                $("#nombres").removeAttr("disabled");
 
                 $("#apellido").val("");
-                $("#apellido").removeAttr("readonly");
-                $("#apellido").removeAttr("disabled");
 
                 $.ajax({
                     data: {
@@ -234,14 +233,18 @@
                     dataType: "json",
                     success: function (response) {
                         if (response) {
+                            $("#nombres").removeAttr("readonly");
+                            $("#nombres").removeAttr("disabled");
                             $("#nombres").val(response.nombres);
-                            $("#nombres").attr("readonly", "readonly");
 
+                            $("#apellido").removeAttr("readonly");
+                            $("#apellido").removeAttr("disabled");
                             $("#apellido").val(response.apellido);
-                            $("#apellido").attr("readonly", "readonly")
                         } else {
                             alert("Revisar DNI y numero de tramite");
                         }
+                        $("#nombres").attr("readonly", "readonly");
+                        $("#apellido").attr("readonly", "readonly")
                     }
                 });
             }
@@ -250,12 +253,8 @@
         $("#numero_documento").change(function () {
             if (($("#numero_tramite").val() != "") && ($("#numero_documento").val() != "")) {
                 $("#nombres").val("");
-                $("#nombres").removeAttr("readonly");
-                $("#nombres").removeAttr("disabled");
 
                 $("#apellido").val("");
-                $("#apellido").removeAttr("readonly");
-                $("#apellido").removeAttr("disabled");
 
                 $.ajax({
                     data: {
@@ -267,14 +266,18 @@
                     dataType: "json",
                     success: function (response) {
                         if (response) {
+                            $("#nombres").removeAttr("readonly");
+                            $("#nombres").removeAttr("disabled");
                             $("#nombres").val(response.nombres);
-                            $("#nombres").attr("readonly", "readonly");
 
+                            $("#apellido").removeAttr("readonly");
+                            $("#apellido").removeAttr("disabled");
                             $("#apellido").val(response.apellido);
-                            $("#apellido").attr("readonly", "readonly")
                         } else {
                             alert("Revisar DNI y numero de tramite");
                         }
+                        $("#apellido").attr("readonly", "readonly")
+                        $("#nombres").attr("readonly", "readonly");
                     }
                 });
             }
