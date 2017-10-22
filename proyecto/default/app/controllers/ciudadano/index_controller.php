@@ -50,7 +50,6 @@ class IndexController extends AdminController {
         } catch (NegocioExcepcion $ex) {
             view::select(null, null);
         }
-        
     }
 
     public function buscar_parentesco_tipolibro() {
@@ -74,10 +73,10 @@ class IndexController extends AdminController {
             if ($tipolibro != null && $parentesco != null) {
                 $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
                 $parametros['dni'] = Auth::get("dni");
-                $parametros['tipo'] = $tipolibro; //es lo mismo con comillas simples que dobles
-                $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
+                $parametros['tipo'] = $tipolibro; 
+                $parametros['parentesco'] = $parentesco;
                 $client = new SoapClient($servicio);
-                $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
+                $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
                 $datos = $result->nacimiento_propiaResult->Objetos;
                 if (!isset($datos->ubicacion)) {
                     throw new NegocioExcepcion("No existen datos");
@@ -98,6 +97,16 @@ class IndexController extends AdminController {
             }
         } catch (NegocioExcepcion $ex) {
             view::select(null, null);
+        }
+    }
+
+    public function generar_pdf_mobile() {
+        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+        $urlmobile = $this->urlacta;
+        if ($urlmobile != NULL) {
+            view::json($urlmobile);
+        } else {
+            view::json("La imagen no se pudo convertir");
         }
     }
 

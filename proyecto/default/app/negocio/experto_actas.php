@@ -25,9 +25,9 @@ class ExpertoActas {
 //            $tmp = str_replace("TIF", "", $enlace_imagen->nombre);
 //            $ruta_temporal_original = Config::get("config.application.carpeta_temporal_original") . "/" . $tmp . "png";
         list($width_original, $height_original) = getimagesize($imagenes->uri);
-        $width_crop = $width_original;
-        $height_crop = $height_original;
-        $ruta_temporal_original_crop = Config::get("config.application.carpeta_temporal_original") . "/crop/" . $tmp . "png";
+//        $width_crop = $width_original;
+//        $height_crop = $height_original;
+//        $ruta_temporal_original_crop = Config::get("config.application.carpeta_temporal_original") . "/crop/" . $tmp . "png";
 
         $escalas = ExpertoActas::redimensionar($width_original, $height_original, 195, 276); //2480, 3508);//
         $x = $escalas["x_escalado"]; //$width_original*$porcentaje;//
@@ -49,9 +49,10 @@ class ExpertoActas {
 
         $nombre = 'pdf/acta_' . date("dmY", time()) . '.pdf';
         $pdf->Output($nombre, 'F');
+        $comando = "java -jar " . $_SERVER['DOCUMENT_ROOT'] . "jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . "default/public" . $nombre . " -d " . $_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default/public/pdf -kst BCPKCS12 -ksf /home/firma/certificado.p12 -ksp " . $clave_key . " --bg-path /home/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
+        //exec($comando);
         $url = PUBLIC_PATH . $nombre;
-        $json = '{"codigo":"1","mensaje":"' . $url . '" }';
-        return $json;
+        return $url;
     }
 
     public static function buscar_acta_segun_imagen_id($imagen_id) {
@@ -61,6 +62,7 @@ class ExpertoActas {
             return Load::model("acta_acta")->find_first($enlaces_acta[0]->acta_acta_id);
         return null;
     }
+
     public static function redimensionar($dim_x, $dim_y, $ancho, $alto) {
         if ($dim_y) { //Para asegurarnos de que dim[1] es diferente de cero
             $cociente = $dim_x / $dim_y;

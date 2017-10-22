@@ -110,10 +110,10 @@ class ExpertoImagen {
      */
     public static function buscar_imagenes_directorio($libro_id) {
         $ruta = ExpertoEnlace::obtener_ruta_directorio_segun_libro_id($libro_id);
-        //ExpertoImagen::verificar_ruta($ruta);
-        //Flash::info("la ruta es ....".$ruta);
+//ExpertoImagen::verificar_ruta($ruta);
+//Flash::info("la ruta es ....".$ruta);
         $ruta_opc = substr($ruta, 0, -6);
-        //Flash::info("la ruta es ....".$ruta_opc);
+//Flash::info("la ruta es ....".$ruta_opc);
 //        $salida = shell_exec("chmod 777 '$ruta' ");
 //        echo $salida;
         $imagenes = scandir($ruta, SCANDIR_SORT_ASCENDING);
@@ -180,7 +180,7 @@ class ExpertoImagen {
         $enlace_imagen = Load::model("enlace_imagen")->find_first($imagen_id);
         $tmp = str_replace("TIF", "", $enlace_imagen->nombre);
         $ruta_temporal_original = Config::get("config.application.carpeta_temporal_original") . "/" . $tmp . $ext;
-        //echo "original ".$ruta_temporal_original;
+//echo "original ".$ruta_temporal_original;
         $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "/crop/" . $tmp . $ext;
         $ruta_temporal_crop_estampa = Config::get("config.application.carpeta_temporal_estampa") . "/crop/" . $tmp . $ext;
         $data = file_get_contents($ruta_temporal_original);
@@ -201,7 +201,7 @@ class ExpertoImagen {
             $width = 800;
             $porcentaje = 1;
         }
-        // $porcentaje = 800/$width;
+// $porcentaje = 800/$width;
         $selectorW = $selectorW / $porcentaje;
         $selectorH = $selectorH / $porcentaje;
         $selectorX = $selectorX / $porcentaje;
@@ -232,23 +232,23 @@ class ExpertoImagen {
     public static function crop_enlace($libro_id, $archivo, $pWidth, $pHeight, $selectorX, $selectorY, $selectorH, $selectorW, $viewPortH, $viewPortW, $rotate) {
         $ext = "png";
         $libro = Load::model("base_libro")->find_first($libro_id);
-        //$tmp = str_replace("TIF", "", $enlace_imagen->nombre);
+//$tmp = str_replace("TIF", "", $enlace_imagen->nombre);
         $tipo_libro = Load::model("base_tipo_libro")->find_first($libro->base_tipo_libro_id);
         $ubic = $tipo_libro->tipo . "/" . $libro->anio . "/" . $libro->numero;
         $ruta_temporal_original = Config::get("config.application.ruta_imagenes") . "/" . $ubic . "/" . $archivo;
         $tmp = str_replace("TIF", "", $archivo);
         $tmp = str_replace("tif", "", $tmp);
         $ruta_temporal_png = Config::get("config.application.carpeta_temporal_original") . "/" . $tmp . $ext;
-        //echo "original ".$ruta_temporal_original;
-        //$ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "/crop/" . $tmp . $ext;
-        //$ruta_temporal_crop_estampa = Config::get("config.application.carpeta_temporal_estampa") . "/crop/" . $tmp . $ext;
-        //echo "ruta png ".$ruta_temporal_png;
+//echo "original ".$ruta_temporal_original;
+//$ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "/crop/" . $tmp . $ext;
+//$ruta_temporal_crop_estampa = Config::get("config.application.carpeta_temporal_estampa") . "/crop/" . $tmp . $ext;
+//echo "ruta png ".$ruta_temporal_png;
         $data = file_get_contents($ruta_temporal_png);
         $image = imagecreatefromstring($data);
 
         $width = imagesx($image);
         $height = imagesy($image);
-        //echo "altura ".$height." - ".$width;
+//echo "altura ".$height." - ".$width;
         if ($width > $height) {
             $porcentaje = (800) / $width;
         } else {
@@ -262,8 +262,8 @@ class ExpertoImagen {
             $width = 800;
             $porcentaje = 1;
         }
-        // $porcentaje = 800/$width;
-        //$porcentaje = 1;
+// $porcentaje = 800/$width;
+//$porcentaje = 1;
         $selectorW = $selectorW / $porcentaje;
         $selectorH = $selectorH / $porcentaje;
         $selectorX = $selectorX / $porcentaje;
@@ -274,14 +274,14 @@ class ExpertoImagen {
             $comando = "convert $ruta_temporal_original -crop {$selectorW}x{$selectorH}+{$selectorX}+{$selectorY} +repage $ruta_temporal_original";
         }
 
-        //echo $comando;
+//echo $comando;
         shell_exec($comando);
-        //Load::negocio("imagen/fabrica_estampa");
-        //$data = file_get_contents($ruta_temporal_original);
-        //$imagenes[$imagen_id] = "";
-        //$selector = imagecreatefromstring($data);
-        //$experto = FabricaEstampa::get_experto(ESTAMPA_CONSULTA);
-        //$experto->estampar_imagen($selector);
+//Load::negocio("imagen/fabrica_estampa");
+//$data = file_get_contents($ruta_temporal_original);
+//$imagenes[$imagen_id] = "";
+//$selector = imagecreatefromstring($data);
+//$experto = FabricaEstampa::get_experto(ESTAMPA_CONSULTA);
+//$experto->estampar_imagen($selector);
         /*
 
           imagepng($selector, $ruta_temporal_original);
@@ -341,7 +341,7 @@ class ExpertoImagen {
 //        $imagick->resizeImage(1200, 800, Imagick::FILTER_LANCZOS);
 //        $imagick->writeimage($ruta_temporal_original);
 //            echo "creando estampa1";
-        //colocar marca de agua para mostrar en pantalla
+//colocar marca de agua para mostrar en pantalla
         if ($estampar_marca_agua !== ESTAMPA_NINGUNA) {
 //            echo "creando estampa";
             $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
@@ -375,20 +375,21 @@ class ExpertoImagen {
 //        $imagick->resizeImage(1200, 800, Imagick::FILTER_LANCZOS);
 //        $imagick->writeimage($ruta_temporal_original);
 //            echo "creando estampa1";
-        //colocar marca de agua para mostrar en pantalla
+//colocar marca de agua para mostrar en pantalla
         if ($estampar_marca_agua !== ESTAMPA_NINGUNA) {
 //            echo "creando estampa";
-//            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
-//            if (file_exists($ruta_temporal_original)) {
-//                $imagen = imagecreatefrompng($ruta_temporal_original);
-//                Load::negocio("imagen/fabrica_estampa");
-//                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
-//                $experto->estampar_imagen($imagen);
-////                $experto->estampar_imagen($imagick);
-//                imagepng($imagen, $ruta_temporal_estampa);
-//                $ruta_temporal_original = $ruta_temporal_estampa;
-//                imagedestroy($imagen);
-//            }
+            $ruta_temporal_estampa = Config::get("config.application.carpeta_temporal_estampa") . $nombre_nuevo . ".png";
+
+            if (file_exists($ruta_temporal_original)) {
+                $imagen = imagecreatefrompng($ruta_temporal_original);
+                Load::negocio("imagen/fabrica_estampa");
+                $experto = FabricaEstampa::get_experto($estampar_marca_agua);
+                $experto->estampar_imagen($imagen);
+//                $experto->estampar_imagen($imagick);
+                imagepng($imagen, $ruta_temporal_estampa);
+                $ruta_temporal_original = $ruta_temporal_estampa;
+                imagedestroy($imagen);
+            }
         }
         if (file_exists($ruta_temporal_original)) {
             return ExpertoImagen::buscar_datos_imagen_por_uri2($ruta_temporal_original);
@@ -398,13 +399,6 @@ class ExpertoImagen {
         }
     }
 
-    /**
-     * Coloca la imagen subida por el usuario al directorio correspondiente al libro, 
-     * devuelve la imagen en base64
-     * @param type $nombre_imagen
-     * @param type $libro_id
-     * @return type
-     */
     public static function subir_imagen($nombre_imagen, $libro_id) {
         for ($i = 0; $i < count($_FILES[$nombre_imagen]['name']); $i++) {
             $nombre_nuevo = str_replace(" ", "_", $_FILES[$nombre_imagen]['name'][$i]);
@@ -422,7 +416,7 @@ class ExpertoImagen {
             }
         }
         $img = Upload::factory($nombre_imagen, 'image');
-        //$img->setPath($ruta);
+//$img->setPath($ruta);
         $img->setPath($ruta_temporal);
         if (!$img->isUploaded()) {
             Flash::error('La imagen ' . $nombre_nuevo . " ya esta subida");
@@ -436,7 +430,7 @@ class ExpertoImagen {
         }
         $img->setExtensions(IMAGEN_EXTENSIONES);
         $img->overwrite(True);
-        // Guarda la imagen
+// Guarda la imagen
         if ($img->save()) {
             $comando = "mv '$ruta_temporal/$nombre_nuevo' '$uri'";
             $salida = shell_exec($comando);
@@ -458,15 +452,15 @@ class ExpertoImagen {
         $libro = Load::model("base_libro")->find_first($libro_id);
         if (Auth::get("id") != 3 || !ExpertoSeguridad::verificar_permiso(PERMISO_AUDITOR_LIBRO)) {
             if ($libro->base_oficina_id != Auth::get("base_oficina_id")) {
-                //Flash::error("No puede subir una imagen, debe pertenecer a la oficina");
+//Flash::error("No puede subir una imagen, debe pertenecer a la oficina");
                 Flash::warning("El libro no pertenece a su oficina. Verifique que los datos sean correctos");
             }
         }
         $imagick_type = new Imagick();
 
         $img = Upload::factory($nombre_imagen, 'image');
-        //$img->setPath($ruta);
-        //echo " la ruta es ".$ruta_temporal."  uri  ".$uri;
+//$img->setPath($ruta);
+//echo " la ruta es ".$ruta_temporal."  uri  ".$uri;
         $img->setPath($ruta_temporal);
         if (!$img->isUploaded()) {
             Flash::error('La imagen ' . $nombre_nuevo . "ya esta subida");
@@ -479,14 +473,14 @@ class ExpertoImagen {
         }
         $img->setExtensions(IMAGEN_EXTENSIONES);
         $img->overwrite(True);
-        // Guarda la imagen
+// Guarda la imagen
         if ($img->save()) {
             $comando = 'mv ' . $ruta_temporal . $nombre_nuevo . ' ' . $uri;
             $salida = shell_exec($comando);
             $file_handle_for_viewing_image_file = fopen($uri, 'a+');
             $imagick_type->readImageFile($file_handle_for_viewing_image_file);
             $image_type = $imagick_type->getImageType();
-            //echo " el tipo de imagen es ".$image_type;
+//echo " el tipo de imagen es ".$image_type;
             if ($image_type != 1) {
                 unlink($uri);
                 throw new NegocioExcepcion("No se ha guardado la imagen. La imagen debe ser subida en blanco y negro");
@@ -572,22 +566,22 @@ class ExpertoImagen {
               la imagen se imprime con su tamaño original */
             $ancho = $dim_x;
             $alto = $dim_y;
-            //Flash::info("entra en 1");
+//Flash::info("entra en 1");
         } else {
             if ($cociente >= $coc_max) {
                 /* En este caso el factor más restrictivo
                   va a ser el ancho de la foto */
                 $alto = $ancho / $cociente;
-                //Flash::info("entra 2");
-                //Flash::info("cociente    ". $cociente);
+//Flash::info("entra 2");
+//Flash::info("cociente    ". $cociente);
             } else {
                 /* En este caso el factor restrictivo 
                   va a ser la altura de la foto */
                 $ancho = $alto * $cociente;
-                //Flash::info("entra en 3");
+//Flash::info("entra en 3");
             }
         }
-        //Flash::info($ancho."   alto   ", $alto);
+//Flash::info($ancho."   alto   ", $alto);
         $img["x_escalado"] = $ancho;
         $img["y_escalado"] = $alto;
         return $img;

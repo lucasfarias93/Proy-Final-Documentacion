@@ -53,81 +53,82 @@
         </div>
         <div class="center row">
             <?php echo Form::open('ciudadano/reportarerror/crear_reclamo', 'post') ?>
-                <div class="row ">
-                    <div class="input-field">
+            <div class="row ">
+                <div class="input-field">
                     <h5 class="header light">Selecciona el tipo de error y completá los datos</h5>
                     <?php echo Form::dbselect('tiporeclamo.idtiporeclamo', 'nombretiporeclamo', array('tiporeclamo', 'find')) ?>
                 </div>
-                </div>
-                    
-                <div class="row">
-                    <div class="input-field">
-                        <?php echo Form::text('tiporeclamo.anioacta') ?>
-                        <!--<input id="anioacta" placeholder="Año acta" type="text">-->
-                        <label for="anioacta">Año acta</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field">
-                        <?php echo Form::text('tiporeclamo.numeroacta') ?>
-                        <!--<input id="nroacta" placeholder="número acta" type="text">-->
-                        <label for="nroacta">Número acta</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field">
-                        <?php echo Form::text('tiporeclamo.numerolibro') ?>
-                        <!--<input id="nrolibro" placeholder="número libro" type="text">-->
-                        <label for="nrolibro">Número libro</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field">
-                        <?php echo Form::text('tiporeclamo.nombrepropietarioacta') ?>
-                        <!--<input id="nombre" placeholder="Nombre titular" type="text">-->
-                        <label for="nombre">Nombre titular</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field">
-                        <?php echo Form::text('tiporeclamo.apellidopropietarioacta') ?>
-                        <!--<input id="apellido" placeholder="Apellido titular" type="text">-->
-                        <label for="apellido">Apellido titular</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field">
-                        <?php echo Form::textarea('tiporeclamo.observaciones','rows="10" cols="40"') ?>
-                        <!--<textarea id="comentarios" name="comentarios" rows="10" cols="40">Escribe aquí tus comentarios</textarea>-->
-                        <label for="comentarios">Escribe aquí tus comentarios</label>
-                    </div>
-                </div>
-                <div class="center">
-                    <button class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">Enviar
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
-        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
-        <script>
-            $("#boton1").click(function () {
-                $.ajax({
-                    data: {
+            </div>
 
-                    },
-                    url: "<?php echo PUBLIC_PATH ?>ciudadano/reportarerror/crear_reclamo",
-                    type: 'post',
-                    success: function (response) {
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('tiporeclamo.anioacta') ?>
+                    <!--<input id="anioacta" placeholder="Año acta" type="text">-->
+                    <label for="anioacta">Año acta</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('tiporeclamo.numeroacta') ?>
+                    <!--<input id="nroacta" placeholder="número acta" type="text">-->
+                    <label for="nroacta">Número acta</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('tiporeclamo.numerolibro') ?>
+                    <!--<input id="nrolibro" placeholder="número libro" type="text">-->
+                    <label for="nrolibro">Número libro</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('tiporeclamo.nombrepropietarioacta') ?>
+                    <!--<input id="nombre" placeholder="Nombre titular" type="text">-->
+                    <label for="nombre">Nombre titular</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::text('tiporeclamo.apellidopropietarioacta') ?>
+                    <!--<input id="apellido" placeholder="Apellido titular" type="text">-->
+                    <label for="apellido">Apellido titular</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field">
+                    <?php echo Form::textarea('tiporeclamo.observaciones', 'rows="10" cols="40"') ?>
+                    <!--<textarea id="comentarios" name="comentarios" rows="10" cols="40">Escribe aquí tus comentarios</textarea>-->
+                    <label for="comentarios">Escribe aquí tus comentarios</label>
+                </div>
+            </div>
+            <div class="center">
+                <button class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">Enviar
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+    <script>
+        window.open("<?php echo $urlacta ?>");
+        $("#boton1").click(function () {
+            $.ajax({
+                data: {
 
-                        $("#mensajes_flash").html(response);
-                    }
+                },
+                url: "<?php echo PUBLIC_PATH ?>ciudadano/reportarerror/crear_reclamo",
+                type: 'post',
+                success: function (response) {
+
+                    $("#mensajes_flash").html(response);
                 }
-                );
-            });
-        </script>
-    </body>
+            }
+            );
+        });
+    </script>
+</body>
 </html>

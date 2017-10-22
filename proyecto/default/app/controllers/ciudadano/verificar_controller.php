@@ -50,15 +50,15 @@ class VerificarController extends AdminController {
             $diasrestantes = 300 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
             if ($solacta != null) {
                 if ($diasrestantes > 1) {
-                    view::json(TRUE);
+                    view::json("Acta valida quedan " . $diasrestantes . " dias");
                 } else {
-                    Flash::error("Acta vencida");
+                    view::json("Acta vencida");
                 }
             } else {
-                Flash::error("No existen actas con los datos ingresados");
+                view::json("No existen actas con los datos ingresados");
             }
         } else {
-            Flash::error("debe ingresar un codigo de pago");
+            view::json("debe ingresar un codigo de pago");
         }
     }
 
