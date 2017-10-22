@@ -92,8 +92,7 @@ class IndexController extends AdminController {
                     throw new NegocioExcepcion("No existe el acta");
                 }
                 $dto = ExpertoImagen::convertir_imagen_mobile($ruta, ESTAMPA_CONSULTA);
-                $ret[] = $dto;
-                view::json($ret);
+                view::json($dto);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }

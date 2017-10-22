@@ -141,7 +141,8 @@ class ExpertoImagen {
     public static function buscar_datos_imagen_por_uri2($uri) {
         $type = pathinfo($uri, PATHINFO_EXTENSION);
         $data = file_get_contents($uri);
-        return $data;
+        Logger::info(base64_encode($data));
+        return base64_encode($data);
     }
 
     public static function buscar_imagen_ficticia_visualizar() {
