@@ -54,6 +54,8 @@ class ExpertoActas {
         $comando = "java -jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/" . $nombre . " -d " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/pdf -kst BCPKCS12 -ksf " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/certificado.p12 -ksp " . $clave_key . " --bg-path " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
         exec($comando);
         $url = PUBLIC_PATH . $nombre;
+        $url = str_replace('.pdf', '', $url);
+        $url = $url . "_firmado.pdf";
         return $url;
     }
 
