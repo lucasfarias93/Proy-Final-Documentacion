@@ -2,6 +2,7 @@
 
 Load::models('parentesco');
 Load::negocio('experto_imagen');
+Load::negocio('experto_actas');
 
 class IndexController extends AdminController {
 
@@ -41,6 +42,12 @@ class IndexController extends AdminController {
                     throw new NegocioExcepcion("No existe el acta");
                 }
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
+                $dto->persona = $datos->persona;
+                $dto->apellido = $datos->apellido;
+                $dto->dni = $datos->dni;
+                $dto->nroacta = $datos->nroacta;
+                $dto->nrolibro = $datos->nrolibro;
+                $dto->fecha_nacimiento = $datos->fecha_nacimiento;
                 session::set("imagen", $dto);
                 $ret[] = $dto;
                 View::json($ret);
@@ -101,8 +108,8 @@ class IndexController extends AdminController {
     }
 
     public function generar_pdf_mobile() {
-        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-        $urlmobile = $this->urlacta;
+        view::select(NULL, NULL);
+        $urlmobile = ExpertoActas::generar_pdf(session::get("imagen"));
         if ($urlmobile != NULL) {
             view::json($urlmobile);
         } else {

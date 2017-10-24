@@ -34,14 +34,8 @@ def conexionPsycopg(csql):
     return tupla
 
 class Objetos(ComplexModel):
-    persona = Unicode
-    apellido = Unicode
-    dni = Unicode
-    nroacta = Unicode
-    nrolibro = Unicode
-    fecha_nacimiento = Unicode
-    ubicacion = Unicode
     nombre = Unicode
+    ubicacion = Unicode
 
 class RCWebService(ServiceBase):
     #@srpc(Unicode, Integer, _returns=Iterable(Unicode))
@@ -73,7 +67,7 @@ class RCWebService(ServiceBase):
                             and l.base_tipo_libro_id = %s
                             group by 1,2,3,4,5,6,7,8
                     """%(dni,tipo)
-#            print csql
+            print csql
             persona = conexionPsycopg(csql)
         if tipo == '1' and parentesco == '6':
     
@@ -92,7 +86,7 @@ class RCWebService(ServiceBase):
 			and ac.base_tipo_rol_id = %s
 			group by 1
                     """%(dni,parentesco)
- #           print csql
+            print csql
             persona = conexionPsycopg(csql)
 
             if len(persona)==0:
@@ -100,12 +94,11 @@ class RCWebService(ServiceBase):
                 valido = False 
                 return
             datoid = persona[0][0]
-            csql = """select dato.nombre, dato.apellido, doc.numero, a.numero, l.numero, c.fecha_nacimiento, i.ubicacion,i.nombre
+            csql = """select i.ubicacion,i.nombre
 
 			from ciud_ciudadano_documento doc
 			join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
 			join acta_acta_ciudadano ac on ac.ciud_ciudadano_dato_id = dato.id 
-                        join ciud_ciudadano c on c.ciud_ciudadano_dato_id = dato.id
 			--join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
 			join acta_acta a on a.id = ac.acta_acta_id
 			left join base_libro l on l.id = a.base_libro_id
@@ -113,34 +106,41 @@ class RCWebService(ServiceBase):
 			left join enlace_imagen i on i.id = ei.enlace_imagen_id
 			where ac.ciud_ciudadano_dato_id=%d
 			and l.base_tipo_libro_id = 1
-			group by 1,2,3,4,5,6,7,8
+			group by 1,2
                     """%(datoid)
-#            print csql
+            print csql
             persona = conexionPsycopg(csql)
 
         valido = True
         resultado = 'correcto'
-#        print persona
+        print persona
         if len(persona)==0:
             resultado = 'error_persona'
             valido = False
-        
+        else:
+#            fecha = str(persona[0][2].day).zfill(2)+"/"+str(persona[0][2].month).zfill(2)+"/"+str(persona[0][2].year) if persona[0][2]  else ''
+            resultado = persona[0][0].decode('latin1') +" "+ persona[0][1].decode('latin1') +" "+ persona[0][2].decode('latin1') +" "+ persona[0][3].decode('latin1') +" "+ persona[0][4].decode('latin1') +" "+ persona[0][5].decode('latin1') +" "+ persona[0][6].decode('latin1') +" "+ persona[0][7].decode('latin1')
+           # resultado2=[persona[0][0].decode('latin1'),persona[0][1].decode('latin1'), fecha ]
 
-#        print resultado
+        print resultado
+        #print resultado2
+        #name = doc.getElementsByTagName("PERIODO")[0]
+        #print(name.firstChild.data)
         array=[]
         for f in persona:
             print f
             p = Objetos()
-            p.persona = str(f[0].decode('utf8'))
-            p.apellido = str(f[1].decode('utf8'))
-            p.dni = str(f[2])
-            p.nroacta = str(f[3])
-            p.nrolibro = str(f[4])
-	    fecha = str(f[5].day).zfill(2)+"/"+str(f[5].month).zfill(2)+"/"+str(f[5].year) if f[5] is not None and f[5] !=''  else ''
+            p.nombre = str(f[0])
+            p.apellido = str(f[1])
+            p.numero = str(f[2])
+            p.numero = str(f[3])
+            p.numero = str(f[4])
+            fecha = str(f[5].day).zfill(2)+"/"+str(f[5].month).zfill(2)+"/"+str(f[5].year) if f[5] is not None and f[5] !=''  else ''
             p.fecha_nacimiento = str(fecha)
             p.ubicacion = str(f[6])
             p.nombre = str(f[7])
-            print p
+#           fecha = str(f[2].day).zfill(2)+"/"+str(f[2].month).zfill(2)+"/"+str(f[2].year) if f[2]  else ''
+#            p.nacimiento = str(fecha)
             array.append(p)
             yield p
 

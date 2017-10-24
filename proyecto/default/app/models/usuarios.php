@@ -300,9 +300,14 @@ class Usuarios extends ActiveRecord {
     }
 
     public function cantidad_usuarios() {
-        $cols = "usuarios.*";
-        $where = " 1 = '1'";
+        $cols = "DISTINCT usuarios.*";
+        $where = " id <> 1 and id <> 78";
         return $this->find($where, "columns: $cols");
     }
+//    public function cantidad_usuarios() {
+//        $cols = "usuarios.*";
+//        $where = " 1 = '1'";
+//        return $this->find($where, "columns: $cols");
+//    }
 
 }
