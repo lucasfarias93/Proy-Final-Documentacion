@@ -30,7 +30,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <title>Iniciar sesión</title>
+        <title>Verificar validez</title>
 
         <script src="<?php echo PUBLIC_PATH ?>js/prefixfree.min.js"></script>
 
@@ -40,39 +40,47 @@
         <!-- Header con titulo -->
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Inicio sesión</a>
+                <a href="#" class="brand-logo center">Verificar Validez</a>
             </div>
         </nav> 
 
-        <div class="row">
-
-
-
-            <!-- Inicio seccion derecha para loguearse al sistema -->
-            <div class= "row col s6">
-                <div>Tenes usuario? Inicia sesión</div>
-                <?php echo Form::open('admin', 'post') ?>
-
-
-                <?php View::content() ?>
-                <input type="text" placeholder="Usuario" name="login"><br>
-                <input type="password" placeholder="Contraseña" name="clave"><br>
-                <div class="center">
-                    <div class="row col s12 m12 l12">
-                        <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?>
-                        <?php echo html::link('olvido', "Olvidaste tu cuenta?", array("class" => "href", "id" => "download-button")) ?>
-                    </div>                        
-                    <button class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
-                </div>
-                </form>
+    <div class="row">
+        
+    <!-- Inicio seccion izquierda para validar acta -->
+        <div class= "row col s6">
+            <div id="mensajes_flash" >        
+    </div> 
+            <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
+            <input type="text" placeholder="DNI" name="dni" id = "textodni"><br>
+            <input type="text" placeholder="Código" name="codigo" id="textocodigo"><br>
+            <div class="center">
+                <a class="btn-large waves-effect waves-light btn" id="botonverificar">Verificar</a>
             </div>
-            <!--Import jQuery before materialize.js-->
-            <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
-            <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
-            <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
-            <!-- En init.js esta declarada la inicializacion de los selectores utilizados por materialize-->
-            <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
-        </div>  
+        </div>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
+        <!-- En init.js esta declarada la inicializacion de los selectores utilizados por materialize-->
+        <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+        <script>
+        $("#botonverificar").click(function () {
+            $.ajax({
+                data: {
+                    'codigo': $("#textocodigo").val(),
+                    'dni': $("#textodni").val()
+                },
+                url: "<?php echo PUBLIC_PATH ?>verificarentidad/verificar_validez_entidad",
+                type: 'post',
+                success: function (response) {
+                           
+                            $("#mensajes_flash").html(response);
+                        }
+            }
+            );
+        });
+    </script>
+    </div>  
     </body>
 
 </html>

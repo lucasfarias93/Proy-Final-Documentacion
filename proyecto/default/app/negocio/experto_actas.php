@@ -58,6 +58,60 @@ class ExpertoActas {
         $url = $url . "_firmado.pdf";
         return $url;
     }
+    
+    public static function enviar_mail($url){
+        load::lib("phpmailer/class.phpmailer");
+        view::template(NULL);
+        try {
+                $email = Auth::get('email');
+                ////Mandar mail
+                $mail = new PHPMailer();
+                $mail->SetLanguage('en', '/phpmailer/language/');
+//Luego tenemos que iniciar la validación por SMTP:
+                $mail->IsSMTP();
+                $mail->SMTPDebug = 2;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->SMTPAutoTLS = false;
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+                $mail->Password = "gringodiego"; // Contraseña
+                $mail->Port = 465; // Puerto a utilizar
+//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
+                $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
+                $mail->FromName = "Gestion Digital de Actas";
+//Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
+                $mail->AddAddress($email); // Esta es la dirección a donde enviamos
+                //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
+                $mail->IsHTML(true); // El correo se envía como HTML
+                $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
+                $body = "Ya tenes tu partida disponible para usar por 6 meses";
+                $mail->Body = $body; // Mensaje a enviar
+                $mail->AddAttachment($url);
+                $exito = $mail->Send(); // Envía el correo.
+//También podríamos agregar simples verificaciones para saber si se envió:
+                if ($exito) {
+                    Flash::info("El correo de la firma fue enviado correctamente");
+                    input::delete();
+                    Router::redirect('principal');
+                } else {
+                    $mail->ErrorInfo;
+                    throw new NegocioExcepcion($mail->ErrorInfo);
+                    input::delete();
+                }
+        } catch (NegocioExcepcion $e) {
+            Logger::error($e->getMessage());
+            Flash::info($e->getMessage());
+        }
+    
+    }
 
     public static function buscar_acta_segun_imagen_id($imagen_id) {
         //busco datos del acta

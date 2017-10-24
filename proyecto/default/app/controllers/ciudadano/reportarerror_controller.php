@@ -21,9 +21,8 @@ class ReportarerrorController extends AppController {
         view::select(NULL);
         $tr = new Tiporeclamo();
         $this->listTiporeclamo = $tr->find();
-        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
     }
-
+    
     public function crear_reclamo() {
         view::select(NULL);
         if (input::hasPost('tiporeclamo')) {

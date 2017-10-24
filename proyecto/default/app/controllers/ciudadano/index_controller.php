@@ -9,6 +9,7 @@ class IndexController extends AdminController {
     protected function before_filter() {
         view::select(NULL, 'menu');
     }
+    
 
     public function index() {
         
@@ -80,7 +81,7 @@ class IndexController extends AdminController {
             if ($tipolibro != null && $parentesco != null) {
                 $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
                 $parametros['dni'] = Auth::get("dni");
-                $parametros['tipo'] = $tipolibro; 
+                $parametros['tipo'] = $tipolibro;
                 $parametros['parentesco'] = $parentesco;
                 $client = new SoapClient($servicio);
                 $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
@@ -105,6 +106,14 @@ class IndexController extends AdminController {
         } catch (NegocioExcepcion $ex) {
             view::select(null, null);
         }
+    }
+
+    public function generar_pdf_firmar_mail() {
+        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+        $url = $this->urlacta;
+        $url = str_replace('proyecto', 'public', $url);
+        var_dump("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
+        ExpertoActas::enviar_mail("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
     }
 
     public function generar_pdf_mobile() {
