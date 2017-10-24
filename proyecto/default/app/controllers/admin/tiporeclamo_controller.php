@@ -20,7 +20,7 @@ class TiporeclamoController extends AdminController {
     /**
      * Crea un Registro
      */
-    public function create ()
+    public function crear ()
     {
         /**
          * Se verifica si el usuario envio el form (submit) y si ademas 
