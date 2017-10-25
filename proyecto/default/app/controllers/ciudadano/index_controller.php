@@ -29,9 +29,9 @@ class IndexController extends AdminController {
                 $client = new SoapClient($servicio);
                 $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
                 $datos = $result->nacimiento_propiaResult->Objetos;
-                if (!isset($datos->ubicacion)) {
-                    throw new NegocioExcepcion("No existen datos");
-                }
+                if (!isset($result->nacimiento_propiaResult->Objetos)) {
+                    $ruta = "/home/imagenes_produccion/no_disponible.gif";
+                } else {
                 $ubicacion = str_replace("-", "/", $datos->ubicacion);
                 $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
                 $ext = "png";
@@ -41,6 +41,8 @@ class IndexController extends AdminController {
                 if (!file_exists($ruta)) {
                     Flash::error("No existe el acta");
                     throw new NegocioExcepcion("No existe el acta");
+                }
+                    
                 }
                 $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
                 $dto->persona = $datos->persona;
@@ -109,6 +111,7 @@ class IndexController extends AdminController {
     }
 
     public function generar_pdf_firmar_mail() {
+        ///hacer la gilada el input haspost
         $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
         $url = $this->urlacta;
         $url = str_replace('proyecto', 'public', $url);

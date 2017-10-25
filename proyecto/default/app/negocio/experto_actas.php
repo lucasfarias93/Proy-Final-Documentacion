@@ -100,7 +100,6 @@ class ExpertoActas {
                 if ($exito) {
                     Flash::info("El correo de la firma fue enviado correctamente");
                     input::delete();
-                    Router::redirect('principal');
                 } else {
                     $mail->ErrorInfo;
                     throw new NegocioExcepcion($mail->ErrorInfo);

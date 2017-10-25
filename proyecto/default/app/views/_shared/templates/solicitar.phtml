@@ -117,7 +117,7 @@
                 <h2 class="fs-title">Formas de Pago</h2>
                 <h3 class="fs-subtitle">Por el momento, utilizamos mercado pago para realizar los pagos</h3>
                 <div class="row">
-                    <a mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=275375435-3e415a08-4ccf-403c-92b8-6e48347e3e7e" name="MP-payButton" class='blue-ar-l-rn-none' onreturn="execute_my_onreturn">Pagar</a>
+                    <a id="boton3" mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=275375435-3e415a08-4ccf-403c-92b8-6e48347e3e7e" name="MP-payButton" class='blue-ar-l-rn-none' onreturn="execute_my_onreturn">Pagar</a>
 
                     <script type="text/javascript">
                         (function () {
@@ -141,7 +141,7 @@
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>js/jquery-ui-1.10.3.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>js/cropzoom.js"></script>
-        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH                 ?>js/jquery-3.2.1.min.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH                    ?>js/jquery-3.2.1.min.js"></script>-->
         <script src="<?php echo PUBLIC_PATH ?>js/jquery.easing.min.js"></script>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
@@ -197,17 +197,23 @@
                                     success: function (response) {
                                         imagen = response[0]
                                         $("#img_acta").attr("src", imagen.imagen);
-                                        html = "";
-
-                                        html += '<tr>'
-                                        html += '<td>' + imagen.persona + '</td>'
-                                        html += '<td>' + imagen.apellido + '</td>'
-                                        html += '<td>' + imagen.dni + '</td>'
-                                        html += '<td>' + imagen.nroacta + '</td>'
-                                        html += '<td>' + imagen.nrolibro + '</td>'
-                                        html += '<td>' + imagen.fecha_nacimiento + '</td>'
-                                        html += '</tr>'
-                                        $("#myTable tbody").html(html);
+                                        if (imagen.persona == null) {
+                                            $('#boton2').attr("disabled", "disabled")
+                                            $("#myTable").hide()
+                                        } else {
+                                            $('#boton2').removeAttr("disabled")
+                                            $("#myTable").show()
+                                            html = "";
+                                            html += '<tr>'
+                                            html += '<td>' + imagen.persona + '</td>'
+                                            html += '<td>' + imagen.apellido + '</td>'
+                                            html += '<td>' + imagen.dni + '</td>'
+                                            html += '<td>' + imagen.nroacta + '</td>'
+                                            html += '<td>' + imagen.nrolibro + '</td>'
+                                            html += '<td>' + imagen.fecha_nacimiento + '</td>'
+                                            html += '</tr>'
+                                            $("#myTable tbody").html(html);
+                                        }
                                     },
                                     fail: function (response) {
                                         $("#respuesta").html("No existe la imagen del acta")
@@ -250,29 +256,33 @@
                             }
                             );
                         });
-
                         function execute_my_onreturn(json) {
+                            alert(json.collection_id) //tengo el numero de comprobante
                             if (json.collection_status == 'approved') {
                                 alert('Pago acreditado');
+
                             } else if (json.collection_status == 'pending') {
                                 alert('El usuario no completó el pago');
                             } else if (json.collection_status == 'in_process') {
                                 alert('El pago está siendo revisado');
                             } else if (json.collection_status == 'rejected') {
-                                $.ajax({
-                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
-                                    type: 'post',
-                                    success: function (response) {
-
-                                        $("#mensajes_flash").html(response);
-                                    }
-                                }
-                                );
                                 alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
-
                             } else if (json.collection_status == null) {
                                 alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
                             }
+                            $.ajax({
+                                url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+                                type: 'post',
+                                data: {
+                                    'estado': json.collection_status,
+                                    'nrocupon': json.collection_id
+                                },
+                                success: function (response) {
+                                    $('#boton3').html("Finalizado")
+                                    $('#boton3').removeAttr("name")
+                                    $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
+                                }
+                            });
                         }
         </script>
     </body>

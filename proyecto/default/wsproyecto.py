@@ -58,6 +58,7 @@ class RCWebService(ServiceBase):
     @srpc(Unicode, Unicode, Unicode, _returns=Iterable(Objetos))
     def nacimiento_propia(dni,tipo,parentesco):
 	print dni, tipo, parentesco
+        persona = None
         if tipo == '1' and parentesco == '1': 
 
             csql = """
@@ -96,10 +97,7 @@ class RCWebService(ServiceBase):
  #           print csql
             persona = conexionPsycopg(csql)
 
-            if len(persona)==0:
-                resultado = 'error_persona'
-                valido = False 
-                return
+
             datoid = persona[0][0]
             csql = """select dato.nombre, dato.apellido, doc.numero, a.numero, l.numero, c.fecha_nacimiento, i.ubicacion,i.nombre
 
@@ -122,9 +120,10 @@ class RCWebService(ServiceBase):
         valido = True
         resultado = 'correcto'
         print persona
-        if len(persona)==0:
+        if persona == None or len(persona)==0:
             resultado = 'error_persona'
-            valido = False
+            valido = False 
+            return
         
 
 #        print resultado
