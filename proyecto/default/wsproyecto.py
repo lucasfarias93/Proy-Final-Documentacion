@@ -14,6 +14,7 @@ from spyne.server.wsgi import WsgiApplication
 import psycopg2
 from xml.dom import minidom
 import traceback
+# -*- coding: UTF-8 -*-
 
 def conexionPostgresPsycopg(csql):
     db = psycopg2.connect(host='10.160.1.229', database='prod_registrocivil', user='postgres', password='postgres', port='61432')
@@ -120,7 +121,7 @@ class RCWebService(ServiceBase):
 
         valido = True
         resultado = 'correcto'
-#        print persona
+        print persona
         if len(persona)==0:
             resultado = 'error_persona'
             valido = False
@@ -128,15 +129,19 @@ class RCWebService(ServiceBase):
 
 #        print resultado
         array=[]
+        
         for f in persona:
-            print f
+            #print f
+            
+            persona =  unicode(f[0].replace('"',''), 'utf-8')
+            apellido = unicode(f[1].replace('"',''), 'utf-8')
             p = Objetos()
-            p.persona = str(f[0].decode('utf8'))
-            p.apellido = str(f[1].decode('utf8'))
+            p.persona = persona	
+            p.apellido = apellido
             p.dni = str(f[2])
             p.nroacta = str(f[3])
             p.nrolibro = str(f[4])
-	    fecha = str(f[5].day).zfill(2)+"/"+str(f[5].month).zfill(2)+"/"+str(f[5].year) if f[5] is not None and f[5] !=''  else ''
+            fecha = str(f[5].day).zfill(2)+"/"+str(f[5].month).zfill(2)+"/"+str(f[5].year) if f[5] is not None and f[5] !=''  else ''
             p.fecha_nacimiento = str(fecha)
             p.ubicacion = str(f[6])
             p.nombre = str(f[7])
