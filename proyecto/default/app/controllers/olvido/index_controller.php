@@ -96,7 +96,7 @@ class IndexController extends AppController {
                 $mail->IsHTML(true); // El correo se envía como HTML
                 $codigo = rand(0, 9999);
                 $mail->Subject = "Recuperacion de su cuenta"; // Este es el titulo del email.
-                $body = "Tu usuario es: ".Auth::get('login').". Tu codigo de recuperacion es: " . $codigo;
+                $body = "Tu usuario es: ".$usrbd->login.". Tu codigo de recuperacion es: " . $codigo;
                 $mail->Body = $body; // Mensaje a enviar
                 $exito = $mail->Send(); // Envía el correo.
                 $l = new Linkrecuperacion();
