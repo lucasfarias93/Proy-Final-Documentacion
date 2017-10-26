@@ -15,7 +15,7 @@ class SolicitudController extends AdminController {
         try {
             $datos = session::get("imagen");
             $sa = new Solicitudacta();
-            $sa->nombrepropietarioacta = $datos->persona." ".$datos->apellido;
+            $sa->nombrepropietarioacta = $datos->persona . " " . $datos->apellido;
             $sa->idusuario = Auth::get('id');
             $sa->idimagenacta = 3;
             $sa->idcupondepago = 4;
@@ -23,7 +23,7 @@ class SolicitudController extends AdminController {
             $sa->idtipolibro = session::get("tipolibro");
             $sa->create();
             $se = new Solicitudestado();
-            $se->idsolicitudacta = $sa->id;///le asigno el id del acta a la solicitud estado
+            $se->idsolicitudacta = $sa->id; ///le asigno el id del acta a la solicitud estado
             $se->idestadosolicitud = 4; //confirmada
             $se->fechacambioestado = UtilApp::fecha_actual();
             $se->create();
@@ -31,8 +31,34 @@ class SolicitudController extends AdminController {
             $sa->update();
             session::set("solicitudid", $sa->id);
         } catch (NegocioExcepcion $e) {
-            Logger::info("paso por aca");
+            Logger::info("no se pudo crear la solicitud");
         }
+    }
+
+    public function crear_solicitud_android() {
+        view::select(NULL, NULL);
+        try {
+            $datos = session::get("imagen");
+            $sa = new Solicitudacta();
+            $sa->nombrepropietarioacta = $datos->persona . " " . $datos->apellido;
+            $sa->idusuario = Auth::get('id');
+            $sa->idimagenacta = 3;
+            $sa->idcupondepago = 4;
+            $sa->idparentesco = session::get("parentesco");
+            $sa->idtipolibro = session::get("tipolibro");
+            $sa->create();
+            $se = new Solicitudestado();
+            $se->idsolicitudacta = $sa->id; ///le asigno el id del acta a la solicitud estado
+            $se->idestadosolicitud = 4; //confirmada
+            $se->fechacambioestado = UtilApp::fecha_actual();
+            $se->create();
+            $sa->ultimosolicitudestado = $se->id;
+            $sa->update();
+            session::set("solicitudid", $sa->id);
+        } catch (NegocioExcepcion $e) {
+            view::json("no se pudo crear la solicitud");
+        }
+        view::json(TRUE);
     }
 
 }
