@@ -23,7 +23,6 @@
         <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/login_style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
@@ -44,19 +43,19 @@
             </div>
         </nav> 
 
-    <div class="row">
+    <div class="center row withTopPad">
         
     <!-- Inicio seccion izquierda para validar acta -->
-        <div class= "row col s6">
-            <div id="mensajes_flash" >        
-    </div> 
-            <div>Verificá la validez del acta ingresando el dni y el código de pago:</div>
+        <div class= "row">
+            <div id="mensajes_flash"></div> 
+            <label>Verificá la validez del acta ingresando el dni y el código de pago:</label>
             <input type="text" placeholder="DNI" name="dni" id = "textodni"><br>
             <input type="text" placeholder="Código" name="codigo" id="textocodigo"><br>
-            <div class="center">
+            <div>
                 <a class="btn-large waves-effect waves-light btn" id="botonverificar">Verificar</a>
             </div>
         </div>
+    </div>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>

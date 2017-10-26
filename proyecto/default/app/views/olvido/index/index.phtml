@@ -4,15 +4,16 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/registro.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
         
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <title>Olvidaste tu contrase&ntilde;a?</title>
+    <title>Recuperar contrase&ntilde;a?</title>
     <body>
 
         <!-- Header con título -->
@@ -22,37 +23,20 @@
             </div>
         </nav>  
 
-        <!-- Formato del formulario con boton al final -->
-        <div class="row">
-        </div>
-        <div class="center row">
+        <div class="center row withTopPad">
             <label>Ingresa tu email</label>
-        </div>
-        <div class="row">
             <?php echo view::content() ?>
-        </div>
-        <div class="center row">
             <?php echo Form::open("", 'post', array('class' => "col s12")); // por defecto llama a la misma url ?>
-            <div class="row">
-                <div class="input-field">
-                    <!--<input id="email" placeholder="Email" type="email" class="validate">-->
-                    <?php echo Form::text('usuarios.email', array('id' => "email", 'placeholder' => "Email", 'type' => "email", 'class' => "validate")) ?>
-                    <label for="email" data-error="Mail inválido" data-success="correcto">Email</label>
-                </div>
+            <div class="input-field">
+                <!--<input id="email" placeholder="Email" type="email" class="validate">-->
+                <?php echo Form::text('usuarios.email', array('id' => "email", 'placeholder' => "Email", 'type' => "email", 'class' => "validate")) ?>
+                <label for="email" data-error="Mail inválido" data-success="correcto">Email</label>
             </div>
             <div class="form-actions">
                 <?php echo Form::submit('Enviar', 'class="btn btn-primary"') ?>
             </div>
             <?php echo Form::close() ?>
         </div>
-        <div class="row">
-        </div>
-        <div class="row">
-        </div>
-        <div class="center row"> 
-            <?php echo html::link('ayuda', "¿Necesitas ayuda? Contacta al soporte tecnico de gestion digital de actas!", array("class" => "one", "id" => "download-button")) ?>
-        </div>
-    </div>
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>

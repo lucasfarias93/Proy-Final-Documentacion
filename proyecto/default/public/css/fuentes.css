@@ -21,3 +21,7 @@
   -moz-font-feature-settings: 'liga';
   -moz-osx-font-smoothing: grayscale;
 }
+
+h6 {
+  color: white;
+}

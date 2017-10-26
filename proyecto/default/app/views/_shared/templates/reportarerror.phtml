@@ -55,8 +55,8 @@
         <div class="center row">
             <?php echo Form::open('ciudadano/reportarerror/crear_reclamo', 'post') ?>
             <div class="row ">
+                <label>Selecciona el tipo de error y completá los datos</label>
                 <div class="input-field">
-                    <h5 class="header light">Selecciona el tipo de error y completá los datos</h5>
                     <?php echo Form::dbselect('tiporeclamo.idtiporeclamo', 'nombretiporeclamo', array('tiporeclamo', 'find')) ?>
                 </div>
             </div>

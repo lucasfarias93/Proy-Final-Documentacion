@@ -1,7 +1,15 @@
-/*para cambiar de color los labels*/
+/*para cambiar de color y tamaaño de los labels*/
 label {
 	color:grey	 !important;
+	font-size: 1.0rem !important;
+	margin: 10px 10px 10px 0px;
 }	
+	
+/*clase utilizada para los links (modificado el tamañano) 
+ un ejemplo de uso esta en los label de registrar y olvidarse cuenta*/
+#download-button {
+	font-size: 1.0rem;
+} 
 
 /*para cambiar los colores de los input en todos los navegadores*/
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -42,6 +50,35 @@ table th, table td {
  	background:red !important;
  }
 
-input, #input1 {
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
 	color: white;
+}
+
+input:not([type]):disabled, input:not([type])[readonly="readonly"], input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default)[readonly="readonly"], input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default)[readonly="readonly"], input[type=email]:not(.browser-default):disabled, input[type=email]:not(.browser-default)[readonly="readonly"], input[type=url]:not(.browser-default):disabled, input[type=url]:not(.browser-default)[readonly="readonly"], input[type=time]:not(.browser-default):disabled, input[type=time]:not(.browser-default)[readonly="readonly"], input[type=date]:not(.browser-default):disabled, input[type=date]:not(.browser-default)[readonly="readonly"], input[type=datetime]:not(.browser-default):disabled, input[type=datetime]:not(.browser-default)[readonly="readonly"], input[type=datetime-local]:not(.browser-default):disabled, input[type=datetime-local]:not(.browser-default)[readonly="readonly"], input[type=tel]:not(.browser-default):disabled, input[type=tel]:not(.browser-default)[readonly="readonly"], input[type=number]:not(.browser-default):disabled, input[type=number]:not(.browser-default)[readonly="readonly"], input[type=search]:not(.browser-default):disabled, input[type=search]:not(.browser-default)[readonly="readonly"], textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
+	color: white;
+}	
+
+.center {
+    margin-top: auto;
+    width: 30%;
+}
+
+.withTopPad{
+	padding-top: 7%;
+} 
+
+label.active {
+   width: 100% !important;
+}          
+
+/*usada para separar imagaenes en el registro*/
+.separateWithTop {
+	margin-top: 15px;
+}
+
+/*utilizada en los comentarios a agregar en el reporte de error*/
+textarea {
+    resize: none;
+    border-color: grey;
+    color: white;
 }
