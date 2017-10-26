@@ -3,9 +3,11 @@
     <head>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/registro.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
         
         <!--Let browser know website is optimized for mobile-->
@@ -22,17 +24,12 @@
         </nav>  
 
         <!-- Formato del formulario con boton al final -->
+    <div class="center row">
         <div id="mensajes_flash" >        
             <?php View::content() ?>
         </div> 
-        <div class="row">
-        </div>
-        <div class="center row">
-            <label>Ingresa tu nueva clave</label>
-        </div>
-        <div class="row">
-        </div>
-        <div class="center row">
+        
+        <label>Ingresa tu nueva clave</label>
             <?php echo Form::open("", 'post', array('class' => "col s12")); // por defecto llama a la misma url ?>
             <div class="row">
                 <div class="input-field">
@@ -56,14 +53,6 @@
                 <?php echo Form::submit('Recuperar', 'class="btn btn-primary"') ?>
             </div>
             <?php echo Form::close() ?>
-        </div>
-        <div class="row">
-        </div>
-        <div class="row">
-        </div>
-        <div class="right row"> 
-            <?php echo html::link('ayuda', "Necesitas ayuda? Contacta al soporte tecnico de gestion digital de actas!", array("class" => "one", "id" => "download-button")) ?>
-        </div>
     </div>
 
     <!--Import jQuery before materialize.js-->
