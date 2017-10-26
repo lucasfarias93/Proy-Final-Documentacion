@@ -14,7 +14,7 @@ class ListadoController extends AdminController {
         $this->listSolicitudacta = $sa->buscar_solicitud_acta($id, $page);
     }
 
-    public function listado_android($page = 1) {
+    public function listado_android() {
         $id = Auth::get('id');
         view::select(null, null);
         $sa = new Solicitudacta();
