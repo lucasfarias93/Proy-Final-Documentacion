@@ -112,7 +112,8 @@ class IndexController extends AdminController {
                 $dto->nrolibro = $datos->nrolibro;
                 $dto->fecha_nacimiento = $datos->fecha_nacimiento;
                 session::set("imagen", $dto);
-                $ret[] = $dto;
+                $ret[0] = $dto;
+                $ret[1] = $datos;
                 View::json($ret);
 //                view::json($dto);
             } else {
