@@ -90,20 +90,31 @@ class IndexController extends AdminController {
                 $client = new SoapClient($servicio);
                 $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
                 $datos = $result->nacimiento_propiaResult->Objetos;
-                if (!isset($datos->ubicacion)) {
-                    throw new NegocioExcepcion("No existen datos");
-                }
-                $ubicacion = str_replace("-", "/", $datos->ubicacion);
-                $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
-                $ext = "png";
-                $tmp = str_replace("TIF", "", $datos->nombre);
-                $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "crop/" . $tmp . $ext;
-                $ruta = ExpertoImagen::obtener_ruta_completa($ubicacion . "/$datos->nombre");
-                if (!file_exists($ruta)) {
-                    throw new NegocioExcepcion("No existe el acta");
+                if (!isset($result->nacimiento_propiaResult->Objetos)) {
+                    $ruta = "/home/imagenes_produccion/no_disponible.gif";
+                } else {
+                    $ubicacion = str_replace("-", "/", $datos->ubicacion);
+                    $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
+                    $ext = "png";
+                    $tmp = str_replace("TIF", "", $datos->nombre);
+                    $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "crop/" . $tmp . $ext;
+                    $ruta = ExpertoImagen::obtener_ruta_completa($ubicacion . "/$datos->nombre");
+                    if (!file_exists($ruta)) {
+                        Flash::error("No existe el acta");
+                        throw new NegocioExcepcion("No existe el acta");
+                    }
                 }
                 $dto = ExpertoImagen::convertir_imagen_mobile($ruta, ESTAMPA_CONSULTA);
-                view::json($dto);
+                $dto->persona = $datos->persona;
+                $dto->apellido = $datos->apellido;
+                $dto->dni = $datos->dni;
+                $dto->nroacta = $datos->nroacta;
+                $dto->nrolibro = $datos->nrolibro;
+                $dto->fecha_nacimiento = $datos->fecha_nacimiento;
+                session::set("imagen", $dto);
+                $ret[] = $dto;
+                View::json($ret);
+//                view::json($dto);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }
