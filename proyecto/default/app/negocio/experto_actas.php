@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+load::model('codigoprovincial');
 
 class ExpertoActas {
 
@@ -21,7 +22,6 @@ class ExpertoActas {
         Logger::info($imagenes->uri);
         $pdf->AddPage();
         $pdf->SetFont('Arial', '', 15);
-        $pdf->Cell(40, 20);
 //            $enlace_imagen = Load::model("enlace_imagen")->find_first($imagen);
 //            $tmp = str_replace("TIF", "", $enlace_imagen->nombre);
 //            $ruta_temporal_original = Config::get("config.application.carpeta_temporal_original") . "/" . $tmp . "png";
@@ -42,8 +42,25 @@ class ExpertoActas {
             $pdf->AddPage();
             $pdf->Image($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . 'default/public/img/escudo_consulta.jpg', 10, 10, 190, 270);
             $pdf->SetFont('Arial', '', 15);
+            /////////ubicar la fecha
             $pdf->Cell(25, 67);
             $pdf->Write(118, date("d/m/Y", time()));
+            /////////Ubicar el importe
+            $importe = 0;
+            $codigos = new Codigoprovincial();
+            $co = $codigos->obtener_codigos(1);
+            foreach ($co as $value) {
+                $importe += floatval($value->importecodigo);
+                if ($value->count() == 0) {
+                    $valor221 = $value->numerocodigoprovincial;
+                }
+                if ($value->count() == 1) {
+                    $valor224 = $value->numerocodigoprovincial;
+                }
+            }
+            $pdf->Text(25, 180, "$".$importe . " correspondiente a los codigos provinciales " . $valor221 . " y " . $valor224);
+            ////////Ubicar el cupon de pago
+            $pdf->Text(125, 280, "cupon de pago: " . session::get('nrocupon'));
         }
         $contador += 1;
 //        endforeach;
@@ -56,60 +73,60 @@ class ExpertoActas {
         $url = PUBLIC_PATH . $nombre;
         $url = str_replace('.pdf', '', $url);
         $url = $url . "_firmado.pdf";
+        var_dump($url);
         return $url;
     }
-    
-    public static function enviar_mail($url){
+
+    public static function enviar_mail($url) {
         load::lib("phpmailer/class.phpmailer");
         view::template(NULL);
         try {
-                $email = Auth::get('email');
-                ////Mandar mail
-                $mail = new PHPMailer();
-                $mail->SetLanguage('en', '/phpmailer/language/');
+            $email = Auth::get('email');
+            ////Mandar mail
+            $mail = new PHPMailer();
+            $mail->SetLanguage('en', '/phpmailer/language/');
 //Luego tenemos que iniciar la validación por SMTP:
-                $mail->IsSMTP();
-                $mail->SMTPDebug = 2;
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'ssl';
-                $mail->SMTPAutoTLS = false;
-                $mail->SMTPOptions = array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    )
-                );
-                $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
-                $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
-                $mail->Password = "gringodiego"; // Contraseña
-                $mail->Port = 465; // Puerto a utilizar
+            $mail->IsSMTP();
+            $mail->SMTPDebug = false;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->SMTPAutoTLS = false;
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+            $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+            $mail->Password = "gringodiego"; // Contraseña
+            $mail->Port = 465; // Puerto a utilizar
 //Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
-                $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
-                $mail->FromName = "Gestion Digital de Actas";
+            $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
+            $mail->FromName = "Gestion Digital de Actas";
 //Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
-                $mail->AddAddress($email); // Esta es la dirección a donde enviamos
-                //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
-                $mail->IsHTML(true); // El correo se envía como HTML
-                $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
-                $body = "Ya tenes tu partida disponible para usar por 6 meses";
-                $mail->Body = $body; // Mensaje a enviar
-                $mail->AddAttachment($url);
-                $exito = $mail->Send(); // Envía el correo.
+            $mail->AddAddress($email); // Esta es la dirección a donde enviamos
+            //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
+            $mail->IsHTML(true); // El correo se envía como HTML
+            $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
+            $body = "Ya tenes tu partida disponible para usar por 6 meses";
+            $mail->Body = $body; // Mensaje a enviar
+            $mail->AddAttachment($url);
+            $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
-                if ($exito) {
-                    Flash::info("El correo de la firma fue enviado correctamente");
-                    input::delete();
-                } else {
-                    $mail->ErrorInfo;
-                    throw new NegocioExcepcion($mail->ErrorInfo);
-                    input::delete();
-                }
+            if ($exito) {
+                Flash::info("El correo de la firma fue enviado correctamente");
+                input::delete();
+            } else {
+                $mail->ErrorInfo;
+                throw new NegocioExcepcion($mail->ErrorInfo);
+                input::delete();
+            }
         } catch (NegocioExcepcion $e) {
             Logger::error($e->getMessage());
             Flash::info($e->getMessage());
         }
-    
     }
 
     public static function buscar_acta_segun_imagen_id($imagen_id) {

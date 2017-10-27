@@ -1,20 +1,25 @@
-<span>Se ha encontrado <strong><?php echo count($lista3) ?> registros</strong></span>
+<span>Se ha encontrado <strong><?php echo count($lista3) ?> registros.</strong></span>
 <div class="row">
     <div class="col-sm-12">
         <table class="table table-bordered table-responsive" id="myTable">
             <thead>
                 <tr>
-
-                    <th>Ganancias total</th>
+                    <th>Cupón de pago</th>
+                    <th>Fecha del pago</th>
+                    <th>Monto $</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($lista3 as $g) { ?>
                     <tr>
+                        <td><?php echo $g->codigodepago ?></td>
+                        <td><?php echo $g->fechaemisionpago ?></td>
                         <td><?php echo $g->montototal ?></td>
+                        <?php $ganancias += $g->montototal ?>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
 </div>
+<span>Total ganancias <strong><?php echo "$" . $ganancias ?></strong></span>

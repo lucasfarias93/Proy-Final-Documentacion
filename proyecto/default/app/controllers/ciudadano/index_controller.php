@@ -129,12 +129,14 @@ class IndexController extends AdminController {
     }
 
     public function generar_pdf_firmar_mail() {
+
 ///Verifico que entro un estado de pago
         if (input::hasPost('estado')) {
             $estadopago = input::post('estado');
             Logger::info($estadopago);
             if (input::hasPost('nrocupon')) {
                 $nrocupon = input::post('nrocupon');
+                session::set("nrocupon",$nrocupon);
                 Logger::info($nrocupon);
                 if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
                     $cp = new Cupondepago();
@@ -166,6 +168,10 @@ class IndexController extends AdminController {
                     } catch (NegocioExcepcion $e) {
                         Logger::info("Error al actualizar la solicitud  " . $e);
                     }
+                    $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+                    $url = $this->urlacta;
+                    $url = str_replace('proyecto', 'public', $url);
+                    ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
                 }
                 if ($estadopago == 'approved') { //mando el mail con el pdf firmado
                     $cp = new Cupondepago();

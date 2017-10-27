@@ -1,0 +1,32 @@
+<span>Se ha encontrado <strong><?php echo count($lista5) ?> registros</strong></span>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive" id="myTable">
+            <thead>
+                <tr>
+
+                    <th>N° de solicitud</th>
+                    <th>Nombre propietario acta</th>
+                    <th>Parentesco</th>
+                    <th>Cupon de pago</th>
+                    <th>Fecha de pago</th>
+                    <th>Estado solicitud </th>
+                    <th>Disponibilidad en días</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($lista5 as $as) { ?>
+                    <tr>
+                        <td><?php echo $as->id ?></td>
+                        <td><?php echo $as->nombrepropietarioacta ?></td>
+                        <td><?php echo $as->nombreparentesco ?></td>
+                        <td><?php echo $as->codigodepago ?></td>
+                        <td><?php echo $as->fechacambioestado ?></td>
+                        <td><?php echo $as->nombreestadosolicitud ?></td>
+                        <td><?php echo 300 - UtilApp::calcular_dias_entre_fechas($as->fechacambioestado, UtilApp::fecha_actual()) ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

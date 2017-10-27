@@ -21,25 +21,37 @@ class ReportarerrorController extends AppController {
         view::select(NULL);
         $tr = new Tiporeclamo();
         $this->listTiporeclamo = $tr->find();
+        $dto = session::get("imagen");
+        $arreglo['numeroacta'] = $dto->nroacta;
+        $arreglo['numerolibro'] = $dto->nrolibro;
+        $arreglo['nombrepropietarioacta'] = $dto->persona;
+        $arreglo['apellidopropietarioacta'] = $dto->apellido;
+        $this->tiporeclamo = $arreglo;//
     }
-    
+
     public function crear_reclamo() {
-        view::select(NULL);
-        if (input::hasPost('tiporeclamo')) {
-            $rea = new Reclamoerroracta(input::post('tiporeclamo'));
-            $rea->idusuario = Auth::get('id');
-            $rea->create();
-            $reclamoerroractaestado = new Reclamoerroractaestado();
-            $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
-            ///Con $rea->id le estoy seteando el id de lo que acabo de crear?
-            $reclamoerroractaestado->idreclamoerroracta = $rea->id;
-            ////////////El estado 1 es enviado al archivo
-            $reclamoerroractaestado->idestadoreclamoerroracta = 1;
-            $reclamoerroractaestado->create();
-            Flash::info("Reclamo realizado con éxito");
-            Router::redirect('ciudadano');
-        } else {
-            Flash::error("Debe elegir un tipo de reclamo para poder continuar");
+        try {
+            view::select(NULL);
+            if (input::hasPost('tiporeclamo')) {
+                $rea = new Reclamoerroracta(input::post('tiporeclamo'));
+                $rea->idusuario = Auth::get('id');
+                $rea->create();
+                $reclamoerroractaestado = new Reclamoerroractaestado();
+                $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
+                ///Con $rea->id le estoy seteando el id de lo que acabo de crear?
+                $reclamoerroractaestado->idreclamoerroracta = $rea->id;
+                ////////////El estado 1 es enviado al archivo
+                $reclamoerroractaestado->idestadoreclamoerroracta = 1;
+                $reclamoerroractaestado->create();
+                Flash::info("Reclamo realizado con éxito");
+                Router::redirect('ciudadano');
+            } else {
+                Flash::error("Debe elegir un tipo de reclamo para poder continuar");
+            }
+        } catch (NegocioExcepcion $e) {
+            
+        } catch (Exception $e) {
+            
         }
     }
 

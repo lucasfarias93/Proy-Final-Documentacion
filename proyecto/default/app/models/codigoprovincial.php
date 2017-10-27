@@ -30,4 +30,10 @@ class Codigoprovincial extends ActiveRecord {
         return $this->paginate($where, "columns: $cols");
     }
 
+    public function obtener_codigos() {
+        $cols = "codigoprovincial.*";
+        $where = " 1 = 1";
+        return $this->find($where, "columns: $cols");
+    }
+
 }

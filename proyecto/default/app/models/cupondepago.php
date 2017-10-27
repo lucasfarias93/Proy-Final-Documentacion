@@ -24,10 +24,10 @@ class Cupondepago extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function monto_pagado($pagina = 1) {
-        $cols = "sum(montototal) cupondepago.* ";
+    public function monto_pagado() {
+        $cols = "cupondepago.* ";
         $where = " estadocupondepago = 'pagado'";
-        return $this->paginate($where, "columns: $cols");
+        return $this->find($where, "columns: $cols");
     }
 
 }

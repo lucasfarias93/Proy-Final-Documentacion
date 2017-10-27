@@ -82,10 +82,10 @@
                                 <td><?php echo $as->fechacambioestado ?></td>
                                 <td><?php echo $as->nombreestadosolicitud ?></td>
                                 <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
-                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>    
-                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
-                                <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
+                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>    
+                                    <td><a mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=275375435-3e415a08-4ccf-403c-92b8-6e48347e3e7e" name="MP-payButton" class='botonpagar' onreturn="execute_my_onreturn"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
+                                        <?php } ?> 
+                                        <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
                                     <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
@@ -104,6 +104,23 @@
                 </table>
             </div>
         </div>
+        <script type="text/javascript">
+            (function () {
+                function $MPC_load() {
+                    window.$MPC_loaded !== true && (function () {
+                        var s = document.createElement("script");
+                        s.type = "text/javascript";
+                        s.async = true;
+                        s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                        var x = document.getElementsByTagName('script')[0];
+                        x.parentNode.insertBefore(s, x);
+                        window.$MPC_loaded = true;
+                    })();
+                }
+                window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+            })();
+            
+        </script>
         <script>
             function myFunction() {
                 // Declare variables 
@@ -124,6 +141,36 @@
                         }
                     }
                 }
+            }
+            function execute_my_onreturn(json) {
+                //alert(json.collection_id) //tengo el numero de comprobante
+                if (json.collection_status == 'approved') {
+                    alert('Pago acreditado');
+                } else if (json.collection_status == 'pending') {
+                    alert('El usuario no completó el pago');
+                    $('#boton3').html("Finalizado")
+                    $('#boton3').removeAttr("name")
+                    $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
+                } else if (json.collection_status == 'in_process') {
+                    alert('El pago está siendo revisado');
+                } else if (json.collection_status == 'rejected') {
+                    alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+                } else if (json.collection_status == null) {
+                    alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+                }
+                $.ajax({
+                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+                    type: 'post',
+                    data: {
+                        'estado': json.collection_status,
+                        'nrocupon': json.collection_id
+                    },
+                    success: function (response) {
+                        $('#boton3').html("Finalizado")
+                        $('#boton3').removeAttr("name")
+                        $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano/listado")
+                    }
+                });
             }
         </script>
     </body>

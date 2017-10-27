@@ -19,7 +19,6 @@ class Solicitudacta extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-
     public function buscar_solicitud_acta($id, $page, $ppage = 20) {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " idusuario = '$id'";
@@ -50,6 +49,18 @@ class Solicitudacta extends ActiveRecord {
     public function reporte_solicitudes_generadas() {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " 1 = '1'";
+        $join = " join parentesco p on p.id = solicitudacta.idparentesco";
+        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
+        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
+        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
+        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
+
+        return $this->find($where, "columns: $cols", "join: $join");
+    }
+
+    public function actasxvencer() {
+        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
+        $where = " nombreestadosolicitud = 'Pagada'";
         $join = " join parentesco p on p.id = solicitudacta.idparentesco";
         $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
         $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
