@@ -111,11 +111,8 @@ class IndexController extends AdminController {
                 $dto->nroacta = $datos->nroacta;
                 $dto->nrolibro = $datos->nrolibro;
                 $dto->fecha_nacimiento = $datos->fecha_nacimiento;
-                session::set("imagen", $dto);
-                $ret[0] = $dto;
-                $ret[1] = $datos;
-                View::json($ret);
-//                view::json($dto);
+                session::set("datosmobile", $datos);
+                View::json($dto);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }
@@ -124,8 +121,20 @@ class IndexController extends AdminController {
         }
     }
 
+    public function buscar_datos_mobile() {
+        if (session::get("datosmobile")) {
+            view::json(session::get("datosmobile"));
+        } else
+            view::json("No hay datos");
+    }
+
     public function generar_pdf_firmar_mail() {
 ///Verifico que entro un estado de pago
+        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+        $url = $this->urlacta;
+        $url = str_replace('proyecto', 'public', $url);
+        var_dump("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
+        ExpertoActas::enviar_mail("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
         if (input::hasPost('estado')) {
             $estadopago = input::post('estado');
             Logger::info($estadopago);
@@ -190,11 +199,6 @@ class IndexController extends AdminController {
                         Logger::info("Cupon de pago " . $cp->id);
                         $sa2->id = $sa;
                         $sa2->update();
-                        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-                        $url = $this->urlacta;
-                        $url = str_replace('proyecto', 'public', $url);
-                        var_dump("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
-                        ExpertoActas::enviar_mail("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
                     } catch (NegocioExcepcion $e) {
                         Logger::info("Error al actualizar la solicitud  " . $e);
                     }
