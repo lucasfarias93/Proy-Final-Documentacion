@@ -171,6 +171,7 @@ class IndexController extends AdminController {
                     $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
                     $url = $this->urlacta;
                     $url = str_replace('proyecto', 'public', $url);
+                    var_dump($url);
                     ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
                 }
                 if ($estadopago == 'approved') { //mando el mail con el pdf firmado

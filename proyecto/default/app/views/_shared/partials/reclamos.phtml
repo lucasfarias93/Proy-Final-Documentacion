@@ -8,11 +8,10 @@
                     <th>Usuario</th>
                     <th>Apellido</th>
                     <th>Nombre</th>
-                    <th>Año acta</th>
                     <th>N° acta</th>
+                    <th>N° libro</th>
                     <th>Observaciones</th>
                     <th>Tipo de reclamo </th>
-                    <th>N° libro</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,11 +21,10 @@
                         <td><?php echo $r->login ?></td>
                         <td><?php echo $r->apellidopropietarioacta ?></td>
                         <td><?php echo $r->nombrepropietarioacta ?></td>
-                        <td><?php echo $r->anioacta ?></td>
                         <td><?php echo $r->numeroacta ?></td>
+                        <td><?php echo $r->numerolibro ?></td>
                         <td><?php echo $r->observaciones ?></td>
                         <td><?php echo $r->nombretiporeclamo ?></td>
-                        <td><?php echo $r->numerolibro ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

@@ -48,17 +48,16 @@ class ExpertoActas {
             /////////Ubicar el importe
             $importe = 0;
             $codigos = new Codigoprovincial();
-            $co = $codigos->obtener_codigos(1);
+            $co = $codigos->obtener_codigos();
+            $valor221 = 0;
+            $valor224 = 0;
             foreach ($co as $value) {
                 $importe += floatval($value->importecodigo);
-                if ($value->count() == 0) {
-                    $valor221 = $value->numerocodigoprovincial;
-                }
-                if ($value->count() == 1) {
-                    $valor224 = $value->numerocodigoprovincial;
-                }
+                $valor221 = $value->numerocodigoprovincial;
             }
-            $pdf->Text(25, 180, "$".$importe . " correspondiente a los codigos provinciales " . $valor221 . " y " . $valor224);
+            $valor221 = $co[0]->numerocodigoprovincial;
+            $valor224 = $co[1]->numerocodigoprovincial;
+            $pdf->Text(25, 180, "$" . $importe . " correspondiente a los codigos provinciales " . $valor221 . " y " . $valor224);
             ////////Ubicar el cupon de pago
             $pdf->Text(125, 280, "cupon de pago: " . session::get('nrocupon'));
         }
@@ -112,6 +111,7 @@ class ExpertoActas {
             $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
             $body = "Ya tenes tu partida disponible para usar por 6 meses";
             $mail->Body = $body; // Mensaje a enviar
+            var_dump($url);
             $mail->AddAttachment($url);
             $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:

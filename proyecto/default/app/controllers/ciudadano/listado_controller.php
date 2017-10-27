@@ -23,8 +23,7 @@ class ListadoController extends AdminController {
     }
 
     public function cancelar($id) {
-//        view::template('rectificardatos');
-        view::select(NULL,NULL);
+        view::select(NULL, NULL);
         try {
             $sa = new Solicitudacta();
             $sa->find_first($id);
@@ -38,6 +37,24 @@ class ListadoController extends AdminController {
             return Redirect::to();
         } catch (KumbiaException $e) {
             View::excepcion($e);
+        }
+    }
+
+    public function cancelar_mobile($id) {
+        view::select(NULL, NULL);
+        try {
+            $sa = new Solicitudacta();
+            $sa->find_first($id);
+            $se = new Solicitudestado();
+            $se->idsolicitudacta = $id;
+            $se->idestadosolicitud = 5;
+            $se->fechacambioestado = UtilApp::fecha_actual();
+            $se->create();
+            $sa->ultimosolicitudestado = $se->id;
+            $sa->update();
+            view::json(TRUE);
+        } catch (KumbiaException $e) {
+            View::json(FALSE);
         }
     }
 

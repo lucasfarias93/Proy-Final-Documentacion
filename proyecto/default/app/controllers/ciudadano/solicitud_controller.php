@@ -12,6 +12,7 @@ class SolicitudController extends AdminController {
 
     public function crear_solicitud() {
         view::select(NULL, NULL);
+
         try {
             $datos = session::get("imagen");
             $sa = new Solicitudacta();
