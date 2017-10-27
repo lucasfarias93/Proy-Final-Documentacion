@@ -42,6 +42,7 @@ class ListadoController extends AdminController {
 
     public function cancelar_mobile($id) {
         view::select(NULL, NULL);
+        ////////Creo el estado cancelada
         try {
             $sa = new Solicitudacta();
             $sa->find_first($id);
