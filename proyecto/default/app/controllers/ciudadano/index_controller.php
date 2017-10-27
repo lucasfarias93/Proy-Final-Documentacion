@@ -62,11 +62,6 @@ class IndexController extends AdminController {
         } catch (NegocioExcepcion $ex) {
             view::select(null, null);
         }
-        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-        $url = $this->urlacta;
-        $url = str_replace('proyecto', 'public', $url);
-        var_dump($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
-        ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
     }
 
     public function buscar_parentesco_tipolibro() {
@@ -135,85 +130,84 @@ class IndexController extends AdminController {
 
     public function generar_pdf_firmar_mail() {
 ///Verifico que entro un estado de pago
-        $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-        $url = $this->urlacta;
-        $url = str_replace('proyecto', 'public', $url);
-        var_dump("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
-        ExpertoActas::enviar_mail("/home/gringo/NetBeansProjects/Proy-Final-Documentacion/proyecto/default" . $url);
-//        if (input::hasPost('estado')) {
-//            $estadopago = input::post('estado');
-//            Logger::info($estadopago);
-//            if (input::hasPost('nrocupon')) {
-//                $nrocupon = input::post('nrocupon');
-//                Logger::info($nrocupon);
-//                if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
-//                    $cp = new Cupondepago();
-//                    $cp->codigodepago = $nrocupon;
-//                    $cp->estadocupondepago = "Pendiente de pago";
-//                    $cp->fechaemisionpago = UtilApp::fecha_actual();
-//                    $cp->montototal = 100;
-//                    $cp->idcodigoprovincial = 6;
-//                    $cp->create();
-//                    try {
-//                        $se2 = new Solicitudestado();
-//                        $sa = session::get("solicitudid");
-//                        $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
-//                        Logger::info("Solicitud " . $sa);
-//                        $se2->idestadosolicitud = 3; //Pendiente de pago
-//                        $se2->fechacambioestado = UtilApp::fecha_actual();
-//                        $se2->create();
-//                    } catch (NegocioExcepcion $e) {
-//                        Logger::info("Error al crear el estado de la solicitud  " . $e);
-//                    }
-//                    try {
-//                        $sa2 = new Solicitudacta();
-//                        Logger::info("Solicitud estado " . $se2->id);
-//                        $sa2->ultimosolicitudestado = $se2->id;
-//                        $sa2->idcupondepago = $cp->id;
-//                        Logger::info("Cupon de pago " . $cp->id);
-//                        $sa2->id = $sa;
-//                        $sa2->update();
-//                    } catch (NegocioExcepcion $e) {
-//                        Logger::info("Error al actualizar la solicitud  " . $e);
-//                    }
-//                }
-//                if ($estadopago == 'approved') { //mando el mail con el pdf firmado
-//                    $cp = new Cupondepago();
-//                    $cp->codigodepago = $nrocupon;
-//                    $cp->estadocupondepago = "Pagada";
-//                    $cp->fechaemisionpago = UtilApp::fecha_actual();
-//                    $cp->montototal = 100;
-//                    $cp->idcodigoprovincial = 6;
-//                    $cp->create();
-//                    try {
-//                        $se2 = new Solicitudestado();
-//                        $sa = session::get("solicitudid");
-//                        $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
-//                        Logger::info("Solicitud " . $sa);
-//                        $se2->idestadosolicitud = 2; //Pagada
-//                        $se2->fechacambioestado = UtilApp::fecha_actual();
-//                        $se2->create();
-//                    } catch (NegocioExcepcion $e) {
-//                        Logger::info("Error al crear el estado de la solicitud  " . $e);
-//                    }
-//                    try {
-//                        $sa2 = new Solicitudacta();
-//                        Logger::info("Solicitud estado " . $se2->id);
-//                        $sa2->ultimosolicitudestado = $se2->id;
-//                        $sa2->idcupondepago = $cp->id;
-//                        Logger::info("Cupon de pago " . $cp->id);
-//                        $sa2->id = $sa;
-//                        $sa2->update();
-//                    } catch (NegocioExcepcion $e) {
-//                        Logger::info("Error al actualizar la solicitud  " . $e);
-//                    }
-//                }
-//            } else {
-//                Logger::info("No se genero el cupon de pago");
-//            }
-//        } else {
-//            Logger::info("No ingreso ningun estado de pago");
-//        }
+        if (input::hasPost('estado')) {
+            $estadopago = input::post('estado');
+            Logger::info($estadopago);
+            if (input::hasPost('nrocupon')) {
+                $nrocupon = input::post('nrocupon');
+                Logger::info($nrocupon);
+                if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
+                    $cp = new Cupondepago();
+                    $cp->codigodepago = $nrocupon;
+                    $cp->estadocupondepago = "Pendiente de pago";
+                    $cp->fechaemisionpago = UtilApp::fecha_actual();
+                    $cp->montototal = 100;
+                    $cp->idcodigoprovincial = 6;
+                    $cp->create();
+                    try {
+                        $se2 = new Solicitudestado();
+                        $sa = session::get("solicitudid");
+                        $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
+                        Logger::info("Solicitud " . $sa);
+                        $se2->idestadosolicitud = 3; //Pendiente de pago
+                        $se2->fechacambioestado = UtilApp::fecha_actual();
+                        $se2->create();
+                    } catch (NegocioExcepcion $e) {
+                        Logger::info("Error al crear el estado de la solicitud  " . $e);
+                    }
+                    try {
+                        $sa2 = new Solicitudacta();
+                        Logger::info("Solicitud estado " . $se2->id);
+                        $sa2->ultimosolicitudestado = $se2->id;
+                        $sa2->idcupondepago = $cp->id;
+                        Logger::info("Cupon de pago " . $cp->id);
+                        $sa2->id = $sa;
+                        $sa2->update();
+                    } catch (NegocioExcepcion $e) {
+                        Logger::info("Error al actualizar la solicitud  " . $e);
+                    }
+                }
+                if ($estadopago == 'approved') { //mando el mail con el pdf firmado
+                    $cp = new Cupondepago();
+                    $cp->codigodepago = $nrocupon;
+                    $cp->estadocupondepago = "Pagada";
+                    $cp->fechaemisionpago = UtilApp::fecha_actual();
+                    $cp->montototal = 100;
+                    $cp->idcodigoprovincial = 6;
+                    $cp->create();
+                    try {
+                        $se2 = new Solicitudestado();
+                        $sa = session::get("solicitudid");
+                        $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
+                        Logger::info("Solicitud " . $sa);
+                        $se2->idestadosolicitud = 2; //Pagada
+                        $se2->fechacambioestado = UtilApp::fecha_actual();
+                        $se2->create();
+                    } catch (NegocioExcepcion $e) {
+                        Logger::info("Error al crear el estado de la solicitud  " . $e);
+                    }
+                    try {
+                        $sa2 = new Solicitudacta();
+                        Logger::info("Solicitud estado " . $se2->id);
+                        $sa2->ultimosolicitudestado = $se2->id;
+                        $sa2->idcupondepago = $cp->id;
+                        Logger::info("Cupon de pago " . $cp->id);
+                        $sa2->id = $sa;
+                        $sa2->update();
+                    } catch (NegocioExcepcion $e) {
+                        Logger::info("Error al actualizar la solicitud  " . $e);
+                    }
+                    $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+                    $url = $this->urlacta;
+                    $url = str_replace('proyecto', 'public', $url);
+                    ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
+                }
+            } else {
+                Logger::info("No se genero el cupon de pago");
+            }
+        } else {
+            Logger::info("No ingreso ningun estado de pago");
+        }
     }
 
     public function generar_pdf_mobile() {
