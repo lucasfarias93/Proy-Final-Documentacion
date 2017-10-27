@@ -31,7 +31,7 @@ class SolicitudController extends AdminController {
             $sa->update();
             session::set("solicitudid", $sa->id);
         } catch (NegocioExcepcion $e) {
-            Logger::info("no se pudo crear la solicitud");
+            Logger::info("no se pudo crear la solicitud: " . $e);
         }
     }
 
@@ -56,7 +56,7 @@ class SolicitudController extends AdminController {
             $sa->update();
             session::set("solicitudid", $sa->id);
         } catch (NegocioExcepcion $e) {
-            view::json("no se pudo crear la solicitud");
+            view::json("no se pudo crear la solicitud ".$e);
         }
         view::json(TRUE);
     }

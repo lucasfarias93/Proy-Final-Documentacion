@@ -67,7 +67,8 @@
                             <th>Tipo libro</th>
                             <th>Fecha solicitud </th>
                             <th>Estado solicitud </th>
-                            <th>Eliminar/Pagar </th>
+                            <th>Eliminar </th>
+                            <th>Pagar </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,13 +81,15 @@
                                 <td><?php echo $as->nombrelibro ?></td>
                                 <td><?php echo $as->fechacambioestado ?></td>
                                 <td><?php echo $as->nombreestadosolicitud ?></td>
+                                <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
+                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>    
+                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
+                                <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
                                     <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                                 <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
-                                <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>"></a></td>
                                     <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/default/valid.png"></a></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Cancelada") { ?>
