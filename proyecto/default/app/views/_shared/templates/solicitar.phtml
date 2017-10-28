@@ -72,22 +72,20 @@
             </ul>
             <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
             <fieldset>
-                <div id="respuesta" ></div>
                 <h2 class="fs-title">CREAR SOLICITUD</h2>
                 <h3 class="fs-subtitle-left">Seleccione tipo de acta a solicitar</h3>
                 <div class="input-field" id="tipolibro">
                     <?php echo Form::dbselect('tipolibro.id', 'nombrelibro', array('tipolibro', 'find')) ?>                    
                 </div>
-                <h3
-                    class="fs-subtitle-left">Seleccione parentesco del acta a solicitar</h3> 
-                <div class="input-field" id="parentescos">
-
-                </div>
-                <input type="button" name="next" class="next action-button" value="Siguiente" id="boton1" />
+                <h3 class="fs-subtitle-left">Seleccione parentesco del acta a solicitar</h3> 
+                <div class="input-field" id="parentescos"></div>
+                
+                <input type="button" name="next" class="next action-button" value="Siguiente" id="boton1" disabled/>
             </fieldset>
 
             <!-- fieldsets 2: Se muestra una vista previa del acta cuando se selecciona -->
             <fieldset>
+                <div id="respuesta" ></div>
                 <h2 class="fs-title">Acta a expedir</h2>
                 <div id="img_container"><img id="img_acta" height="400" width="300" class="zoom"></div>
                 <div class="col-sm-12">
@@ -108,9 +106,9 @@
                     </table>
                 </div>
                 <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                <a href="<?php echo PUBLIC_PATH ?>ciudadano/reportarerror" class=" action-button" value="Reportar error" id="botonerror">Reportar error</a>
+                <a href="<?php echo PUBLIC_PATH ?>ciudadano/reportarerror" class="action-button" value="Reportar error" id="botonerror">Reportar error</a>
      <!--            <a href="<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud" class=" action-button" value="Reportar error" id="botonerror">Confirmar</a> -->
-                <input type="button" name="next" class="next action-button" value="Confirmar" id="boton2"/>
+                <input type="button" name="next" class="next action-button" value="Confirmar" id="boton2" disabled/>
                 <script>
                     $(document).ready(function () {
                         $('.zoom').hover(function () {
@@ -167,78 +165,48 @@
 
 
         <script>
-                        $("#tipolibro_id").change(function () {
-                            if (($("#tipolibro_id option:selected").val() != "")) {
+//         Buscar las opciones segun el tipo de libro seleccionado
+            $("#tipolibro_id").change(function () {
+//             Deshabilitar boton siguiente, dado que se borra la opcion elegida en parentezco
+               $("#boton1").attr("disabled", true);
+                if (($("#tipolibro_id option:selected").val() != "")) {
+                    $.ajax({
+                        data: {
+                            'tipolibro': $("#tipolibro_id option:selected").val()
+                        },
+                        url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_parentesco_tipolibro",
+                        type: 'post',
+                        dataType: "json",
+                        success: function (response) {
+                            html = "";
+                            $.each(response, function (i, row) {
+                                html += '<p>'
+                                html += '<input class="with-gap" name="group3" value="' + row.id + '" type="radio" id="' + row.nombreparentesco + '_radio">'
+                                html += '<label for="' + row.nombreparentesco + '_radio">' + row.nombreparentesco + '</label>'
+                                html += '</p>'
+                            })
+                            $("#parentescos").html(html);
+                        }
+                    });
+                }
+            });
+            
+//          habilitar boton siguiente en cuanto se selecciona un parentezco
+            $("#parentescos").change(function () {
+               $("#boton1").removeAttr("disabled");
+            });
+            
+            $("#botonerror").click(function () {
+                if (($("#tipolibro_id option:selected").val() != "")) {
 
-                                $.ajax({
-                                    data: {
-                                        'tipolibro': $("#tipolibro_id option:selected").val()
-                                    },
-                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_parentesco_tipolibro",
-                                    type: 'post',
-                                    dataType: "json",
-                                    success: function (response) {
-                                        html = "";
-                                        $.each(response, function (i, row) {
-                                            html += '<p>'
-                                            html += '<input class="with-gap" name="group3" value="' + row.id + '" type="radio" id="' + row.nombreparentesco + '_radio">'
-                                            html += '<label for="' + row.nombreparentesco + '_radio">' + row.nombreparentesco + '</label>'
-                                            html += '</p>'
-                                        })
-                                        $("#parentescos").html(html);
-                                    }
-                                });
-                            }
-                        });
-                        $("#boton1").click(function () {
-                            if (($("#tipolibro_id option:selected").val() != "")) {
-
-                                $.ajax({
-                                    data: {
-                                        'tipolibro': $("#tipolibro_id option:selected").val(),
-                                        'parentesco': $('input[name=group3]:checked').val()
-                                    },
-                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
-                                    type: 'post',
-                                    dataType: "json",
-                                    success: function (response) {
-                                        imagen = response[0]
-                                        $("#img_acta").attr("src", imagen.imagen);
-                                        if (imagen.persona == null) {
-                                            $('#boton2').attr("disabled", "disabled")
-                                            $("#myTable").hide()
-                                        } else {
-                                            $('#boton2').removeAttr("disabled")
-                                            $("#myTable").show()
-                                            html = "";
-                                            html += '<tr>'
-                                            html += '<td>' + imagen.persona + '</td>'
-                                            html += '<td>' + imagen.apellido + '</td>'
-                                            html += '<td>' + imagen.dni + '</td>'
-                                            html += '<td>' + imagen.nroacta + '</td>'
-                                            html += '<td>' + imagen.nrolibro + '</td>'
-                                            html += '<td>' + imagen.fecha_nacimiento + '</td>'
-                                            html += '</tr>'
-                                            $("#myTable tbody").html(html);
-                                        }
-                                    },
-                                    fail: function (response) {
-                                        $("#respuesta").html("No existe la imagen del acta")
-                                    }
-                                });
-                            }
-                        });
-                        $("#botonerror").click(function () {
-                            if (($("#tipolibro_id option:selected").val() != "")) {
-
-                                $.ajax({
-                                    data: {
+                    $.ajax({
+                        data: {
 //                                        'tipolibro': $("#tipolibro_id option:selected").val(),
 //                                        'parentesco': $('input[name=group3]:checked').val()
-                                    },
-                                    url: "<?php echo PUBLIC_PATH ?>olvido/index",
-                                    type: 'post',
-                                    dataType: "json",
+                        },
+                        url: "<?php echo PUBLIC_PATH ?>olvido/index",
+                        type: 'post',
+                        dataType: "json",
 //                                    success: function (response) {
 //                                        imagen = response[0]
 //                                        $("#img_acta").attr("src", imagen.imagen);
@@ -246,54 +214,56 @@
 //                                    fail: function (response) {
 //                                        $("#respuesta").html("No existe la imagen del acta")
 //                                    }
-                                });
-                            }
-                        });
-                        $("#boton2").click(function () {
-                            $.ajax({
-                                data: {
+                    });
+                }
+            });
+            
+            $("#boton2").click(function () {
+                $.ajax({
+                    data: {
 
-                                },
-                                url: "<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud",
-                                type: 'post',
-                                success: function (response) {
+                    },
+                    url: "<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud",
+                    type: 'post',
+                    success: function (response) {
 
-                                    $("#mensajes_flash").html(response);
-                                }
-                            }
-                            );
-                        });
-                        function execute_my_onreturn(json) {
-                            //alert(json.collection_id) //tengo el numero de comprobante
-                            if (json.collection_status == 'approved') {
-                                alert('Pago acreditado');
+                        $("#mensajes_flash").html(response);
+                    }
+                }
+                );
+            });
+            
+            function execute_my_onreturn(json) {
+                //alert(json.collection_id) //tengo el numero de comprobante
+                if (json.collection_status == 'approved') {
+                    alert('Pago acreditado');
 //                                $('#boton3').html("Finalizado")
 //                                $('#boton3').removeAttr("name")
 //                                $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
-                                window.open("<?php echo PUBLIC_PATH ?>ciudadano");
-                            } else if (json.collection_status == 'pending') {
-                                alert('El usuario no completó el pago');
-                            } else if (json.collection_status == 'in_process') {
-                                alert('El pago está siendo revisado');
-                            } else if (json.collection_status == 'rejected') {
-                                alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
-                            } else if (json.collection_status == null) {
-                                alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
-                            }
-                            $.ajax({
-                                url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
-                                type: 'post',
-                                data: {
-                                    'estado': json.collection_status,
-                                    'nrocupon': json.collection_id
-                                },
-                                success: function (response) {
-                                    $('#boton3').html("Finalizado")
-                                    $('#boton3').removeAttr("name")
-                                    $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
-                                }
-                            });
-                        }
+                    window.open("<?php echo PUBLIC_PATH ?>ciudadano");
+                } else if (json.collection_status == 'pending') {
+                    alert('El usuario no completó el pago');
+                } else if (json.collection_status == 'in_process') {
+                    alert('El pago está siendo revisado');
+                } else if (json.collection_status == 'rejected') {
+                    alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+                } else if (json.collection_status == null) {
+                    alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+                }
+                $.ajax({
+                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+                    type: 'post',
+                    data: {
+                        'estado': json.collection_status,
+                        'nrocupon': json.collection_id
+                    },
+                    success: function (response) {
+                        $('#boton3').html("Finalizado")
+                        $('#boton3').removeAttr("name")
+                        $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
+                    }
+                });
+            }
         </script>
     </body>
 </html>

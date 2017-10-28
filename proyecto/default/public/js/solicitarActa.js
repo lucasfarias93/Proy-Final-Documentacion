@@ -77,6 +77,46 @@ $(".previous").click(function(){
 	});
 });
 
+$("#boton1").click(function () {
+    if ($("#tipolibro_id option:selected").val() != "") {
+        $.ajax({
+            data: {
+                'tipolibro': $("#tipolibro_id option:selected").val(),
+                'parentesco': $('input[name=group3]:checked').val()
+            },
+            url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
+            type: 'post',
+            dataType: "json",
+            success: function (response) {
+                imagen = response[0]
+                $("#img_acta").attr("src", imagen.imagen);
+                if (imagen.persona == null) {
+                    $('#boton2').attr("disabled", "disabled")
+                    $("#myTable").hide()
+                } else {
+                    $('#boton2').removeAttr("disabled")
+                    $("#myTable").show()
+                    html = "";
+                    html += '<tr>'
+                    html += '<td>' + imagen.persona + '</td>'
+                    html += '<td>' + imagen.apellido + '</td>'
+                    html += '<td>' + imagen.dni + '</td>'
+                    html += '<td>' + imagen.nroacta + '</td>'
+                    html += '<td>' + imagen.nrolibro + '</td>'
+                    html += '<td>' + imagen.fecha_nacimiento + '</td>'
+                    html += '</tr>'
+                    $("#myTable tbody").html(html);
+                }
+            },
+            error: function (response) {
+                $("#respuesta").html("No existe la imagen del acta")
+            }
+        });
+    } else {
+    	alert("Seleccione tipo de acta y parentesco antes de continuar");
+    }
+});
+
 $(".submit").click(function(){
 	return false;
 })

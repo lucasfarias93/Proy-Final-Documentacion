@@ -22,12 +22,6 @@
                 <div class="container">
                     <br><br>
                     <h1 class="header center col s12" id="title">Tus actas digitales de forma rápida y segura!</h1>
-                    <div class="row right-align">
-                        <a><?php echo Html::img('information.png', '', array("width" => "48px", "height" => "48px")) ?></a>
-                        <br>
-                        <br>
-                        <a href="<?php echo PUBLIC_PATH ?>default/public/Manual de Usuario.pdf" target="_blank">Manual de usuario </a>
-                    </div>
                     <div class="row center">
                         <h5 class="header col s12 light">La forma mas rapida de sacar tus actas de forma digital y en la comodidad de tu hogar</h5>
                     </div>
@@ -39,10 +33,12 @@
                         <span></span>
                         <br><br>
                         <?php echo html::link('verificarentidad', "Verifica la validez de tu acta", array("class" => "btn-large waves-effect waves", "id" => "download-button")) ?>
-                        <div class="section"><?php echo view::content() ?></div>
+                        <div class="row right-align">
+                        <a><?php echo Html::img('information.png', '', array("width" => "48px", "height" => "48px")) ?></a>
+                        <a href="<?php echo PUBLIC_PATH ?>default/public/Manual de Usuario.pdf" target="_blank">Manual de usuario </a>
                     </div>
-
-
+                        
+                    </div>
                 </div>
             </div>
             <div class="parallax cropper"><img src="<?php echo PUBLIC_PATH ?>img/background123.jpg" alt="Unsplashed background img 1"></div>
