@@ -136,7 +136,7 @@ class IndexController extends AdminController {
             Logger::info($estadopago);
             if (input::hasPost('nrocupon')) {
                 $nrocupon = input::post('nrocupon');
-                session::set("nrocupon",$nrocupon);
+                session::set("nrocupon", $nrocupon);
                 Logger::info($nrocupon);
                 if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
                     $cp = new Cupondepago();
@@ -219,11 +219,15 @@ class IndexController extends AdminController {
 
     public function generar_pdf_mobile() {
         view::select(NULL, NULL);
-        $urlmobile = ExpertoActas::generar_pdf(session::get("imagen"));
-        if ($urlmobile != NULL) {
-            view::json($urlmobile);
-        } else {
-            view::json("La imagen no se pudo convertir");
+        try {
+            $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+            $url = $this->urlacta;
+            $url = str_replace('proyecto', 'public', $url);
+            var_dump($url);
+            ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
+            view::json(TRUE);
+        } catch (NegocioExcepcion $e) {
+            view::json($e);
         }
     }
 
