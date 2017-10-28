@@ -26,32 +26,38 @@ class ReportarerrorController extends AppController {
         $arreglo['numerolibro'] = $dto->nrolibro;
         $arreglo['nombrepropietarioacta'] = $dto->persona;
         $arreglo['apellidopropietarioacta'] = $dto->apellido;
-        $this->tiporeclamo = $arreglo;//
+        $this->tiporeclamo = $arreglo; //
     }
 
     public function crear_reclamo() {
-        try {
-            view::select(NULL);
-            if (input::hasPost('tiporeclamo')) {
-                $rea = new Reclamoerroracta(input::post('tiporeclamo'));
-                $rea->idusuario = Auth::get('id');
+        view::select(NULL);
+        if (input::hasPost('tiporeclamo')) {
+            $rea = new Reclamoerroracta(input::post('tiporeclamo'));
+            $rea->idusuario = Auth::get('id');
+            try {
                 $rea->create();
                 $reclamoerroractaestado = new Reclamoerroractaestado();
                 $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
-                ///Con $rea->id le estoy seteando el id de lo que acabo de crear?
+///Con $rea->id le estoy seteando el id de lo que acabo de crear?
                 $reclamoerroractaestado->idreclamoerroracta = $rea->id;
-                ////////////El estado 1 es enviado al archivo
+////////////El estado 1 es enviado al archivo
                 $reclamoerroractaestado->idestadoreclamoerroracta = 1;
                 $reclamoerroractaestado->create();
                 Flash::info("Reclamo realizado con éxito");
                 Router::redirect('ciudadano');
-            } else {
-                Flash::error("Debe elegir un tipo de reclamo para poder continuar");
+            } catch (NegocioExcepcion $e) {
+                Flash::info($e->getMessage());
+                if (!Input::isAjax()) {
+                    return Router::redirect();
+                } else {
+                    Flash::info("Debe elegir un tipo de reclamo para poder continuar");
+                }
+            } catch (NegocioExcepcion $e) {
+                Flash::info("Debe elegir un tipo de reclamo para poder continuar");
+                Router::redirect();
+            } catch (Exception $e) {
+                
             }
-        } catch (NegocioExcepcion $e) {
-            
-        } catch (Exception $e) {
-            
         }
     }
 
