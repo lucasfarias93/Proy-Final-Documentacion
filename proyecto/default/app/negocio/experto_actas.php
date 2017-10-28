@@ -71,7 +71,7 @@ class ExpertoActas {
         exec($comando);
         $url = PUBLIC_PATH . $nombre;
         $url = str_replace('.pdf', '', $url);
-        $url = $url . "_firmado.pdf";
+        $url = "/public".$url . "_firmado.pdf";
         var_dump($url);
         return $url;
     }
