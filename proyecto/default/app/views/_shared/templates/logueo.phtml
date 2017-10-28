@@ -23,8 +23,7 @@
         <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
-        
-        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/alerta.css">
+
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -45,29 +44,29 @@
         </nav> 
 
         <div class="center row withTopPad">
-            
-                <label>¿Tenes usuario? Inicia sesión</label>
-                <?php echo Form::open('admin', 'post') ?>
+
+            <label>¿Tenes usuario? Inicia sesión</label>
+            <?php echo Form::open('admin', 'post') ?>
 
 
-                <?php View::content() ?>
-                <input type="text" placeholder="Usuario" name="login"><br>
-                <input type="password" placeholder="Contraseña" name="clave"><br>
-                    <div class="row">
-                        <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?>
-                        <?php echo html::link('olvido', "¿Olvidaste tu cuenta?", array("class" => "href", "id" => "download-button")) ?>
-                    </div>                        
-                    <button class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
+            <?php View::content() ?>
+            <input type="text" placeholder="Usuario" name="login"><br>
+            <input type="password" placeholder="Contraseña" name="clave"><br>
+            <div class="row">
+                <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?>
+                <?php echo html::link('olvido', "¿Olvidaste tu cuenta?", array("class" => "href", "id" => "download-button")) ?>
+            </div>                        
+            <button class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
 
-                </form>
-        </div>
-            <!--Import jQuery before materialize.js-->
-            <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
-            <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
-            <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
-            <!-- En init.js esta declarada la inicializacion de los selectores utilizados por materialize-->
-            <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
-        </div>  
-    </body>
+        </form>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+    <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
+    <!-- En init.js esta declarada la inicializacion de los selectores utilizados por materialize-->
+    <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+</div>  
+</body>
 
 </html>

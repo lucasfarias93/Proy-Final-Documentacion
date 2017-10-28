@@ -1,0 +1,10 @@
+img.zoom {
+    width: 300px;
+    height: 400px;
+    transition: width 2s, height 2s, transform 2s;
+    -moz-transition: width 2s, height 2s, -moz-transform 2s;
+}
+.zoom:hover{
+    transform : scale(3);
+    -moz-transform : scale(3);      /* Firefox */
+}
