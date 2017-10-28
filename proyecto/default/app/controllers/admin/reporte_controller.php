@@ -15,6 +15,10 @@ class ReporteController extends AdminController {
         $this->listTiporeporte = $tr->getTiporeporte($page);
         if (Input::hasPost('tiporeporte')) {
             $tr = Input::post('tiporeporte');
+            if (($tr['idtiporeporte']) == 1) {//Actas Firmadas
+                $lista1 = Load::model('solicitudacta')->actas_firmadas();
+                view::partial("actas_firmadas", FALSE, array("lista1" => $lista1));
+            }
             if (($tr['idtiporeporte']) == 2) {//Solicitudes generadas
                 $lista2 = Load::model('solicitudacta')->reporte_solicitudes_generadas();
                 view::partial("solicitudes", FALSE, array("lista2" => $lista2));

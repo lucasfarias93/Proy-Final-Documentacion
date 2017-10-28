@@ -69,5 +69,17 @@ class Solicitudacta extends ActiveRecord {
 
         return $this->find($where, "columns: $cols", "join: $join");
     }
+    
+    public function actas_firmadas() {
+        $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
+        $where = " nombreestadosolicitud = 'Pagada'";
+        $join = " join parentesco p on p.id = solicitudacta.idparentesco";
+        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
+        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
+        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
+        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
+
+        return $this->find($where, "columns: $cols", "join: $join");
+    }
 
 }
