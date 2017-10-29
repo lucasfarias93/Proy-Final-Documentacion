@@ -265,7 +265,7 @@ class IndexController extends AdminController {
             //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
             $mail->IsHTML(true); // El correo se envía como HTML
             $mail->Subject = "Pago acreditado"; // Este es el titulo del email.
-            $body = "El pago de tu acta n°" . $sa . " se acredito en nuestro sistema. El nro de cupon es: " . $nrocupon;
+            $body = "El pago de tu acta nro. " . $sa . " se acredito en nuestro sistema. El nro de cupon es: " . $nrocupon;
             $mail->Body = $body; // Mensaje a enviar
             $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
