@@ -147,13 +147,24 @@
             }
             function execute_my_onreturn(json) {
                 //alert(json.collection_id) //tengo el numero de comprobante
+                window.open("<?php echo PUBLIC_PATH ?>ciudadano");
                 if (json.collection_status == 'approved') {
-                    alert('Pago acreditado');
+                    $.ajax({
+                        url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+                        type: 'post',
+                        data: {
+                            'estado': json.collection_status,
+                            'nrocupon': json.collection_id
+                        },
+                        success: function (response) {
+                            $('#boton3').html("Finalizado")
+                            $('#boton3').removeAttr("name")
+                            $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
+                        }
+                    });
                 } else if (json.collection_status == 'pending') {
                     alert('El usuario no completó el pago');
-                    $('#boton3').html("Finalizado")
-                    $('#boton3').removeAttr("name")
-                    $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
+                    window.open("<?php echo PUBLIC_PATH ?>ciudadano");
                 } else if (json.collection_status == 'in_process') {
                     alert('El pago está siendo revisado');
                 } else if (json.collection_status == 'rejected') {
@@ -161,19 +172,6 @@
                 } else if (json.collection_status == null) {
                     alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
                 }
-                $.ajax({
-                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
-                    type: 'post',
-                    data: {
-                        'estado': json.collection_status,
-                        'nrocupon': json.collection_id
-                    },
-                    success: function (response) {
-                        $('#boton3').html("Finalizado")
-                        $('#boton3').removeAttr("name")
-                        $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano/listado")
-                    }
-                });
             }
         </script>
     </body>
