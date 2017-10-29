@@ -167,10 +167,6 @@ class IndexController extends AdminController {
                     } catch (NegocioExcepcion $e) {
                         Logger::info("Error al actualizar la solicitud  " . $e);
                     }
-                    $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-                    $url = $this->urlacta;
-                    $url = str_replace('proyecto', 'public', $url);
-                    ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
                 }
                 if ($estadopago == 'approved') { //mando el mail con el pdf firmado
                     $cp = new Cupondepago();
@@ -184,7 +180,6 @@ class IndexController extends AdminController {
                         $se2 = new Solicitudestado();
                         $sa = session::get("solicitudid");
                         $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
-                        Logger::info("Solicitud " . $sa);
                         $se2->idestadosolicitud = 2; //Pagada
                         $se2->fechacambioestado = UtilApp::fecha_actual();
                         $se2->create();
@@ -193,7 +188,6 @@ class IndexController extends AdminController {
                     }
                     try {
                         $sa2 = new Solicitudacta();
-                        Logger::info("Solicitud estado " . $se2->id);
                         $sa2->ultimosolicitudestado = $se2->id;
                         $sa2->idcupondepago = $cp->id;
                         Logger::info("Cupon de pago " . $cp->id);
@@ -206,6 +200,7 @@ class IndexController extends AdminController {
                     $url = $this->urlacta;
                     $url = str_replace('proyecto', 'public', $url);
                     ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
+                    $this->mail_aprobado($nrocupon, $sa);
                 }
             } else {
                 Logger::info("No se genero el cupon de pago");
@@ -235,6 +230,55 @@ class IndexController extends AdminController {
             view::json(Auth::get('id'));
         } else {
             view::json(FALSE);
+        }
+    }
+
+    public function mail_aprobado($nrocupon, $sa) {
+        load::lib("phpmailer/class.phpmailer");
+        view::template(NULL);
+        try {
+            ////Mandar mail
+            $mail = new PHPMailer();
+            $mail->SetLanguage('en', '/phpmailer/language/');
+//Luego tenemos que iniciar la validación por SMTP:
+            $mail->IsSMTP();
+            $mail->SMTPDebug = false;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->SMTPAutoTLS = false;
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+            $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+            $mail->Password = "gringodiego"; // Contraseña
+            $mail->Port = 465; // Puerto a utilizar
+//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
+            $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
+            $mail->FromName = "Soporte";
+//Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
+            $mail->AddAddress(Auth::get('email')); // Esta es la dirección a donde enviamos
+            //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
+            $mail->IsHTML(true); // El correo se envía como HTML
+            $mail->Subject = "Pago acreditado"; // Este es el titulo del email.
+            $body = "El pago de tu acta n°" . $sa . " se acredito en nuestro sistema. El nro de cupon es: " . $nrocupon;
+            $mail->Body = $body; // Mensaje a enviar
+            $exito = $mail->Send(); // Envía el correo.
+//También podríamos agregar simples verificaciones para saber si se envió:
+            if ($exito) {
+                Flash::info("El correo fue enviado correctamente");
+                Router::redirect();
+            } else {
+                $mail->ErrorInfo;
+                throw new NegocioExcepcion($mail->ErrorInfo);
+            }
+        } catch (NegocioExcepcion $e) {
+            Logger::error($e->getMessage());
+            Flash::info($e->getMessage());
         }
     }
 
