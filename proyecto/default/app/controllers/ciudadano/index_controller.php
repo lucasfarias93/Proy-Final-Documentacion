@@ -137,7 +137,7 @@ class IndexController extends AdminController {
                 $nrocupon = input::post('nrocupon');
                 session::set("nrocupon", $nrocupon);
                 Logger::info($nrocupon);
-                if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
+                if ($estadopago == 'pending' || $estadopago == 'in_process' || $estadopago == 'rejected') { //no mando el mail ni genero el pdf
                     $cp = new Cupondepago();
                     $cp->codigodepago = $nrocupon;
                     $cp->estadocupondepago = "Pendiente de pago";
@@ -213,7 +213,7 @@ class IndexController extends AdminController {
     public function generar_pdf_mobile($estadopago, $nrocupon, $sa) {
         view::select(NULL, NULL);
         try {
-            if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
+            if ($estadopago == 'pending' || $estadopago == 'in_process' || $estadopago == 'rejected') { //no mando el mail ni genero el pdf
                 $cp = new Cupondepago();
                 $cp->codigodepago = $nrocupon;
                 $cp->estadocupondepago = "Pendiente de pago";

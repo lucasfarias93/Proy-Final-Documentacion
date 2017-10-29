@@ -82,21 +82,24 @@
                                 <td><?php echo $as->fechacambioestado ?></td>
                                 <td><?php echo $as->nombreestadosolicitud ?></td>
                                 <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>    
-                                    <td><a mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=275375435-3e415a08-4ccf-403c-92b8-6e48347e3e7e" name="MP-payButton" class='botonpagar' onreturn="execute_my_onreturn"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
-                                        <?php } ?> 
-                                        <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>    
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>    
                                 <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
-                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>"></a></td>
+                                <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
+                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                                    <td><a mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=279404435-82392bf5-6d97-4f7d-a621-1471c1627bf2" name="MP-payButton" class='botonpagar' onreturn="execute_my_onreturn"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
+                                        <?php } ?> 
+                                        <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>
                                     <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/default/valid.png"></a></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Cancelada") { ?>
-                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/default/error.png"></a></td>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Enviada al archivo") { ?>
-                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/default/warning.png"></a></td>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>
+                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>
                                 <?php } ?> 
                             </tr>
                         <?php } ?>
@@ -119,7 +122,7 @@
                 }
                 window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
             })();
-            
+
         </script>
         <script>
             function myFunction() {
