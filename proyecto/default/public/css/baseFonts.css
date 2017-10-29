@@ -58,6 +58,13 @@ input:not([type]):disabled, input:not([type])[readonly="readonly"], input[type=t
 	color: white;
 }	
 
+/* Cuando se autocomplete, usar los mismos colores de fondo y de letra que cuando no*/
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #2A3F54 inset !important;
+    -webkit-text-fill-color: white !important;
+
+}
+
 .center {
     margin-top: auto;
     width: 30%;
