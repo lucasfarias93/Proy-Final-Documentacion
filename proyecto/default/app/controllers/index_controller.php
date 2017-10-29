@@ -9,6 +9,7 @@ class IndexController extends AppController
 
     public function index()
     {
+        MyAuth::cerrar_sesion();
         view::template('principal');
         view::select(NULL);
     }

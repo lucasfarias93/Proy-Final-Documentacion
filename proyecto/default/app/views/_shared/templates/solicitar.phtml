@@ -79,7 +79,7 @@
                 </div>
                 <h3 class="fs-subtitle-left">Seleccione parentesco del acta a solicitar</h3> 
                 <div class="input-field" id="parentescos"></div>
-                
+
                 <input type="button" name="next" class="next action-button" value="Siguiente" id="boton1" disabled="disabled"/>
             </fieldset>
 
@@ -146,7 +146,7 @@
         </form>
         <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
         <script src="<?php echo PUBLIC_PATH ?>js/jquery-ui-1.10.3.js"></script>
-        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH                        ?>js/jquery-3.2.1.min.js"></script>-->
+        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH                         ?>js/jquery-3.2.1.min.js"></script>-->
         <script src="<?php echo PUBLIC_PATH ?>js/jquery.easing.min.js"></script>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
@@ -166,47 +166,47 @@
 
         <script>
 //         Buscar las opciones segun el tipo de libro seleccionado
-            $("#tipolibro_id").change(function () {
+                        $("#tipolibro_id").change(function () {
 //             Deshabilitar boton siguiente, dado que se borra la opcion elegida en parentezco
-               $("#boton1").attr("disabled", true);
-                if (($("#tipolibro_id option:selected").val() != "")) {
-                    $.ajax({
-                        data: {
-                            'tipolibro': $("#tipolibro_id option:selected").val()
-                        },
-                        url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_parentesco_tipolibro",
-                        type: 'post',
-                        dataType: "json",
-                        success: function (response) {
-                            html = "";
-                            $.each(response, function (i, row) {
-                                html += '<p>'
-                                html += '<input class="with-gap" name="group3" value="' + row.id + '" type="radio" id="' + row.nombreparentesco + '_radio">'
-                                html += '<label for="' + row.nombreparentesco + '_radio">' + row.nombreparentesco + '</label>'
-                                html += '</p>'
-                            })
-                            $("#parentescos").html(html);
-                        }
-                    });
-                }
-            });
-            
-//          habilitar boton siguiente en cuanto se selecciona un parentezco
-            $("#parentescos").change(function () {
-               $("#boton1").removeAttr("disabled");
-            });
-            
-            $("#botonerror").click(function () {
-                if (($("#tipolibro_id option:selected").val() != "")) {
+                            $("#boton1").attr("disabled", true);
+                            if (($("#tipolibro_id option:selected").val() != "")) {
+                                $.ajax({
+                                    data: {
+                                        'tipolibro': $("#tipolibro_id option:selected").val()
+                                    },
+                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_parentesco_tipolibro",
+                                    type: 'post',
+                                    dataType: "json",
+                                    success: function (response) {
+                                        html = "";
+                                        $.each(response, function (i, row) {
+                                            html += '<p>'
+                                            html += '<input class="with-gap" name="group3" value="' + row.id + '" type="radio" id="' + row.nombreparentesco + '_radio">'
+                                            html += '<label for="' + row.nombreparentesco + '_radio">' + row.nombreparentesco + '</label>'
+                                            html += '</p>'
+                                        })
+                                        $("#parentescos").html(html);
+                                    }
+                                });
+                            }
+                        });
 
-                    $.ajax({
-                        data: {
+//          habilitar boton siguiente en cuanto se selecciona un parentezco
+                        $("#parentescos").change(function () {
+                            $("#boton1").removeAttr("disabled");
+                        });
+
+                        $("#botonerror").click(function () {
+                            if (($("#tipolibro_id option:selected").val() != "")) {
+
+                                $.ajax({
+                                    data: {
 //                                        'tipolibro': $("#tipolibro_id option:selected").val(),
 //                                        'parentesco': $('input[name=group3]:checked').val()
-                        },
-                        url: "<?php echo PUBLIC_PATH ?>olvido/index",
-                        type: 'post',
-                        dataType: "json",
+                                    },
+                                    url: "<?php echo PUBLIC_PATH ?>olvido/index",
+                                    type: 'post',
+                                    dataType: "json",
 //                                    success: function (response) {
 //                                        imagen = response[0]
 //                                        $("#img_acta").attr("src", imagen.imagen);
@@ -214,96 +214,92 @@
 //                                    fail: function (response) {
 //                                        $("#respuesta").html("No existe la imagen del acta")
 //                                    }
-                    });
-                }
-            });
-            
-            $("#boton2").click(function () {
-                $.ajax({
-                    data: {
+                                });
+                            }
+                        });
 
-                    },
-                    url: "<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud",
-                    type: 'post',
-                    success: function (response) {
+                        $("#boton2").click(function () {
+                            $.ajax({
+                                data: {
 
-                        $("#mensajes_flash").html(response);
-                    }
-                }
-                );
-            });
-            $("#boton1").click(function () {
-    if ($("#tipolibro_id option:selected").val() != "") {
-        $.ajax({
-            data: {
-                'tipolibro': $("#tipolibro_id option:selected").val(),
-                'parentesco': $('input[name=group3]:checked').val()
-            },
-            url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
-            type: 'post',
-            dataType: "json",
-            success: function (response) {
-                imagen = response[0]
-                $("#img_acta").attr("src", imagen.imagen);
-                if (imagen.persona == null) {
-                    $('#boton2').attr("disabled", "disabled")
-                    $("#myTable").hide()
-                } else {
-                    $('#boton2').removeAttr("disabled")
-                    $("#myTable").show()
-                    html = "";
-                    html += '<tr>'
-                    html += '<td>' + imagen.persona + '</td>'
-                    html += '<td>' + imagen.apellido + '</td>'
-                    html += '<td>' + imagen.dni + '</td>'
-                    html += '<td>' + imagen.nroacta + '</td>'
-                    html += '<td>' + imagen.nrolibro + '</td>'
-                    html += '<td>' + imagen.fecha_nacimiento + '</td>'
-                    html += '</tr>'
-                    $("#myTable tbody").html(html);
-                }
-            },
-            fail: function (response) {
-                $("#respuesta").html("No existe la imagen del acta")
-            }
-        });
-    } else {
-    	alert("Seleccione tipo de acta y parentesco antes de continuar");
-    }
-});
-            
-            
-            function execute_my_onreturn(json) {
-                //alert(json.collection_id) //tengo el numero de comprobante
-                if (json.collection_status == 'approved') {
-                    alert('Pago acreditado');
-//                                $('#boton3').html("Finalizado")
-//                                $('#boton3').removeAttr("name")
-//                                $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
-                    window.open("<?php echo PUBLIC_PATH ?>ciudadano");
-                } else if (json.collection_status == 'pending') {
-                    alert('El usuario no completó el pago');
-                } else if (json.collection_status == 'in_process') {
-                    alert('El pago está siendo revisado');
-                } else if (json.collection_status == 'rejected') {
-                    alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
-                } else if (json.collection_status == null) {
-                    alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
-                }
-                $.ajax({
-                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
-                    type: 'post',
-                    data: {
-                        'estado': json.collection_status,
-                        'nrocupon': json.collection_id
-                    },
-                    success: function (response) {
-                        $('#boton3').html("Finalizado")
-                        $('#boton3').removeAttr("name")
-                        $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
-                    }
-                });
-            }
+                                },
+                                url: "<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud",
+                                type: 'post',
+                                success: function (response) {
+
+                                    $("#mensajes_flash").html(response);
+                                }
+                            }
+                            );
+                        });
+                        $("#boton1").click(function () {
+                            if ($("#tipolibro_id option:selected").val() != "") {
+                                $.ajax({
+                                    data: {
+                                        'tipolibro': $("#tipolibro_id option:selected").val(),
+                                        'parentesco': $('input[name=group3]:checked').val()
+                                    },
+                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/buscar_imagen",
+                                    type: 'post',
+                                    dataType: "json",
+                                    success: function (response) {
+                                        imagen = response[0]
+                                        $("#img_acta").attr("src", imagen.imagen);
+                                        if (imagen.persona == null) {
+                                            $('#boton2').attr("disabled", "disabled")
+                                            $("#myTable").hide()
+                                        } else {
+                                            $('#boton2').removeAttr("disabled")
+                                            $("#myTable").show()
+                                            html = "";
+                                            html += '<tr>'
+                                            html += '<td>' + imagen.persona + '</td>'
+                                            html += '<td>' + imagen.apellido + '</td>'
+                                            html += '<td>' + imagen.dni + '</td>'
+                                            html += '<td>' + imagen.nroacta + '</td>'
+                                            html += '<td>' + imagen.nrolibro + '</td>'
+                                            html += '<td>' + imagen.fecha_nacimiento + '</td>'
+                                            html += '</tr>'
+                                            $("#myTable tbody").html(html);
+                                        }
+                                    },
+                                    fail: function (response) {
+                                        $("#respuesta").html("No existe la imagen del acta")
+                                    }
+                                });
+                            } else {
+                                alert("Seleccione tipo de acta y parentesco antes de continuar");
+                            }
+                        });
+
+
+                        function execute_my_onreturn(json) {
+                            //alert(json.collection_id) //tengo el numero de comprobante
+                            if (json.collection_status == 'approved') {
+                                $.ajax({
+                                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+                                    type: 'post',
+                                    data: {
+                                        'estado': json.collection_status,
+                                        'nrocupon': json.collection_id
+                                    },
+                                    success: function (response) {
+                                        $('#boton3').html("Finalizado")
+                                        $('#boton3').removeAttr("name")
+                                        $('#boton3').attr("href", "<?php echo PUBLIC_PATH ?>ciudadano")
+                                    }
+                                });
+                            } else if (json.collection_status == 'pending') {
+                                alert('El usuario no completó el pago');
+                            } else if (json.collection_status == 'in_process') {
+                                alert('El pago está siendo revisado');
+                            } else if (json.collection_status == 'rejected') {
+                                alert('El pago fué rechazado, el usuario puede intentar nuevamente el pago');
+                            } else if (json.collection_status == null) {
+                                alert('El usuario no completó el proceso de pago, no se ha generado ningún pago');
+                            }
+
+                        }
         </script>
     </body>
 </html>

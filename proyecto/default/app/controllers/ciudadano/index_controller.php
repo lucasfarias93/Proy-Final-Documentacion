@@ -129,7 +129,6 @@ class IndexController extends AdminController {
     }
 
     public function generar_pdf_firmar_mail() {
-
 ///Verifico que entro un estado de pago
         if (input::hasPost('estado')) {
             $estadopago = input::post('estado');
@@ -171,7 +170,6 @@ class IndexController extends AdminController {
                     $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
                     $url = $this->urlacta;
                     $url = str_replace('proyecto', 'public', $url);
-                    var_dump($url);
                     ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
                 }
                 if ($estadopago == 'approved') { //mando el mail con el pdf firmado
