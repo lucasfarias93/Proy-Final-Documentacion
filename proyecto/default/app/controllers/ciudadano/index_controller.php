@@ -210,7 +210,7 @@ class IndexController extends AdminController {
         }
     }
 
-    public function generar_pdf_mobile($nrocupon, $sa) {
+    public function generar_pdf_mobile($estadopago, $nrocupon, $sa) {
         view::select(NULL, NULL);
         try {
             if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
