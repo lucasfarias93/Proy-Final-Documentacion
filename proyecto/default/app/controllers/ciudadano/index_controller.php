@@ -210,15 +210,76 @@ class IndexController extends AdminController {
         }
     }
 
-    public function generar_pdf_mobile() {
+    public function generar_pdf_mobile($nrocupon, $sa) {
         view::select(NULL, NULL);
         try {
-            $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-            $url = $this->urlacta;
-            $url = str_replace('proyecto', 'public', $url);
-            var_dump($url);
-            ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
-            view::json(TRUE);
+            if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
+                $cp = new Cupondepago();
+                $cp->codigodepago = $nrocupon;
+                $cp->estadocupondepago = "Pendiente de pago";
+                $cp->fechaemisionpago = UtilApp::fecha_actual();
+                $cp->montototal = 100;
+                $cp->idcodigoprovincial = 6;
+                $cp->create();
+                try {
+                    $se2 = new Solicitudestado();
+                    $sa = session::get("solicitudid");
+                    $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
+                    Logger::info("Solicitud " . $sa);
+                    $se2->idestadosolicitud = 3; //Pendiente de pago
+                    $se2->fechacambioestado = UtilApp::fecha_actual();
+                    $se2->create();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al crear el estado de la solicitud  " . $e);
+                }
+                try {
+                    $sa2 = new Solicitudacta();
+                    Logger::info("Solicitud estado " . $se2->id);
+                    $sa2->ultimosolicitudestado = $se2->id;
+                    $sa2->idcupondepago = $cp->id;
+                    Logger::info("Cupon de pago " . $cp->id);
+                    $sa2->id = $sa;
+                    $sa2->update();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al actualizar la solicitud  " . $e);
+                }
+            }
+            if ($estadopago == 'approved') { //mando el mail con el pdf firmado
+                $cp = new Cupondepago();
+                $cp->codigodepago = $nrocupon;
+                $cp->estadocupondepago = "Pagada";
+                $cp->fechaemisionpago = UtilApp::fecha_actual();
+                $cp->montototal = 100;
+                $cp->idcodigoprovincial = 6;
+                $cp->create();
+                try {
+                    $se2 = new Solicitudestado();
+                    $sa = session::get("solicitudid");
+                    $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
+                    $se2->idestadosolicitud = 2; //Pagada
+                    $se2->fechacambioestado = UtilApp::fecha_actual();
+                    $se2->create();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al crear el estado de la solicitud  " . $e);
+                }
+                try {
+                    $sa2 = new Solicitudacta();
+                    $sa2->ultimosolicitudestado = $se2->id;
+                    $sa2->idcupondepago = $cp->id;
+                    Logger::info("Cupon de pago " . $cp->id);
+                    $sa2->id = $sa;
+                    $sa2->update();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al actualizar la solicitud  " . $e);
+                }
+                $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+                $url = $this->urlacta;
+                $url = str_replace('proyecto', 'public', $url);
+                var_dump($url);
+                ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
+                $this->mail_aprobado($nrocupon, $sa);
+                view::json(TRUE);
+            }
         } catch (NegocioExcepcion $e) {
             view::json($e);
         }
