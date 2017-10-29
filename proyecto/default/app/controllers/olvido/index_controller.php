@@ -80,7 +80,7 @@ class IndexController extends AppController {
                 $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
                 $mail->IsSMTP();
-                $mail->SMTPDebug = 2;
+                $mail->SMTPDebug = false;
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = "ssl";
                 $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
