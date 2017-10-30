@@ -143,7 +143,11 @@ class IndexController extends AdminController {
                     $cp->codigodepago = $nrocupon;
                     $cp->estadocupondepago = "Pendiente de pago";
                     $cp->fechaemisionpago = UtilApp::fecha_actual();
-                    $cp->montototal = 100;
+                    $codigos = new Codigoprovincial();
+                    $co = $codigos->obtener_codigos();
+                    $valor221 = $co[0]->numerocodigoprovincial;
+                    $valor224 = $co[1]->numerocodigoprovincial;
+                    $cp->montototal = $valor221 + $valor224;
                     $cp->idcodigoprovincial = 6;
                     $cp->create();
                     try {
@@ -174,7 +178,11 @@ class IndexController extends AdminController {
                     $cp->codigodepago = $nrocupon;
                     $cp->estadocupondepago = "Pagada";
                     $cp->fechaemisionpago = UtilApp::fecha_actual();
-                    $cp->montototal = 100;
+                    $codigos = new Codigoprovincial();
+                    $co = $codigos->obtener_codigos();
+                    $valor221 = $co[0]->numerocodigoprovincial;
+                    $valor224 = $co[1]->numerocodigoprovincial;
+                    $cp->montototal = $valor221 + $valor224;
                     $cp->idcodigoprovincial = 6;
                     $cp->create();
                     try {
@@ -219,7 +227,11 @@ class IndexController extends AdminController {
                 $cp->codigodepago = $nrocupon;
                 $cp->estadocupondepago = "Pendiente de pago";
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
-                $cp->montototal = 100;
+                $codigos = new Codigoprovincial();
+                $co = $codigos->obtener_codigos();
+                $valor221 = $co[0]->numerocodigoprovincial;
+                $valor224 = $co[1]->numerocodigoprovincial;
+                $cp->montototal = $valor221 + $valor224;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
@@ -250,7 +262,11 @@ class IndexController extends AdminController {
                 $cp->codigodepago = $nrocupon;
                 $cp->estadocupondepago = "Pagada";
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
-                $cp->montototal = 100;
+                $codigos = new Codigoprovincial();
+                $co = $codigos->obtener_codigos();
+                $valor221 = $co[0]->numerocodigoprovincial;
+                $valor224 = $co[1]->numerocodigoprovincial;
+                $cp->montototal = $valor221 + $valor224;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
