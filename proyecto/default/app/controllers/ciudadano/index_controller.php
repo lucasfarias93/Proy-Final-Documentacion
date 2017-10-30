@@ -87,12 +87,11 @@ class IndexController extends AdminController {
                 $parametros['dni'] = Auth::get("dni");
                 $parametros['tipo'] = $tipolibro;
                 $parametros['parentesco'] = $parentesco;
-                $client = new SoapClient($servicio);
-                $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
-                $datos = $result->nacimiento_propiaResult->Objetos;
+                $result = ExpertoImagen::webservice($tipo, $parentesco);
                 if (!isset($result->nacimiento_propiaResult->Objetos)) {
                     $ruta = "/home/imagenes_produccion/no_disponible.gif";
                 } else {
+                    $datos = $result->nacimiento_propiaResult->Objetos;
                     $ubicacion = str_replace("-", "/", $datos->ubicacion);
                     $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
                     $ext = "png";
@@ -104,7 +103,7 @@ class IndexController extends AdminController {
                         throw new NegocioExcepcion("No existe el acta");
                     }
                 }
-                $dto = ExpertoImagen::convertir_imagen_mobile($ruta, ESTAMPA_CONSULTA);
+                $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
                 $dto->persona = $datos->persona;
                 $dto->apellido = $datos->apellido;
                 $dto->dni = $datos->dni;
