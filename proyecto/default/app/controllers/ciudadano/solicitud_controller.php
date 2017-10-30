@@ -36,13 +36,13 @@ class SolicitudController extends AdminController {
         }
     }
 
-    public function crear_solicitud_android($id, $parentesco, $tipolibro, $nombre, $apellido) {
+    public function crear_solicitud_android($idusuario, $parentesco, $tipolibro, $nombre, $apellido) {
         view::select(NULL, NULL);
         try {
 
             $sa = new Solicitudacta();
             $sa->nombrepropietarioacta = $nombre . " " . $apellido;
-            $sa->idusuario = $id;
+            $sa->idusuario = $idusuario;
             $sa->idimagenacta = 3;
             $sa->idcupondepago = 4;
             $sa->idparentesco = $parentesco;
@@ -58,7 +58,7 @@ class SolicitudController extends AdminController {
         } catch (NegocioExcepcion $e) {
             view::json("no se pudo crear la solicitud " . $e);
         }
-        view::json(TRUE);
+        view::json($sa->id);
     }
 
 }
