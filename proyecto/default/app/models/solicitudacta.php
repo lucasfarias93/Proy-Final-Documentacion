@@ -19,6 +19,10 @@ class Solicitudacta extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
+    public function buscar_solicitud_por_id($idsa) {
+
+        return $this->find_first($idsa);
+    }
 
     public function buscar_solicitud_acta($id) {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
@@ -70,7 +74,7 @@ class Solicitudacta extends ActiveRecord {
 
         return $this->find($where, "columns: $cols", "join: $join");
     }
-    
+
     public function actas_firmadas() {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " nombreestadosolicitud = 'Pagada'";

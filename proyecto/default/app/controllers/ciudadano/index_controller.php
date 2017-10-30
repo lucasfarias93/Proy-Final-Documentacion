@@ -208,7 +208,7 @@ class IndexController extends AdminController {
                     Logger::info("Error al actualizar la solicitud  " . $e);
                 }
                 $sa3 = new Solicitudacta();
-                $sa3 = $sa3->buscar_solicitud_acta($sa);
+                $sa3 = $sa3->buscar_solicitud_por_id($sa);
                 $result = ExpertoImagen::webservice($sa3->idtipolibro, $sa3->idparentesco);
                 if (!isset($result->nacimiento_propiaResult->Objetos)) {
                     $ruta = "/home/imagenes_produccion/no_disponible.gif";
