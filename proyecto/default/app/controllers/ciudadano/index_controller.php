@@ -103,7 +103,7 @@ class IndexController extends AdminController {
                         throw new NegocioExcepcion("No existe el acta");
                     }
                 }
-                $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
+                $dto = ExpertoImagen::convertir_imagen_mobile($ruta, ESTAMPA_CONSULTA);
                 $dto->persona = $datos->persona;
                 $dto->apellido = $datos->apellido;
                 $dto->dni = $datos->dni;
