@@ -53,41 +53,6 @@ class ExpertoImagen {
         } catch (NegocioExcepcion $ex) {
             Logger::error("NO se pudo crear el directorio $ruta, error: " . $ex->getMessage());
         }
-
-//        try {
-//            $old = umask(0);
-//            if (stripos($ruta, ".") !== FALSE ) { //es una ruta a un archivo?
-//                $posRuta = strrpos($ruta, "/");
-//                $ruta = substr($ruta, 0, $posRuta);
-////                Logger::debug("$ruta");
-//                if (!file_exists($ruta)) {
-//                    $salida = shell_exec("mkdir $ruta -p");
-//                    $salida = shell_exec("chmod 777 $ruta -R");
-//                }
-//            }else{
-//                if(!file_exists($ruta) && !is_file($ruta)){
-//                    $permisos = fileperms($ruta);
-//                    switch ($permisos & 0xF000) {
-//                        case 0x4000: // Directorio
-//                            if($permisos != 16895){// binario 0100000111111111 -> D777
-//                                if( !chmod($ruta, 0777) ) {
-//                                    $salida = shell_exec("chmod 777 $ruta -R");
-//                                    $permisos_nuevos = fileperms($ruta);
-//                                    Logger::debug("Permisos viejos $permisos, nuevos $permisos_nuevos: chmod 777 $ruta -R -> output: $salida");
-//                                }else{
-//                                    Logger::debug("Permisos correctamente otorgados, recurso ya existente sin permisos");
-//                                }
-//
-//                            }
-//                            break;
-//                        default: // Desconocido
-//                            Logger::error("archivo de tipo desconocido: $permisos");
-//                    }
-//                }
-//            }
-//        } catch (NegocioExcepcion $ex) {
-//            Logger::error("NO se pudo crear el directorio $ruta, error: " . $ex->getMessage());
-//        }
     }
 
     public static function buscar_imagen_por_id($imagen_id) {
@@ -600,13 +565,14 @@ class ExpertoImagen {
         return Load::model("enlace_imagen")->find_first($acta_id);
     }
 
-    public static function webservice($tipo, $parentesco){
+    public static function webservice($tipo, $parentesco) {
         $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
-                $parametros['dni'] = Auth::get("dni");
-                $parametros['tipo'] = $tipo; //es lo mismo con comillas simples que dobles
-                $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
-                $client = new SoapClient($servicio);
-                $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
-                return $result;
+        $parametros['dni'] = Auth::get("dni");
+        $parametros['tipo'] = $tipo; //es lo mismo con comillas simples que dobles
+        $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
+        $client = new SoapClient($servicio);
+        $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
+        return $result;
     }
+
 }

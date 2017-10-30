@@ -80,13 +80,9 @@ class IndexController extends AdminController {
         view::json($listParentesco);
     }
 
-    public function buscar_imagen_mobile($tipolibro, $parentesco) {
+    public function buscar_imagen_mobile($tipo, $parentesco) {
         try {
-            if ($tipolibro != null && $parentesco != null) {
-                $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
-                $parametros['dni'] = Auth::get("dni");
-                $parametros['tipo'] = $tipolibro;
-                $parametros['parentesco'] = $parentesco;
+            if ($tipo != null && $parentesco != null) {
                 $result = ExpertoImagen::webservice($tipo, $parentesco);
                 if (!isset($result->nacimiento_propiaResult->Objetos)) {
                     $ruta = "/home/imagenes_produccion/no_disponible.gif";
@@ -103,7 +99,7 @@ class IndexController extends AdminController {
                         throw new NegocioExcepcion("No existe el acta");
                     }
                 }
-                $dto = ExpertoImagen::convertir_imagen_mobile($ruta, ESTAMPA_CONSULTA);
+                $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
                 $dto->persona = $datos->persona;
                 $dto->apellido = $datos->apellido;
                 $dto->dni = $datos->dni;
@@ -111,7 +107,8 @@ class IndexController extends AdminController {
                 $dto->nrolibro = $datos->nrolibro;
                 $dto->fecha_nacimiento = $datos->fecha_nacimiento;
                 session::set("datosmobile", $datos);
-                View::json($dto);
+                $ret[] = $dto;
+                View::json($ret);
             } else {
                 throw new NegocioExcepcion("no se han pasado los parametros");
             }
