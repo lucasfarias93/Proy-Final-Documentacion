@@ -141,15 +141,15 @@ class IndexController extends AdminController {
             $nrocupon = input::post('nrocupon');
             session::set("nrocupon", $nrocupon);
             Logger::info($nrocupon);
-                if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
+            if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
                 $cp = new Cupondepago();
                 $cp->codigodepago = $nrocupon;
                 $cp->estadocupondepago = "Pendiente de pago";
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->numerocodigoprovincial;
-                $valor224 = $co[1]->numerocodigoprovincial;
+                $valor221 = $co[0]->importecodigo;
+                $valor224 = $co[1]->importecodigo;
                 $cp->montototal = $valor221 + $valor224;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
@@ -176,15 +176,15 @@ class IndexController extends AdminController {
                     Logger::info("Error al actualizar la solicitud  " . $e);
                 }
             }
-                if ($estadopago == 'approved') { //mando el mail con el pdf firmado
+            if ($estadopago == 'approved') { //mando el mail con el pdf firmado
                 $cp = new Cupondepago();
                 $cp->codigodepago = $nrocupon;
                 $cp->estadocupondepago = "Pagada";
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->numerocodigoprovincial;
-                $valor224 = $co[1]->numerocodigoprovincial;
+                $valor221 = $co[0]->importecodigo;
+                $valor224 = $co[1]->importecodigo;
                 $cp->montototal = $valor221 + $valor224;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
@@ -237,7 +237,7 @@ class IndexController extends AdminController {
         }
     }
 
-    public function generar_pdf_mobile($estadopago, $nrocupon, $sa) {
+    public function generar_pdf_mobile($estadopago, $nrocupon, $idsa) {
         view::select(NULL, NULL);
         try {
             if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
@@ -247,14 +247,14 @@ class IndexController extends AdminController {
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->numerocodigoprovincial;
-                $valor224 = $co[1]->numerocodigoprovincial;
+                $valor221 = $co[0]->importecodigo;
+                $valor224 = $co[1]->importecodigo;
                 $cp->montototal = $valor221 + $valor224;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
                     $se2 = new Solicitudestado();
-                    $sa = session::get("solicitudid");
+                    $sa = $idsa;
                     $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
                     Logger::info("Solicitud " . $sa);
                     $se2->idestadosolicitud = 3; //Pendiente de pago
@@ -282,14 +282,14 @@ class IndexController extends AdminController {
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->numerocodigoprovincial;
-                $valor224 = $co[1]->numerocodigoprovincial;
+                $valor221 = $co[0]->importecodigo;
+                $valor224 = $co[1]->importecodigo;
                 $cp->montototal = $valor221 + $valor224;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
                     $se2 = new Solicitudestado();
-                    $sa = session::get("solicitudid");
+                    $sa = $idsa;
                     $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
                     $se2->idestadosolicitud = 2; //Pagada
                     $se2->fechacambioestado = UtilApp::fecha_actual();
@@ -307,10 +307,28 @@ class IndexController extends AdminController {
                 } catch (NegocioExcepcion $e) {
                     Logger::info("Error al actualizar la solicitud  " . $e);
                 }
-                $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
+                $sa3 = new Solicitudacta();
+                $sa3 = $sa3->buscar_solicitud_por_id($sa);
+                $result = ExpertoImagen::webservice($sa3->idtipolibro, $sa3->idparentesco);
+                if (!isset($result->nacimiento_propiaResult->Objetos)) {
+                    $ruta = "/home/imagenes_produccion/no_disponible.gif";
+                } else {
+                    $datos = $result->nacimiento_propiaResult->Objetos;
+                    $ubicacion = str_replace("-", "/", $datos->ubicacion);
+                    $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
+                    $ext = "png";
+                    $tmp = str_replace("TIF", "", $datos->nombre);
+                    $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "crop/" . $tmp . $ext;
+                    $ruta = ExpertoImagen::obtener_ruta_completa($ubicacion . "/$datos->nombre");
+                    if (!file_exists($ruta)) {
+                        Flash::error("No existe el acta");
+                        throw new NegocioExcepcion("No existe el acta");
+                    }
+                }
+                $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
+                $this->urlacta = ExpertoActas::generar_pdf($dto);
                 $url = $this->urlacta;
                 $url = str_replace('proyecto', 'public', $url);
-                var_dump($url);
                 ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
                 $this->mail_aprobado($nrocupon, $sa);
                 view::json(TRUE);

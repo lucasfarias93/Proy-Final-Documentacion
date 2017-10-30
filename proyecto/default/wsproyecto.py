@@ -114,12 +114,91 @@ class RCWebService(ServiceBase):
 			and l.base_tipo_libro_id = 1
 			group by 1,2,3,4,5,6,7,8
                     """%(datoid)
-#            print csql
+            persona = conexionPsycopg(csql)
+        
+        if tipo == '1' and parentesco == '18':
+    
+            csql = """
+                            select ac.ciud_ciudadano_dato_id
+
+			from ciud_ciudadano_documento doc
+			join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
+			join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
+			--join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
+			join acta_acta a on a.id = ac.acta_acta_id
+			join base_libro l on l.id = a.base_libro_id
+			left join enlace_acta_imagen ei on ei.acta_acta_id = a.id
+			left join enlace_imagen i on i.id = ei.enlace_imagen_id
+			where doc.numero = '%s'
+			and ac.base_tipo_rol_id in (2,3)
+			group by 1
+                    """%(dni)
+            print csql
+            persona = conexionPsycopg(csql)
+
+
+            datoid = persona[0][0]
+            csql = """select dato.nombre, dato.apellido, doc.numero, a.numero, l.numero, c.fecha_nacimiento, i.ubicacion,i.nombre
+
+			from ciud_ciudadano_documento doc
+			join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
+			join acta_acta_ciudadano ac on ac.ciud_ciudadano_dato_id = dato.id 
+                        join ciud_ciudadano c on c.ciud_ciudadano_dato_id = dato.id
+			--join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
+			join acta_acta a on a.id = ac.acta_acta_id
+			left join base_libro l on l.id = a.base_libro_id
+			left join enlace_acta_imagen ei on ei.acta_acta_id = a.id
+			left join enlace_imagen i on i.id = ei.enlace_imagen_id
+			where ac.ciud_ciudadano_dato_id=%d
+			and l.base_tipo_libro_id = 1
+			group by 1,2,3,4,5,6,7,8
+                    """%(datoid)
+            print csql
+            persona = conexionPsycopg(csql)
+
+        if tipo == '3' and parentesco == '1':
+    
+            csql = """
+                            select ac.ciud_ciudadano_dato_id
+
+			from ciud_ciudadano_documento doc
+			join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
+			join acta_acta_ciudadano ac on ac.ciud_ciudadano_dato_id = dato.id 
+			--join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
+			join acta_acta a on a.id = ac.acta_acta_id
+			join base_libro l on l.id = a.base_libro_id
+			left join enlace_acta_imagen ei on ei.acta_acta_id = a.id
+			left join enlace_imagen i on i.id = ei.enlace_imagen_id
+			where doc.numero = '%s'
+			and ac.base_tipo_rol_id in (1,6)
+			group by 1
+                    """%(dni)
+            print csql
+            persona = conexionPsycopg(csql)
+
+
+            datoid = persona[0][0]
+            csql = """select dato.nombre, dato.apellido, doc.numero, a.numero, l.numero, c.fecha_nacimiento, i.ubicacion,i.nombre
+
+			from ciud_ciudadano_documento doc
+			join ciud_ciudadano_dato dato on dato.ciud_ciudadano_id = doc.ciud_ciudadano_id
+			join acta_acta_ciudadano ac on ac.ciud_ciudadano_dato_id = dato.id 
+                        join ciud_ciudadano c on c.ciud_ciudadano_dato_id = dato.id
+			--join acta_acta_ciudadano ac on ac.ciud_ciudadano_relacion_dato_id = dato.id 
+			join acta_acta a on a.id = ac.acta_acta_id
+			left join base_libro l on l.id = a.base_libro_id
+			left join enlace_acta_imagen ei on ei.acta_acta_id = a.id
+			left join enlace_imagen i on i.id = ei.enlace_imagen_id
+			where ac.ciud_ciudadano_dato_id=%d
+			and l.base_tipo_libro_id = 3
+			group by 1,2,3,4,5,6,7,8
+                    """%(datoid)
+            print csql
             persona = conexionPsycopg(csql)
 
         valido = True
         resultado = 'correcto'
-        print persona
+        #print persona
         if persona == None or len(persona)==0:
             resultado = 'error_persona'
             valido = False 

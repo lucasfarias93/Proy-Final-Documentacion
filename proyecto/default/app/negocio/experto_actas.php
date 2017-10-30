@@ -111,7 +111,6 @@ class ExpertoActas {
             $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
             $body = "Ya tenes tu partida disponible para usar por 6 meses";
             $mail->Body = $body; // Mensaje a enviar
-            var_dump($url);
             $mail->AddAttachment($url);
             $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:

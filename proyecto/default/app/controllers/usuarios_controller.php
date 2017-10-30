@@ -26,6 +26,7 @@ class UsuariosController extends AppController {
             if (Input::hasPost('usuario')) {
                 //esto es para tener atributos que no son campos de la tabla
                 $usr = new Usuarios(Input::post('usuario'));
+                $clave = $usr->clave;
                 $usrbd = new Usuarios();
 
                 $usrbd->filtrar_por_login($usr->login);
@@ -85,7 +86,7 @@ class UsuariosController extends AppController {
                         $mail->IsHTML(true); // El correo se envía como HTML
                         $link = '<a href="http://190.15.213.87:81">Aqui</a>';
                         $mail->Subject = "Cuenta habilitada"; // Este es el titulo del email.
-                        $body = "Tu usuario es: " . $usrbd->login . " y tu clave es: " . $usr->clave. " Gracias por registrarte!. Para acceder hace click " . $link;
+                        $body = "Tu usuario es: " . $usrbd->login . " y tu clave es: " . $clave. " Gracias por registrarte!. Para acceder hace click " . $link;
                         $mail->Body = $body; // Mensaje a enviar
                         $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
