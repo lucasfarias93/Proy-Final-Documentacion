@@ -73,7 +73,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($listSolicitudacta as $as) { ?>
-                            <tr>
+                            <tr datossolicitud = "<?php echo $as->id ?>">
                                 <td><?php echo $as->nombrepropietarioacta ?></td>
                                 <td><?php echo $as->id ?></td>
                                 <td><?php echo $as->nombreparentesco ?></td>
@@ -87,7 +87,7 @@
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
                                     <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
-                                    <td><a mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=279404435-82392bf5-6d97-4f7d-a621-1471c1627bf2" name="MP-payButton" class='botonpagar' onreturn="execute_my_onreturn"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
+                                    <td><a href = "<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
                                         <?php } ?> 
                                         <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
                                     <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/prohibido2.png"></a></td>
@@ -109,22 +109,15 @@
         </div>
         <script type="text/javascript">
             (function () {
-                function $MPC_load() {
-                    window.$MPC_loaded !== true && (function () {
-                        var s = document.createElement("script");
-                        s.type = "text/javascript";
-                        s.async = true;
-                        s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
-                        var x = document.getElementsByTagName('script')[0];
-                        x.parentNode.insertBefore(s, x);
-                        window.$MPC_loaded = true;
-                    })();
-                }
-                window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                
             })();
 
         </script>
         <script>
+            $('#myTable tbody tr').on('click', function () {
+//                $('#myTable tbody tr').removeClass('seleccion')
+//                $(this).addClass('seleccion')
+            })
             function myFunction() {
                 // Declare variables 
                 var input, filter, table, tr, td, i;
@@ -145,19 +138,21 @@
                     }
                 }
             }
-            function execute_my_onreturn(json) {
-                $.ajax({
-                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
-                    type: 'post',
-                    data: {
-                        'estado': json.collection_status,
-                        'nrocupon': json.collection_id
-                    },
-                    success: function (response) {
-                    }
-                });
-                window.open("<?php echo PUBLIC_PATH ?>ciudadano");
-            }
+//            function execute_my_onreturn(json) {
+//
+//                $.ajax({
+//                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+//                    type: 'post',
+//                    data: {
+//                        'estado': json.collection_status,
+//                        'nrocupon': json.collection_id,
+////                        'idsa': $('#myTable tbody tr.seleccion').attr('datossolicitud')
+//                    },
+//                    success: function (response) {
+//                    }
+//                });
+//                window.open("<?php echo PUBLIC_PATH ?>ciudadano");
+//            }
         </script>
     </body>
 </html>

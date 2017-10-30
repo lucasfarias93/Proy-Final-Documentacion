@@ -19,7 +19,8 @@ class Solicitudacta extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function buscar_solicitud_acta($id, $page, $ppage = 20) {
+
+    public function buscar_solicitud_acta($id) {
         $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
         $where = " idusuario = '$id'";
         $join = " join parentesco p on p.id = solicitudacta.idparentesco";

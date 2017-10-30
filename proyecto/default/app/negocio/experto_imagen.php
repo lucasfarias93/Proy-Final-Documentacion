@@ -600,4 +600,13 @@ class ExpertoImagen {
         return Load::model("enlace_imagen")->find_first($acta_id);
     }
 
+    public static function webservice($tipo, $parentesco){
+        $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
+                $parametros['dni'] = Auth::get("dni");
+                $parametros['tipo'] = $tipo; //es lo mismo con comillas simples que dobles
+                $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
+                $client = new SoapClient($servicio);
+                $result = $client->nacimiento_propia($parametros); //llamamos al método que nos interesa con los parámetros 
+                return $result;
+    }
 }

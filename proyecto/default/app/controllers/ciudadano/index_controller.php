@@ -20,21 +20,21 @@ class IndexController extends AdminController {
 
     public function buscar_imagen() {
         try {
-            if (Input::hasPost('tipolibro') && Input::hasPost('parentesco')) {
-                $tipo = Input::post('tipolibro');
-                $parentesco = Input::post('parentesco');
+            if (Input::hasPost('tipolibro') && Input::hasPost('parentesco') || session::has('tipolibropagar') && session::has('parentescopagar')) {
+                if (Input::hasPost('tipolibro') && Input::hasPost('parentesco')) {
+                    $tipo = Input::post('tipolibro');
+                    $parentesco = Input::post('parentesco');
+                } else {
+                    $tipo = session::get('tipolibropagar');
+                    $parentesco = session::has('parentescopagar');
+                }
                 session::set("tipolibro", $tipo);
                 session::set("parentesco", $parentesco);
-                $servicio = "http://localhost:8000/RCWebService.asmx/nacimiento_propia?wsdl"; //url del servicio
-                $parametros['dni'] = Auth::get("dni");
-                $parametros['tipo'] = $tipo; //es lo mismo con comillas simples que dobles
-                $parametros['parentesco'] = $parentesco; //es lo mismo con comillas simples que dobles
-                $client = new SoapClient($servicio);
-                $result = $client->nacimiento_propia($parametros); //llamamos al métdo que nos interesa con los parámetros 
-                $datos = $result->nacimiento_propiaResult->Objetos;
+                $result = ExpertoImagen::webservice($tipo, $parentesco);
                 if (!isset($result->nacimiento_propiaResult->Objetos)) {
                     $ruta = "/home/imagenes_produccion/no_disponible.gif";
                 } else {
+                    $datos = $result->nacimiento_propiaResult->Objetos;
                     $ubicacion = str_replace("-", "/", $datos->ubicacion);
                     $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
                     $ext = "png";
@@ -130,89 +130,107 @@ class IndexController extends AdminController {
 
     public function generar_pdf_firmar_mail() {
 ///Verifico que entro un estado de pago
-        Logger::info(session::get("solicitudid"));
-        if (input::hasPost('estado')) {
+        if (input::hasPost('estado') && input::hasPost('nrocupon')) {
+            if (session::has('solicitudid')) {
+                $sa = session::get("solicitudid");
+            } else {
+                $sa = Input::post('idsa');
+            }
             $estadopago = input::post('estado');
             Logger::info($estadopago);
-            if (input::hasPost('nrocupon')) {
-                $nrocupon = input::post('nrocupon');
-                session::set("nrocupon", $nrocupon);
-                Logger::info($nrocupon);
+            $nrocupon = input::post('nrocupon');
+            session::set("nrocupon", $nrocupon);
+            Logger::info($nrocupon);
                 if ($estadopago == 'pending') { //no mando el mail ni genero el pdf
-                    $cp = new Cupondepago();
-                    $cp->codigodepago = $nrocupon;
-                    $cp->estadocupondepago = "Pendiente de pago";
-                    $cp->fechaemisionpago = UtilApp::fecha_actual();
-                    $codigos = new Codigoprovincial();
-                    $co = $codigos->obtener_codigos();
-                    $valor221 = $co[0]->numerocodigoprovincial;
-                    $valor224 = $co[1]->numerocodigoprovincial;
-                    $cp->montototal = $valor221 + $valor224;
-                    $cp->idcodigoprovincial = 6;
-                    $cp->create();
-                    try {
-                        $se2 = new Solicitudestado();
-                        $sa = session::get("solicitudid");
-                        $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
-                        Logger::info("Solicitud " . $sa);
-                        $se2->idestadosolicitud = 3; //Pendiente de pago
-                        $se2->fechacambioestado = UtilApp::fecha_actual();
-                        $se2->create();
-                    } catch (NegocioExcepcion $e) {
-                        Logger::info("Error al crear el estado de la solicitud  " . $e);
-                    }
-                    try {
-                        $sa2 = new Solicitudacta();
-                        Logger::info("Solicitud estado " . $se2->id);
-                        $sa2->ultimosolicitudestado = $se2->id;
-                        $sa2->idcupondepago = $cp->id;
-                        Logger::info("Cupon de pago " . $cp->id);
-                        $sa2->id = $sa;
-                        $sa2->update();
-                    } catch (NegocioExcepcion $e) {
-                        Logger::info("Error al actualizar la solicitud  " . $e);
-                    }
+                $cp = new Cupondepago();
+                $cp->codigodepago = $nrocupon;
+                $cp->estadocupondepago = "Pendiente de pago";
+                $cp->fechaemisionpago = UtilApp::fecha_actual();
+                $codigos = new Codigoprovincial();
+                $co = $codigos->obtener_codigos();
+                $valor221 = $co[0]->numerocodigoprovincial;
+                $valor224 = $co[1]->numerocodigoprovincial;
+                $cp->montototal = $valor221 + $valor224;
+                $cp->idcodigoprovincial = 6;
+                $cp->create();
+                try {
+                    $se2 = new Solicitudestado();
+
+                    $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
+                    Logger::info("Solicitud " . $sa);
+                    $se2->idestadosolicitud = 3; //Pendiente de pago
+                    $se2->fechacambioestado = UtilApp::fecha_actual();
+                    $se2->create();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al crear el estado de la solicitud  " . $e);
                 }
+                try {
+                    $sa2 = new Solicitudacta();
+                    Logger::info("Solicitud estado " . $se2->id);
+                    $sa2->ultimosolicitudestado = $se2->id;
+                    $sa2->idcupondepago = $cp->id;
+                    Logger::info("Cupon de pago " . $cp->id);
+                    $sa2->id = $sa;
+                    $sa2->update();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al actualizar la solicitud  " . $e);
+                }
+            }
                 if ($estadopago == 'approved') { //mando el mail con el pdf firmado
-                    $cp = new Cupondepago();
-                    $cp->codigodepago = $nrocupon;
-                    $cp->estadocupondepago = "Pagada";
-                    $cp->fechaemisionpago = UtilApp::fecha_actual();
-                    $codigos = new Codigoprovincial();
-                    $co = $codigos->obtener_codigos();
-                    $valor221 = $co[0]->numerocodigoprovincial;
-                    $valor224 = $co[1]->numerocodigoprovincial;
-                    $cp->montototal = $valor221 + $valor224;
-                    $cp->idcodigoprovincial = 6;
-                    $cp->create();
-                    try {
-                        $se2 = new Solicitudestado();
-                        $sa = session::get("solicitudid");
-                        $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
-                        $se2->idestadosolicitud = 2; //Pagada
-                        $se2->fechacambioestado = UtilApp::fecha_actual();
-                        $se2->create();
-                    } catch (NegocioExcepcion $e) {
-                        Logger::info("Error al crear el estado de la solicitud  " . $e);
-                    }
-                    try {
-                        $sa2 = new Solicitudacta();
-                        $sa2->ultimosolicitudestado = $se2->id;
-                        $sa2->idcupondepago = $cp->id;
-                        Logger::info("Cupon de pago " . $cp->id);
-                        $sa2->id = $sa;
-                        $sa2->update();
-                    } catch (NegocioExcepcion $e) {
-                        Logger::info("Error al actualizar la solicitud  " . $e);
-                    }
-                    $this->urlacta = ExpertoActas::generar_pdf(session::get("imagen"));
-                    $url = $this->urlacta;
-                    $url = str_replace('proyecto', 'public', $url);
-                    ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
-                    $this->mail_aprobado($nrocupon, $sa);
+                $cp = new Cupondepago();
+                $cp->codigodepago = $nrocupon;
+                $cp->estadocupondepago = "Pagada";
+                $cp->fechaemisionpago = UtilApp::fecha_actual();
+                $codigos = new Codigoprovincial();
+                $co = $codigos->obtener_codigos();
+                $valor221 = $co[0]->numerocodigoprovincial;
+                $valor224 = $co[1]->numerocodigoprovincial;
+                $cp->montototal = $valor221 + $valor224;
+                $cp->idcodigoprovincial = 6;
+                $cp->create();
+                try {
+                    $se2 = new Solicitudestado();
+                    $se2->idsolicitudacta = $sa; ///le asigno el id del acta a la solicitud estado
+                    $se2->idestadosolicitud = 2; //Pagada
+                    $se2->fechacambioestado = UtilApp::fecha_actual();
+                    $se2->create();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al crear el estado de la solicitud  " . $e);
                 }
-            } else {
-                Logger::info("No se genero el cupon de pago");
+                try {
+                    $sa2 = new Solicitudacta();
+                    $sa2->ultimosolicitudestado = $se2->id;
+                    $sa2->idcupondepago = $cp->id;
+                    Logger::info("Cupon de pago " . $cp->id);
+                    $sa2->id = $sa;
+                    $sa2->update();
+                } catch (NegocioExcepcion $e) {
+                    Logger::info("Error al actualizar la solicitud  " . $e);
+                }
+                $sa3 = new Solicitudacta();
+                $sa3 = $sa3->buscar_solicitud_acta($sa);
+                $result = ExpertoImagen::webservice($sa3->idtipolibro, $sa3->idparentesco);
+                if (!isset($result->nacimiento_propiaResult->Objetos)) {
+                    $ruta = "/home/imagenes_produccion/no_disponible.gif";
+                } else {
+                    $datos = $result->nacimiento_propiaResult->Objetos;
+                    $ubicacion = str_replace("-", "/", $datos->ubicacion);
+                    $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
+                    $ext = "png";
+                    $tmp = str_replace("TIF", "", $datos->nombre);
+                    $ruta_temporal_crop_original = Config::get("config.application.carpeta_temporal_original") . "crop/" . $tmp . $ext;
+                    $ruta = ExpertoImagen::obtener_ruta_completa($ubicacion . "/$datos->nombre");
+                    if (!file_exists($ruta)) {
+                        Flash::error("No existe el acta");
+                        throw new NegocioExcepcion("No existe el acta");
+                    }
+                }
+                $dto = ExpertoImagen::convertir_imagen($ruta, ESTAMPA_CONSULTA);
+                $this->urlacta = ExpertoActas::generar_pdf($dto);
+                $url = $this->urlacta;
+                $url = str_replace('proyecto', 'public', $url);
+                ExpertoActas::enviar_mail($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . "default" . $url);
+                $this->mail_aprobado($nrocupon, $sa);
             }
         } else {
             Logger::info("No ingreso ningun estado de pago");

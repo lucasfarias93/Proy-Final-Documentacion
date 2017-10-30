@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <!-- Bootstrap -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
+        <!-- Datatables -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Crear Solicitud</title>
+
+        <!--Import materialize.css-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/style.css">
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/solicitud.css">
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/solicitud.min.css">
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/jquery-ui-1.10.3.custom.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/zoom.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/registro.css">
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
+    </head>
+
+    <body>
+        <!-- Header con titulo -->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Realizar solicitud</a>
+            </div>
+        </nav> 
+
+        <div class="row">
+            <ul class="left-align col s6">
+                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
+            </ul>
+            <ul class="right-align col s6">
+                <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
+            </ul>
+        </div>
+
+        <div id="mensajes_flash" >        
+            <?php View::content() ?>
+        </div>
+        <!-- multistep form -->
+        <form id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li>Pagar</li>
+            </ul> 
+
+            <ul class="left-align dropdown-menu">
+            </ul>
+            <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
+
+            <fieldset>
+                <h2 class="fs-title">Formas de Pago</h2>
+                <h3 class="fs-subtitle">Por el momento, utilizamos mercado pago para realizar los pagos</h3>
+                <div class="row">
+                    <a id="boton3" mp-mode="modal" href="https://www.mercadopago.com/mla/checkout/start?pref_id=279404435-82392bf5-6d97-4f7d-a621-1471c1627bf2" name="MP-payButton" class='blue-ar-l-rn-none' onreturn="execute_my_onreturn">Pagar</a>
+
+                    <script type="text/javascript">
+                        (function () {
+                            function $MPC_load() {
+                                window.$MPC_loaded !== true && (function () {
+                                    var s = document.createElement("script");
+                                    s.type = "text/javascript";
+                                    s.async = true;
+                                    s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                                    var x = document.getElementsByTagName('script')[0];
+                                    x.parentNode.insertBefore(s, x);
+                                    window.$MPC_loaded = true;
+                                })();
+                            }
+                            window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                        })();
+                    </script>
+                </div>
+            </fieldset>
+        </form>
+        <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>js/jquery-ui-1.10.3.js"></script>
+        <!--<script type="text/javascript" src="<?php // echo PUBLIC_PATH                                 ?>js/jquery-3.2.1.min.js"></script>-->
+        <script src="<?php echo PUBLIC_PATH ?>js/jquery.easing.min.js"></script>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="<?php echo PUBLIC_PATH ?>js/materialize.min.js"></script>
+        <!--<script src="<?php echo PUBLIC_PATH ?>js/registro.js"></script>-->
+        <script src="<?php echo PUBLIC_PATH ?>js/init.js"></script>
+        <!-- FastClick -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
+        <!-- Custom Theme Scripts -->
+
+        <script src="<?php echo PUBLIC_PATH ?>js/jquery/jquery.kumbiaphp.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>js/solicitarActa.js"></script>
+        <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+
+
+        <script>
+                        function execute_my_onreturn(json) {
+                            $.ajax({
+                                url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
+                                type: 'post',
+                                data: {
+                                    'estado': json.collection_status,
+                                    'nrocupon': json.collection_id,
+                                    'idsa': $('#myTable tbody tr.seleccion').attr('datossolicitud')
+                                },
+                                success: function (response) {
+                                }
+                            });
+                            window.open("<?php echo PUBLIC_PATH ?>ciudadano");
+                        }
+        </script>
+    </body>
+</html>
