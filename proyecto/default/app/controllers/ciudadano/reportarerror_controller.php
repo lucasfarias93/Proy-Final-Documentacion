@@ -61,4 +61,40 @@ class ReportarerrorController extends AppController {
         }
     }
 
+    public function crear_reclamo_mobile($apellido, $nombre, $nroacta, $observaciones, $idtiporeclamo, $idusuario, $nrolibro) {
+        view::select(NULL, NULL);
+        if ($idtiporeclamo != NULL) {
+            $rea = new Reclamoerroracta();
+            $rea->apellido = $apellido;
+            $rea->nombre = $nombre;
+            $rea->nroacta = $nroacta;
+            $rea->observaciones = $observaciones;
+            $rea->idtiporeclamo = $idtiporeclamo;
+            $rea->idusuario = $idusuario;
+            $rea->nrolibro = $nrolibro;
+            try {
+                $rea->create();
+                $reclamoerroractaestado = new Reclamoerroractaestado();
+                $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
+///Con $rea->id le estoy seteando el id de lo que acabo de crear?
+                $reclamoerroractaestado->idreclamoerroracta = $rea->id;
+////////////El estado 1 es enviado al archivo
+                $reclamoerroractaestado->idestadoreclamoerroracta = 1;
+                $reclamoerroractaestado->create();
+                Flash::info("Reclamo realizado con éxito");
+                view::json(TRUE);
+            } catch (NegocioExcepcion $e) {
+                Flash::info($e->getMessage());
+                view::json(FALSE);
+            }
+        }
+    }
+
+    public function buscar_tipo_reclamo_mobile() {
+        view::select(null, null);
+        $tr = new Tiporeclamo();
+        $listTiporeclamo = $tr->find();
+        view::json($listTiporeclamo);
+    }
+
 }
