@@ -267,8 +267,9 @@ class IndexController extends AdminController {
                     Logger::info("Cupon de pago " . $cp->id);
                     $sa2->id = $sa;
                     $sa2->update();
+                    view::json(TRUE);
                 } catch (NegocioExcepcion $e) {
-                    Logger::info("Error al actualizar la solicitud  " . $e);
+                    view::json(FALSE);
                 }
             }
             if ($estadopago == 'approved') { //mando el mail con el pdf firmado
@@ -330,7 +331,8 @@ class IndexController extends AdminController {
                 view::json(TRUE);
             }
         } catch (NegocioExcepcion $e) {
-            view::json($e);
+            $e->getMessage();
+            view::json(FALSE);
         }
     }
 
