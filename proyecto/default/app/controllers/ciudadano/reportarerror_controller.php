@@ -65,13 +65,13 @@ class ReportarerrorController extends AppController {
         view::select(NULL, NULL);
         if ($idtiporeclamo != NULL) {
             $rea = new Reclamoerroracta();
-            $rea->apellido = $apellido;
-            $rea->nombre = $nombre;
-            $rea->nroacta = $nroacta;
+            $rea->apellidopropietarioacta = $apellido;
+            $rea->nombrepropietarioacta = $nombre;
+            $rea->numeroacta = $nroacta;
             $rea->observaciones = $observaciones;
             $rea->idtiporeclamo = $idtiporeclamo;
             $rea->idusuario = $idusuario;
-            $rea->nrolibro = $nrolibro;
+            $rea->numerolibro = $nrolibro;
             try {
                 $rea->create();
                 $reclamoerroractaestado = new Reclamoerroractaestado();
