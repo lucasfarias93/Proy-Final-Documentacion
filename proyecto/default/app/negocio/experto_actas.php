@@ -72,7 +72,6 @@ class ExpertoActas {
         $url = PUBLIC_PATH . $nombre;
         $url = str_replace('.pdf', '', $url);
         $url = "/public".$url . "_firmado.pdf";
-        var_dump($url);
         return $url;
     }
 
@@ -109,7 +108,7 @@ class ExpertoActas {
             //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
             $mail->IsHTML(true); // El correo se envía como HTML
             $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
-            $body = "Ya tenes tu partida disponible para usar por 6 meses";
+            $body = "Ya tenés tu partida disponible para usar por 6 meses a partir del ".UtilApp::fecha_actual();
             $mail->Body = $body; // Mensaje a enviar
             $mail->AddAttachment($url);
             $exito = $mail->Send(); // Envía el correo.
