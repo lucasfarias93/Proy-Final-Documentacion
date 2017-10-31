@@ -21,7 +21,7 @@
                         <td><?php echo $as->nombreparentesco ?></td>
                         <td><?php echo $as->codigodepago ?></td>
                         <td><?php echo $as->nombrelibro ?></td>
-                        <td><?php echo $as->fechacambioestado ?></td>
+                        <td><?php echo UtilApp::formatea_fecha_bd_to_pantalla($as->fechacambioestado) ?></td>
                         <td><?php echo $as->nombreestadosolicitud ?></td>
                     </tr>
                 <?php } ?>

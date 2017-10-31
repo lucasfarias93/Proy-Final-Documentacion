@@ -60,7 +60,7 @@ class Solicitudacta extends ActiveRecord {
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
         $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
 
-        return $this->find($where, "columns: $cols", "join: $join");
+        return $this->find($where, "columns: $cols", "join: $join", 'order: fechacambioestado desc');
     }
 
     public function actasxvencer() {
@@ -72,7 +72,7 @@ class Solicitudacta extends ActiveRecord {
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
         $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
 
-        return $this->find($where, "columns: $cols", "join: $join");
+        return $this->find($where, "columns: $cols", "join: $join", 'order: fechacambioestado desc');
     }
 
     public function actas_firmadas() {
@@ -84,7 +84,7 @@ class Solicitudacta extends ActiveRecord {
         $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
         $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
 
-        return $this->find($where, "columns: $cols", "join: $join");
+        return $this->find($where, "columns: $cols", "join: $join", 'order: fechacambioestado desc');
     }
 
 }

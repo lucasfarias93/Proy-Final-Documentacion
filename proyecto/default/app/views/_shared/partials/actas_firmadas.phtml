@@ -19,7 +19,7 @@
                         <td><?php echo $af->nombrepropietarioacta ?></td>
                         <td><?php echo $af->nombreparentesco ?></td>
                         <td><?php echo $af->codigodepago ?></td>
-                        <td><?php echo $af->fechacambioestado ?></td>
+                        <td><?php echo UtilApp::formatea_fecha_bd_to_pantalla($af->fechacambioestado) ?></td>
                         <td><?php echo $af->nombreestadosolicitud ?></td>
                     </tr>
                 <?php } ?>

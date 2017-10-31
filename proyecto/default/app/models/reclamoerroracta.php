@@ -10,22 +10,15 @@ class Reclamoerroracta extends ActiveRecord {
 
      */
 
-//    $cols = "solicitudacta.*, p.nombreparentesco, c.codigodepago, t.nombrelibro, se.fechacambioestado, es.nombreestadosolicitud";
-//        $where = " idusuario = '$id'";
-//        $join = " join parentesco p on p.id = solicitudacta.idparentesco";
-//        $join .= " join cupondepago c on c.id = solicitudacta.idcupondepago ";
-//        $join .= " join tipolibro t on t.id = solicitudacta.idtipolibro ";
-//        $join .= " join solicitudestado se on se.id = solicitudacta.ultimosolicitudestado";
-//        $join .= " join estadosolicitud es on es.id = se.idestadosolicitud";
-//
-//        return $this->find($where, "columns: $cols", "join: $join");
-
     public function cantidad_reclamos() {
-        $cols = "reclamoerroracta.*, t.nombretiporeclamo, u.login";
+        $cols = "reclamoerroracta.*, t.nombretiporeclamo, u.login, es.nombreestadoreclamoerroracta ";
         $where = " 1 = '1'";
         $join = " join tiporeclamo t on t.id = reclamoerroracta.idtiporeclamo ";
         $join .= " join usuarios u on u.id = reclamoerroracta.idusuario ";
-        return $this->find($where, "columns: $cols","join: $join");
+        $join .= "  join reclamoerroractaestado se on se.id = reclamoerroracta.id ";
+        $join .= " join estadoreclamoerroracta es on es.id = se.idestadoreclamoerroracta ";
+
+        return $this->find($where, "columns: $cols", "join: $join");
     }
 
     public function getReclamoerroractaestado($page, $ppage = 20) {

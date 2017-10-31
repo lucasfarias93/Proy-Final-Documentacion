@@ -27,7 +27,7 @@ class Cupondepago extends ActiveRecord {
     public function monto_pagado() {
         $cols = "cupondepago.* ";
         $where = " estadocupondepago = 'Pagada'";
-        return $this->find($where, "columns: $cols");
+        return $this->find($where, "columns: $cols", 'order: fechaemisionpago desc');
     }
 
 }

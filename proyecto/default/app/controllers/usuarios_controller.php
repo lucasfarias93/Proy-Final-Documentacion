@@ -43,6 +43,10 @@ class UsuariosController extends AppController {
                 if ($usrbd && $usr->dni == $usrbd->dni) {
                     throw new NegocioExcepcion("El dni ingresado ya existe");
                 }
+                $usrbd->filtrar_por_email($usr->email);
+                if ($usrbd && $usr->email == $usrbd->email) {
+                    throw new NegocioExcepcion("El email ingresado ya existe");
+                }
 
                 //Verifico si el dni del usuario o el idtramite ya existe
                 //guarda los datos del usuario, y le asigna los roles 
@@ -86,7 +90,7 @@ class UsuariosController extends AppController {
                         $mail->IsHTML(true); // El correo se envía como HTML
                         $link = '<a href="http://190.15.213.87:81">Aqui</a>';
                         $mail->Subject = "Cuenta habilitada"; // Este es el titulo del email.
-                        $body = "Tu usuario es: " . $usrbd->login . " y tu clave es: " . $clave. " Gracias por registrarte!. Para acceder hace click " . $link;
+                        $body = "Tu usuario es: " . $usrbd->login . " y tu clave es: " . $clave . " Gracias por registrarte!. Para acceder hace click " . $link;
                         $mail->Body = $body; // Mensaje a enviar
                         $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
@@ -147,39 +151,45 @@ class UsuariosController extends AppController {
                 if ($usrbd && $usr->dni == $usrbd->dni) {
                     view::json("El dni ingresado ya existe");
                 } else {
-                    $usr->guardarCiudadano($usr, 3);
-                    try {
-                        ////Mandar mail
-                        load::lib("phpmailer/class.phpmailer");
-                        $mail = new PHPMailer();
+
+                    $usrbd->filtrar_por_email($usr->email);
+                    if ($usrbd && $usr->email == $usrbd->email) {
+                        view::json("El email ingresado ya existe");
+                    } else {
+                        $usr->guardarCiudadano($usr, 3);
+                        try {
+                            ////Mandar mail
+                            load::lib("phpmailer/class.phpmailer");
+                            $mail = new PHPMailer();
 //Luego tenemos que iniciar la validación por SMTP:
-                        $mail->IsSMTP();
-                        $mail->SMTPDebug = false;
-                        $mail->SMTPAuth = true;
-                        $mail->SMTPSecure = "ssl";
-                        $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
-                        $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
-                        $mail->Password = "gringodiego"; // Contraseña
-                        $mail->Port = 465; // Puerto a utilizar
+                            $mail->IsSMTP();
+                            $mail->SMTPDebug = false;
+                            $mail->SMTPAuth = true;
+                            $mail->SMTPSecure = "ssl";
+                            $mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+                            $mail->Username = "diegocosas@gmail.com"; // Correo completo a utilizar
+                            $mail->Password = "gringodiego"; // Contraseña
+                            $mail->Port = 465; // Puerto a utilizar
 //Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
-                        $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
-                        $mail->FromName = "Soporte";
+                            $mail->From = "diegocosas@gmail.com"; // Desde donde enviamos (Para mostrar)
+                            $mail->FromName = "Soporte";
 //Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
-                        $mail->AddAddress($email); // Esta es la dirección a donde enviamos
-                        //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
-                        $mail->IsHTML(true); // El correo se envía como HTML
-                        $link = '<a href="http://190.15.213.87:81">Aqui</a>';
-                        $mail->Subject = "Cuenta habilitada"; // Este es el titulo del email.
-                        $body = "Tu usuario es: " . $login . " y tu clave es: " .$clave. " Gracias por registrarte!. Para acceder hace click " . $link;
-                        $mail->Body = $body; // Mensaje a enviar
-                        $exito = $mail->Send(); // Envía el correo.
+                            $mail->AddAddress($email); // Esta es la dirección a donde enviamos
+                            //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
+                            $mail->IsHTML(true); // El correo se envía como HTML
+                            $link = '<a href="http://190.15.213.87:81">Aqui</a>';
+                            $mail->Subject = "Cuenta habilitada"; // Este es el titulo del email.
+                            $body = "Tu usuario es: " . $login . " y tu clave es: " . $clave . " Gracias por registrarte!. Para acceder hace click " . $link;
+                            $mail->Body = $body; // Mensaje a enviar
+                            $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
-                    } catch (NegocioExcepcion $e) {
-                        echo "El mail ingresado no existe en la Base de datos ";
-                        Flash::error($e->getMessage());
-                        view::json(FALSE);
+                        } catch (NegocioExcepcion $e) {
+                            echo "El mail ingresado no existe en la Base de datos ";
+                            Flash::error($e->getMessage());
+                            view::json(FALSE);
+                        }
+                        view::json(TRUE);
                     }
-                    view::json(TRUE);
                 }
             }
         }
