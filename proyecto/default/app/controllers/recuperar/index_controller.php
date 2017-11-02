@@ -6,41 +6,53 @@
  * and open the template in the editor.
  */
 Load::models('usuarios');
+Load::models('linkrecuperacion');
 
 class IndexController extends AppController {
 
-    public function index($id) {
+    public function index($valor) {
         view::template(NULL);
-        if (Input::hasPost('usuarios')) {
-            $usr = new Usuarios(Input::post('usuarios'));
-            $userbd = new Usuarios();
-            $userbd->filtrar_por_id($id);
-            if ($userbd && $id == $userbd->id) {
-                if ($usr->clave === $usr->repetida) {
-                    $userbd->clave = MyAuth::hash($usr->clave);
-                    $userbd->clave_blanqueada = true;
-                    $userbd->update();
-                    Flash::info("Se cambio exitosamente la clave del usuario: '{$userbd->login}'");
-                    input::delete();
-                    Router::redirect('login');
+        $id = substr($valor, 0, 1);
+        $codigo = substr($valor, 1);
+        $link = new Linkrecuperacion();
+        $l = $link->filtrar_por_codigo($codigo);
+        $dias = floatval(UtilApp::calcular_dias_entre_fechas($l->fechadeemision, UtilApp::fecha_actual()));
+        if ($dias <= 2 && $l->enlaceactivo == 'si') {
+            if (Input::hasPost('usuarios')) {
+                $usr = new Usuarios(Input::post('usuarios'));
+                $userbd = new Usuarios();
+                $userbd->filtrar_por_id($id);
+                if ($userbd && $id == $userbd->id) {
+                    if ($usr->clave === $usr->repetida) {
+                        $userbd->clave = MyAuth::hash($usr->clave);
+                        $userbd->clave_blanqueada = true;
+                        $userbd->update();
+                        $l->enlaceactivo = 'no';
+                        $l->update();
+                        Flash::info("Se cambio exitosamente la clave del usuario: '{$userbd->login}'");
+                        input::delete();
+                        Router::redirect('login');
+                    } else {
+                        Flash::warning("Las claves no coinciden");
+                        input::delete();
+                    }
                 } else {
-                    Flash::warning("Las claves no coinciden");
-                    input::delete();
+                    Flash::warning("No se ha podido cambiar la clave del usuario '{$userbd->login}'");
                 }
             } else {
-                Flash::warning("No se ha podido cambiar la clave del usuario '{$userbd->login}'");
+                $userbd = new Usuarios();
+                $userbd->filtrar_por_id($id);
+                $this->usuarios = $userbd;
+                $userbd->clave = "";
             }
-        } else {
+
             $userbd = new Usuarios();
             $userbd->filtrar_por_id($id);
             $this->usuarios = $userbd;
             $userbd->clave = "";
+        } else {
+            Flash::info("El link esta caducado.");
         }
-
-        $userbd = new Usuarios();
-        $userbd->filtrar_por_id($id);
-        $this->usuarios = $userbd;
-        $userbd->clave = "";
     }
 
     public function cambiar_clave_mobile($email, $clave) {

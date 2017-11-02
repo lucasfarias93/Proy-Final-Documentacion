@@ -45,6 +45,8 @@ class IndexController extends AppController {
                 //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
                 $mail->IsHTML(true); // El correo se envía como HTML
                 $aux = $usrbd->id;
+                $codigo = rand(0, 9999);
+                $aux .= $codigo;
                 $link = '<a href="http://190.15.213.87:81/recuperar/index/index/' . $aux . '">Aqui</a>';
                 $mail->Subject = "Recuperacion de cuenta"; // Este es el titulo del email.
                 $body = "Tu usuario es: " . $usrbd->login . ". Para cambiar tu contrase&ntilde;a hace click " . $link;
@@ -52,6 +54,12 @@ class IndexController extends AppController {
                 $exito = $mail->Send(); // Envía el correo.
 //También podríamos agregar simples verificaciones para saber si se envió:
                 if ($exito) {
+                    $l = new Linkrecuperacion();
+                    $l->enlacerecuperacion = $codigo;
+                    $l->enlaceactivo = 'si';
+                    $l->fechadeemision = UtilApp::fecha_actual();
+                    $l->idusuarios = $usrbd->id;
+                    $l->create();
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
                     Router::redirect('login');
@@ -96,15 +104,17 @@ class IndexController extends AppController {
                 $mail->IsHTML(true); // El correo se envía como HTML
                 $codigo = rand(0, 9999);
                 $mail->Subject = "Recuperacion de su cuenta"; // Este es el titulo del email.
-                $body = "Tu usuario es: ".$usrbd->login.". Tu codigo de recuperacion es: " . $codigo;
+                $body = "Tu usuario es: " . $usrbd->login . ". Tu codigo de recuperacion es: " . $codigo;
                 $mail->Body = $body; // Mensaje a enviar
                 $exito = $mail->Send(); // Envía el correo.
-                $l = new Linkrecuperacion();
-                $l->enlacerecuperacion = $codigo;
-                $l->enlaceactivo = TRUE;
-                $l->fechadeemision = NULL;
-                $l->idusuarios = $usrbd->id;
-                $l->create();
+                if ($exito) {
+                    $l = new Linkrecuperacion();
+                    $l->enlacerecuperacion = $codigo;
+                    $l->enlaceactivo = 'si';
+                    $l->fechadeemision = UtilApp::fecha_actual();
+                    $l->idusuarios = $usrbd->id;
+                    $l->create();
+                }
             }
 //También podríamos agregar simples verificaciones para saber si se envió:
             if ($exito) {
@@ -125,10 +135,12 @@ class IndexController extends AppController {
 
     public function codigoactivacionandroid($codigo) {
         view::select(null, null);
-        $codigobd = new Linkrecuperacion();
-        $codigobd->filtrar_por_codigo($codigo);
-
-        if ($codigo == $codigobd->enlacerecuperacion) {
+        $link = new Linkrecuperacion();
+        $link->filtrar_por_codigo($codigo);
+        $dias = floatval(UtilApp::calcular_dias_entre_fechas($link->fechadeemision, UtilApp::fecha_actual()));
+        if ($codigo == $link->enlacerecuperacion && $dias <= 2 && $link->enlaceactivo == 'si') {
+            $link->enlaceactivo = 'no';
+            $link->update();
             view::json(TRUE);
         } else {
             view::json(FALSE);
