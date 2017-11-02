@@ -65,13 +65,33 @@ class ReportarerrorController extends AppController {
         view::select(NULL, NULL);
         if ($idtiporeclamo != NULL) {
             $rea = new Reclamoerroracta();
-            $rea->apellidopropietarioacta = $apellido;
-            $rea->nombrepropietarioacta = $nombre;
-            $rea->numeroacta = $nroacta;
-            $rea->observaciones = $observaciones;
+            if ($apellido == 'null') {
+                $rea->apellidopropietarioacta = 'Sin datos';
+            } else {
+                $rea->apellidopropietarioacta = $apellido;
+            }
+            if ($nombre == 'null') {
+                $rea->nombrepropietarioacta = 'Sin datos';
+            } else {
+                $rea->nombrepropietarioacta = $nombre;
+            }
+            if ($nroacta == 'null') {
+                $rea->numeroacta = floatval($nroacta = 0);
+            } else {
+                $rea->numeroacta = $nroacta;
+            }
+            if ($observaciones) {
+                $rea->observaciones = 'Sin datos';
+            } else {
+                $rea->observaciones = $observaciones;
+            }
             $rea->idtiporeclamo = $idtiporeclamo;
             $rea->idusuario = $idusuario;
-            $rea->numerolibro = $nrolibro;
+            if ($nrolibro == 'null') {
+                $rea->numerolibro = floatval($nrolibro = 0);
+            } else {
+                $rea->numerolibro = $nrolibro;
+            }
             try {
                 $rea->create();
                 $reclamoerroractaestado = new Reclamoerroractaestado();
@@ -87,6 +107,8 @@ class ReportarerrorController extends AppController {
                 Flash::info($e->getMessage());
                 view::json(FALSE);
             }
+        } else {
+            view::json(FALSE);
         }
     }
 
