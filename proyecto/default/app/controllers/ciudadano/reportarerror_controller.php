@@ -108,7 +108,7 @@ class ReportarerrorController extends AppController {
                 view::json(FALSE);
             }
         } else {
-            view::json(FALSE);
+            view::json("usado");
         }
     }
 
