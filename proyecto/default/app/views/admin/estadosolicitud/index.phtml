@@ -5,7 +5,7 @@
     <?php View::content() ?>
 </div> 
 <?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear estados de solicitudes', 'opciones' => FALSE)); ?>
-<?php echo Form::open('admin/tiporeclamo', 'post', 'id="formUsuario"') ?>
+<?php echo Form::open('admin/estadosolicitud', 'post', 'id="formUsuario"') ?>
 <div>
     <div class="conjunto">
         <?php echo Form::label('Nombre', 'nombreestadosolicitud', '') ?>
@@ -33,14 +33,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($listEstadosolicitud->items as $as) { ?>
+                <?php foreach ($listEstadosolicitud->items as $es) { ?>
                     <tr>
-                        <td><?php echo $as->nombreestadosolicitud ?></td>
-                        <td><?php echo $as->descripcionestadosolicitud ?></td>
-                        <td><?php echo $as->fechadesde ?></td>
-                        <td><?php echo $as->fechahasta ?></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/edit/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
-                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/del/" . $as->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
+                        <td><?php echo $es->nombreestadosolicitud ?></td>
+                        <td><?php echo $es->descripcionestadosolicitud ?></td>
+                        <td><?php echo $es->fechadesde ?></td>
+                        <td><?php echo $es->fechahasta ?></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/edit/" . $es->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/editar.png"></a></td>
+                        <td><a href="<?php echo PUBLIC_PATH . "admin/estadosolicitud/del/" . $es->id ?>"><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/eliminar.png"></a></td>
                     </tr>
                 <?php } ?>
             </tbody>

@@ -26,6 +26,7 @@ class IndexController extends AppController {
                     if ($usr->clave === $usr->repetida) {
                         $userbd->clave = MyAuth::hash($usr->clave);
                         $userbd->clave_blanqueada = true;
+                        $userbd->activo = '1';
                         $userbd->update();
                         $l->enlaceactivo = 'no';
                         $l->update();
@@ -51,7 +52,9 @@ class IndexController extends AppController {
             $this->usuarios = $userbd;
             $userbd->clave = "";
         } else {
-            Flash::info("El link esta caducado.");
+            input::delete();
+            Flash::error("El link esta caducado.");
+            Router::redirect('login');
         }
     }
 
@@ -66,6 +69,7 @@ class IndexController extends AppController {
             // si encuentro el ID en la base de datos:
             $usrbd->clave = MyAuth::hash($clave);
             $usrbd->clave_blanqueada = true;
+            $usrbd->activo = '1';
             $usrbd->update();
             view::json(TRUE);
         } else {

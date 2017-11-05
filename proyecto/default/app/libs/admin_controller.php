@@ -162,7 +162,8 @@ class AdminController extends Controller {
         } else {
             Input::delete();
             Flash::warning('Datos de Acceso invalidos');
-            View::select(NULL, 'logueo');
+            //View::select(NULL, 'logueo');
+            Router::redirect('login');
             return FALSE;
         }
     }

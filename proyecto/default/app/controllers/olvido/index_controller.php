@@ -60,6 +60,9 @@ class IndexController extends AppController {
                     $l->fechadeemision = UtilApp::fecha_actual();
                     $l->idusuarios = $usrbd->id;
                     $l->create();
+                    $usrbd->clave = MyAuth::hash("");
+                    $usrbd->activo = '0';
+                    $usrbd->update();
                     Flash::info("El correo fue enviado correctamente");
                     input::delete();
                     Router::redirect('login');
@@ -114,6 +117,9 @@ class IndexController extends AppController {
                     $l->fechadeemision = UtilApp::fecha_actual();
                     $l->idusuarios = $usrbd->id;
                     $l->create();
+                    $usrbd->clave = MyAuth::hash("");
+                    $usrbd->activo = '0';
+                    $usrbd->update();
                 }
             }
 //También podríamos agregar simples verificaciones para saber si se envió:
