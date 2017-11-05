@@ -37,12 +37,14 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center">Bienvenido a Actas Digitales - <?php echo Auth::get('nombres'); ?></a>
+                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+            </div>
             </div>
         </nav>  
         <div class="center">
             <div class="nav-wrapper">
                 <ul class="right-align col s6">
-                    <li><?php echo Html::img('salida.jpg', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
+                    <li><?php echo Html::img('salida.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
                     <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
                 </ul>
             </div>
