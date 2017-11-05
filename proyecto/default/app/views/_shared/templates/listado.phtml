@@ -87,12 +87,12 @@
                                     <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><img alt="" src=<?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a></td>
-                                    <td><a href = "<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><img alt="" src="<?php echo PUBLIC_PATH ?>img/figuras/pagar.png"></a></td>
+                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"></a><?php echo Html::img('eliminar.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
+                                    <td><a href = "<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'></a><?php echo Html::img('pagar.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
                                         <?php } ?> 
                                         <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
                                     <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
-                                    <td><a><img alt="" src="<?php echo PUBLIC_PATH ?>img/default/valid.png"></a></td>
+                                    <td><a><?php echo Html::img('valid.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Cancelada") { ?>
                                     <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
