@@ -11,7 +11,11 @@ class ListadoController extends AdminController {
         view::template('listado');
         view::select(NULL);
         $sa = new Solicitudacta();
-        $this->listSolicitudacta = $sa->buscar_solicitud_acta($id, $page);
+        if ($sa->buscar_solicitud_acta($id, $page) != NULL) {
+            $this->listSolicitudacta = $sa->buscar_solicitud_acta($id, $page);
+        } else {
+            Flash::info("No hay solicitudes");
+        }
     }
 
     public function pagar($idsa) {

@@ -23,3 +23,66 @@
     </div>
 </div>
 <span>Total ganancias <strong><?php echo "$" . $ganancias ?></strong></span>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
+
+        <!-- Custom Theme Style -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
+    </head>
+
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <!-- top navigation -->
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Recaudación diaria <small>Sessions</small></h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <canvas id="mybarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
+        <!-- Chart.js -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.min.js"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
+
+    </body>
+</html>
