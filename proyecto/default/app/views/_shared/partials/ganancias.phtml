@@ -23,6 +23,7 @@
     </div>
 </div>
 <span>Total ganancias <strong><?php echo "$" . $ganancias ?></strong></span>
+
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -59,7 +60,8 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        <canvas id="mybarChart"></canvas>
+                                        <canvas id="canvas" width="800" height="300"></canvas>
+                                        <!--<script type="text/javascript" src="script.js"></script>-->
                                     </div>
                                 </div>
                             </div>
@@ -81,8 +83,24 @@
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
         <!-- Chart.js -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.min.js"></script>
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
-
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.mask.js"></script>
+        <script>
+            var canvas = document.getElementById('canvas').getContext('2d');
+            var chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Item 1', 'Item 2', 'Item 3'],
+                    datasets: [{
+                            data: [10, 20, 30],
+                            backgroundColor: fillPattern
+                        }]
+                }
+            });
+            canvas.Draw();
+        </script>
     </body>
+
 </html>

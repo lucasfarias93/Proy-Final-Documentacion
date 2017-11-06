@@ -30,7 +30,7 @@ class MobileController extends AppController {
                 $solacta = $sola->buscar_solicitud_acta_por_codigo_pago($id, $codigo, $page = 1);
                 $fecha = $solacta->fechacambioestado;
                 $fechaactual = UtilApp::fecha_actual();
-                $diasrestantes = 300 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
+                $diasrestantes = 180 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
                 if ($solacta != null) {
                     if ($diasrestantes > 1) {
                         view::json("Acta valida quedan " . $diasrestantes . " dias");

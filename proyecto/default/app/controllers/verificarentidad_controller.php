@@ -22,8 +22,8 @@ class VerificarentidadController extends AppController {
         view::select(NULL, 'verificarentidad');
         MyAuth::cerrar_sesion();
     }
-    
-    public function verificar_validez_entidad(){
+
+    public function verificar_validez_entidad() {
         if (Input::hasPost('codigo') && Input::hasPost('dni')) {
             $codigo = Input::post('codigo');
             $dni = Input::post('dni');
@@ -34,7 +34,7 @@ class VerificarentidadController extends AppController {
             $solacta = $sola->buscar_solicitud_acta_por_codigo_pago($id->id, $codigo, 1);
             $fecha = $solacta->fechacambioestado;
             $fechaactual = UtilApp::fecha_actual();
-            $diasrestantes = 300 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
+            $diasrestantes = 180 - UtilApp::calcular_dias_entre_fechas($fecha, $fechaactual);
             if ($solacta != null) {
                 if ($diasrestantes > 1) {
                     Flash::info("Acta valida quedan " . $diasrestantes . " dias");
@@ -50,7 +50,4 @@ class VerificarentidadController extends AppController {
         }
     }
 
-    /**
-     * Crea un Registro
-     */
 }
