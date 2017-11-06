@@ -25,7 +25,13 @@ class ReporteController extends AdminController {
             }
             if (($tr['idtiporeporte']) == 3) {//Ganancias
                 $lista3 = Load::model('cupondepago')->monto_pagado();
-                view::partial("ganancias", FALSE, array("lista3" => $lista3));
+                $lista7 = Load::model('cupondepago')->grafico_ganancias();
+                $datos = "";
+                foreach ($lista7 as $data) {
+                    $datos.= $data->total.",";
+                }
+                $datos = substr($datos, 0,-1);
+                view::partial("ganancias", FALSE, array("lista3" => $lista3,"datos" => $datos));
             }
             if (($tr['idtiporeporte']) == 4) {//Usuarios registrados
                 $lista4 = Load::model('usuarios')->cantidad_usuarios();

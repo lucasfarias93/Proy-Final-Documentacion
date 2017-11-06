@@ -23,84 +23,65 @@
     </div>
 </div>
 <span>Total ganancias <strong><?php echo "$" . $ganancias ?></strong></span>
+<h2> Recaudacion mensual </h2>
+<div class="row">
+    <div class="col-sm-12">
+        <canvas id="canvas"></canvas>
+    </div>
+</div>
 
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Meta, title, CSS, favicons, etc. -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
+<!-- NProgress -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.min.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.bundle.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.mask.js"></script>
+<script>
+    var barChartData = {
+        labels: ["Octubre", "Noviembre"],
+        datasets: [{
+                label: 'Ganancia $$$',
+                backgroundColor: "rgba(220,220,220,0.5)",
+                data: [<?php echo $datos; ?>]
+            }]
 
-        <!-- Custom Theme Style -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
-    </head>
+    };
 
-    <body class="nav-md">
-        <div class="container body">
-            <div class="main_container">
-                <!-- top navigation -->
-                <!-- page content -->
-                <div class="right_col" role="main">
-                    <div class="">
-                        <div class="clearfix"></div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2>Recaudación diaria <small>Sessions</small></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                        </ul>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
-                                        <canvas id="canvas" width="800" height="300"></canvas>
-                                        <!--<script type="text/javascript" src="script.js"></script>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <br />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- jQuery -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- FastClick -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
-        <!-- Chart.js -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.js"></script>
-        <!-- Custom Theme Scripts -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.mask.js"></script>
-        <script>
-            var canvas = document.getElementById('canvas').getContext('2d');
-            var chartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Item 1', 'Item 2', 'Item 3'],
-                    datasets: [{
-                            data: [10, 20, 30],
-                            backgroundColor: fillPattern
-                        }]
+    window.onload = function () {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each bar to be 2px wide and green
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: ''
                 }
-            });
-            canvas.Draw();
-        </script>
-    </body>
+            }
+        });
 
-</html>
+    };
+
+</script>
