@@ -9,7 +9,6 @@ class Solicitudacta extends ActiveRecord {
      *
 
      */
-    public $debug = true;
     public function paginar($pagina = 1) {
         return $this->paginate("page: $pagina");
     }
