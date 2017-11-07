@@ -29,9 +29,9 @@
         </table>
     </div>
 </div>
-<h2> Solicitudes</h2>
 <div class="row">
     <div class="col-sm-12">
+<h2 class="center"> Solicitudes</h2>
         <canvas id="canvas"></canvas>
     </div>
 </div>
@@ -56,7 +56,13 @@
         labels: ["Generadas", "Por vencer", "Pendientes", "Firmadas"],
         datasets: [{
                 label: 'Solicitudes',
-                backgroundColor: "rgba(220,220,220,0.5)",
+                backgroundColor: [
+                    "#F7464A",
+                    "#46BFBD",
+                    "#FDB45C",
+                    "#949FB1"
+                ],
+                //backgroundColor: "rgba(220,220,220,0.5)",
                 data: [<?php echo $sol; ?>]
             }]
 

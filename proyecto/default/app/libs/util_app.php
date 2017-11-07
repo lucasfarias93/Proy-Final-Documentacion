@@ -17,6 +17,7 @@ define("ESTAMPA_CONSULTA", 1);
 define("ESTAMPA_JUSTICIA", 2);
 define("ESTAMPA_CADUCADA", 3);
 define("ESTAMPA_OFICIAL", 4);
+define("VALIDEZACTA", 180);
 
 
 class UtilApp {

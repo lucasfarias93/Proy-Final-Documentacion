@@ -5,13 +5,18 @@
     <?php View::content() ?>
 </div> 
 <?php View::partial('backend/barra_superior_listas', FALSE, array('texto' => 'Crear oficina', 'opciones' => FALSE)); ?>
-<?php echo Form::open('admin/oficina', 'post', 'id="formUsuario"') ?>
+<?php echo Form::open('admin/oficinainscripcion', 'post', 'id="formUsuario"') ?>
 <div>
     <div class="conjunto">
         <?php echo Form::label('Nombre oficina', 'nombreoficina', '') ?>
         <div >
-            <?php echo Form::text('nombreoficina') ?>
+            <?php echo Form::text('criterio.nombre') ?>
         </div>
+        <?php echo Form::label('Numero oficina', 'numerooficina', '') ?>
+        <div >
+            <?php echo Form::text('criterio.numero') ?>
+        </div>
+        <?php echo Form::submit('buscar') ?>
     </div>
 
 </div>
