@@ -21,17 +21,26 @@ class ReporteController extends AdminController {
             }
             if (($tr['idtiporeporte']) == 2) {//Solicitudes generadas
                 $lista2 = Load::model('solicitudacta')->reporte_solicitudes_generadas();
-                view::partial("solicitudes", FALSE, array("lista2" => $lista2));
+                $lista8 = Load::model('solicitudacta')->actasxvencer();
+                $lista9 = Load::model('solicitudacta')->actas_pendientes();
+                $lista10 = Load::model('solicitudacta')->actas_firmadas();
+                $sol = "";
+                $sol .= count($lista2) . ",";
+                $sol .= count($lista8) . ",";
+                $sol .= count($lista9) . ",";
+                $sol .= count($lista10) . ",";
+                $sol = substr($sol, 0, -1);
+                view::partial("solicitudes", FALSE, array("lista2" => $lista2, "sol" => $sol));
             }
             if (($tr['idtiporeporte']) == 3) {//Ganancias
                 $lista3 = Load::model('cupondepago')->monto_pagado();
                 $lista7 = Load::model('cupondepago')->grafico_ganancias();
                 $datos = "";
                 foreach ($lista7 as $data) {
-                    $datos.= $data->total.",";
+                    $datos .= $data->total . ",";
                 }
-                $datos = substr($datos, 0,-1);
-                view::partial("ganancias", FALSE, array("lista3" => $lista3,"datos" => $datos));
+                $datos = substr($datos, 0, -1);
+                view::partial("ganancias", FALSE, array("lista3" => $lista3, "datos" => $datos));
             }
             if (($tr['idtiporeporte']) == 4) {//Usuarios registrados
                 $lista4 = Load::model('usuarios')->cantidad_usuarios();

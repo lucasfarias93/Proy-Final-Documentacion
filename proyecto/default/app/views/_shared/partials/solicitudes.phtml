@@ -1,4 +1,4 @@
-<span>Se ha encontrado <strong><?php echo count($lista2) ?> registros</strong></span>
+<span>Total de solicitudes<strong><?php echo count($lista2) ?></strong></span>
 <div class="row">
     <div class="col-sm-12">
         <table class="table table-bordered table-responsive" id="myTable">
@@ -29,4 +29,65 @@
         </table>
     </div>
 </div>
-        
+<h2> Solicitudes</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <canvas id="canvas"></canvas>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/fastclick.js"></script>
+<!-- NProgress -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.min.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/Chart.bundle.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.js"></script>
+<script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.mask.js"></script>
+<script>
+    var pieChartData = {
+        labels: ["Generadas", "Por vencer", "Pendientes", "Firmadas"],
+        datasets: [{
+                label: 'Solicitudes',
+                backgroundColor: "rgba(220,220,220,0.5)",
+                data: [<?php echo $sol; ?>]
+            }]
+
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myPie = new Chart(ctx, {
+            type: 'pie',
+            data: pieChartData,
+            options: {
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each bar to be 2px wide and green
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: ''
+                }
+            }
+        });
+
+    };
+
+</script>
