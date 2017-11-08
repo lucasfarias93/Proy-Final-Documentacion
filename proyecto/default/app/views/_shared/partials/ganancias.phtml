@@ -49,8 +49,11 @@
     var barChartData = {
         labels: ["Octubre", "Noviembre"],
         datasets: [{
-                label: 'Ganancia $$$',
-                backgroundColor: "rgba(220,220,220,0.5)",
+                label: 'Ganancia $',
+                backgroundColor: [
+                    "#F7464A",
+                    "#FDB45C"
+                ],
                 data: [<?php echo $datos; ?>]
             }]
 

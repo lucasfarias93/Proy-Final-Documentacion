@@ -19,7 +19,7 @@ class Departamento extends ActiveRecord {
      * @param  integer $pagina numero de pagina a mostrar
      * @return array          resultado de la consulta
      */
-    public function filtrar_por_nombre($localidad, $pagina = 1) {
+    public function filtrar_por_nombre($departamento, $pagina = 1) {
         $cols = "departamento.*";
         $where = " nombredepartamento ilike '%$departamento%'";
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");

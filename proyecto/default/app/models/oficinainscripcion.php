@@ -30,9 +30,6 @@ class Oficinainscripcion extends ActiveRecord {
         if (array_key_exists("nombre", $criterio) && $criterio['nombre']) {
             $where .= " and nombreoficina ilike '%" . UtilApp::normalizar_busqueda($criterio['nombre']) . "%'";
         }
-        if (array_key_exists("numero", $criterio) && $criterio['numero']) {
-            $where .= " and numerooficina = " . $criterio['numero'] . "";
-        }
         return $this->paginate($where, "page: $page", "per_page: $ppage", 'order: id desc');
     }
 

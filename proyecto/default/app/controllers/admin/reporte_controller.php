@@ -25,11 +25,13 @@ class ReporteController extends AdminController {
                 $lista8 = Load::model('solicitudacta')->actasxvencer($criterio);
                 $lista9 = Load::model('solicitudacta')->actas_pendientes($criterio);
                 $lista10 = Load::model('solicitudacta')->actas_firmadas($criterio);
+                $lista11 = Load::model('solicitudacta')->actas_canceladas($criterio);
                 $sol = "";
                 $sol .= count($lista2) . ",";
                 $sol .= count($lista8) . ",";
                 $sol .= count($lista9) . ",";
                 $sol .= count($lista10) . ",";
+                $sol .= count($lista11) . ",";
                 $sol = substr($sol, 0, -1);
                 view::partial("solicitudes", FALSE, array("lista2" => $lista2, "sol" => $sol));
             }

@@ -2,41 +2,40 @@
 <div class="page-header">
     <h1>Reportes</h1>
 </div>
-
+<div id="mensajes_flash" >        
+</div>
 <?php echo Form::open('admin/reporte', 'post', 'id="formReporte"') ?>
 
-    <div class="row">
-        <div class="col-sm-2 ">
-            <?php echo Form::label('Tipo de reportes', 'fechacambioestado', array('class' => 'control-label')) ?>
-            <?php echo Form::dbselect('tiporeporte.idtiporeporte', 'nombretiporeporte', array('tiporeporte', 'find'),'Filtrar' ,array('class' => 'form-control')) ?>
-        </div>
-        <div class="col-sm-2 ">
-            <?php echo Form::label('Fecha desde', 'fechacambioestado', array('class' => 'control-label')) ?>
-            <?php echo Form::text('criterio.fechadesde', array('class' => 'form-control')) ?>
-        </div>
-
-        <div class="col-sm-2 ">
-            <?php echo Form::label('Fecha hasta', 'fechacambioestado', array('class' => 'control-label')) ?>
-            <?php echo Form::text('criterio.fechahasta', array('class' => 'form-control')) ?>
-        </div>
-        
-    </div>
 <div class="row">
-        
-        <div class="col-sm-8">
+    <div class="col-sm-3 ">
+        <?php echo Form::label('Tipo de reportes', 'fechacambioestado', array('class' => 'control-label')) ?>
+        <?php echo Form::dbselect('tiporeporte.idtiporeporte', 'nombretiporeporte', array('tiporeporte', 'find'), 'Seleccione', array('class' => 'form-control')) ?>
+    </div>
+    <div class="col-sm-2 ">
+        <?php echo Form::label('Fecha desde', 'fechacambioestado', array('class' => 'control-label')) ?>
+        <?php echo Form::text('criterio.fechadesde', array('class' => 'form-control')) ?>
+    </div>
+
+    <div class="col-sm-2 ">
+        <?php echo Form::label('Fecha hasta', 'fechacambioestado', array('class' => 'control-label')) ?>
+        <?php echo Form::text('criterio.fechahasta', array('class' => 'form-control')) ?>
+    </div>
+
+</div>
+<div class="row">
+        <div class="col-sm-5">
             <?php echo Form::label('Propietario', 'nombrepropietarioacta', array('class' => 'control-label')) ?>
             <?php echo Form::text('criterio.nombrepropietarioacta', array('class' => 'form-control')) ?>
         </div>
-
-        <div class="col-sm-2">
-            <?php echo Form::label('Cupón de pago', 'codigodepago', array('class' => 'control-label')) ?>
-            <?php echo Form::text('criterio.cupon', array('class' => 'form-control')) ?>
-        </div>
-        <div class="col-sm-2">
-            <?php echo Form::label('', 'codigodepago', array('class' => 'control-label')) ?>
-            <?php echo Form::submit('Ver', array('class' => 'form-control btn btn-primary')) ?>
-        </div>
+    <div class="col-sm-2">
+        <?php echo Form::label('Cupón de pago', 'codigodepago', array('class' => 'control-label')) ?>
+        <?php echo Form::text('criterio.cupon', array('class' => 'form-control')) ?>
     </div>
+    <div class="col-sm-2">
+        <?php echo Form::label('', 'codigodepago', array('class' => 'control-label')) ?>
+        <?php echo Form::submit('Ver', array('class' => 'form-control btn btn-primary')) ?>
+    </div>
+</div>
 
 
 <?php echo Form::close() ?>

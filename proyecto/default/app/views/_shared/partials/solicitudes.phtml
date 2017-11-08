@@ -31,7 +31,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-<h2 class="center"> Solicitudes</h2>
+<h2 class="center">Tipos de solicitudes</h2>
         <canvas id="canvas"></canvas>
     </div>
 </div>
@@ -53,16 +53,16 @@
 <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.mask.js"></script>
 <script>
     var pieChartData = {
-        labels: ["Generadas", "Por vencer", "Pendientes", "Firmadas"],
+        labels: ["Generadas", "Por vencer", "Pendientes", "Firmadas", "Canceladas"],
         datasets: [{
                 label: 'Solicitudes',
                 backgroundColor: [
                     "#F7464A",
                     "#46BFBD",
                     "#FDB45C",
-                    "#949FB1"
+                    "#949FB1",
+                    "#4D5360"
                 ],
-                //backgroundColor: "rgba(220,220,220,0.5)",
                 data: [<?php echo $sol; ?>]
             }]
 

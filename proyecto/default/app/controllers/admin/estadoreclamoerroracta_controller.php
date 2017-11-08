@@ -11,8 +11,12 @@ class EstadoreclamoerroractaController extends AdminController {
      * Obtiene una lista para paginar las provincias
      */
     public function index($page = 1) {
-        $es = new Estadoreclamoerroracta();
-        $this->listEstadoreclamoerroracta = $es->getEstadoreclamoerroracta($page);
+        $r = new Estadoreclamoerroracta();
+        if (Input::hasPost("nombreestadoreclamoerroracta")) {
+            $this->listEstadoreclamoerroracta = $r->filtrar_por_nombre(Input::post("nombreestadoreclamoerroracta"), $page);
+        } else {
+            $this->listEstadoreclamoerroracta = $r->paginar($page);
+        }
     }
 
     /**

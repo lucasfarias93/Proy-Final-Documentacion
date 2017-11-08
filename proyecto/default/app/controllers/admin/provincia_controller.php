@@ -10,7 +10,11 @@ class ProvinciaController extends AdminController {
     public function index($page=1) 
     {
         $r = new Provincia();
-        $this->listProvincia = $r->getProvincia($page);
+        if (Input::hasPost("nombreprovincia")) {
+            $this->listProvincia = $r->filtrar_por_nombre(Input::post("nombreprovincia"), $page);
+        } else {
+            $this->listProvincia = $r->paginar($page);
+        }
     }
  
     /**
