@@ -37,7 +37,7 @@
             </div>
         </nav> 
         <div class="">
-            <div id="mensajes_flash" ></div>  
+            
             <?php View::content() ?>
             <div>
                 <!--<ul class="center col s12">Verificá la validez del acta ingresando el dni y el código de pago: </ul>-->
@@ -59,8 +59,7 @@
                     },
                     url: "<?php echo PUBLIC_PATH ?>ciudadano/verificar/verificar_validez_usuario",
                     type: 'post',
-                    success: function (response) {
-                        Materialize.toast(response, 4000);
+                    success: function (response.split('</button>')[1].split('</div>')[0], 4000);
                     }
                 }
                 );
