@@ -1,9 +1,9 @@
 /*para cambiar de color y tamaaño de los labels*/
 label {
-	color:grey	 !important;
+	color:white	 !important;
 	font-size: 1.0rem !important;
 	margin: 10px 10px 10px 0px;
-}	
+}
 	
 /*clase utilizada para los links (modificado el tamañano) 
  un ejemplo de uso esta en los label de registrar y olvidarse cuenta*/
@@ -43,12 +43,19 @@ label {
 table th, table td {
     text-align: left;
     padding: 12px;
-    color: white;
 }
 
  tr:hover {
- 	background:red !important;
+ 	background:#bdbdbd !important;
  }
+
+ table.striped>tbody>tr:nth-child(even) {
+    background-color: #e0e0e0;
+}
+
+thead {
+  background-color: #bdbdbd;
+}
 
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
 	color: white;
@@ -88,4 +95,74 @@ textarea {
     resize: none;
     border-color: grey;
     color: white;
+}
+
+/************
+CUSTOM!
+*************/
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.header-logo {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.brand-logo__link {
+  height: 50px;
+}
+
+.nav-submenu {
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.user-container {
+  font-size: 16px;
+  display: flex;
+}
+
+.options-container {
+  display: flex;
+  align-items: center;
+  height: 80vh;
+}
+
+.user-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.data-cell {
+  font-size: 16px;
+}
+
+.search-input {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-input i {
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+th {
+  border-radius: 0px !important;
+}
+
+thead th {
+  font-weight: 500;
 }

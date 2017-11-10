@@ -1,23 +1,17 @@
 #myInput {
-      background-image: url('/css/searchicon.png');
-      background-position: 10px 10px;
-      background-repeat: no-repeat;
-      width: 100%;
-      font-size: 16px;
-      padding: 12px 20px 12px 40px;
-      border: 1px solid #ddd;
-      margin-bottom: 12px;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    width: 260px;
 }
 
 #myTable {
-    border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full-width */
-    border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
 }
 
 #myTable th, #myTable td {
-    text-align: left; /* Left-align text */
+    text-align: center; /* Left-align text */
     padding: 12px; /* Add padding */
 }
 

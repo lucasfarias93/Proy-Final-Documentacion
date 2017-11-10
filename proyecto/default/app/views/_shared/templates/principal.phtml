@@ -9,12 +9,15 @@
         <link href="<?php echo PUBLIC_PATH ?>css/fuentes.css" type="text/css" rel="stylesheet">
         <link href="<?php echo PUBLIC_PATH ?>css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo PUBLIC_PATH ?>css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        
     </head>
     <body>
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <div href="#" class="brand-logo center"><a>GESTIÓN DE ACTAS DIGITALES</a></div>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                </div>
             </div>
         </nav>
 
@@ -22,9 +25,9 @@
             <div class="section no-pad-bot">
                 <div class="container">
                     <br><br>
-                    <h1 class="header center col s12" id="title">Tus actas digitales de forma rápida y segura!</h1>
+                    <h1 class="header center col s12" id="title">Tus actas digitales de forma rápida y segura</h1>
                     <div class="row center">
-                        <h5 class="header col s12 light">La forma mas rapida de sacar tus actas de forma digital y en la comodidad de tu hogar</h5>
+                        <h5 class="header col s12 light">La forma más rápida de sacar tus actas de forma digital y en la comodidad de tu hogar</h5>
                     </div>
                     <br><br>
                     <!--   Boton de iniciar sesion   -->
@@ -98,20 +101,15 @@
                     <div class="col s12 center">
                         <h3><i class="mdi-content-send brown-text"></i></h3>
                         <h4>Algo de nosotros</h4>
-                        <p class="left-align light">Somos un grupo de 4 estudiantes enfocandonos en este proyecto como nuestra tesis final de grado. Buscamos como objetivo proporcionar un servicio totalmente funcional a los ciudadanos para hacerles cualquier tarea, involucrada con la tematica principal de este sitio, mucho mas sencilla y cómoda de realizar.</p>
+                        <p class="left-align light">Somos un grupo de 4 estudiantes enfocándonos en este proyecto como nuestra tesis final de grado. Buscamos como objetivo proporcionar un servicio totalmente funcional a los ciudadanos para hacerles cualquier tarea, involucrada con la tematica principal de este sitio, mucho mas sencilla y cómoda de realizar.</p>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <footer class="page-footer">
-
-            <div class="footer-copyright">
-                <div class="container">
-                    Hecho por <a href="#!">    Equipo 6 - UTN FRM</a>
-                </div>
-            </div>
+        <footer class="page-footer center">
+                    Hecho por Equipo 6 - UTN FRM
         </footer>
 
 

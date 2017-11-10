@@ -2,8 +2,7 @@
 <html>
 
     <head>
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
+
         <!-- Font Awesome -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
         <!-- NProgress -->
@@ -12,17 +11,8 @@
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- Datatables -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
+
+        
 
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
@@ -37,33 +27,32 @@
     <body>
 
         <!-- Header con titulo -->
-        <nav>
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Inicio sesión</a>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Iniciar sesión
+                    </div>
+                </div>
             </div>
-        </nav> 
-        <div class="row">
-            <ul class="left-align col s6">
-                <li><?php echo Html::img('home.png', 'Inicio', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link("", "Inicio"); ?></li>
-            </ul>
-        </div>
+        </nav>
         <div class="center row withTopPad">
 
-            <label>¿Tenes usuario? Inicia sesión</label>
-            <?php echo Form::open('admin', 'post') ?>
-
-
+            <div style="margin-bottom: 25px">
+                <label><span style="font-size: 25px">Iniciá sesión</span></label>
+            </div>
+        
+        <?php echo Form::open('admin', 'post') ?>
             <?php View::content() ?>
             <input type="text" placeholder="Usuario" name="login"><br>
-            <input type="password" placeholder="Contraseña" name="clave"><br>
+            <input type="password" placeholder="Contraseña" name="clave"><br>                        
+            <button style="margin-top: 25px" class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
             <div class="row">
-                <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?>
+                <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?> |
                 <?php echo html::link('olvido', "¿Olvidaste tu cuenta?", array("class" => "href", "id" => "download-button")) ?>
-            </div>                        
-            <button class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
-
+            </div>
         </form>
     </div>
     <!--Import jQuery before materialize.js-->
