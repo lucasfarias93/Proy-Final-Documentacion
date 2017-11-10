@@ -41,16 +41,23 @@
         <div class="center row withTopPad">
 
             <div style="margin-bottom: 25px">
-                <label><span style="font-size: 25px">Iniciá sesión</span></label>
+                <label><span style="font-size: 25px" class="white-text">Iniciar sesión</span></label>
             </div>
         
         <?php echo Form::open('admin', 'post') ?>
             <?php View::content() ?>
-            <input type="text" placeholder="Usuario" name="login"><br>
-            <input type="password" placeholder="Contraseña" name="clave"><br>                        
-            <button style="margin-top: 25px" class="btn-large waves-effect waves-light btn" type="submit" value="Ingresar">Ingresar</button>
-            <div class="row">
-                <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?> |
+            <div class="input-field">
+                <input id="usuario" type="text" name="login">
+                <label for="usuario" style="color: white">Usuario</label>
+            </div>
+            <br>
+            <div class="input-field">
+                <input id="contraseña" type="password" name="clave" autocomplete="false"><br>
+                <label for="contraseña" style="color: white">Password</label>
+            </div>                        
+            <button style="margin-top: 25px" class="btn-large waves-effect waves-light btn blue darken-3" type="submit" value="Ingresar">Ingresar</button>
+            <div class="row" style="margin-top: 15px">
+                <?php echo html::link('registrar', "Registrate", array("class" => "href", "id" => "download-button")) ?> <span style="color:white;"> | </span>
                 <?php echo html::link('olvido', "¿Olvidaste tu cuenta?", array("class" => "href", "id" => "download-button")) ?>
             </div>
         </form>

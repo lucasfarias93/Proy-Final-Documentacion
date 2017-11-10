@@ -2,27 +2,10 @@
 <html>
 
     <head>
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- Datatables -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -36,23 +19,22 @@
     <body>
 
         <!-- Header con titulo -->
-        <nav>
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Verificar Validez</a>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("/", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Verificar vigencia de acta
+                    </div>
+                </div>
             </div>
-        </nav> 
-        <div class="row">
-            <ul class="left-align col s6">
-                <li><?php echo Html::img('home.png', 'Inicio', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link("", "Inicio"); ?></li>
-            </ul>
-        </div>
+        </nav>
         <div class="center row withTopPad">
 
             <!-- Inicio seccion izquierda para validar acta -->
             <div class= "row">
-                <div id="mensajes_flash"></div> 
+                <?php echo Html::img('verificar.png', 'Verificar', array("width" => "200px", "height" => "200px")) ?><br>
                 <label>Verificá la validez del acta ingresando el dni y el código de pago:</label>
                 <input type="text" placeholder="DNI" name="dni" id = "textodni"><br>
                 <input type="text" placeholder="Código" name="codigo" id="textocodigo"><br>
@@ -77,8 +59,7 @@
                     url: "<?php echo PUBLIC_PATH ?>verificarentidad/verificar_validez_entidad",
                     type: 'post',
                     success: function (response) {
-
-                        $("#mensajes_flash").html(response);
+                        Materialize.toast(response.split('</button>')[1].split('</div>')[0], 4000);
                     }
                 }
                 );

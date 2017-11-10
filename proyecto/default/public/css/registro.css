@@ -10,4 +10,10 @@
 label.active {
    width: 100% !important;
 }          
+
+.select-wrapper span.caret {
+  right: 15px !important;
+  top: 5px !important;
+  color:white !important;
+}
           

@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- Datatables -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
@@ -36,12 +19,17 @@
     <body>
 
         <!-- Header con titulo -->
-        <nav>
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Registro de usuario</a>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Registro de usuario
+                    </div>
+                </div>
             </div>
-        </nav>  
+        </nav>
 
         <!-- Formato del formulario con boton al final -->
         <div class="center row">
@@ -66,15 +54,15 @@
                     </div>  
                 </div>
                 <div class="row">
-                    <div class="input-field">
+                    <div class="input-field displayable-name" style="display:none">
                         <input id="nombres" type="text" disabled="disabled">
-                        <label for="nombres">Nombres</label>
+                        <label for="nombres" style="color: white">Nombres</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field">
+                    <div class="input-field displayable-name" style="display:none">
                         <input id="apellido" type="text" disabled="disabled">
-                        <label for="apellido">Apellido</label>
+                        <label for="apellido" style="color: white">Apellido</label>
                     </div>
                 </div>
                 <div class="row">
@@ -108,7 +96,7 @@
                 <div class="row">
                     <div class="input-field">
                         <input id="nombre_usuario" type="text" class="validate">
-                        <label for="nombre_usuario">Nombre de Usuario</label>place
+                        <label for="nombre_usuario">Nombre de Usuario</label>
                     </div>
                 </div>
                 <div class="row">
@@ -147,10 +135,10 @@
                     </div>
                 </div>
                 <input id="condiciones" type="checkbox"/> 
-                <label for="condiciones">  <a href="<?php echo PUBLIC_PATH ?>tyc" target="_blank"> Acepta los términos y condiciones</a></label>
+                <label for="condiciones">  <a class="amber-text darken-3" href="<?php echo PUBLIC_PATH ?>tyc" target="_blank"> Acepta los términos y condiciones</a></label>
                 <!-- El boton esta deshabilitado. Para habilitarlo solo hay que reomver disable de la clase -->
                 <br>
-                <button id="submitButton" class="btn waves-effect waves-light" disabled="disabled" type="submit" name="action">Crear
+                <button id="submitButton" class="btn waves-effect waves-light blue darken-3" disabled="disabled" type="submit" name="action" style="margin-top: 15px">Crear
                     <i class="material-icons right">send</i>
                 </button>
                 <div class="row" id="rta">
@@ -243,6 +231,11 @@
                             $("#apellido").removeAttr("readonly");
                             $("#apellido").removeAttr("disabled");
                             $("#apellido").val(response.apellido);
+
+                            $(".displayable-name").show();
+                            setTimeout(function(){
+                                $(".displayable-name input").focus()
+                            }, 500);
                         } else {
                             alert("Revisar DNI y numero de tramite");
                         }
@@ -276,6 +269,11 @@
                             $("#apellido").removeAttr("readonly");
                             $("#apellido").removeAttr("disabled");
                             $("#apellido").val(response.apellido);
+
+                            $(".displayable-name").show();
+                            setTimeout(function(){
+                                $(".displayable-name input").focus()
+                            }, 500);
                         } else {
                             alert("Revisar DNI y numero de tramite");
                         }

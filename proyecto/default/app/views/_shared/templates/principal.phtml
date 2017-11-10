@@ -32,20 +32,20 @@
                     <br><br>
                     <!--   Boton de iniciar sesion   -->
                     <div class="row center">
-                        <?php echo html::link('login', "Inicia sesión", array("class" => "btn-large waves-effect waves", "id" => "download-button")) ?>
+                        <?php echo html::link('login', "Inicia sesión", array("class" => "btn-large waves-effect waves blue darken-3", "id" => "download-button", "style" => "width: 335px;")) ?>
                         <br><br>
                         <span></span>
                         <br><br>
-                        <?php echo html::link('verificarentidad', "Verifica la validez de tu acta", array("class" => "btn-large waves-effect waves", "id" => "download-button")) ?>
-                        <div class="row right-align">
-                        <a><?php echo Html::img('information.png', '', array("width" => "48px", "height" => "48px")) ?></a>
+                        <?php echo html::link('verificarentidad', "Verifica la validez de tu acta", array("class" => "btn-large waves-effect waves blue darken-3", "id" => "download-button", "style" => "width: 335px;")) ?>
+                        <div class="row right-align" style="display: flex; align-items: center; justify-content: center">
+                        <i style="margin-right: 5px; font-size: 20px" class="large material-icons">local_library</i>
                         <a href="<?php echo PUBLIC_PATH ?>default/public/Manual de Usuario.pdf" target="_blank">Manual de usuario </a>
                     </div>
                         
                     </div>
                 </div>
             </div>
-            <div class="parallax cropper"><img src="<?php echo PUBLIC_PATH ?>img/background123.jpg" alt="Unsplashed background img 1"></div>
+            <div class="parallax cropper"><img style="filter: hue-rotate(230deg) grayscale(40%);" src="<?php echo PUBLIC_PATH ?>img/background123.jpg" alt="Unsplashed background img 1"></div>
         </div>
         <div class="container">
             <div class="section">
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <footer class="page-footer center">
+        <footer class="page-footer center blue darken-3" style="display: flex; align-items: center; justify-content: center; padding: 20px">
                     Hecho por Equipo 6 - UTN FRM
         </footer>
 

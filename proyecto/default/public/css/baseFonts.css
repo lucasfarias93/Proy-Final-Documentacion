@@ -1,15 +1,20 @@
-/*para cambiar de color y tamaaño de los labels*/
-label {
+/*para cambiar de color y tamaño de los labels*/
+/*label {
 	color:white	 !important;
 	font-size: 1.0rem !important;
 	margin: 10px 10px 10px 0px;
 }
-	
+	*/
 /*clase utilizada para los links (modificado el tamañano) 
  un ejemplo de uso esta en los label de registrar y olvidarse cuenta*/
 #download-button {
 	font-size: 1.0rem;
+  color: #ff8f00;
 } 
+
+.input-field label {
+    color: white;
+}
 
 /*para cambiar los colores de los input en todos los navegadores*/
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -67,7 +72,7 @@ input:not([type]):disabled, input:not([type])[readonly="readonly"], input[type=t
 
 /* Cuando se autocomplete, usar los mismos colores de fondo y de letra que cuando no*/
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #2A3F54 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #707070 inset !important;
     -webkit-text-fill-color: white !important;
 
 }
@@ -105,6 +110,7 @@ CUSTOM!
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #1565c0 !important;
 }
 
 .nav-container {
@@ -165,4 +171,17 @@ th {
 
 thead th {
   font-weight: 500;
+}
+
+.select-wrapper span.caret {
+  right: 15px !important;
+  top: 5px !important;
+}
+
+.parallax > img {
+  filter: hue-rotate(230deg) grayscale(40%);
+}
+
+body {
+  background: #707070;
 }
