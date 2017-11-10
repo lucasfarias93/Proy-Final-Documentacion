@@ -25,9 +25,12 @@ class Oficinainscripcion extends ActiveRecord {
         return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
 
-    public function getOficinainscripcion($page, $ppage = 20) {
-
-        return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
+    public function getOficinainscripcion($criterio, $page, $ppage = 20) {
+        $where = "1 = 1 ";
+        if (array_key_exists("nombre", $criterio) && $criterio['nombre']) {
+            $where .= " and nombreoficina ilike '%" . UtilApp::normalizar_busqueda($criterio['nombre']) . "%'";
+        }
+        return $this->paginate($where, "page: $page", "per_page: $ppage", 'order: id desc');
     }
 
 }

@@ -9,8 +9,9 @@ class OficinainscripcionController extends AdminController {
      */
     public function index($page=1) 
     {
+        $criterio = Input::post('criterio');
         $r = new Oficinainscripcion();
-        $this->listOficinainscripcion = $r->getOficinainscripcion($page);
+        $this->listOficinainscripcion = $r->getOficinainscripcion($criterio, $page);
     }
  
     /**

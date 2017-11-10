@@ -22,6 +22,7 @@ class SolicitudController extends AdminController {
             $sa->idcupondepago = 4;
             $sa->idparentesco = session::get("parentesco");
             $sa->idtipolibro = session::get("tipolibro");
+            $sa->notificado = "no";
             $sa->create();
             $se = new Solicitudestado();
             $se->idsolicitudacta = $sa->id; ///le asigno el id del acta a la solicitud estado
@@ -47,6 +48,7 @@ class SolicitudController extends AdminController {
             $sa->idcupondepago = 4;
             $sa->idparentesco = $parentesco;
             $sa->idtipolibro = $tipolibro;
+            $sa->notificado = "no";
             $sa->create();
             $se = new Solicitudestado();
             $se->idsolicitudacta = $sa->id; ///le asigno el id del acta a la solicitud estado

@@ -10,7 +10,11 @@ class DepartamentoController extends AdminController {
     public function index($page=1) 
     {
         $r = new Departamento();
-        $this->listDepartamento = $r->getDepartamento($page);
+        if (Input::hasPost("nombredepartamento")) {
+            $this->listDepartamento = $r->filtrar_por_nombre(Input::post("nombredepartamento"), $page);
+        } else {
+            $this->listDepartamento = $r->paginar($page);
+        }
     }
  
     /**

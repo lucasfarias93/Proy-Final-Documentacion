@@ -26,8 +26,8 @@ class Codigoprovincial extends ActiveRecord {
      */
     public function filtrar_por_numero_codigo($codigo, $pagina = 1) {
         $cols = "codigoprovincial.*";
-        $where = " numerocodigoprovincial = $codigo";
-        return $this->paginate($where, "columns: $cols");
+        $where = " numerocodigoprovincial = '$codigo'";
+        return $this->paginate($where, "columns: $cols", "", "page: $pagina");
     }
 
     public function obtener_codigos() {

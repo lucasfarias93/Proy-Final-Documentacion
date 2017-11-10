@@ -22,7 +22,7 @@
                         <td><?php echo $as->codigodepago ?></td>
                         <td><?php echo UtilApp::formatea_fecha_bd_to_pantalla($as->fechacambioestado) ?></td>
                         <td><?php echo $as->nombreestadosolicitud ?></td>
-                        <td><?php echo 300 - UtilApp::calcular_dias_entre_fechas($as->fechacambioestado, UtilApp::fecha_actual()) ?></td>
+                        <td><?php echo 180 - UtilApp::calcular_dias_entre_fechas($as->fechacambioestado, UtilApp::fecha_actual()) ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

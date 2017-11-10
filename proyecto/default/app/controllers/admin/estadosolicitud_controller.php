@@ -11,8 +11,12 @@ class EstadosolicitudController extends AdminController {
      * Obtiene una lista para paginar las provincias
      */
     public function index($page = 1) {
-        $es = new Estadosolicitud();
-        $this->listEstadosolicitud = $es->getEstadosolicitud($page);
+        $r = new Estadosolicitud();
+        if (Input::hasPost("nombreestadosolicitud")) {
+            $this->listEstadosolicitud = $r->filtrar_por_nombre(Input::post("nombreestadosolicitud"), $page);
+        } else {
+            $this->listEstadosolicitud = $r->paginar($page);
+        }
     }
 
     /**
