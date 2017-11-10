@@ -59,7 +59,8 @@
                     },
                     url: "<?php echo PUBLIC_PATH ?>ciudadano/verificar/verificar_validez_usuario",
                     type: 'post',
-                    success: function (response.split('</button>')[1].split('</div>')[0], 4000);
+                    success: function (response) {
+                        Materialize.toast(response.split('</button>')[1].split('</div>')[0], 4000);
                     }
                 }
                 );
