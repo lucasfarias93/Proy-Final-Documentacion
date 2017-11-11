@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <!-- Bootstrap -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
+        <!-- Custom Theme Style -->
 
-        
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
@@ -23,7 +30,7 @@
         <title>Listado Solicitudes</title>
 
         <!-- Header con titulo -->
-         <nav class="nav-extended">
+        <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="nav-container">
                     <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
@@ -34,7 +41,7 @@
                 </div>
                 <div class="user-container">
                     <i style="margin-right: 5px" class="large material-icons">account_circle</i>
-                    <?php echo Auth::get('nombres')?>
+                    <?php echo Auth::get('nombres') ?>
                     <div style="margin-left: 5px; padding-right: 5px"> | 
                         <?php echo Html::link('admin/index/logout', 'Cerrar sesión') ?>
                     </div>
@@ -81,8 +88,8 @@
                                 <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
                                     <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><i class="small material-icons black-text">delete</i></a></td>
                                     <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><i class="small material-icons">payment</i></a></td>
-                                        <?php } ?> 
-                                        <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
+                                <?php } ?> 
+                                <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
                                     <td></td>
                                     <td><a><i class="small material-icons green-text">check</i></a></td>
                                 <?php } ?> 
@@ -102,7 +109,7 @@
         </div>
         <script type="text/javascript">
             (function () {
-                
+
             })();
 
         </script>

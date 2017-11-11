@@ -4,12 +4,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Gestión de Actas Digitales</title>
-
+        <!-- Bootstrap -->
+        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
         <!-- CSS  -->
         <link href="<?php echo PUBLIC_PATH ?>css/fuentes.css" type="text/css" rel="stylesheet">
         <link href="<?php echo PUBLIC_PATH ?>css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo PUBLIC_PATH ?>css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        
+
     </head>
     <body>
         <nav class="nav-extended">
@@ -38,10 +41,10 @@
                         <br><br>
                         <?php echo html::link('verificarentidad', "Verifica la validez de tu acta", array("class" => "btn-large waves-effect waves blue darken-3", "id" => "download-button", "style" => "width: 335px;")) ?>
                         <div class="row right-align" style="display: flex; align-items: center; justify-content: center">
-                        <i style="margin-right: 5px; font-size: 20px" class="large material-icons">local_library</i>
-                        <a href="<?php echo PUBLIC_PATH ?>default/public/Manual de Usuario.pdf" target="_blank">Manual de usuario </a>
-                    </div>
-                        
+                            <i style="margin-right: 5px; font-size: 20px" class="large material-icons">local_library</i>
+                            <a href="<?php echo PUBLIC_PATH ?>default/public/Manual de Usuario.pdf" target="_blank">Manual de usuario </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -109,7 +112,7 @@
         </div>
 
         <footer class="page-footer center blue darken-3" style="display: flex; align-items: center; justify-content: center; padding: 20px">
-                    Hecho por Equipo 6 - UTN FRM
+            Hecho por Equipo 6 - UTN FRM
         </footer>
 
 
