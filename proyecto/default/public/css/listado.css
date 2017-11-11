@@ -13,6 +13,7 @@
 #myTable th, #myTable td {
     text-align: center; /* Left-align text */
     padding: 12px; /* Add padding */
+    height: 62px; /* Added to match the cells with icon and without/*
 }
 
 #myTable tr {

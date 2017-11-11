@@ -28,7 +28,7 @@
                     <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
                     <?php echo Html::link("ciudadano/", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
                     <div class="nav-submenu">
-                        > Actas digitales > Verificar vigencia de acta
+                        > Actas digitales > Crear solicitud
                     </div>
                 </div>
                 <div class="user-container">
@@ -90,8 +90,8 @@
                         </tbody>
                     </table>
                 </div>
-                <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                <a href="<?php echo PUBLIC_PATH ?>ciudadano/reportarerror" class="action-button" value="Reportar error" id="botonerror">Reportar error</a>
+                <input type="button" name="previous" class="previous action-button blue darken-3" value="Anterior" />
+                <a href="<?php echo PUBLIC_PATH ?>ciudadano/reportarerror" class="action-button blue darken-3" value="Reportar error" id="botonerror">Reportar error</a>
      <!--            <a href="<?php echo PUBLIC_PATH ?>ciudadano/solicitud/crear_solicitud" class=" action-button" value="Reportar error" id="botonerror">Confirmar</a> -->
                 <input type="button" name="next" class="next action-button" value="Confirmar" id="boton2" disabled="disabled"/>
                 <script>
@@ -179,6 +179,7 @@
 //          habilitar boton siguiente en cuanto se selecciona un parentezco
                         $("#parentescos").change(function () {
                             $("#boton1").removeAttr("disabled");
+                            $("#boton1").addClass("blue darken-3");
                         });
 
                         $("#botonerror").click(function () {
@@ -235,6 +236,7 @@
                                             $("#myTable").hide()
                                         } else {
                                             $('#boton2').removeAttr("disabled")
+                                            $('#boton2').addClass("blue darken-3");
                                             $("#myTable").show()
                                             html = "";
                                             html += '<tr>'

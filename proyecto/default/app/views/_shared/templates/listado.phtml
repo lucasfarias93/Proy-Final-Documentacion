@@ -75,24 +75,24 @@
                                 <td class="data-cell"><?php echo $as->fechacambioestado ?></td>
                                 <td class="data-cell"><?php echo $as->nombreestadosolicitud ?></td>
                                 <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
+                                    <td></td>
+                                    <td></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><?php echo Html::img('eliminar.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a></td>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><?php echo Html::img('pagar.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a></td>
+                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><i class="small material-icons black-text">delete</i></a></td>
+                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><i class="small material-icons">payment</i></a></td>
                                         <?php } ?> 
                                         <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
-                                    <td><a><?php echo Html::img('valid.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a></td>
+                                    <td></td>
+                                    <td><a><i class="small material-icons green-text">check</i></a></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Cancelada") { ?>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
+                                    <td></td>
+                                    <td></td>
                                 <?php } ?> 
                                 <?php if ($as->nombreestadosolicitud == "Enviada al archivo") { ?>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
-                                    <td><?php echo Html::img('prohibido2.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></td>
+                                    <td></td>
+                                    <td></td>
                                 <?php } ?> 
                             </tr>
                         <?php } ?>

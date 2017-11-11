@@ -9,19 +9,25 @@
         <link href="<?php echo PUBLIC_PATH ?>css/fuentes.css" type="text/css" rel="stylesheet">
         <link href="<?php echo PUBLIC_PATH ?>css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo PUBLIC_PATH ?>css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="<?php echo PUBLIC_PATH ?>css/baseFonts.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
-        <nav class="nav-extended">
+<!-- Header con titulo -->
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <div href="#" class="brand-logo center"><a>Terminos y condiciones</a></div>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Terminos y condiciones
+                    </div>
+                </div>
             </div>
         </nav>
-
         <div id="index-banner">
             <div class="section no-pad-bot">
                 <div class="container">
-                    <div class="row center" style="text-align: left">
+                    <div class="row " style="text-align: left">
                         <h6>Gestión Digital de Actas no se responsabilizará de ninguna manera por los actos ejecutados por los usuarios ya sea que los mismos se lleven a cabo en virtud de una relación entre usuarios posibilitada por el portal o no, como así tampoco por las consecuencias fructíferas, no fructíferas, culposas o dolosas que de estos actos surjan.
                             
                             <br><br>

@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- Datatables -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
@@ -31,31 +14,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <?php View::content() ?>
-    <title>Actas digitales</title>
+ 
+    <title>Reportar Error</title>
     <body>
 
         <!-- Header con titulo -->
-        <nav>
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Reportar error </a>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("ciudadano/", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Actas digitales > Reportar Error
+                    </div>
+                </div>
+                <div class="user-container">
+                    <i style="margin-right: 5px" class="large material-icons white-text">account_circle</i>
+                    <?php echo Auth::get('nombres')?>
+                    <div style="margin-left: 5px; padding-right: 5px"> | 
+                        <?php echo Html::link('admin/index/logout', 'Cerrar sesión') ?>
+                    </div>
+                </div>
             </div>
-        </nav>  
-        <div class="row">
-            <ul class="left-align col s6">
-                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-            </ul>
-            <ul class="right-align col s6">
-                <li><?php echo Html::img('salida.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-            </ul>
-        </div>
+        </nav>
+
         <div class="center row">
             <?php echo Form::open('ciudadano/reportarerror/crear_reclamo', 'post') ?>
             <div class="row ">
-                <label>Selecciona el tipo de error y completá los datos</label>
+                <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Selecciona el tipo de error y completá los datos</span></label>
                 <div class="input-field">
                     <?php echo Form::dbselect('tiporeclamo.idtiporeclamo', 'nombretiporeclamo', array('tiporeclamo', 'find')) ?>
                 </div>
@@ -90,8 +76,9 @@
                     <label for="comentarios">Escribe aquí tus comentarios</label>
                 </div>
             </div>
-            <div class="center">
-                <button class="btn-large waves-effect waves-light btn" type="submit" value="Verificar" id="boton1">Enviar
+            <?php View::content() ?>
+            <div class="center withTopPad">
+                <button class="btn-large waves-effect waves-light btn blue darken-3" type="submit" value="Verificar" id="boton1">Enviar
                     <i class="material-icons right">send</i>
                 </button>
             </div>

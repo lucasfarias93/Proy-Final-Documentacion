@@ -1,76 +1,50 @@
 <!DOCTYPE html>
 <html >
     <head>
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- Datatables -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Crear Solicitud</title>
+        <title>Pagar Solicitud</title>
 
         <!--Import materialize.css-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/style.css">
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/solicitud.css">
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/solicitud.min.css">
+        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css">
         <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/jquery-ui-1.10.3.custom.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-        <link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/zoom.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_PATH ?>css/registro.css">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
     </head>
 
     <body>
         <!-- Header con titulo -->
-        <nav>
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Realizar solicitud</a>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("ciudadano/", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Actas digitales > Pagar solicitud
+                    </div>
+                </div>
+                <div class="user-container">
+                    <i style="margin-right: 5px" class="large material-icons white-text">account_circle</i>
+                    <?php echo Auth::get('nombres')?>
+                    <div style="margin-left: 5px; padding-right: 5px"> | 
+                        <?php echo Html::link('admin/index/logout', 'Cerrar sesión') ?>
+                    </div>
+                </div>
             </div>
-        </nav> 
-
-        <div class="row">
-            <ul class="left-align col s6">
-                <li><?php echo Html::img('home.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link("ciudadano/", "Menu"); ?></li>
-            </ul>
-            <ul class="right-align col s6">
-                <li><?php echo Html::img('salida.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></li>
-                <li><?php echo Html::link('admin/index/logout', 'Salir') ?></li>
-            </ul>
-        </div>
+        </nav>
 
         <div id="mensajes_flash" >        
             <?php View::content() ?>
         </div>
-        <!-- multistep form -->
+
         <form id="msform">
-            <!-- progressbar -->
-            <ul id="progressbar">
-                <li>Pagar</li>
-            </ul> 
-
-            <ul class="left-align dropdown-menu">
-            </ul>
-            <!-- fieldsets 1: Elegir tipo de acta y parentezco -->
-
             <fieldset>
                 <h2 class="fs-title">Formas de Pago</h2>
                 <h3 class="fs-subtitle">Por el momento, utilizamos mercado pago para realizar los pagos</h3>

@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Bootstrap -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
-        <!-- Datatables -->
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.dataTables.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/dataTables.buttons.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.flash.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.html5.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/buttons.print.min.js"></script>
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/javascript/jquery/jquery.maskedinput.js"></script>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
@@ -33,16 +16,22 @@
     <title>Recuperar contrase&ntilde;a?</title>
     <body>
 
-        <!-- Header con título -->
-        <nav>
+        <!-- Header con titulo -->
+         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo center">Recuperar contrase&ntilde;a</a>
-                <a href="#" class="brand-logo left"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                <div class="nav-container">
+                    <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
+                    <?php echo Html::link("", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
+                    <div class="nav-submenu">
+                        > Recuperar contrase&ntilde;a?
+                    </div>
+                </div>
             </div>
-        </nav>  
+        </nav>
 
         <div class="center row withTopPad">
-            <label>Ingresa tu email</label>
+        <label><span style="font-size: 18px; margin-top: 15px;" class="white-text">Ingresa tu email</span></label>
+
             <?php echo view::content() ?>
             <?php echo Form::open("", 'post', array('class' => "col s12")); // por defecto llama a la misma url ?>
             <div class="input-field">
@@ -51,7 +40,7 @@
                 <label for="email" data-error="Mail inválido" data-success="correcto">Email</label>
             </div>
             <div class="form-actions">
-                <?php echo Form::submit('Enviar', 'class="btn btn-primary"') ?>
+                <?php echo Form::submit('Enviar', 'class="btn btn-primary blue darken-3"') ?>
             </div>
             <?php echo Form::close() ?>
         </div>
