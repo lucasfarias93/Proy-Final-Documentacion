@@ -1,10 +1,4 @@
-/*para cambiar de color y tamaño de los labels*/
-/*label {
-	color:white	 !important;
-	font-size: 1.0rem !important;
-	margin: 10px 10px 10px 0px;
-}
-	*/
+
 /*clase utilizada para los links (modificado el tamañano) 
  un ejemplo de uso esta en los label de registrar y olvidarse cuenta*/
 #download-button {
@@ -62,6 +56,11 @@ thead {
   background-color: #bdbdbd;
 }
 
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: red;
+    color: red;
+}
+
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
 	color: white;
 }
@@ -107,9 +106,9 @@ CUSTOM!
 *************/
 
 .nav-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   background-color: #1565c0 !important;
 }
 
@@ -126,6 +125,7 @@ CUSTOM!
 
 .brand-logo__link {
   height: 50px;
+  display: flex !important;
 }
 
 .nav-submenu {
@@ -184,4 +184,12 @@ thead th {
 
 body {
   background: #707070;
+}
+
+.caret {
+  border-top: 0px !important;
+}
+
+a:hover {
+  color: #ff8f00;
 }

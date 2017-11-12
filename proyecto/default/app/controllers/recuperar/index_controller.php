@@ -17,8 +17,6 @@ class IndexController extends AppController {
         $link = new Linkrecuperacion();
         $l = $link->filtrar_por_codigo($codigo);
         $dias = floatval(UtilApp::calcular_dias_entre_fechas($l->fechadeemision, UtilApp::fecha_actual()));
-        var_dump($codigo);
-        var_dump($l->enlaceactivo);
         if ($dias <= 2 && $l->enlaceactivo == 'si') {
             if (Input::hasPost('usuarios')) {
                 $usr = new Usuarios(Input::post('usuarios'));

@@ -21,7 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <title>Recuperar contrase&ntilde;a?</title>
+    <title>Recuperar contrase&ntilde;a</title>
     <body>
 
         <!-- Header con titulo -->
@@ -31,14 +31,14 @@
                     <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
                     <?php echo Html::link("", "<div class=\"header-logo\">GESTIÓN DE ACTAS DIGITALES</div>"); ?>
                     <div class="nav-submenu">
-                        > Recuperar contrase&ntilde;a?
+                        > Recuperar contrase&ntilde;a
                     </div>
                 </div>
             </div>
         </nav>
 
         <div class="center row withTopPad">
-        <label><span style="font-size: 18px; margin-top: 15px;" class="white-text">Ingresa tu email</span></label>
+        <label><span style="font-size: 18px; margin-top: 15px;" class="white-text">Ingresa el email con el cual te registraste.</span></label>
 
             <?php echo view::content() ?>
             <?php echo Form::open("", 'post', array('class' => "col s12")); // por defecto llama a la misma url ?>

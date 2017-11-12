@@ -259,4 +259,9 @@ CUSTOM!
 
 .brand-logo__link {
   height: 50px;
+  display: flex;
+}
+
+a:hover {
+	color: #ff8f00;
 }

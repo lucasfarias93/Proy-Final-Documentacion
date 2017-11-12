@@ -39,10 +39,25 @@
             </div>
         </nav>
 
+        <div class="container">
+            <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Para iniciar el registro de una nueva cuenta deberás ingresar tu DNI y tu ID de trámite para confirmar tu identidad. Este último se encuentra en tu DNI (como se muestra en las imágenes más abajo).
+            <br><br>
+            Al Ingresarlo no debes tener en cuenta los ceros que preceden al primer número distinto de cero.
+            <br><br>
+            Si todo está bien, notarás que tu nombre y apellido aparecerán debajo de los campos del DNI y ID de trámite.
+            </span></label>
+        </div>
         <!-- Formato del formulario con boton al final -->
         <div class="center row">
             <form> 
                 <div class="row"> 
+                    <div class="separateWithTop">
+                        <td><?php echo Html::img('dni1.1.png', 'Crear_Solicitud', array("width" => "310px", "height" => "160px")) ?></td>
+                    </div>
+                    <div class="separateWithTop">
+                        <td><?php echo Html::img('dni2.2.png', 'Crear_Solicitud', array("width" => "310px", "height" => "160px")) ?></td>
+                    </div>  
+
                     <div class="input-field">
                         <!-- input numerico tratado como texto para resolver el problema de type="number" no reconoce el atributo maxlenght -->
                         <input id="numero_documento" type="text" class="validate" pattern="\d*" maxlength="8">
@@ -52,14 +67,8 @@
                 <div class="row"> 
                     <div class="input-field">
                         <input id="numero_tramite" type="text" class="validate" pattern="\d*">
-                        <label for="numero_tramite" data-error="Numero de tramite inválido" data-success="Numero de tramite válido">Nº tramite</label>
+                        <label for="numero_tramite">Nº tramite</label>
                     </div>
-                    <div class="separateWithTop">
-                        <td><?php echo Html::img('dni1.1.png', 'Crear_Solicitud', array("width" => "310px", "height" => "160px")) ?></td>
-                    </div>
-                    <div class="separateWithTop">
-                        <td><?php echo Html::img('dni2.2.png', 'Crear_Solicitud', array("width" => "310px", "height" => "160px")) ?></td>
-                    </div>  
                 </div>
                 <div class="row">
                     <div class="input-field displayable-name" style="display:none">
