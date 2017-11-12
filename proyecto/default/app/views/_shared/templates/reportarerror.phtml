@@ -49,7 +49,7 @@
         <div class="center row">
             <?php echo Form::open('ciudadano/reportarerror/crear_reclamo', 'post') ?>
             <div class="row ">
-                <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Selecciona el tipo de error y completá los datos</span></label>
+                <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Selecciona el tipo de error y completá los datos. No todos los campos son obligatorios, pero llenarlos ayudará a agilizar la resolución del error</span></label>
                 <div class="input-field">
                     <?php echo Form::dbselect('tiporeclamo.idtiporeclamo', 'nombretiporeclamo', array('tiporeclamo', 'find')) ?>
                 </div>
