@@ -3,21 +3,21 @@
     <head>
         <!-- Bootstrap -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.css" rel="stylesheet">
-        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
         <!-- Font Awesome -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/font-awesome.min.css" rel="stylesheet">
         <!-- NProgress -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/nprogress.css" rel="stylesheet">
-
         <!-- Custom Theme Style -->
         <link href="<?php echo PUBLIC_PATH ?>gentelella/css/custom.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="<?php echo PUBLIC_PATH ?>gentelella/css/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="<?php echo PUBLIC_PATH ?>gentelella/css/bootstrap.min.js"></script>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/materialize.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/listado.css"  media="screen,projection"/>
-         <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="<?php echo PUBLIC_PATH ?>css/baseFonts.css"  media="screen,projection"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
@@ -25,7 +25,7 @@
     <body>
 
         <!-- Header con titulo -->
-         <nav class="nav-extended">
+        <nav class="nav-extended">
             <div class="nav-wrapper">
                 <div class="nav-container">
                     <a href="#" class="brand-logo__link"><?php echo Html::img('logo.png', 'Menu', array("width" => "48px", "height" => "48px")) ?></a>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="user-container">
                     <i style="margin-right: 5px" class="large material-icons">account_circle</i>
-                    <?php echo Auth::get('nombres')?>
+                    <?php echo Auth::get('nombres') ?>
                     <div style="margin-left: 5px; padding-right: 5px"> | 
                         <?php echo Html::link('admin/index/logout', 'Cerrar sesión') ?>
                     </div>
@@ -45,23 +45,23 @@
         </nav> 
 
         <div class="container center" style="padding-top: 15px">
-        <?php View::content() ?>
+            <?php View::content() ?>
         </div>
 
         <div class="row options-container">
             <div class="col s12 m4 user-options">
-                    <i style="margin-right: 5px; font-size: 150px" class="large material-icons white-text">note_add</i>
-                    <?php echo Html::link("ciudadano/solicitud/", "<button class=\"btn blue darken-3\">Crear Solicitud</button>"); ?>
-                     <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Aqui podrás crear, confirmar y pagar actas propias y de familiares</span></label>
+                <i style="margin-right: 5px; font-size: 150px" class="large material-icons white-text">note_add</i>
+                <?php echo Html::link("ciudadano/solicitud/", "<button class=\"btn blue darken-3\">Crear Solicitud</button>"); ?>
+                <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Aqui podrás crear, confirmar y pagar actas propias y de familiares</span></label>
             </div>
             <div class="col s12 m4 user-options">
                 <i style="margin-right: 5px; font-size: 150px" class="large material-icons white-text">folder_shared</i>
-                    <?php echo Html::link("ciudadano/listado/", "<button class=\"btn blue darken-3\">Mis solicitudes</button>"); ?>
+                <?php echo Html::link("ciudadano/listado/", "<button class=\"btn blue darken-3\">Mis solicitudes</button>"); ?>
                 <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Este es el historial de las solicitudes que has realizado en el sistema</span></label>
             </div>
             <div class="col s12 m4 user-options">
                 <i style="margin-right: 5px; font-size: 150px" class="large material-icons white-text">access_time</i>
-                    <?php echo Html::link("ciudadano/verificar/", "<button class=\"btn blue darken-3\">Verificar validez</button>"); ?>
+                <?php echo Html::link("ciudadano/verificar/", "<button class=\"btn blue darken-3\">Verificar validez</button>"); ?>
                 <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Verificá el estado de tus solicitudes con el código de pago asociado</span></label>
             </div>
         </div>

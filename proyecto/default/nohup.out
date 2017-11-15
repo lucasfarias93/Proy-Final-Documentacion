@@ -1,0 +1,60 @@
+DEBUG:spyne.interface._base:populating '__main__.RCWebService ({RCWebService.RCWebService}RCWebService)' types...
+DEBUG:spyne.interface._base:	adding class "<class 'spyne.model.complex.nacimiento_propia'>" for '{coyote1.rc.mendoza.gov.ar}nacimiento_propia'
+DEBUG:spyne.interface._base:	adding nacimiento_propia.dni = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding class "<class 'spyne.model.primitive.Unicode'>" for '{http://www.w3.org/2001/XMLSchema}string'
+DEBUG:spyne.interface._base:	adding nacimiento_propia.tipo = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding nacimiento_propia.parentesco = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding class "<class 'spyne.model.complex.nacimiento_propiaResponse'>" for '{coyote1.rc.mendoza.gov.ar}nacimiento_propiaResponse'
+DEBUG:spyne.interface._base:	adding nacimiento_propiaResponse.nacimiento_propiaResult = <class 'spyne.model.complex.Iterable'>
+DEBUG:spyne.interface._base:	adding class "<class 'spyne.model.complex.Iterable'>" for '{coyote1.rc.mendoza.gov.ar}ObjetosArray'
+DEBUG:spyne.interface._base:	adding ObjetosArray.Objetos = <class '__main__.Objetos'>
+DEBUG:spyne.interface._base:	adding class "<class '__main__.Objetos'>" for '{coyote1.rc.mendoza.gov.ar}Objetos'
+DEBUG:spyne.interface._base:	adding Objetos.fecha_nacimiento = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.persona = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.apellido = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.dni = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.nrolibro = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.ubicacion = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.nombre = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:	adding Objetos.nroacta = <class 'spyne.model.primitive.Unicode'>
+DEBUG:spyne.interface._base:populating '__main__.RCWebService' methods...
+DEBUG:spyne.interface._base:	adding method 'nacimiento_propia' to match '{coyote1.rc.mendoza.gov.ar}nacimiento_propia' tag.
+DEBUG:spyne.interface._base:From this point on, you're not supposed to make any changes to the class and method structure of the exposed services.
+DEBUG:spyne.interface.xml_schema:generating schema for targetNamespace='coyote1.rc.mendoza.gov.ar', prefix: 'tns' in dir '/tmp/spyner8b8rZ'
+DEBUG:spyne.interface.xml_schema:writing '/tmp/spyner8b8rZ/tns.xsd' for ns coyote1.rc.mendoza.gov.ar
+DEBUG:spyne.interface.xml_schema:Schema built. Removed '/tmp/spyner8b8rZ'
+DEBUG:spyne.interface.xml_schema:generating schema for targetNamespace='coyote1.rc.mendoza.gov.ar', prefix: 'tns' in dir '/tmp/spyneqEe2rT'
+DEBUG:spyne.interface.xml_schema:writing '/tmp/spyneqEe2rT/tns.xsd' for ns coyote1.rc.mendoza.gov.ar
+DEBUG:spyne.interface.xml_schema:Schema built. Removed '/tmp/spyneqEe2rT'
+DEBUG:spyne.util.appreg:Registering <spyne.application.Application object at 0xb61fb0ec> as ('coyote1.rc.mendoza.gov.ar', 'Application')
+127.0.0.1 - - [15/Nov/2017 12:50:48] "GET /RCWebService.asmx/nacimiento_propia?wsdl HTTP/1.1" 200 3721
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 12:50:49] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 12:51:44] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:03:41] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:04:55] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:09:02] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:12:40] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 654
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:12:53] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 654
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:22:48] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:25:05] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [15/Nov/2017 13:27:32] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653

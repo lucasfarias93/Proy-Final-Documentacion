@@ -52,107 +52,135 @@
             <div class="col m12 search-input">
                 <i class="material-icons white-text">search</i>
                 <input class="" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombre propietario...">
+                <i class="material-icons white-text">search</i>
+                <input class="" type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Buscar por fecha solicitud...">
+                <i class="material-icons white-text">search</i>
+                <input class="" type="text" id="myInput3" onkeyup="myFunction3()" placeholder="Buscar por cupon de pago...">
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered table-responsive striped" id="myTable">
-                    <thead>
-                        <tr>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-responsive striped" id="myTable">
+                <thead>
+                    <tr>
 
-                            <th>Nombre propietario acta</th>
-                            <th>N° de solicitud</th>
-                            <th>Parentesco</th>
-                            <th>Cupon de pago</th>
-                            <th>Tipo libro</th>
-                            <th>Fecha solicitud </th>
-                            <th>Estado solicitud </th>
-                            <th>Eliminar </th>
-                            <th>Pagar </th>
+                        <th>Nombre propietario acta</th>
+                        <th>N° de solicitud</th>
+                        <th>Parentesco</th>
+                        <th>Cupon de pago</th>
+                        <th>Tipo libro</th>
+                        <th>Fecha solicitud </th>
+                        <th>Estado solicitud </th>
+                        <th>Eliminar </th>
+                        <th>Pagar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($listSolicitudacta as $as) { ?>
+                        <tr datossolicitud = "<?php echo $as->id ?>">
+                            <td class="data-cell"><?php echo $as->nombrepropietarioacta ?></td>
+                            <td class="data-cell"><?php echo $as->id ?></td>
+                            <td class="data-cell"><?php echo $as->nombreparentesco ?></td>
+                            <td class="data-cell"><?php echo $as->codigodepago ?></td>
+                            <td class="data-cell"><?php echo $as->nombrelibro ?></td>
+                            <td class="data-cell"><?php echo $as->fechacambioestado ?></td>
+                            <td class="data-cell"><?php echo $as->nombreestadosolicitud ?></td>
+                            <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
+                                <td></td>
+                                <td></td>
+                            <?php } ?> 
+                            <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
+                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><i class="small material-icons black-text">delete</i></a></td>
+                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><i class="small material-icons">payment</i></a></td>
+                            <?php } ?> 
+                            <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
+                                <td></td>
+                                <td><a><i class="small material-icons green-text">check</i></a></td>
+                            <?php } ?> 
+                            <?php if ($as->nombreestadosolicitud == "Cancelada") { ?>
+                                <td></td>
+                                <td></td>
+                            <?php } ?> 
+                            <?php if ($as->nombreestadosolicitud == "Enviada al archivo") { ?>
+                                <td></td>
+                                <td></td>
+                            <?php } ?> 
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($listSolicitudacta as $as) { ?>
-                            <tr datossolicitud = "<?php echo $as->id ?>">
-                                <td class="data-cell"><?php echo $as->nombrepropietarioacta ?></td>
-                                <td class="data-cell"><?php echo $as->id ?></td>
-                                <td class="data-cell"><?php echo $as->nombreparentesco ?></td>
-                                <td class="data-cell"><?php echo $as->codigodepago ?></td>
-                                <td class="data-cell"><?php echo $as->nombrelibro ?></td>
-                                <td class="data-cell"><?php echo $as->fechacambioestado ?></td>
-                                <td class="data-cell"><?php echo $as->nombreestadosolicitud ?></td>
-                                <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
-                                    <td></td>
-                                    <td></td>
-                                <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><i class="small material-icons black-text">delete</i></a></td>
-                                    <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><i class="small material-icons">payment</i></a></td>
-                                <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
-                                    <td></td>
-                                    <td><a><i class="small material-icons green-text">check</i></a></td>
-                                <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Cancelada") { ?>
-                                    <td></td>
-                                    <td></td>
-                                <?php } ?> 
-                                <?php if ($as->nombreestadosolicitud == "Enviada al archivo") { ?>
-                                    <td></td>
-                                    <td></td>
-                                <?php } ?> 
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
-        <script type="text/javascript">
-            (function () {
+    </div>
+    <script type="text/javascript">
+        (function () {
 
-            })();
+        })();
 
-        </script>
-        <script>
-            $('#myTable tbody tr').on('click', function () {
-//                $('#myTable tbody tr').removeClass('seleccion')
-//                $(this).addClass('seleccion')
-            })
-            function myFunction() {
-                // Declare variables 
-                var input, filter, table, tr, td, i;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
+    </script>
+    <script>
+        $('#myTable tbody tr').on('click', function () {
+        })
+        function myFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
 
-                // Loop through all table rows, and hide those who don't match the search query
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
                     }
                 }
             }
-//            function execute_my_onreturn(json) {
-//
-//                $.ajax({
-//                    url: "<?php echo PUBLIC_PATH ?>ciudadano/index/generar_pdf_firmar_mail",
-//                    type: 'post',
-//                    data: {
-//                        'estado': json.collection_status,
-//                        'nrocupon': json.collection_id,
-////                        'idsa': $('#myTable tbody tr.seleccion').attr('datossolicitud')
-//                    },
-//                    success: function (response) {
-//                    }
-//                });
-//                window.open("<?php echo PUBLIC_PATH ?>ciudadano");
-//            }
-        </script>
-    </body>
+        }
+        function myFunction2() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function myFunction3() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput3");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
 </html>

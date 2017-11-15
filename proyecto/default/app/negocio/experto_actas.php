@@ -49,15 +49,12 @@ class ExpertoActas {
             $importe = 0;
             $codigos = new Codigoprovincial();
             $co = $codigos->obtener_codigos();
-            $valor221 = 0;
-            $valor224 = 0;
+            $nombrecodigo;
             foreach ($co as $value) {
                 $importe += floatval($value->importecodigo);
-                $valor221 = $value->numerocodigoprovincial;
+                $nombrecodigo.= $value->numerocodigoprovincial. " ";
             }
-            $valor221 = $co[0]->numerocodigoprovincial;
-            $valor224 = $co[1]->numerocodigoprovincial;
-            $pdf->Text(25, 180, "$" . $importe . " correspondiente a los codigos provinciales " . $valor221 . " y " . $valor224);
+            $pdf->Text(25, 180, "$" . $importe . " correspondiente a los codigos provinciales " . $nombrecodigo);
             ////////Ubicar el cupon de pago
             $pdf->Text(125, 280, "cupon de pago: " . session::get('nrocupon'));
         }

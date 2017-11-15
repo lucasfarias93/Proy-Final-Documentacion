@@ -31,8 +31,9 @@ class Codigoprovincial extends ActiveRecord {
     }
 
     public function obtener_codigos() {
+        $hoy = UtilApp::fecha_actual();
         $cols = "codigoprovincial.*";
-        $where = " 1 = 1";
+        $where = " fechahasta > '$hoy' ";
         return $this->find($where, "columns: $cols");
     }
 

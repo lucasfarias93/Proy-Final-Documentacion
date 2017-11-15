@@ -144,9 +144,10 @@ class IndexController extends AdminController {
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->importecodigo;
-                $valor224 = $co[1]->importecodigo;
-                $cp->montototal = $valor221 + $valor224;
+                foreach ($co as $value) {
+                    $importe += floatval($value->importecodigo);
+                }
+                $cp->montototal = $importe;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
@@ -179,9 +180,10 @@ class IndexController extends AdminController {
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->importecodigo;
-                $valor224 = $co[1]->importecodigo;
-                $cp->montototal = $valor221 + $valor224;
+                foreach ($co as $value) {
+                    $importe += floatval($value->importecodigo);
+                }
+                $cp->montototal = $importe;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
@@ -243,9 +245,10 @@ class IndexController extends AdminController {
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->importecodigo;
-                $valor224 = $co[1]->importecodigo;
-                $cp->montototal = $valor221 + $valor224;
+                foreach ($co as $value) {
+                    $importe += floatval($value->importecodigo);
+                }
+                $cp->montototal = $importe;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
@@ -279,9 +282,10 @@ class IndexController extends AdminController {
                 $cp->fechaemisionpago = UtilApp::fecha_actual();
                 $codigos = new Codigoprovincial();
                 $co = $codigos->obtener_codigos();
-                $valor221 = $co[0]->importecodigo;
-                $valor224 = $co[1]->importecodigo;
-                $cp->montototal = $valor221 + $valor224;
+                foreach ($co as $value) {
+                    $importe += floatval($value->importecodigo);
+                }
+                $cp->montototal = $importe;
                 $cp->idcodigoprovincial = 6;
                 $cp->create();
                 try {
