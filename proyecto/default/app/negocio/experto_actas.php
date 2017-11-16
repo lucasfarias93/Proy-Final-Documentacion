@@ -52,7 +52,7 @@ class ExpertoActas {
             $nombrecodigo;
             foreach ($co as $value) {
                 $importe += floatval($value->importecodigo);
-                $nombrecodigo.= $value->numerocodigoprovincial. " ";
+                $nombrecodigo .= $value->numerocodigoprovincial . " ";
             }
             $pdf->Text(25, 180, "$" . $importe . " correspondiente a los codigos provinciales " . $nombrecodigo);
             ////////Ubicar el cupon de pago
@@ -68,7 +68,43 @@ class ExpertoActas {
         exec($comando);
         $url = PUBLIC_PATH . $nombre;
         $url = str_replace('.pdf', '', $url);
-        $url = "/public".$url . "_firmado.pdf";
+        $url = "/public" . $url . "_firmado.pdf";
+        return $url;
+    }
+
+    public static function reporte_pdf_sol_gen($listado) {
+
+        Load::lib("fpdf");
+        $pdf = new FPDF();
+        $pdf->AddPage('L');
+        $pdf->SetFont('Arial', '', 30);
+        $pdf->Cell(10, 15, 'Solicitudes generadas', 0,1);
+        $pdf->Ln(20);
+        $pdf->SetFont('Arial', 'B', 15);
+        // Header
+        $pdf->Cell(10, 7, 'N° de solicitud', 1);
+        $pdf->Cell(25, 7, 'Nombre propietario acta', 1);
+        $pdf->Cell(40, 7, 'Parentesco', 1);
+        $pdf->Cell(40, 7, 'Cupon de pago', 1);
+        $pdf->Cell(40, 7, 'Tipo libro', 1);
+        $pdf->Cell(40, 7, 'Fecha solicitud', 1);
+        $pdf->Cell(14, 7, 'Estado solicitud', 1, 1);
+        $pdf->SetFont('Arial', '', 7);
+        // Data
+        foreach ($listado as $row) {
+            $pdf->Cell(40, 7, $row->id, 1);
+            $pdf->Cell(40, 7, utf8_decode($row->nombrepropietarioacta), 1);
+            $pdf->Cell(40, 7, $row->nombreparentesco, 1);
+            $pdf->Cell(40, 7, $row->codigodepago, 1);
+            $pdf->Cell(40, 7, $row->nombrelibro, 1);
+            $pdf->Cell(40, 7, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioestado), 1);
+            $pdf->Cell(40, 7, $row->nombreestadosolicitud, 1, 1);
+        }
+        $nombre = 'pdf/reporte_solicitudes_' . date("dmYHis", time()) . '.pdf';
+        $pdf->Output($nombre, 'F');
+        ///// Comando para firmar digitalmente con jsignpdf
+        $url = PUBLIC_PATH . $nombre;
+
         return $url;
     }
 
@@ -105,7 +141,7 @@ class ExpertoActas {
             //$mail->AddAddress("dggomez@mendoza.gov.ar"); // Esta es la dirección a donde enviamos
             $mail->IsHTML(true); // El correo se envía como HTML
             $mail->Subject = "Solicitud de partida"; // Este es el titulo del email.
-            $body = "Ya tenés tu partida disponible para usar por 6 meses a partir del ".UtilApp::fecha_actual();
+            $body = "Ya tenés tu partida disponible para usar por 6 meses a partir del " . UtilApp::fecha_actual();
             $mail->Body = $body; // Mensaje a enviar
             $mail->AddAttachment($url);
             $exito = $mail->Send(); // Envía el correo.

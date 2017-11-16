@@ -22,21 +22,74 @@
     </div>
 
 </div>
+
 <div class="row">
-        <div class="col-sm-5">
-            <?php echo Form::label('Propietario', 'nombrepropietarioacta', array('class' => 'control-label')) ?>
-            <?php echo Form::text('criterio.nombrepropietarioacta', array('class' => 'form-control')) ?>
-        </div>
-    <div class="col-sm-2">
+    <div class="col-sm-5 sg">
+        <?php echo Form::label('Propietario', 'nombrepropietarioacta', array('class' => 'control-label')) ?>
+        <?php echo Form::text('criterio.nombrepropietarioacta', array('class' => 'form-control')) ?>
+    </div>
+    <div class="col-sm-2 sg">
         <?php echo Form::label('Cupón de pago', 'codigodepago', array('class' => 'control-label')) ?>
         <?php echo Form::text('criterio.cupon', array('class' => 'form-control')) ?>
+    </div>
+    <div class="col-sm-5 ug re">
+        <?php echo Form::label('Usuario', 'login', array('class' => 'control-label')) ?>
+        <?php echo Form::text('criterio.login', array('class' => 'form-control')) ?>
+    </div>
+    <div class="col-sm-2 ug">
+        <?php echo Form::label('DNI', 'codigodepago', array('class' => 'control-label')) ?>
+        <?php echo Form::text('criterio.dni', array('class' => 'form-control')) ?>
     </div>
     <div class="col-sm-2">
         <?php echo Form::label('', 'codigodepago', array('class' => 'control-label')) ?>
         <?php echo Form::submit('Ver', array('class' => 'form-control btn btn-primary')) ?>
     </div>
+    <?php // if (session::has('criterio')) { ?>
+    <div class="col-sm-2">
+        <?php echo html::link('admin/reporte/imprimir', 'Imprimir', array('class' => 'imprimir form-control btn btn-primary')) ?>
+    </div>
+    <?php // } ?>
 </div>
 
 
 <?php echo Form::close() ?>
 <?php View::content() ?>
+<script>
+    $("#tiporeporte_idtiporeporte").click(function () {
+        tiporeporte = $("#tiporeporte_idtiporeporte option:selected").val();
+        if (tiporeporte == '1' || tiporeporte == '2' || tiporeporte == '3' || tiporeporte == '5') {
+            $(".ug").hide();
+            $(".re").hide();
+            $(".sg").show();
+
+        }
+        if (tiporeporte == '4') {
+            $(".re").hide();
+            $(".sg").hide();
+            $(".ug").show();
+
+        }
+        if (tiporeporte == '6') {
+            $(".ug").hide();
+            $(".sg").hide();
+            $(".re").show();
+
+        }
+
+    });
+    $("#tiporeporte_idtiporeporte").click()
+    $(".imprimir").click(function (evt) {
+        evt.preventDefault();
+        $.ajax({
+            data: $("#formReporte").serializeArray(),
+            url: "<?php echo PUBLIC_PATH ?>admin/reporte/imprimir",
+            type: 'post',
+
+            success: function (response) {
+
+                window.open(response);
+            }
+        });
+
+    });
+</script>  

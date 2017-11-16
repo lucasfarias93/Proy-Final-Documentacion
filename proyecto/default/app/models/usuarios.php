@@ -299,9 +299,15 @@ class Usuarios extends ActiveRecord {
         return $this->find_first($where, "columns: $cols", "", "page: $pagina");
     }
 
-    public function cantidad_usuarios() {
+    public function cantidad_usuarios($criterio) {
         $cols = "DISTINCT usuarios.*";
         $where = " id <> 1 and id <> 78";
+        if (array_key_exists("login", $criterio) && $criterio['login']) {
+            $where .= " and login ilike '%" . UtilApp::normalizar_busqueda($criterio['login']) . "%'";
+        }
+        if (array_key_exists("dni", $criterio) && $criterio['dni']) {
+            $where .= " and dni ilike '%" . UtilApp::normalizar_busqueda($criterio['dni']) . "%'";
+        }
         return $this->find($where, "columns: $cols", 'order: id desc');
     }
 

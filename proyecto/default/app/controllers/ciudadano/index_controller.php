@@ -35,6 +35,9 @@ class IndexController extends AdminController {
                     $ruta = "/home/imagenes_produccion/no_disponible.gif";
                 } else {
                     $datos = $result->nacimiento_propiaResult->Objetos;
+                    if(is_array($datos)){
+                        $datos = $datos[0];
+                    }
                     $ubicacion = str_replace("-", "/", $datos->ubicacion);
                     $ubicacion = str_replace("Q:-ActasEscaneadas", "", $ubicacion);
                     $ext = "png";

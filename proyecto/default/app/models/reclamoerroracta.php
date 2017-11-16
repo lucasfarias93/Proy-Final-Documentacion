@@ -25,6 +25,9 @@ class Reclamoerroracta extends ActiveRecord {
         if (array_key_exists("fechahasta", $criterio) && $criterio['fechahasta']) {
             $where .= " and  se.fechacambioreclamoestado <= '" . $criterio['fechahasta'] . "'";
         }
+        if (array_key_exists("login", $criterio) && $criterio['login']) {
+            $where .= " and login ilike '%" . UtilApp::normalizar_busqueda($criterio['login']) . "%'";
+        }
         return $this->find($where, "columns: $cols", "join: $join");
     }
 

@@ -58,3 +58,10 @@ DEBUG:spyne.protocol.xml:Validated ? True
 DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
 DEBUG:spyne.protocol.xml:Validated ? True
 127.0.0.1 - - [15/Nov/2017 13:27:32] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+127.0.0.1 - - [16/Nov/2017 15:21:09] "GET /RCWebService.asmx/nacimiento_propia?wsdl HTTP/1.1" 200 3721
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [16/Nov/2017 15:21:10] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 653
+DEBUG:spyne.protocol.soap.soap11:ValueError: Deserializing from unicode strings with encoding declaration is not supported by lxml.
+DEBUG:spyne.protocol.xml:Validated ? True
+127.0.0.1 - - [16/Nov/2017 15:24:02] "POST /RCWebService.asmx/nacimiento_propia HTTP/1.1" 200 628
