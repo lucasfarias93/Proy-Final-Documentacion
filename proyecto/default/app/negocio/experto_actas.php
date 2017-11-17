@@ -77,7 +77,7 @@ class ExpertoActas {
         Load::lib("fpdf");
         $pdf = new FPDF();
         $pdf->AddPage('L');
-        $pdf->Image($_SERVER['DOCUMENT_ROOT'] .'/proyecto/default/public/img/reporte.jpg',250,10,30);
+        $pdf->Image($_SERVER['DOCUMENT_ROOT'] .PUBLIC_PATH .'default/public/img/reporte.jpg',250,10,30);
         $pdf->SetFont('Arial', '', 24);
         $pdf->Cell(10, 15, 'Solicitudes generadas           '.UtilApp::fecha_actual(), 0,1);
         $pdf->Ln(10);
