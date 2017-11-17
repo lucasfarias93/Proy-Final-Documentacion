@@ -93,17 +93,19 @@ class ReporteController extends AdminController {
             }
             if (($tr['idtiporeporte']) == 4) {//Usuarios registrados
                 $lista4 = Load::model('usuarios')->cantidad_usuarios($criterio);
-                view::partial("usuarios_registrados", FALSE, array("lista4" => $lista4));
+                $url = ExpertoActas::reporte_pdf_usr_reg($lista4);
+                echo $url;
             }
             if (($tr['idtiporeporte']) == 5) {//Actas a vencer
                 $lista5 = Load::model('solicitudacta')->actasxvencer($criterio);
-                view::partial("actasxvencer", FALSE, array("lista5" => $lista5));
+                $url = ExpertoActas::reporte_pdf_actasxvencer($lista5);
+                echo $url;
             }
             if (($tr['idtiporeporte']) == 6) {//Cantidad de reclamos
                 $lista6 = Load::model('reclamoerroracta')->cantidad_reclamos($criterio);
-                view::partial("reclamos", FALSE, array("lista6" => $lista6));
+                $url = ExpertoActas::reporte_pdf_reclamos($lista6);
+                echo $url;
             }
-//        }
     }
 
 }

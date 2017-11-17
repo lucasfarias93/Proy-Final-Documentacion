@@ -10,6 +10,7 @@
                     <th>Apellido</th>
                     <th>dni</th>
                     <th>idTramite</th>
+                    <th>Fecha alta</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                         <td><?php echo $us->apellido ?></td>
                         <td><?php echo $us->dni ?></td>
                         <td><?php echo $us->idtramite ?></td>
+                        <td><?php echo UtilApp::formatea_fecha_bd_to_pantalla($us->creado_at) ?></td>
                     </tr>
                 <?php } ?>
             </tbody>

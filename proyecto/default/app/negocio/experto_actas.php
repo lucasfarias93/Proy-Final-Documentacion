@@ -77,20 +77,20 @@ class ExpertoActas {
         Load::lib("fpdf");
         $pdf = new FPDF();
         $pdf->AddPage('L');
-        $pdf->Image($_SERVER['DOCUMENT_ROOT'] .PUBLIC_PATH .'default/public/img/reporte.jpg',250,10,30);
+        $pdf->Image($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . 'default/public/img/reporte.jpg', 250, 10, 30);
         $pdf->SetFont('Arial', '', 24);
-        $pdf->Cell(10, 15, 'Solicitudes generadas           '.UtilApp::fecha_actual(), 0,1);
+        $pdf->Cell(10, 15, 'Solicitudes generadas           ' . UtilApp::formatea_fecha_bd_to_pantalla(UtilApp::fecha_actual()), 0, 1);
         $pdf->Ln(10);
         $pdf->SetFont('Arial', 'B', 12);
         // Header
         $pdf->SetFillColor(160, 180, 230);
-        $pdf->Cell(20, 10, 'Solicitud', 1,0, 'L',TRUE);
-        $pdf->Cell(80, 10, 'Propietario', 1,0, 'L',TRUE);
-        $pdf->Cell(25, 10, 'Parentesco', 1,0, 'L',TRUE);
-        $pdf->Cell(35, 10,utf8_decode('Cupón de pago'), 1,0, 'L',TRUE);
-        $pdf->Cell(25, 10, 'Tipo libro', 1,0, 'L',TRUE);
-        $pdf->Cell(35, 10, 'Fecha solicitud', 1,0, 'L',TRUE);
-        $pdf->Cell(35, 10, 'Estado solicitud', 1, 1, 'L',TRUE);
+        $pdf->Cell(20, 10, 'Solicitud', 1, 0, 'L', TRUE);
+        $pdf->Cell(80, 10, 'Propietario', 1, 0, 'L', TRUE);
+        $pdf->Cell(25, 10, 'Parentesco', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, utf8_decode('Cupón de pago'), 1, 0, 'L', TRUE);
+        $pdf->Cell(25, 10, 'Tipo libro', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, 'Fecha solicitud', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, 'Estado solicitud', 1, 1, 'L', TRUE);
         $pdf->SetFont('Arial', '', 10);
         // Data
         foreach ($listado as $row) {
@@ -101,6 +101,138 @@ class ExpertoActas {
             $pdf->Cell(25, 10, $row->nombrelibro, 1);
             $pdf->Cell(35, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioestado), 1);
             $pdf->Cell(35, 10, $row->nombreestadosolicitud, 1, 1);
+        }
+        $nombre = 'pdf/reporte_' . date("dmYHis", time()) . '.pdf';
+        $pdf->Output($nombre, 'F');
+        ///// Comando para firmar digitalmente con jsignpdf
+//        $comando = "java -jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/" . $nombre . " -d " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/pdf -kst BCPKCS12 -ksf " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/certificado.p12 -ksp " . $clave_key . " --bg-path " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
+//        exec($comando);
+        $url = PUBLIC_PATH . $nombre;
+//        $url = str_replace('.pdf', '', $url);
+//        $url = str_replace('/proyecto', '', $url);
+//        $url = "/public" . $url . "_firmado.pdf";
+        return $url;
+    }
+
+    public static function reporte_pdf_usr_reg($listado) {
+        $clave_key = 'registro';
+        Load::lib("fpdf");
+        $pdf = new FPDF();
+        $pdf->AddPage('L');
+        $pdf->Image($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . 'default/public/img/reporte.jpg', 250, 10, 30);
+        $pdf->SetFont('Arial', '', 24);
+        $pdf->Cell(10, 15, 'Usuarios registrados           ' . UtilApp::formatea_fecha_bd_to_pantalla(UtilApp::fecha_actual()), 0, 1);
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        // Header
+        $pdf->SetFillColor(160, 180, 230);
+        $pdf->Cell(10, 10, utf8_decode('N°'), 1, 0, 'L', TRUE);
+        $pdf->Cell(30, 10, 'Usuario', 1, 0, 'L', TRUE);
+        $pdf->Cell(70, 10, 'Nombres', 1, 0, 'L', TRUE);
+        $pdf->Cell(70, 10, 'Apellidos', 1, 0, 'L', TRUE);
+        $pdf->Cell(30, 10, 'DNI', 1, 0, 'L', TRUE);
+        $pdf->Cell(30, 10, 'idTramite', 1, 0, 'L', TRUE);
+        $pdf->Cell(30, 10, 'Fecha alta', 1, 1, 'L', TRUE);
+        $pdf->SetFont('Arial', '', 10);
+        // Data
+        foreach ($listado as $row) {
+            $pdf->Cell(10, 10, $row->id, 1);
+            $pdf->Cell(30, 10, $row->login, 1);
+            $pdf->Cell(70, 10, utf8_decode($row->nombres), 1);
+            $pdf->Cell(70, 10, utf8_decode($row->apellido), 1);
+            $pdf->Cell(30, 10, $row->dni, 1);
+            $pdf->Cell(30, 10, $row->idtramite, 1);
+            $pdf->Cell(30, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->creado_at), 1, 1);
+        }
+        $nombre = 'pdf/reporte_' . date("dmYHis", time()) . '.pdf';
+        $pdf->Output($nombre, 'F');
+        ///// Comando para firmar digitalmente con jsignpdf
+//        $comando = "java -jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/" . $nombre . " -d " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/pdf -kst BCPKCS12 -ksf " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/certificado.p12 -ksp " . $clave_key . " --bg-path " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
+//        exec($comando);
+        $url = PUBLIC_PATH . $nombre;
+//        $url = str_replace('.pdf', '', $url);
+//        $url = str_replace('/proyecto', '', $url);
+//        $url = "/public" . $url . "_firmado.pdf";
+        return $url;
+    }
+
+    public static function reporte_pdf_reclamos($listado) {
+        $clave_key = 'registro';
+        Load::lib("fpdf");
+        $pdf = new FPDF();
+        $pdf->AddPage('L');
+        $pdf->Image($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . 'default/public/img/reporte.jpg', 250, 10, 30);
+        $pdf->SetFont('Arial', '', 24);
+        $pdf->Cell(10, 15, 'Reclamos efectuados           ' . UtilApp::formatea_fecha_bd_to_pantalla(UtilApp::fecha_actual()), 0, 1);
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        // Header
+        $pdf->SetFillColor(160, 180, 230);
+        $pdf->Cell(10, 10, utf8_decode('N°'), 1, 0, 'L', TRUE);
+        $pdf->Cell(20, 10, 'Usuario', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, 'Apellido', 1, 0, 'L', TRUE);
+        $pdf->Cell(30, 10, 'Nombre', 1, 0, 'L', TRUE);
+        $pdf->Cell(15, 10, 'Acta', 1, 0, 'L', TRUE);
+        $pdf->Cell(15, 10, 'Libro', 1, 0, 'L', TRUE);
+        $pdf->Cell(45, 10, 'Observaciones', 1, 0, 'L', TRUE);
+        $pdf->Cell(50, 10, 'Tipo', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, 'Estado', 1, 0, 'L', TRUE);
+        $pdf->Cell(20, 10, 'Fecha', 1, 1, 'L', TRUE);
+        $pdf->SetFont('Arial', '', 10);
+        // Data
+        foreach ($listado as $row) {
+            $pdf->Cell(10, 10, $row->id, 1);
+            $pdf->Cell(20, 10, $row->login, 1);
+            $pdf->Cell(35, 10, utf8_decode($row->apellidopropietarioacta), 1);
+            $pdf->Cell(30, 10, utf8_decode($row->nombrepropietarioacta), 1);
+            $pdf->Cell(15, 10, $row->numeroacta, 1);
+            $pdf->Cell(15, 10, $row->numerolibro, 1);
+            $pdf->Cell(45, 10, utf8_decode($row->observaciones), 1);
+            $pdf->Cell(50, 10, utf8_decode($row->nombretiporeclamo), 1);
+            $pdf->Cell(35, 10, $row->nombreestadoreclamoerroracta, 1);
+            $pdf->Cell(20, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioreclamoestado), 1, 1);
+        }
+        $nombre = 'pdf/reporte_' . date("dmYHis", time()) . '.pdf';
+        $pdf->Output($nombre, 'F');
+        ///// Comando para firmar digitalmente con jsignpdf
+//        $comando = "java -jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/" . $nombre . " -d " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/public/pdf -kst BCPKCS12 -ksf " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/certificado.p12 -ksp " . $clave_key . " --bg-path " . $_SERVER['DOCUMENT_ROOT'] . "/proyecto/default/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
+//        exec($comando);
+        $url = PUBLIC_PATH . $nombre;
+//        $url = str_replace('.pdf', '', $url);
+//        $url = str_replace('/proyecto', '', $url);
+//        $url = "/public" . $url . "_firmado.pdf";
+        return $url;
+    }
+
+    public static function reporte_pdf_actasxvencer($listado) {
+        $clave_key = 'registro';
+        Load::lib("fpdf");
+        $pdf = new FPDF();
+        $pdf->AddPage('L');
+        $pdf->Image($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . 'default/public/img/reporte.jpg', 250, 10, 30);
+        $pdf->SetFont('Arial', '', 24);
+        $pdf->Cell(10, 15, 'Actas por vencer           ' . UtilApp::formatea_fecha_bd_to_pantalla(UtilApp::fecha_actual()), 0, 1);
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        // Header
+        $pdf->SetFillColor(160, 180, 230);
+        $pdf->Cell(30, 10, 'Solicitud', 1, 0, 'L', TRUE);
+        $pdf->Cell(50, 10, 'Propietario', 1, 0, 'L', TRUE);
+        $pdf->Cell(30, 10, 'Parentesco', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, utf8_decode('Código de pago'), 1, 0, 'L', TRUE);
+        $pdf->Cell(40, 10, 'Fecha', 1, 0, 'L', TRUE);
+        $pdf->Cell(40, 10, 'Estado', 1, 0, 'L', TRUE);
+        $pdf->Cell(40, 10, 'Dias restantes', 1, 1, 'L', TRUE);
+        $pdf->SetFont('Arial', '', 10);
+        // Data
+        foreach ($listado as $row) {
+            $pdf->Cell(30, 10, $row->id, 1);
+            $pdf->Cell(50, 10, utf8_decode($row->nombrepropietarioacta), 1);
+            $pdf->Cell(30, 10, utf8_decode($row->nombreparentesco), 1);
+            $pdf->Cell(35, 10, $row->codigodepago, 1);
+            $pdf->Cell(40, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioestado), 1);
+            $pdf->Cell(40, 10, $row->nombreestadosolicitud, 1);
+            $pdf->Cell(40, 10, 180 - UtilApp::calcular_dias_entre_fechas($row->fechacambioestado, UtilApp::fecha_actual()), 1, 1);
         }
         $nombre = 'pdf/reporte_' . date("dmYHis", time()) . '.pdf';
         $pdf->Output($nombre, 'F');
