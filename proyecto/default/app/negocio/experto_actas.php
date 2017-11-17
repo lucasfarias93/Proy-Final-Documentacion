@@ -73,7 +73,7 @@ class ExpertoActas {
     }
 
     public static function reporte_pdf_sol_gen($listado) {
-
+        $clave_key = 'registro';
         Load::lib("fpdf");
         $pdf = new FPDF();
         $pdf->AddPage('L');
