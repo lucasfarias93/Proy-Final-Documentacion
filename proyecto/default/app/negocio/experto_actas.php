@@ -102,7 +102,8 @@ class ExpertoActas {
             $pdf->Cell(35, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioestado), 1);
             $pdf->Cell(35, 10, $row->nombreestadosolicitud, 1, 1);
         }
-        $nombre = 'pdf/reporte_solicitudes_' . date("dmYHis", time()) . '.pdf';
+        $pdf->Image($_SERVER['DOCUMENT_ROOT'] . PUBLIC_PATH . 'default/public/img/escudo_consulta.jpg', 10, 10, 190, 270);
+        $nombre = 'pdf/reporte_' . date("dmYHis", time()) . '.pdf';
         $pdf->Output($nombre, 'F');
         ///// Comando para firmar digitalmente con jsignpdf
         $comando = "java -jar " . $_SERVER['DOCUMENT_ROOT'] . "/default/firma/jsignpdf/JSignPdf.jar " . $_SERVER['DOCUMENT_ROOT'] . "/default/public/" . $nombre . " -d " . $_SERVER['DOCUMENT_ROOT'] . "/default/public/pdf -kst BCPKCS12 -ksf " . $_SERVER['DOCUMENT_ROOT'] . "/default/firma/certificado.p12 -ksp " . $clave_key . " --bg-path " . $_SERVER['DOCUMENT_ROOT'] . "/default/firma/escudo.png --out-suffix '_firmado' --bg-scale 0.7 -fs 5 -a --l2-text 'Firmado Digitalmente por: \${signer} \${timestamp}' -urx 700 -ury 50 -lly 0 -llx 350 --page 1 -V";
