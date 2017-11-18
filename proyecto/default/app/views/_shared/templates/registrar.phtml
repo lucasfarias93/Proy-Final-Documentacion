@@ -131,7 +131,7 @@
                 <div class="row">
                     <div class="input-field">
                         <input id="email" type="email" class="validate">
-                        <label for="email" data-error="Mail inválido" data-success="right">Email</label>
+                        <label for="email" data-error="Mail inválido" data-success="formato mail válido">Email</label>
                     </div>
                 </div>
                 <div class="row">
@@ -410,7 +410,7 @@
                 type: 'POST',
                 success: function (response) {
                     alert("exito");
-                    window.open('login');
+                    window.location.assign('login')
                 },
                 error: function (response) {
                     $("#rta").html(response.responseText);

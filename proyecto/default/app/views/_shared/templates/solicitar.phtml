@@ -281,6 +281,9 @@
                             });
                             window.open("<?php echo PUBLIC_PATH ?>ciudadano");
                         }
+            $('#boton2').on('click', function () {
+                return confirm('Si confirma que todos los datos son correctos, se creará la solicitud. Está podra ser pagada ahora o si desea pagarla mas adelante, quedará disponible en el listado de solicitudes');
+            });
         </script>
     </body>
 </html>

@@ -46,10 +46,18 @@
             </div>
         </nav>
 
+        <div class="container row">
+            <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Selecciona el tipo de error y completá los datos. No todos los campos son obligatorios, pero llenarlos ayudará a agilizar la resolución del error</span></label>
+            <br>
+        </div>
+        <div class="center">
+            <label><span style="font-size: 14px; margin-top: 15px; display: flex;" class="white-text">Rectificar datos erróneos: los datos mostrados discrepan de la realidad</span></label>
+            <label><span style="font-size: 14px; margin-top: 15px; display: flex;" class="white-text">Enlazar acta digital: Estan los datos de la persona pero no se encuentra el acta digital</span></label>
+            <label><span style="font-size: 14px; margin-top: 15px; display: flex;" class="white-text">Realizar digitalización de acta: no se encuentran resultados de la persona</span></label>
+        </div>
         <div class="center row">
             <?php echo Form::open('ciudadano/reportarerror/crear_reclamo', 'post') ?>
             <div class="row ">
-                <label><span style="font-size: 18px; margin-top: 15px; display: flex;" class="white-text">Selecciona el tipo de error y completá los datos. No todos los campos son obligatorios, pero llenarlos ayudará a agilizar la resolución del error</span></label>
                 <div class="input-field">
                     <?php echo Form::dbselect('tiporeclamo.idtiporeclamo', 'nombretiporeclamo', array('tiporeclamo', 'find')) ?>
                 </div>

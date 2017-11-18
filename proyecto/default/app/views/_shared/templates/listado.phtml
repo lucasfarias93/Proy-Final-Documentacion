@@ -95,8 +95,8 @@
                                 <td></td>
                             <?php } ?> 
                             <?php if ($as->nombreestadosolicitud == "Confirmada") { ?>
-                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><i class="small material-icons black-text">delete</i></a></td>
-                                <td><a href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><i class="small material-icons">payment</i></a></td>
+                                <td><a class="cancelar" href="<?php echo PUBLIC_PATH . "ciudadano/listado/cancelar/" . $as->id ?>"><i class="small material-icons black-text">delete</i></a></td>
+                                <td><a class="pagar" href="<?php echo PUBLIC_PATH . "ciudadano/listado/pagar/" . $as->id ?>" class = 'botonpagar'><i class="small material-icons">payment</i></a></td>
                             <?php } ?> 
                             <?php if ($as->nombreestadosolicitud == "Pagada") { ?>
                                 <td></td>
@@ -185,6 +185,14 @@
                 }
             }
         }
+    // Para mostrar mensajes de confirmacion en los casos de cancelar y pagar solicitud
+    $('.cancelar').on('click', function () {
+        return confirm('¿Quiere cancelar esta solicitud confirmada? Una vez cancelada no quedará disponible para ser pagada');
+    });
+
+    $('.pagar').on('click', function () {
+        return confirm('¿Quiere pagar esta solicitud pendiente? De ser así, será redirigido para ejecutar el pago de la misma');
+    });
     </script>
 </body>
 </html>
