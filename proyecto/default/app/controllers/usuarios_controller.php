@@ -97,7 +97,6 @@ class UsuariosController extends AppController {
                         if ($exito) {
                             Flash::info("El correo fue enviado correctamente");
                             input::delete();
-                            Router::redirect('login');
                         } else {
                             $mail->ErrorInfo;
                             throw new NegocioExcepcion($mail->ErrorInfo);

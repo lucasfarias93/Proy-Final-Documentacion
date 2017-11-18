@@ -73,8 +73,7 @@ class IndexController extends AppController {
                 }
             }
         } catch (NegocioExcepcion $e) {
-            Logger::error($e->getMessage());
-            Flash::info($e->getMessage());
+            Flash::info("Debe ingresar un correo valido");
         }
     }
 
