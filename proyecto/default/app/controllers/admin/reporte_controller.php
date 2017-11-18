@@ -70,42 +70,45 @@ class ReporteController extends AdminController {
     public function imprimir() {
         view::select(null, NULL);
 //        if (session::has('criterio')) {
-            $tr = Input::post('tiporeporte');
-            $criterio = Input::post('criterio');
-            if (($tr['idtiporeporte']) == 1) {//Actas Firmadas
-                $lista1 = Load::model('solicitudacta')->actas_firmadas($criterio);
-                
-            }
-            if (($tr['idtiporeporte']) == 2) {//Solicitudes generadas
-                $lista2 = Load::model('solicitudacta')->reporte_solicitudes_generadas($criterio);
-                $url = ExpertoActas::reporte_pdf_sol_gen($lista2);
-                echo $url;
-            }
-            if (($tr['idtiporeporte']) == 3) {//Ganancias
-                $lista3 = Load::model('cupondepago')->monto_pagado($criterio);
-                $lista7 = Load::model('cupondepago')->grafico_ganancias($criterio);
-                $datos = "";
-                foreach ($lista7 as $data) {
-                    $datos .= $data->total . ",";
-                }
-                $datos = substr($datos, 0, -1);
-                view::partial("ganancias", FALSE, array("lista3" => $lista3, "datos" => $datos));
-            }
-            if (($tr['idtiporeporte']) == 4) {//Usuarios registrados
-                $lista4 = Load::model('usuarios')->cantidad_usuarios($criterio);
-                $url = ExpertoActas::reporte_pdf_usr_reg($lista4);
-                echo $url;
-            }
-            if (($tr['idtiporeporte']) == 5) {//Actas a vencer
-                $lista5 = Load::model('solicitudacta')->actasxvencer($criterio);
-                $url = ExpertoActas::reporte_pdf_actasxvencer($lista5);
-                echo $url;
-            }
-            if (($tr['idtiporeporte']) == 6) {//Cantidad de reclamos
-                $lista6 = Load::model('reclamoerroracta')->cantidad_reclamos($criterio);
-                $url = ExpertoActas::reporte_pdf_reclamos($lista6);
-                echo $url;
-            }
+        $tr = Input::post('tiporeporte');
+        $criterio = Input::post('criterio');
+        if (($tr['idtiporeporte']) == 1) {//Actas Firmadas
+            $lista1 = Load::model('solicitudacta')->actas_firmadas($criterio);
+            $url = ExpertoActas::reporte_pdf_firmadas($lista1);
+            echo $url;
+        }
+        if (($tr['idtiporeporte']) == 2) {//Solicitudes generadas
+            $lista2 = Load::model('solicitudacta')->reporte_solicitudes_generadas($criterio);
+            $url = ExpertoActas::reporte_pdf_sol_gen($lista2);
+            echo $url;
+        }
+        if (($tr['idtiporeporte']) == 3) {//Ganancias
+            $lista3 = Load::model('cupondepago')->monto_pagado($criterio);
+            $url = ExpertoActas::reporte_pdf_ganancias($lista3);
+            echo $url;
+//                $lista7 = Load::model('cupondepago')->grafico_ganancias($criterio);
+//                $datos = "";
+//                foreach ($lista7 as $data) {
+//                    $datos .= $data->total . ",";
+//                }
+//                $datos = substr($datos, 0, -1);
+//                view::partial("ganancias", FALSE, array("lista3" => $lista3, "datos" => $datos));
+        }
+        if (($tr['idtiporeporte']) == 4) {//Usuarios registrados
+            $lista4 = Load::model('usuarios')->cantidad_usuarios($criterio);
+            $url = ExpertoActas::reporte_pdf_usr_reg($lista4);
+            echo $url;
+        }
+        if (($tr['idtiporeporte']) == 5) {//Actas a vencer
+            $lista5 = Load::model('solicitudacta')->actasxvencer($criterio);
+            $url = ExpertoActas::reporte_pdf_actasxvencer($lista5);
+            echo $url;
+        }
+        if (($tr['idtiporeporte']) == 6) {//Cantidad de reclamos
+            $lista6 = Load::model('reclamoerroracta')->cantidad_reclamos($criterio);
+            $url = ExpertoActas::reporte_pdf_reclamos($lista6);
+            echo $url;
+        }
     }
 
 }

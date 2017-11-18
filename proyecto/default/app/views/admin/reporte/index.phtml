@@ -11,12 +11,12 @@
         <?php echo Form::label('Tipo de reportes', 'fechacambioestado', array('class' => 'control-label')) ?>
         <?php echo Form::dbselect('tiporeporte.idtiporeporte', 'nombretiporeporte', array('tiporeporte', 'find'), 'Seleccione', array('class' => 'form-control')) ?>
     </div>
-    <div class="col-sm-2 ">
+    <div class="col-sm-2 sg">
         <?php echo Form::label('Fecha desde', 'fechacambioestado', array('class' => 'control-label')) ?>
         <?php echo Form::text('criterio.fechadesde', array('class' => 'form-control')) ?>
     </div>
 
-    <div class="col-sm-2 ">
+    <div class="col-sm-2 sg">
         <?php echo Form::label('Fecha hasta', 'fechacambioestado', array('class' => 'control-label')) ?>
         <?php echo Form::text('criterio.fechahasta', array('class' => 'form-control')) ?>
     </div>
@@ -40,21 +40,21 @@
         <?php echo Form::label('DNI', 'codigodepago', array('class' => 'control-label')) ?>
         <?php echo Form::text('criterio.dni', array('class' => 'form-control')) ?>
     </div>
-    <div class="col-sm-2">
-        <?php echo Form::label('', 'codigodepago', array('class' => 'control-label')) ?>
+    <div class="col-sm-2 sg ug re">
         <?php echo Form::submit('Ver', array('class' => 'form-control btn btn-primary')) ?>
     </div>
-    <?php // if (session::has('criterio')) { ?>
-    <div class="col-sm-2">
+    <div class="col-sm-2 sg ug re">
         <?php echo html::link('admin/reporte/imprimir', 'Imprimir', array('class' => 'imprimir form-control btn btn-primary')) ?>
     </div>
-    <?php // } ?>
 </div>
 
 
 <?php echo Form::close() ?>
 <?php View::content() ?>
 <script>
+    $(".ug").hide();
+    $(".re").hide();
+    $(".sg").hide();
     $("#tiporeporte_idtiporeporte").click(function () {
         tiporeporte = $("#tiporeporte_idtiporeporte option:selected").val();
         if (tiporeporte == '1' || tiporeporte == '2' || tiporeporte == '3' || tiporeporte == '5') {
