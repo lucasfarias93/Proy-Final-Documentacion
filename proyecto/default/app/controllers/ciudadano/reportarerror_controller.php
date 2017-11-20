@@ -9,6 +9,8 @@ load::negocio('experto_actas');
 
 class ReportarerrorController extends AppController {
 
+    public $display_errors = true;
+
     protected function before_filter() {
         if (input::isAjax()) {
             view::select(NULL, NULL);
@@ -35,16 +37,24 @@ class ReportarerrorController extends AppController {
             $rea = new Reclamoerroracta(input::post('tiporeclamo'));
             $rea->idusuario = Auth::get('id');
             try {
-                $rea->create();
-                $reclamoerroractaestado = new Reclamoerroractaestado();
-                $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
+                if (empty($rea->apellidopropietarioacta)) {
+                    Flash::info("Debe ingresar un apellido para poder continuar");
+                    Router::redirect();
+                } else if (empty($rea->nombrepropietarioacta)) {
+                    Flash::info("Debe ingresar un nombre para poder continuar");
+                    Router::redirect();
+                } else {
+                    $rea->create();
+                    $reclamoerroractaestado = new Reclamoerroractaestado();
+                    $reclamoerroractaestado->fechacambioreclamoestado = UtilApp::fecha_actual();
 ///Con $rea->id le estoy seteando el id de lo que acabo de crear?
-                $reclamoerroractaestado->idreclamoerroracta = $rea->id;
+                    $reclamoerroractaestado->idreclamoerroracta = $rea->id;
 ////////////El estado 1 es enviado al archivo
-                $reclamoerroractaestado->idestadoreclamoerroracta = 1;
-                $reclamoerroractaestado->create();
-                Flash::info("Reclamo realizado con éxito");
-                Router::redirect('ciudadano');
+                    $reclamoerroractaestado->idestadoreclamoerroracta = 1;
+                    $reclamoerroractaestado->create();
+                    Flash::info("Reclamo realizado con éxito");
+                    Router::redirect('ciudadano');
+                }
             } catch (NegocioExcepcion $e) {
                 Flash::info($e->getMessage());
                 if (!Input::isAjax()) {
