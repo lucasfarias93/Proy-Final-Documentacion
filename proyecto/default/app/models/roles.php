@@ -2,7 +2,6 @@
 
 class Roles extends ActiveRecord {
     
-//    public $debug = true;
     
     protected function initialize() {
         //relaciones
