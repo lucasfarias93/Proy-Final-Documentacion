@@ -28,7 +28,7 @@ class Reclamoerroracta extends ActiveRecord {
         if (array_key_exists("login", $criterio) && $criterio['login']) {
             $where .= " and login ilike '%" . UtilApp::normalizar_busqueda($criterio['login']) . "%'";
         }
-        return $this->find($where, "columns: $cols", "join: $join");
+        return $this->find($where, "columns: $cols", "join: $join", 'order: se.fechacambioreclamoestado desc');
     }
 
     public function getReclamoerroractaestado($page, $ppage = 20) {

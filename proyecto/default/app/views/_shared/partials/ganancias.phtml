@@ -14,7 +14,7 @@
                     <tr>
                         <td><?php echo $g->codigodepago ?></td>
                         <td><?php echo UtilApp::formatea_fecha_bd_to_pantalla($g->fechaemisionpago) ?></td>
-                        <td><?php echo $g->montototal ?></td>
+                        <td><?php echo "$".$g->montototal ?></td>
                         <?php $ganancias += $g->montototal ?>
                     </tr>
                 <?php } ?>

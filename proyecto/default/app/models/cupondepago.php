@@ -9,6 +9,7 @@ class Cupondepago extends ActiveRecord {
      *
 
      */
+    public $debug = true;
     public function getCupondepago($page, $ppage = 20) {
 
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
@@ -40,7 +41,7 @@ class Cupondepago extends ActiveRecord {
     }
 
     public function grafico_ganancias($criterio) {
-        $cols = "extract (month from fechaemisionpago), sum(montototal) as total ";
+        $cols = "extract (month from fechaemisionpago) as mes, sum(montototal) as total ";
         $where = " estadocupondepago = 'Pagada' and fechaemisionpago >= '01/10/2017' and fechaemisionpago <= '30/11/2017'";
         $groupby = " 1";
         if (array_key_exists("fechadesde", $criterio) && $criterio['fechadesde']) {

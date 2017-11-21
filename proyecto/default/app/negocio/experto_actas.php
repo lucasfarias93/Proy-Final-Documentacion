@@ -102,6 +102,8 @@ class ExpertoActas {
             $pdf->Cell(35, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioestado), 1);
             $pdf->Cell(35, 10, $row->nombreestadosolicitud, 1, 1);
         }
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(10, 15, 'Total solicitudes: ' . count($listado));
         $nombre = 'pdf/reporte_' . date("dmYHis", time()) . '.pdf';
         $pdf->Output($nombre, 'F');
         ///// Comando para firmar digitalmente con jsignpdf
@@ -173,10 +175,10 @@ class ExpertoActas {
         $pdf->Cell(10, 10, utf8_decode('N°'), 1, 0, 'L', TRUE);
         $pdf->Cell(20, 10, 'Usuario', 1, 0, 'L', TRUE);
         $pdf->Cell(35, 10, 'Apellido', 1, 0, 'L', TRUE);
-        $pdf->Cell(30, 10, 'Nombre', 1, 0, 'L', TRUE);
+        $pdf->Cell(40, 10, 'Nombre', 1, 0, 'L', TRUE);
         $pdf->Cell(15, 10, 'Acta', 1, 0, 'L', TRUE);
         $pdf->Cell(15, 10, 'Libro', 1, 0, 'L', TRUE);
-        $pdf->Cell(45, 10, 'Observaciones', 1, 0, 'L', TRUE);
+        $pdf->Cell(35, 10, 'Observaciones', 1, 0, 'L', TRUE);
         $pdf->Cell(50, 10, 'Tipo', 1, 0, 'L', TRUE);
         $pdf->Cell(35, 10, 'Estado', 1, 0, 'L', TRUE);
         $pdf->Cell(20, 10, 'Fecha', 1, 1, 'L', TRUE);
@@ -186,10 +188,10 @@ class ExpertoActas {
             $pdf->Cell(10, 10, $row->id, 1);
             $pdf->Cell(20, 10, $row->login, 1);
             $pdf->Cell(35, 10, utf8_decode($row->apellidopropietarioacta), 1);
-            $pdf->Cell(30, 10, utf8_decode($row->nombrepropietarioacta), 1);
+            $pdf->Cell(40, 10, utf8_decode($row->nombrepropietarioacta), 1);
             $pdf->Cell(15, 10, $row->numeroacta, 1);
             $pdf->Cell(15, 10, $row->numerolibro, 1);
-            $pdf->Cell(45, 10, utf8_decode($row->observaciones), 1);
+            $pdf->Cell(35, 10, utf8_decode($row->observaciones), 1);
             $pdf->Cell(50, 10, utf8_decode($row->nombretiporeclamo), 1);
             $pdf->Cell(35, 10, $row->nombreestadoreclamoerroracta, 1);
             $pdf->Cell(20, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechacambioreclamoestado), 1, 1);
@@ -266,13 +268,13 @@ class ExpertoActas {
         $pdf->SetFillColor(160, 180, 230);
         $pdf->Cell(40, 10, utf8_decode('Cupón de pago'), 1, 0, 'L', TRUE);
         $pdf->Cell(40, 10, 'Fecha del pago', 1, 0, 'L', TRUE);
-        $pdf->Cell(20, 10, 'Monto', 1, 1, 'L', TRUE);
+        $pdf->Cell(20, 10, 'Monto $', 1, 1, 'L', TRUE);
         $pdf->SetFont('Arial', '', 10);
         // Data
         foreach ($listado as $row) {
             $pdf->Cell(40, 10, $row->codigodepago, 1);
             $pdf->Cell(40, 10, UtilApp::formatea_fecha_bd_to_pantalla($row->fechaemisionpago), 1);
-            $pdf->Cell(20, 10, $row->montototal, 1, 1);
+            $pdf->Cell(20, 10, "$".$row->montototal, 1, 1);
             $ganancias += $row->montototal;
         }
         $pdf->SetFont('Arial', 'B', 12);

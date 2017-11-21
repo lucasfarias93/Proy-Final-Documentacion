@@ -88,7 +88,7 @@
                             <td class="data-cell"><?php echo $as->nombreparentesco ?></td>
                             <td class="data-cell"><?php echo $as->codigodepago ?></td>
                             <td class="data-cell"><?php echo $as->nombrelibro ?></td>
-                            <td class="data-cell"><?php echo $as->fechacambioestado ?></td>
+                            <td class="data-cell"><?php echo UtilApp::formatea_fecha_bd_to_pantalla($as->fechacambioestado) ?></td>
                             <td class="data-cell"><?php echo $as->nombreestadosolicitud ?></td>
                             <?php if ($as->nombreestadosolicitud == "Pendiente de pago") { ?>
                                 <td></td>

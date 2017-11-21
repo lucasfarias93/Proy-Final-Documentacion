@@ -308,7 +308,7 @@ class Usuarios extends ActiveRecord {
         if (array_key_exists("dni", $criterio) && $criterio['dni']) {
             $where .= " and dni ilike '%" . UtilApp::normalizar_busqueda($criterio['dni']) . "%'";
         }
-        return $this->find($where, "columns: $cols", 'order: id desc');
+        return $this->find($where, "columns: $cols", 'order: creado_at desc');
     }
 
 }

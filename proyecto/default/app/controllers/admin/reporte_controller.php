@@ -40,9 +40,14 @@ class ReporteController extends AdminController {
             if (($tr['idtiporeporte']) == 3) {//Ganancias
                 $lista3 = Load::model('cupondepago')->monto_pagado($criterio);
                 $lista7 = Load::model('cupondepago')->grafico_ganancias($criterio);
-                $datos = "";
+                $mes[10] = 0;
+                $mes[11] = 0;
                 foreach ($lista7 as $data) {
-                    $datos .= $data->total . ",";
+                    $mes[$data->mes] = $data->total;
+                }
+                $datos = "";
+                foreach ($mes as $data) {
+                    $datos .= $data . ",";
                 }
                 $datos = substr($datos, 0, -1);
                 view::partial("ganancias", FALSE, array("lista3" => $lista3, "datos" => $datos));
